@@ -1,0 +1,7 @@
+[wsl2]
+# kernel=
+localhostForwarding=true
+memory=16GB
+processors=4
+swap=16GB
+# swapFile=

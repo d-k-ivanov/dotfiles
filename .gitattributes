@@ -1,0 +1,65 @@
+# Archives
+*.gz binary
+*.tar binary
+*.zip binary
+
+# Binaries
+*.bin binary
+*.exe binary
+*.jar binary
+*.msi binary
+
+# Bytecode
+*.class binary
+*.o
+*.obj
+*.pyd binary
+
+# Documents
+*.chm binary
+*.doc binary
+*.docm binary
+*.docx binary
+*.dot binary
+*.dotx binar
+*.hlp binary
+*.pdf binary
+*.pot binnary
+*.potm binary
+*.potx binary
+*.pps binnary
+*.ppsm binary
+*.ppsx binary
+*.ppt binnary
+*.pptm binary
+*.pptx binary
+*.xlm binary
+*.xls binary
+*.xlsm binary
+*.xlst binary
+*.xlsx binary
+*.xlt binary
+*.xltm binary
+
+# Images
+*.ai binary
+*.gif binary
+*.ico binary
+*.jpg binary
+*.png binary
+*.psd binary
+
+# Libraries
+*.a binary
+*.dll binary
+*.dlyb binary
+*.lib binary
+
+# Misc
+*.gpg binary
+*.lnk binary
+
+# Sounds
+*.aac binary
+*.mp3 binary
+*.ogg binary

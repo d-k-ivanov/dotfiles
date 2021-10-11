@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+alias     kdev='kubectl --context dev'
+alias   kstage='kubectl --context stage'
+alias    kprod='kubectl --context prod'
+alias   kdevcn='kubectl --context devcn'
+alias kstagecn='kubectl --context stagecn'
+alias  kprodcn='kubectl --context prodcn'
+alias      kws='kubectl --context docker-desktop'
+
+alias     hdev='helm --kube-context dev'
+alias   hstage='helm --kube-context stage'
+alias    hprod='helm --kube-context prod'
+alias   hdevcn='helm --kube-context devcn'
+alias hstagecn='helm --kube-context stagecn'
+alias  hprodcn='helm --kube-context prodcn'
+alias      hws='helm --kube-context docker-desktop'
+
+alias     kdev_proxy='kdev      proxy --port=10001'
+alias   kstage_proxy='kstage    proxy --port=10001'
+alias    kprod_proxy='kprod     proxy --port=10001'
+alias   kdevcn_proxy='kdevcn    proxy --port=10001'
+alias kstagecn_proxy='kstagecn  proxy --port=10001'
+alias  kprodcn_proxy='kprodcn   proxy --port=10001'
+alias      kws_proxy='kdocker   proxy --port=10001'
+
+alias     kdev_port_fwd='kdev     port-forward --v=6 --address 0.0.0.0 service/'
+alias   kstage_port_fwd='kstage   port-forward --v=6 --address 0.0.0.0 service/'
+alias    kprod_port_fwd='kprod    port-forward --v=6 --address 0.0.0.0 service/'
+alias   kdevcn_port_fwd='kdevcn   port-forward --v=6 --address 0.0.0.0 service/'
+alias kstagecn_port_fwd='kstagecn port-forward --v=6 --address 0.0.0.0 service/'
+alias  kprodcn_port_fwd='kprodcn  port-forward --v=6 --address 0.0.0.0 service/'
+alias      kws_port_fwd='kdocker  port-forward --v=6 --address 0.0.0.0 service/'
+
+alias     kdev_consul='kdev     port-forward service/consul 8300 8301 8302 8500 8600'
+alias   kstage_consul='kstage   port-forward service/consul 8300 8301 8302 8500 8600'
+alias    kprod_consul='kprod    port-forward service/consul 8300 8301 8302 8500 8600'
+alias   kdevcn_consul='kdevcn   port-forward service/consul 8300 8301 8302 8500 8600'
+alias kstagecn_consul='kstagecn port-forward service/consul 8300 8301 8302 8500 8600'
+alias  kprodcn_consul='kprodcn  port-forward service/consul 8300 8301 8302 8500 8600'
+alias      kws_consul='kdocker  port-forward service/consul 8300 8301 8302 8500 8600'
+
+alias     kdev_rabbit='kdev     port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+alias   kstage_rabbit='kstage   port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+alias    kprod_rabbit='kprod    port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+alias   kdevcn_rabbit='kdevcn   port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+alias kstagecn_rabbit='kstagecn port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+alias  kprodcn_rabbit='kprodcn  port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+alias      kws_rabbit='kdocker  port-forward service/rabbitmq-ha 4369 5672 15672 15692'
+
+function kdev_exec()
+{
+    kdev exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+function kstage_exec()
+{
+    kstage exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+function kprod_exec()
+{
+    kprod exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+function kdevcn_exec()
+{
+    kdevcn exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+function kstagecn_exec()
+{
+    kstagecn exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+function  kprodcn_exec()
+{
+    kprodcn exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+function kws_exec()
+{
+    kdocker exec -it $@ -- sh -c '(bash || ash || sh)'
+}
+
+# alias     kdev_admin="kdev     -n kube-system describe secret $(kdev     -n kube-system get secret | grep admin-user-token | awk '{print $1}')"
+# alias   kstage_admin="kstage   -n kube-system describe secret $(kstage   -n kube-system get secret | grep admin-user-token | awk '{print $1}')"
+# alias    kprod_admin="kprod    -n kube-system describe secret $(kprod    -n kube-system get secret | grep admin-user-token | awk '{print $1}')"
+# alias   kdevcn_admin="kdevcn   -n kube-system describe secret $(kdevcn   -n kube-system get secret | grep admin-user-token | awk '{print $1}')"
+# alias kstagecn_admin="kstagecn -n kube-system describe secret $(kstagecn -n kube-system get secret | grep admin-user-token | awk '{print $1}')"
+# alias  kprodcn_admin="kprodcn  -n kube-system describe secret $(kprodcn  -n kube-system get secret | grep admin-user-token | awk '{print $1}')"
+
+function kimages
+{
+    echo "WIP"
+}
+

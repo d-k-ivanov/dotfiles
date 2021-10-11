@@ -1,0 +1,7 @@
+templates:
+  params:
+    author-email: d.k.ivanov@live.com
+    author-name: Dmitry Ivanov
+    category: Haskell
+    copyright: Dmitry Ivanov
+    github-username: d-k-ivanov
