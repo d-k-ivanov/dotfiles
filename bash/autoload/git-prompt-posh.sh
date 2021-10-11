@@ -433,18 +433,18 @@ __posh_git_echo ()
         gitstring+="$BranchBehindBackgroundColor$BranchBehindForegroundColor$branchstring"
         if [ "$BranchBehindAndAheadDisplay" = "full" -o "$BranchBehindAndAheadDisplay" = "compact" ]
         then
-            gitstring+="$BranchBehindStatusSymbol$__POSH_BRANCH_BEHIND_BY"
+            gitstring+=" $BranchBehindStatusSymbol$__POSH_BRANCH_BEHIND_BY"
         else
-            gitstring+="$BranchBehindStatusSymbol"
+            gitstring+=" $BranchBehindStatusSymbol"
         fi
     elif (( $__POSH_BRANCH_AHEAD_BY > 0 ))
     then
         gitstring+="$BranchAheadBackgroundColor$BranchAheadForegroundColor$branchstring"
         if [ "$BranchBehindAndAheadDisplay" = "full" -o "$BranchBehindAndAheadDisplay" = "compact" ]
         then
-            gitstring+="$BranchAheadStatusSymbol$__POSH_BRANCH_AHEAD_BY"
+            gitstring+=" $BranchAheadStatusSymbol$__POSH_BRANCH_AHEAD_BY"
         else
-            gitstring+="$BranchAheadStatusSymbol"
+            gitstring+=" $BranchAheadStatusSymbol"
         fi
     elif (( $divergence_return_code ))
     then
