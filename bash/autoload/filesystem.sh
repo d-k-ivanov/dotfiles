@@ -65,6 +65,7 @@ alias    ws='cd ~/ws'
 alias   wsm='cd ~/ws/misc'
 alias  wsmy='cd ~/ws/my'
 alias  wsdf='cd ~/ws/my/dotfiles'
+alias wsdsc='cd ~/ws/my/ansible-home-arch'
 alias  wsws='cd ~/ws/my/sandbox-wss'
 
 alias  wsaw='cd ~/.config/awesome'
