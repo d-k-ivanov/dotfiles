@@ -474,7 +474,7 @@ schemes:
 # *solarized-light
 # *solarized-dark
 # *tomorrow-night
-colors: *doom-one
+colors: *gruvbox-dark
 
 # Visual Bell
 #
