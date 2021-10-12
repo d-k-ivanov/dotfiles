@@ -463,6 +463,39 @@ schemes:
       cyan:    '0x54ced6'
       white:   '0x282a2e'
 
+  ayu-mirage: &ayu-mirage
+    # Default colors
+    primary:
+      background: '#242936'
+      foreground: '#cbccc6'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '0x69758c'
+      cursor: '0xffcc66'
+
+    # Normal colors
+    normal:
+      black:   '#1A1F29'
+      red:     '#FF6666'
+      green:   '#87D96C'
+      yellow:  '#FFAD66'
+      blue:    '#80BFFF'
+      magenta: '#695380'
+      cyan:    '#39BAE6'
+      white:   '#707A8C'
+
+    # Brightened
+    bright:
+      black:   '#686868'
+      red:     '#F28779'
+      green:   '#D5FF80'
+      yellow:  '#FFD173'
+      blue:    '#73D0FF'
+      magenta: '#DFBFFF'
+      cyan:    '#5CCFE6'
+      white:   '#CCCAC2'
+
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
@@ -474,7 +507,7 @@ schemes:
 # *solarized-light
 # *solarized-dark
 # *tomorrow-night
-colors: *gruvbox-dark
+colors: *ayu-mirage
 
 # Visual Bell
 #
