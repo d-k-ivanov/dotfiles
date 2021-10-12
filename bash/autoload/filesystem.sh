@@ -66,7 +66,7 @@ alias   wsm='cd ~/ws/misc'
 alias  wsmy='cd ~/ws/my'
 alias  wsdf='cd ~/ws/my/dotfiles'
 alias wsdsc='cd ~/ws/my/ansible-home-arch'
-alias  wsws='cd ~/ws/my/sandbox-wss'
+alias  wsws='cd ~/ws/my/sandbox-workspaces'
 
 alias  wsaw='cd ~/.config/awesome'
 alias   wst='cd ~/ws/tmp'
@@ -101,7 +101,7 @@ alias fs="stat -c \"%s bytes\""
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
 
-alias mmn="mount|column -t"
+alias mls="mount|column -t"
 
 # find shorthand
 f()
