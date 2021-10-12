@@ -16,7 +16,7 @@ set-display-one()
     #nvidia-settings --assign CurrentMetaMode="DPY-5: nvidia-auto-select @3840x2160 +0+0 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0}, DPY-2: nvidia-auto-select @3840x2160 +3840+0 {ViewPortIn=3840x2160, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=On}"
     # HDMI - Switchable graphics off
     #xrandr --output DP-1 --scale 2x2
-    xrandr --output eDP1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --panning 3840x2160+0+0 
+    xrandr --output eDP1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --panning 3840x2160+0+0
 
     # HDMI - Switchable graphics on
     #xrandr --output eDP1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --panning 3840x2160+0+0 --output HDMI2 --mode 1920x1080 --pos 3840x0 --rotate normal --scale 2x2 --right-of eDP1 --panning 3840x2160+3840+0
@@ -26,7 +26,7 @@ set-display()
 {
     case $1 in
         reset )
-            xrandr --output eDP1
+            xrandr --output eDP-1
             ;;
         hdmi1 )
             xrandr                          \
@@ -59,6 +59,38 @@ set-display()
                 --scale 2x2                 \
                 --right-of eDP1             \
                 --panning 3840x2160+3840+0
+            ;;
+        hdmi-2-right )
+            xrandr                          \
+                --output eDP-1              \
+                --primary                   \
+                --mode 3840x2160            \
+                --pos 0x0                   \
+                --rotate normal             \
+                --panning 3840x2160+0+0     \
+                --output HDMI-2             \
+                --mode 1920x1080            \
+                --pos 3840x0                \
+                --rotate normal             \
+                --scale 2x2                 \
+                --right-of eDP-1            \
+                --panning 3840x2160+3840+0
+            ;;
+        hdmi-2-left )
+            xrandr                          \
+                --output eDP-1              \
+                --primary                   \
+                --mode 3840x2160            \
+                --pos 0x0                   \
+                --rotate normal             \
+                --panning 3840x2160+3840+0  \
+                --output HDMI-2             \
+                --mode 1920x1080            \
+                --pos 3840x0                \
+                --rotate normal             \
+                --scale 2x2                 \
+                --left-of eDP-1             \
+                --panning 3840x2160+0+0
             ;;
         dp3 )
             xrandr                          \
@@ -151,7 +183,7 @@ set-display()
              --pos 1920x0    --rotate normal --above eDP1
             ;;
         dock2 )
-            # xrandr              --fb 11520x2160                                    \
+            # xrandr              --fb 11520x2160                                  \
             xrandr                                                                 \
              --output DP2-2     --mode 1920x1080  --crtc 1                         \
              --pos 0x0          --rotate normal                                    \
@@ -172,7 +204,7 @@ set-display()
              --output VIRTUAL1  --off
             ;;
         dock3 )
-            # xrandr              --fb 11520x2160                                    \
+            # xrandr              --fb 11520x2160                                  \
             xrandr                                                                 \
              --output DP2-2     --mode 1920x1080  --crtc 1                         \
              --pos 0x0          --rotate normal                                    \
