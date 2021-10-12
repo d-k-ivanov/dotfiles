@@ -35,6 +35,16 @@ then
     fi
 fi
 
+# NOT WORKING :(
+# Defaiult word delimiters
+# export COMP_WORDBREAKS=';:,.[]{}()/\|^&*-=+`"–—―'
+# Bash 4.0 word delimiters
+# export COMP_WORDBREAKS='()<>;&|"'
+# Defult
+# export COMP_WORDBREAKS='"><=;|&(:'
+
+bind '\C-w:backward-kill-word'
+
 # Colors in Vim and TMUX. Do not set this variables if you not shure why.
 # https://wiki.archlinux.org/index.php/Home_and_End_keys_inot_working
 #export TERM='screen-256color'
