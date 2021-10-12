@@ -61,6 +61,7 @@ rm -rf "$HOME/.tmux.conf"                   2> /dev/null
 rm -rf "$HOME/.tmux"                        2> /dev/null
 rm -rf "$HOME/.vim"                         2> /dev/null
 rm -rf "$HOME/.vimrc"                       2> /dev/null
+rm -rf "$HOME/.xbindkeysrc"                 2> /dev/null
 
 ln -sf "$DOTFILES_DIR/.gitmessage"          "$HOME/.gitmessage"
 ln -sf "$DOTFILES_DIR/bash_profile"         "$HOME/.bash_profile"
@@ -76,6 +77,7 @@ ln -sf "$DOTFILES_DIR/tmux.conf"            "$HOME/.tmux.conf"
 ln -sf "$DOTFILES_DIR/tmux"                 "$HOME/.tmux"
 ln -sf "$DOTFILES_DIR/vim"                  "$HOME/.vim"
 ln -sf "$DOTFILES_DIR/vimrc"                "$HOME/.vimrc"
+ln -sf "$DOTFILES_DIR/xbindkeysrc"          "$HOME/.xbindkeysrc"
 
 if [ -f /proc/version_signature ]
 then
