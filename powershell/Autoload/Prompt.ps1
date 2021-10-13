@@ -110,7 +110,7 @@ function CheckGit($Path)
     Microsoft.PowerShell.Utility\Write-Host $pwd.ProviderPath -NoNewLine -ForegroundColor Cyan
     Microsoft.PowerShell.Utility\Write-Host "]" -NoNewline -ForegroundColor DarkGreen
 
-    checkGit($pwd.ProviderPath)
+    Microsoft.PowerShell.Utility\Write-Host $(checkGit($pwd.ProviderPath)) -NoNewline
 
     $now      = Get-date -Format "HH:mm:ss"
     # $username = $(Split-Path (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object UserName).UserName -Leaf)
