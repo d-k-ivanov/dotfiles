@@ -256,7 +256,7 @@ function Initialize-Paths-User
         "C:\tools\sonar-scanner-4.4.0.2170-windows\bin"
         "C:\tools\swig"
         "C:\tools\vcpkg"
-        "C:\tools\wabt\1.0.20"
+        "C:\tools\wabt\1.0.24"
         "C:\tools\wsl\arch"
         "C:\tools\wsl\debian"
         "C:\tools\wsl\kali"
