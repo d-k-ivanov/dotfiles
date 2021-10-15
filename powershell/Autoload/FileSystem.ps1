@@ -47,12 +47,12 @@ ${function:desk}    = { Set-Location ~\Desktop                                  
 ${function:docs}    = { Set-Location ~\Documents                                    }
 ${function:down}    = { Set-Location ~\Downloads                                    }
 ${function:ws}      = { Set-Location ${Env:WORKSPACE}                               }
-${function:wsm}     = { Set-Location ${Env:WORKSPACE}\misc                          }
-${function:wsmy}    = { Set-Location ${Env:WORKSPACE}\my                            }
+${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                            }
 ${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                   }
 ${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\dsc-windows-workstation    }
 ${function:wsws}    = { Set-Location ${Env:WORKSPACE}\my\sandbox-workspaces         }
 ${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                           }
+${function:wsmisc}  = { Set-Location D:\DevMisc                                     }
 
 # ClearCorrect Shortcuts
 ${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                      }
