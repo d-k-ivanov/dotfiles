@@ -15,12 +15,3 @@
     safecrlf = false
     # editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
     # editor = "C:/tools/vim/vim.exe"
-
-[gpg]
-    program = C:\\Program Files (x86)\\Gpg4win\\..\\GnuPG\\bin\\gpg.exe
-
-[lfs "customtransfer.bitbucket-media-api"]
-    path = C:\\tools\\GitLfsBitbucketAdapter\\git-lfs-bitbucket-media-api.exe
-
-[winUpdater]
-    recentlySeenVersion = 2.23.0.windows.1
