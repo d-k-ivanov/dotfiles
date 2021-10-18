@@ -105,13 +105,12 @@ function GitlabRepos
     param
     (
         [Parameter(Mandatory=$true)]
-        [string] $GitlabUrl,
-        [Parameter(Mandatory=$true)]
         [string] $GitlabName,
+        [string] $GitlabUrl = "gitlab.com",
         [string] $Protocol = 'SSH',
-        [switch] $Group,
         [switch] $All,
-        [switch] $Clone
+        [switch] $Clone,
+        [switch] $Group
     )
 
     if (-Not (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path))
