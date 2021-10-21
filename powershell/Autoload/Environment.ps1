@@ -16,8 +16,8 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # Make vim the default editor\
-Set-Alias vim nvim
-Set-Alias gvim nvim-qt
+# Set-Alias vim nvim
+# Set-Alias gvim nvim-qt
 $Env:VISUAL = "vim"
 # $Env:VISUAL = "gvim"
 $Env:EDITOR = "${Env:VISUAL}"

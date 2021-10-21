@@ -2,9 +2,9 @@
 
 umask 027
 
-alias vim='nvim'
-alias gvim='nvim-qt'
-export EDITOR='nvim'
+# alias vim='nvim'
+# alias gvim='nvim-qt'
+export EDITOR='vim'
 # No duplicates in history.
 export HISTCONTROL=ignoredups
 # Big history
