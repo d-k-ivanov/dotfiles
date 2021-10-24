@@ -511,31 +511,31 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000004"/>
 				</key>
-				<key name="Task4" modified="2021-07-14 17:31:02" build="210627">
+				<key name="Task4" modified="2021-10-25 01:10:11" build="210912">
 					<value name="Name" type="string" data="{WSL::Ubuntu}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
-					<value name="Cmd1" type="string" data='ubuntu2004.exe -cur_console:h0:p:n:m:"/mnt":t:Ubuntu'/>
+					<value name="Cmd1" type="string" data='ubuntu.exe -cur_console:h0:p:n:m:"/mnt":t:Ubuntu'/>
 					<value name="Cmd2" type="string" data="%CMDER_ROOT%\vendor\git-for-windows\git-bash.exe"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000004"/>
 				</key>
-				<key name="Task5" modified="2020-12-27 00:24:11" build="201124">
+				<key name="Task5" modified="2021-10-25 01:10:11" build="210912">
 					<value name="Name" type="string" data="{WSL::Ubuntu Split}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
-					<value name="Cmd1" type="string" data='ubuntu2004.exe -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu'/>
+					<value name="Cmd1" type="string" data='ubuntu.exe -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task6" modified="2020-12-27 00:24:11" build="201124">
+				<key name="Task6" modified="2021-10-25 01:10:11" build="210912">
 					<value name="Name" type="string" data="{WSL::Ubuntu VSplit}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
-					<value name="Cmd1" type="string" data='ubuntu2004.exe -cur_console:h0:p:sV:n:m:"/mnt":t:Ubuntu'/>
+					<value name="Cmd1" type="string" data='ubuntu.exe -cur_console:h0:p:sV:n:m:"/mnt":t:Ubuntu'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="%CMDER_ROOT%vendor\git-for-windows\usr\bin\mintty.exe /bin/bash -l -new_console"/>
@@ -637,14 +637,14 @@
 					<value name="Cmd1" type="string" data='&gt; "%windir%\system32\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is Native cmd.exe"'/>
 					<value name="Cmd2" type="string" data='"%windir%\syswow64\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is 32 bit cmd.exe -new_console:s50V"'/>
 				</key>
-				<key name="Task17" modified="2020-12-27 00:24:11" build="201124">
+				<key name="Task17" modified="2021-10-25 01:10:11" build="210912">
 					<value name="Name" type="string" data="{WSL::Ubuntu Scroll}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='ubuntu2004.exe -cur_console:p:n:m:"":t:Ubuntu'/>
+					<value name="Cmd1" type="string" data='ubuntu.exe -cur_console:p:n:m:"":t:Ubuntu'/>
 				</key>
 				<key name="Task18" modified="2020-12-27 00:24:11" build="201124">
 					<value name="Name" type="string" data="{WSL::ArchLinux}"/>
