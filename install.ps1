@@ -9,41 +9,43 @@ $dotfilesScriptsDir = Join-Path $dotfilesProfileDir "Scripts"
 "COMPLEX"     | Out-File ( Join-Path $PSScriptRoot "bash/var.prompt" )
 
 # Cleanup profile
-If (Test-Path (Join-Path $Env:USERPROFILE ".bash"           )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".bash"         ),  $true       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".bin"            )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".bin"          ),  $true       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".conan_my"       )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".conan_my"     ),  $true       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".git.d"          )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".git.d"        ),  $true       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".tmux"           )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".tmux"         ),  $true       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".vim"            )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".vim"          ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".bash"          )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".bash"         ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".bin"           )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".bin"          ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".conan_my"      )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".conan_my"     ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".git.d"         )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".git.d"        ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".tmux"          )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".tmux"         ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".vim"           )) { [System.IO.Directory]::Delete(( Join-Path $Env:USERPROFILE ".vim"          ),  $true       )}
 If (Test-Path (Join-Path $Env:LOCALAPPDATA "nvim"           )) { [System.IO.Directory]::Delete(( Join-Path $Env:LOCALAPPDATA "nvim"         ),  $true       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".bash_profile"   )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".bash_profile" )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".bashrc"         )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".bashrc"       )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".gemrc"          )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".gemrc"        )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".gitconfig"      )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".gitconfig"    )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".gitmessage"     )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".gitmessage"   )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".profile"        )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".profile"      )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".tmux.conf"      )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".tmux.conf"    )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".vimrc"          )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".vimrc"        )}
-If (Test-Path (Join-Path $Env:USERPROFILE ".wslconfig"      )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".wslconfig"    )}
+If (Test-Path (Join-Path $Env:APPDATA      "NuGet"          )) { [System.IO.Directory]::Delete(( Join-Path $Env:APPDATA "NuGet"             ),  $true       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".bash_profile"  )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".bash_profile" )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".bashrc"        )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".bashrc"       )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".gemrc"         )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".gemrc"        )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".gitconfig"     )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".gitconfig"    )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".gitmessage"    )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".gitmessage"   )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".profile"       )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".profile"      )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".tmux.conf"     )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".tmux.conf"    )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".vimrc"         )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".vimrc"        )}
+If (Test-Path (Join-Path $Env:USERPROFILE  ".wslconfig"     )) { Remove-Item -Force -Confirm:$false -Recurse ( Join-Path $Env:USERPROFILE   ".wslconfig"    )}
 
 
 # Making Symlinks
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE ".bash"          ) ( Join-Path $PSScriptRoot "bash"           )
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE ".bin"           ) ( Join-Path $PSScriptRoot "bin"            )
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE ".conan_my"      ) ( Join-Path $PSScriptRoot "conan"          )
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE ".git.d"         ) ( Join-Path $PSScriptRoot "git.d"          )
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE ".tmux"          ) ( Join-Path $PSScriptRoot "tmux"           )
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:LOCALAPPDATA "nvim"          ) ( Join-Path $PSScriptRoot "nvim"           )
-C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE ".vim"           ) ( Join-Path $PSScriptRoot "vim"            )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".bash_profile"  ) ( Join-Path $PSScriptRoot "bash_profile"   )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".profile"       ) ( Join-Path $PSScriptRoot "bash_profile"   )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".bashrc"        ) ( Join-Path $PSScriptRoot "bashrc"         )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".gemrc"         ) ( Join-Path $PSScriptRoot "gemrc"          )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".gitconfig"     ) ( Join-Path $PSScriptRoot ".gitconfig-win" )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".gitmessage"    ) ( Join-Path $PSScriptRoot ".gitmessage"    )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".tmux.conf"     ) ( Join-Path $PSScriptRoot "tmux.conf"      )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".vimrc"         ) ( Join-Path $PSScriptRoot "vimrc"          )
-C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE ".wslconfig"     ) ( Join-Path $PSScriptRoot "wslconfig"      )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE  ".bash"          ) ( Join-Path $PSScriptRoot "bash"              )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE  ".bin"           ) ( Join-Path $PSScriptRoot "bin"               )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE  ".conan_my"      ) ( Join-Path $PSScriptRoot "conan"             )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE  ".git.d"         ) ( Join-Path $PSScriptRoot "git.d"             )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE  ".tmux"          ) ( Join-Path $PSScriptRoot "tmux"              )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:LOCALAPPDATA "nvim"           ) ( Join-Path $PSScriptRoot "nvim"              )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:APPDATA      "NuGet"          ) ( Join-Path $PSScriptRoot "NuGet"             )
+C:\Windows\System32\cmd.exe /c mklink /d ( Join-Path $Env:USERPROFILE  ".vim"           ) ( Join-Path $PSScriptRoot "vim"               )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".bash_profile"  ) ( Join-Path $PSScriptRoot "bash_profile"      )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".profile"       ) ( Join-Path $PSScriptRoot "bash_profile"      )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".bashrc"        ) ( Join-Path $PSScriptRoot "bashrc"            )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".gemrc"         ) ( Join-Path $PSScriptRoot "gemrc"             )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".gitconfig"     ) ( Join-Path $PSScriptRoot ".gitconfig-win"    )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".gitmessage"    ) ( Join-Path $PSScriptRoot ".gitmessage"       )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".tmux.conf"     ) ( Join-Path $PSScriptRoot "tmux.conf"         )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".vimrc"         ) ( Join-Path $PSScriptRoot "vimrc"             )
+C:\Windows\System32\cmd.exe /c mklink    ( Join-Path $Env:USERPROFILE  ".wslconfig"     ) ( Join-Path $PSScriptRoot "wslconfig"         )
 
 # Set dot source string to default PS profile for Current User
 if (Test-Path $profile) { Remove-Item -Force -Confirm:$false $profile }
