@@ -74,6 +74,10 @@ case $platform in
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
         [[ -d /opt/cmake-3.20.2-linux-x86_64/bin ]] && export PATH=$PATH:/opt/cmake-3.20.2-linux-x86_64/bin
         [[ -d /opt/cmake-3.21.1-linux-x86_64/bin ]] && export PATH=$PATH:/opt/cmake-3.21.1-linux-x86_64/bin
+        [[ -d /opt/cmake-3.21.4-linux-x86_64/bin ]] && export PATH=$PATH:/opt/cmake-3.21.4-linux-x86_64/bin
+        [[ `hostname` == 'Caracal' ]]               && export PATH=$PATH:/opt/rh/devtoolset-9/root/usr/bin
+        # [[ -d /opt/rh/devtoolset-9/root/usr/bin  ]] && export PATH=$PATH:/opt/rh/devtoolset-9/root/usr/bin
+        # [[ -d /opt/rh/devtoolset-6/root/usr/bin  ]] && export PATH=$PATH:/opt/rh/devtoolset-6/root/usr/bin
         # Root binaries
         [[ -d /sbin ]]                              && export PATH=$PATH:/sbin
         [[ -d /usr/sbin ]]                          && export PATH=$PATH:/usr/sbin
