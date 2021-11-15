@@ -18,9 +18,16 @@ if ($MyInvocation.InvocationName -ne '.')
 Set-Alias gre findstr
 
 # Greps with status
-if (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command grep11.exe -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:grep} = {
+    Set-Alias -Name gerp -Value grep
+    Set-Alias -Name greo -Value grep
+    ${function:gHS}  = { grep -e "status" -e "health" @args }
+}
+elseif (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
+{
+    function grep
+    {
         [CmdletBinding()]
         param
         (
@@ -46,20 +53,18 @@ if (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
             $Data,
             [string]$Other = $null
         )
-
         Begin
         {
             [string] $SessionID = [System.Guid]::NewGuid()
             [string] $TempFile  = (Join-Path $env:Temp $SessionID'.grep')
             $File = $null
         }
-
         Process
         {
             # Check if value came from pipeline
             if ($PSCmdlet.MyInvocation.ExpectingInput)
             {
-                Add-Content "$TempFile" $Data
+                Write-Output $Data >> "${TempFile}"
                 if (-Not $File)
                 {
                     $File = $TempFile
@@ -69,7 +74,6 @@ if (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
             {
                 $File = $Data
             }
-
             $Arguments = "-e $Pattern"
             if ($c)         {$Arguments += " -c"}
             if ($E)         {$Arguments += " -E"}
@@ -93,13 +97,12 @@ if (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
         End
         {
             Invoke-Expression "busybox.exe grep $Arguments $File"
-            Remove-Item -Force -ErrorAction SilentlyContinue "$TempFile"
+            Remove-Item -Force -ErrorAction SilentlyContinue "${TempFile}"
         }
     }
 
     Set-Alias -Name gerp -Value grep
     Set-Alias -Name greo -Value grep
-    ${function:gHS}  = { grep -e "status" -e "health" @args }
 }
 else
 {

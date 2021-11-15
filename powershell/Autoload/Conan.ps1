@@ -269,7 +269,7 @@ function conan_install
         [string] $PathToConanFile = '..',
         [string] $Configuration = 'release',
         [string] $Arch = 'x64',
-        [string] $MSVCVer = '16',
+        [string] $MSVCVer = '17',
         [switch] $Shared
     )
 
@@ -291,18 +291,18 @@ function conan_install
 # ${function:c_create}        = { ce; conan create . orthoplatform/stable }
 # ${function:c_create_mac}    = { ce; conan create . orthoplatform/stable --settings os=Macos }
 
-function c_install_ormco
-{
-    ce
-    conan remove --locks
-    conan install                                           `
-        .\\Source\\Apps\\Aligner\\Solution\\conanfile.txt           `
-        --generator visual_studio                           `
-        --install-folder .\\Source\\Apps\\Aligner\\Solution\\.conan `
-        --settings compiler="Visual Studio"                 `
-        --update                                            `
-        --remote conan-ormco
-}
+# function c_install_ormco
+# {
+#     ce
+#     conan remove --locks
+#     conan install                                           `
+#         .\\Source\\Apps\\Aligner\\Solution\\conanfile.txt           `
+#         --generator visual_studio                           `
+#         --install-folder .\\Source\\Apps\\Aligner\\Solution\\.conan `
+#         --settings compiler="Visual Studio"                 `
+#         --update                                            `
+#         --remote conan-ormco
+# }
 
 ## History
 # conan remove --locks
