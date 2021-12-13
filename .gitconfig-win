@@ -13,3 +13,5 @@
 [core]
     autocrlf = true
     safecrlf = false
+    ; Enable in case of NTFS-related errors, but usually it won't help
+    ; protectNTFS = false
