@@ -115,3 +115,6 @@ function aws_assume_role()
 }
 
 ${function:aws-profiles} = { aws configure list-profiles @args }
+
+${function:cdk}  = { npx aws-cdk@1.x @args }
+${function:cdk2} = { npx aws-cdk@2.x @args }
