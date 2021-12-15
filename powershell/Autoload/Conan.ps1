@@ -209,45 +209,42 @@ function cer
 }
 Set-Alias cenv_rm cer
 
-if (Get-Command conan.exe -ErrorAction SilentlyContinue | Test-Path)
+function conan_add_remote
 {
-    function conan_add_remote
-    {
-        [CmdletBinding()]
-        param
-        (
-            [Parameter(Mandatory=$true)]
-            [string]$Organization,
-            [string]$Remote = 'conan-local',
-            [string]$Repo = 'conan-local'
-        )
-        conan remote add ${Remote} https://${Organization}.jfrog.io/artifactory/api/conan/${Repo}
-    }
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Organization,
+        [string]$Remote = 'conan-local',
+        [string]$Repo = 'conan-local'
+    )
+    conan remote add ${Remote} https://${Organization}.jfrog.io/artifactory/api/conan/${Repo}
+}
 
-    function conan_set_env_password
-    {
-        [CmdletBinding()]
-        param
-        (
-            [Parameter(Mandatory=$true)]
-            [SecureString]$Password
-        )
-        Set-Item -Path Env:CONAN_PASSWORD -Value "${Password}"
-    }
+function conan_set_env_password
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [SecureString]$Password
+    )
+    Set-Item -Path Env:CONAN_PASSWORD -Value "${Password}"
+}
 
-    function conan_remote_auth
-    {
-        [CmdletBinding()]
-        param
-        (
-            [Parameter(Mandatory=$true)]
-            [string]$Username,
-            [Parameter(Mandatory=$true)]
-            [SecureString]$Password,
-            [string]$Remote = 'conan-local'
-        )
-        conan user -p ${Password} -r ${Remote} ${Username}
-    }
+function conan_remote_auth
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$Username,
+        [Parameter(Mandatory=$true)]
+        [SecureString]$Password,
+        [string]$Remote = 'conan-local'
+    )
+    conan user -p ${Password} -r ${Remote} ${Username}
 }
 
 function get_conan_home {
