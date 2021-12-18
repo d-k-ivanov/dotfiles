@@ -615,6 +615,6 @@ ${function:build_aligner_x64_debug}     = { dev; msbuild Source\Apps\Aligner\Sol
 ${function:build_aligner_x32_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=Win32 /verbosity:normal }
 ${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=x64   /verbosity:normal }
 
-${function:cl_build}        = { cl /EHsc @args }
-${function:cl_build_exp}    = { cl /EHsc @args /P /FAs /GL /O2}
-${function:cl_build_link}   = { cl /EHsc @args /link }
+${function:cl_build}            = { cl /EHsc @args }
+${function:cl_build_preprocess} = { cl /P @args }
+${function:cl_build_link}       = { cl /EHsc @args /link }
