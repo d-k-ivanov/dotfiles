@@ -605,7 +605,7 @@ elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code I
     ${function:icode} = {code-insiders.cmd @args}
 }
 
-${function:vsc} = { icode . }
+${function:ic} = { icode . }
 
 # Work aliases
 ${function:build_aligner_x32}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=Win32 /verbosity:normal }

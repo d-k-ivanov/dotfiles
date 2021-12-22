@@ -9,3 +9,5 @@ then
 else
     alias icode="code"
 fi
+
+alias ic="icode ."
