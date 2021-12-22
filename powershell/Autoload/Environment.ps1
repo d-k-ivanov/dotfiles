@@ -130,6 +130,8 @@ function Initialize-Paths-APP
         "C:\PROGRA~2\Gpg4win\..\GnuPG\bin"
         "C:\PROGRA~2\GNU\GnuPG\pub"
         "C:\PROGRA~2\Graphviz2.38\bin"
+        "C:\PROGRA~2\Lua\5.1"
+        "C:\PROGRA~2\Lua\5.1\clibs"
         "C:\PROGRA~2\Microsoft SDKs\Azure\CLI2\wbin"
         "C:\PROGRA~2\Nmap"
         "C:\PROGRA~2\OpenConnect-GUI"
