@@ -1,11 +1,10 @@
 <#
 .SYNOPSIS
-Crypto scripts.
+Security (SSH, SSL, GPG etc.) scripts.
 
 .DESCRIPTION
-Crypto scripts.
+Security (SSH, SSL, GPG etc.) scripts.
 #>
-
 
 # Check invocation
 if ($MyInvocation.InvocationName -ne '.')
@@ -15,7 +14,6 @@ if ($MyInvocation.InvocationName -ne '.')
         -ForegroundColor Red
     Exit
 }
-
 
 if (Get-Command openssl.exe -ErrorAction SilentlyContinue | Test-Path)
 {
@@ -113,4 +111,30 @@ function gpg_file_d()
         Write-Host "ERROR: gpg.exe not found..." -ForegroundColor Red
         Write-Host "ERROR: GPG4Win should be installed and gpg.exe added to the %PATH% env" -ForegroundColor Red
     }
+}
+
+function create_rsa_key
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]$KeyName
+    )
+    ssh-keygen -t rsa -m pem -b 4096 -C "${KeyName}" -f "${KeyName}"
+}
+
+function convert_openssh_to_rsa
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [ValidateScript({Test-Path -Path $_})]
+        [string] $Path,
+        [SecureString] $OldPassword = "",
+        [SecureString] $NewPassword = ""
+    )
+    $FullPath = Convert-Path $Path
+    ssh-keygen -p -P "$OldPassword" -N "$NewPassword" -m pem -f "$FullPath"
 }
