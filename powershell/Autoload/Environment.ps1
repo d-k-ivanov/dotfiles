@@ -37,6 +37,7 @@ $Env:OLDPWD = Get-Location
 
 # VCPKG:
 $Env:VCPKG_DISABLE_METRICS = 1
+# $Env:VCPKG_FEATURE_FLAGS = "versions"
 
 # PS Readline:
 $PSReadLineOptions = @{
