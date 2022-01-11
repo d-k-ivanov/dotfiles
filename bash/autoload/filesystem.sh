@@ -57,16 +57,17 @@ dirsa()
 }
 
 # Navigation Shortcuts
-alias  drop='cd ~/Dropbox'
-alias  desk='cd ~/Desktop'
-alias  docs='cd ~/Documents'
-alias  down='cd ~/down'
-alias    ws='cd ~/ws'
-alias   wsm='cd ~/ws/misc'
-alias  wsmy='cd ~/ws/my'
-alias  wsdf='cd ~/ws/my/dotfiles'
-alias wsdsc='cd ~/ws/my/ansible-home-arch'
-alias  wsws='cd ~/ws/my/sandbox-workspaces'
+alias   drop='cd ~/Dropbox'
+alias   desk='cd ~/Desktop'
+alias   docs='cd ~/Documents'
+alias   down='cd ~/down'
+alias     ws='cd ~/ws'
+alias    wsm='cd ~/ws/my'
+alias   wsdf='cd ~/ws/my/dotfiles'
+alias   wsws='cd ~/ws/my/sandbox-workspaces'
+# alias  wsdsc='cd ~/ws/my/ansible-home-arch'
+alias  wsdsc='cd ~/ws/my/ansible-home-wsl'
+alias wsmisc='cd ~/ws/misc'
 
 alias  wsaw='cd ~/.config/awesome'
 alias   wst='cd ~/ws/tmp'
