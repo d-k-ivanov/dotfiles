@@ -42,7 +42,7 @@ create_rsa_key()
     # Input:
     if [ -z "$1" ]
     then
-        Usage: create_rsa_key <key_alias>
+        echo "Usage: create_rsa_key <key_alias>"
         exit 1
     fi
     ssh-keygen -t rsa -m pem -b 4096 -C "${1}" -f "${1}"
