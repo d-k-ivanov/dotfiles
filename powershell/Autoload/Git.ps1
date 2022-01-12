@@ -98,8 +98,9 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
     ${function:gfr}         = { git.exe fetch --all; git.exe reset --hard @args }
     ${function:gfrmn}       = { git.exe fetch --all; git.exe reset --hard origin/main @args }
     ${function:gfrms}       = { git.exe fetch --all; git.exe reset --hard origin/master @args }
-    ${function:gclean}      = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -x -f @args }
-    ${function:gclean2}     = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -f @args }
+    ${function:gclean}      = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -X -f @args }
+    ${function:gclean2}     = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -x -f @args }
+    ${function:gclean3}     = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -f @args }
 
     # Pull
     ${function:gpl}         = { git.exe pull origin $(git.exe rev-parse --abbrev-ref HEAD) }

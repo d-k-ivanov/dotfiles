@@ -194,8 +194,9 @@ alias gcow="gco Whitespace."
 alias gfr="git fetch --all && git reset --hard"
 alias gfrmn="git fetch --all && git reset --hard origin/main"
 alias gfrms="git fetch --all && git reset --hard origin/master"
-alias gclean="git reset --hard && git clean -d -x -f"
-alias gclean2="git reset --hard && git clean -d -f"
+alias gclean="git reset --hard && git clean -d -X -f"
+alias gclean2="git reset --hard && git clean -d -x -f"
+alias gclean3="git reset --hard && git clean -d -f"
 
 # Pull
 alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
