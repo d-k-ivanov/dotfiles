@@ -1,0 +1,110 @@
+{
+    "environments": [
+        {
+            "environment": "platform_Win32",
+            "namespace": "platform",
+            "Name": "Win32",
+            "inheritEnvironments": [ "msvc_x86" ]
+        },
+        {
+            "environment": "platform_x64",
+            "namespace": "platform",
+            "Name": "x64",
+            "inheritEnvironments": [ "msvc_x64" ]
+        },
+        {
+            "environment": "system_Windows",
+            "namespace": "system",
+            "Name": "Windows",
+            "vcpkg": "windows",
+            "CMakeArgs": "-DCMAKE_SYSTEM_VERSION=8.1"
+        },
+        {
+            "environment": "system_WindowsStore",
+            "namespace": "system",
+            "Name": "WindowsStore",
+            "vcpkg": "uwp",
+            "CMakeArgs": "-DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0"
+        },
+        {
+            "BuildCommandArgs": "/m /v:normal",
+            "CMakeCommandArgs": "${system.CMakeArgs}",
+            "CTestCommandArgs": "",
+            "BuildDir": "${workspaceRoot}\\_build"
+        }
+    ],
+    "configurations": [
+        {
+            "name": "x64-Prod",
+            "generator": "Visual Studio 15 2017 Win64",
+            "configurationType": "Release",
+            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x64",
+            "variables": []
+        },
+        {
+            "name": "x64-Release",
+            "generator": "Visual Studio 15 2017 Win64",
+            "configurationType": "RelWithDebInfo",
+            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x64",
+            "variables": []
+        },
+        {
+            "name": "x64-Debug",
+            "generator": "Visual Studio 15 2017 Win64",
+            "configurationType": "Debug",
+            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x64",
+            "variables": []
+        },
+        {
+            "name": "x86-Prod",
+            "generator": "Visual Studio 15 2017",
+            "configurationType": "Release",
+            "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x86",
+            "variables": []
+        },
+        {
+            "name": "x86-Release",
+            "generator": "Visual Studio 15 2017",
+            "configurationType": "RelWithDebInfo",
+            "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x86",
+            "variables": []
+        },
+        {
+            "name": "x86-Debug",
+            "generator": "Visual Studio 15 2017",
+            "configurationType": "Debug",
+            "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x86",
+            "variables": []
+        }
+    ]
+}

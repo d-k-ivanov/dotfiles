@@ -618,3 +618,9 @@ ${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Sol
 ${function:cl_build}      = { cl /EHsc @args }
 ${function:cl_link}       = { cl /EHsc @args /link }
 ${function:cl_preprocess} = { cl /P @args }
+
+${function:cmake-settings-22}    = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-19}    = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-17}    = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-Ninja} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json ${PWD}\CMakeSettings.json }
+Set-Alias cs cmake-settings-22
