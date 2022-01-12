@@ -607,14 +607,6 @@ elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code I
 
 ${function:ic} = { icode . }
 
-# Work aliases
-${function:build_aligner_x32}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=Win32 /verbosity:normal }
-${function:build_aligner_x64}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=x64   /verbosity:normal }
-${function:build_aligner_x32_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=Win32 /verbosity:normal }
-${function:build_aligner_x64_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=x64   /verbosity:normal }
-${function:build_aligner_x32_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=Win32 /verbosity:normal }
-${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=x64   /verbosity:normal }
-
 ${function:cl_build}      = { cl /EHsc @args }
 ${function:cl_link}       = { cl /EHsc @args /link }
 ${function:cl_preprocess} = { cl /P @args }
@@ -622,5 +614,26 @@ ${function:cl_preprocess} = { cl /P @args }
 ${function:cmake-settings-22}    = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-19}    = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-17}    = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-Ninja} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json ${PWD}\CMakeSettings.json }
+${function:cmake-settings-ninja} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json ${PWD}\CMakeSettings.json }
 Set-Alias cs cmake-settings-22
+
+${function:cgen-22-debug}      = { cmake -G "Visual Studio 17 2022" -A x64 -B Debug   -S . -DCMAKE_BUILD_TYPE=Debug   @args }
+${function:cgen-19-debug}      = { cmake -G "Visual Studio 16 2019" -A x64 -B Debug   -S . -DCMAKE_BUILD_TYPE=Debug   @args }
+${function:cgen-17-debug}      = { cmake -G "Visual Studio 15 2017" -A x64 -B Debug   -S . -DCMAKE_BUILD_TYPE=Debug   @args }
+${function:cgen-ninja-debug}   = { cmake -G "Ninja"                 -A x64 -B Debug   -S . -DCMAKE_BUILD_TYPE=Debug   @args }
+${function:cgen-22-release}    = { cmake -G "Visual Studio 17 2022" -A x64 -B Release -S . -DCMAKE_BUILD_TYPE=Release @args }
+${function:cgen-19-release}    = { cmake -G "Visual Studio 16 2019" -A x64 -B Release -S . -DCMAKE_BUILD_TYPE=Release @args }
+${function:cgen-17-release}    = { cmake -G "Visual Studio 15 2017" -A x64 -B Release -S . -DCMAKE_BUILD_TYPE=Release @args }
+${function:cgen-ninja-release} = { cmake -G "Ninja"                 -A x64 -B Release -S . -DCMAKE_BUILD_TYPE=Release @args }
+${function:cgen-ninja-multy}   = { cmake -G "Ninja Multi-Config"    -A x64 -B build -S .                              @args }
+Set-Alias cgen  cgen-22-debug
+Set-Alias cgend cgen-22-debug
+Set-Alias cgenr cgen-22-release
+
+# Work aliases
+${function:build_aligner_x32}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=Win32 /verbosity:normal }
+${function:build_aligner_x64}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=x64   /verbosity:normal }
+${function:build_aligner_x32_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=Win32 /verbosity:normal }
+${function:build_aligner_x64_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=x64   /verbosity:normal }
+${function:build_aligner_x32_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=Win32 /verbosity:normal }
+${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=x64   /verbosity:normal }
