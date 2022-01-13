@@ -2,6 +2,6 @@
 # kernel=
 localhostForwarding=true
 memory=16GB
-processors=4
+# processors=4
 swap=32GB
 # swapFile=

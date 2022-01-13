@@ -57,7 +57,10 @@ ${function:wsmisc}  = { Set-Location D:\DevMisc                                 
 # ClearCorrect Shortcuts
 ${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                      }
 ${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev  }
-${function:wscd}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\devops               }
+${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev1 }
+${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev2 }
+${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev3 }
+${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev4 }
 
 # IRQ Shortcuts
 ${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                           }
