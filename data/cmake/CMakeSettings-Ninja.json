@@ -24,7 +24,7 @@
             "namespace": "system",
             "Name": "WindowsStore",
             "vcpkg": "uwp",
-            "CMakeArgs": "-DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0"
+            "CMakeArgs": "-DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE"
         },
         {
             "BuildCommandArgs": "-v",
