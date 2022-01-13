@@ -18,5 +18,6 @@ if ($MyInvocation.InvocationName -ne '.')
 
 if (Get-Command vcxsrv.exe -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:startx} = { vcxsrv :0 -multiwindow -clipboard -noprimary -wgl -ac }
+    ${function:startx}       = { vcxsrv :0 -multiwindow -clipboard -noprimary -ac }
+    ${function:startx_nowgl} = { vcxsrv :0 -multiwindow -clipboard -noprimary -nowgl -ac }
 }
