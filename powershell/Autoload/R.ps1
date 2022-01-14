@@ -86,3 +86,33 @@ function Clear-RProject
     }
     # Set-Env
 }
+
+function r_install_package
+{
+    # installed.packages(), remove.packages()
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $True,ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True)]
+        [String[]]$Packages
+    )
+    $cmd  = "Rscript --no-site-file --slave --no-save --no-restore-history "
+    $cmd += "-e `"install.packages(pkgs="
+    $cmd += "c("
+    foreach ($package in $Packages)
+    {
+        if ($package -ne $Packages[-1])
+        {
+            $cmd += "'$package',"
+        }
+        else
+        {
+            $cmd += "'$package'"
+        }
+    }
+    $cmd += ")"
+    $cmd += ", repos='http://cran.rstudio.com')"
+    $cmd += "`""
+    # Write-Host $cmd -ForegroundColor Yellow
+    Invoke-Expression "$cmd"
+}
