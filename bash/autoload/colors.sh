@@ -73,3 +73,12 @@ print_colors_256()
         echo # New line
     done
 }
+
+remove_colors()
+{
+    if (( $# == 0 )) ; then
+        sed 's/\x1b\[[0-9;]*m//g' < /dev/stdin
+    else
+        echo "${1}" | sed 's/\x1b\[[0-9;]*m//g'
+    fi
+}
