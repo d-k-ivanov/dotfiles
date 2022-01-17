@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
 
 alias clion='sh /opt/clion-*/bin/clion.sh'
-alias cl='clion .'
+alias cide='clion .'
+
+alias idea='sh /opt/idea-*/bin/idea.sh'
+alias ide='idea .'

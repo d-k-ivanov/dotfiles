@@ -39,4 +39,5 @@ function Find-JBApps
     }
 }
 
-${function:ide} = { idea ${PWD} @args }
+${function:ide}  = { idea ${PWD} @args }
+${function:cide} = { clion ${PWD} @args }
