@@ -17,7 +17,7 @@
             "namespace": "system",
             "Name": "Windows",
             "vcpkg": "windows",
-            "CMakeArgs": "-DCMAKE_SYSTEM_VERSION=8.1"
+            "CMakeArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE"
         },
         {
             "environment": "system_WindowsStore",
@@ -35,30 +35,6 @@
     ],
     "configurations": [
         {
-            "name": "x64-Prod",
-            "generator": "Visual Studio 16 2019 Win64",
-            "configurationType": "Release",
-            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
-            "buildRoot": "${env.BuildDir}\\${name}",
-            "buildCommandArgs": "${env.BuildCommandArgs}",
-            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
-            "ctestCommandArgs": "${env.CTestCommandArgs}",
-            "intelliSenseMode": "windows-msvc-x64",
-            "variables": []
-        },
-        {
-            "name": "x64-Release",
-            "generator": "Visual Studio 16 2019 Win64",
-            "configurationType": "RelWithDebInfo",
-            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
-            "buildRoot": "${env.BuildDir}\\${name}",
-            "buildCommandArgs": "${env.BuildCommandArgs}",
-            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
-            "ctestCommandArgs": "${env.CTestCommandArgs}",
-            "intelliSenseMode": "windows-msvc-x64",
-            "variables": []
-        },
-        {
             "name": "x64-Debug",
             "generator": "Visual Studio 16 2019 Win64",
             "configurationType": "Debug",
@@ -71,9 +47,33 @@
             "variables": []
         },
         {
-            "name": "x86-Prod",
-            "generator": "Visual Studio 16 2019",
+            "name": "x64-RelDebug",
+            "generator": "Visual Studio 16 2019 Win64",
+            "configurationType": "RelWithDebInfo",
+            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x64",
+            "variables": []
+        },
+        {
+            "name": "x64-Release",
+            "generator": "Visual Studio 16 2019 Win64",
             "configurationType": "Release",
+            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "buildRoot": "${env.BuildDir}\\${name}",
+            "buildCommandArgs": "${env.BuildCommandArgs}",
+            "cmakeCommandArgs": "${env.CMakeCommandArgs}",
+            "ctestCommandArgs": "${env.CTestCommandArgs}",
+            "intelliSenseMode": "windows-msvc-x64",
+            "variables": []
+        },
+        {
+            "name": "x86-Debug",
+            "generator": "Visual Studio 16 2019",
+            "configurationType": "Debug",
             "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
@@ -83,7 +83,7 @@
             "variables": []
         },
         {
-            "name": "x86-Release",
+            "name": "x86-RelDebug",
             "generator": "Visual Studio 16 2019",
             "configurationType": "RelWithDebInfo",
             "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
@@ -95,9 +95,9 @@
             "variables": []
         },
         {
-            "name": "x86-Debug",
+            "name": "x86-Release",
             "generator": "Visual Studio 16 2019",
-            "configurationType": "Debug",
+            "configurationType": "Release",
             "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",

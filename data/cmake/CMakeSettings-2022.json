@@ -35,9 +35,9 @@
     ],
     "configurations": [
         {
-            "name": "x64-Release",
+            "name": "x64-Debug",
             "generator": "Visual Studio 17 2022",
-            "configurationType": "Release",
+            "configurationType": "Debug",
             "inheritEnvironments": [ "platform_x64", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
@@ -59,9 +59,9 @@
             "variables": []
         },
         {
-            "name": "x64-Debug",
+            "name": "x64-Release",
             "generator": "Visual Studio 17 2022",
-            "configurationType": "Debug",
+            "configurationType": "Release",
             "inheritEnvironments": [ "platform_x64", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
@@ -71,9 +71,9 @@
             "variables": []
         },
         {
-            "name": "x86-Release",
+            "name": "x86-Debug",
             "generator": "Visual Studio 17 2022",
-            "configurationType": "Release",
+            "configurationType": "Debug",
             "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
@@ -95,9 +95,9 @@
             "variables": []
         },
         {
-            "name": "x86-Debug",
+            "name": "x86-Release",
             "generator": "Visual Studio 17 2022",
-            "configurationType": "Debug",
+            "configurationType": "Release",
             "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
