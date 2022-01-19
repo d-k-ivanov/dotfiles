@@ -590,6 +590,7 @@ else
 ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
+${function:vss}                 = { cs; vs . }
 
 if (Test-Path "C:\Program Files\Microsoft VS Code\bin")
 {
