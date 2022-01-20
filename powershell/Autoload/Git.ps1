@@ -98,14 +98,19 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
     ${function:gfr}         = { git.exe fetch --all; git.exe reset --hard @args }
     ${function:gfrmn}       = { git.exe fetch --all; git.exe reset --hard origin/main @args }
     ${function:gfrms}       = { git.exe fetch --all; git.exe reset --hard origin/master @args }
-    ${function:gclean}     = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -x -f @args }
-    ${function:gclean2}      = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -X -f @args }
+    ${function:gfrmn}       = { git.exe fetch --all; git.exe reset --hard github/main @args }
+    ${function:gfrms}       = { git.exe fetch --all; git.exe reset --hard github/master @args }
+    ${function:gclean}      = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -x -f @args }
+    ${function:gclean2}     = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -X -f @args }
     ${function:gclean3}     = { while ((git diff-index HEAD --)) {git.exe reset --hard HEAD}; git.exe clean -d -f @args }
 
     # Pull
     ${function:gpl}         = { git.exe pull origin $(git.exe rev-parse --abbrev-ref HEAD) }
     ${function:gplmn}       = { git.exe pull origin main }
     ${function:gplms}       = { git.exe pull origin master }
+    ${function:gpl_gh}      = { git.exe pull github $(git.exe rev-parse --abbrev-ref HEAD) }
+    ${function:gplmn_gh}    = { git.exe pull github main }
+    ${function:gplms_gh}    = { git.exe pull github master }
     ${function:gpls}        = { git.exe stash; git.exe pull @args; git.exe stash pop}
     ${function:gplm}        = { git.exe pull; git.exe submodule update }
     ${function:gplp}        = { git.exe pull --rebase; git.exe push @args } # Can't pull because you forgot to track? Run this.
@@ -130,6 +135,8 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
     ${function:gbrf}        = { git.exe branch -D @args }
     ${function:gbrr}        = { git.exe push origin --delete @args }
     ${function:gbrrm}       = { git.exe branch -D @args; git.exe push origin --delete @args }
+    ${function:gbrr_gh}     = { git.exe push github --delete @args }
+    ${function:gbrrm_gh}    = { git.exe branch -D @args; git.exe push github --delete @args }
     ${function:g-to-main}   = { git.exe branch -m master main; git.exe fetch origin; git.exe branch -u origin/main main; git.exe remote set-head origin -a }
 
     # Rebase
@@ -150,11 +157,14 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
     # Tags
     ${function:grmt}        = { git.exe tag --delete @args }
     ${function:grmto}       = { git.exe push --delete origin @args }
+    ${function:grmto_gh}    = { git.exe push --delete github @args }
 
     # Submodules
     ${function:gsu}         = { git.exe submodule update --recursive --remote @args }
     ${function:gsumn}       = { git.exe submodule foreach git pull origin main @args }
     ${function:gsums}       = { git.exe submodule foreach git pull origin master @args }
+    ${function:gsumn_gh}    = { git.exe submodule foreach git pull github main @args }
+    ${function:gsums_gh}    = { git.exe submodule foreach git pull github master @args }
 
     # Misc
     ${function:gex}         = { GitExtensions.exe browse @args }
@@ -487,6 +497,17 @@ function git_upstream
         [string] $Upstream
     )
     git branch --set-upstream-to=origin/${Upstream} ${Upstream}
+}
+
+function git_upstream_gh
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string] $Upstream
+    )
+    git branch --set-upstream-to=github/${Upstream} ${Upstream}
 }
 
 #TODO: Add implementation

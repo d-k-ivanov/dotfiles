@@ -61,6 +61,7 @@ ${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\
 ${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-2 }
 ${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-3 }
 ${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-4 }
+${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\buildtool\vcpkg       }
 
 # IRQ Shortcuts
 ${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                           }
