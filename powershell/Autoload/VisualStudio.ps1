@@ -15,6 +15,10 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+# TODO: Refactor my CPP tempates before usage
+# $Env:CMAKE_GENERATOR = 'Ninja Multi-Config'
+# $Env:CMAKE_DEFAULT_BUILD_TYPE = 'Release'
+
 $InstallPaths = @(
     'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
     'C:\Program Files\Microsoft Visual Studio\2022\Professional'
