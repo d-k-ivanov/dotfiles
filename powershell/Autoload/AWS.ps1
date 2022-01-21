@@ -87,7 +87,10 @@ function aws_set_mfa_session()
         [string] $Duration = 3600,
         [string] $Region = 'eu-west-1'
     )
-    $creds = ((aws sts get-session-token --serial-number $MFADevice --token-code $MFAToken --duration-seconds $Duration) | ConvertFrom-Json).Credentials
+    $creds = (
+        (
+            aws sts get-session-token --serial-number $MFADevice --token-code $MFAToken --duration-seconds $Duration --output json
+        ) | ConvertFrom-Json).Credentials
 
     Set-Item -Path Env:AWS_ACCESS_KEY_ID -Value $creds.AccessKeyId
     Set-Item -Path Env:AWS_SECRET_ACCESS_KEY -Value $creds.SecretAccessKey
@@ -107,6 +110,36 @@ function aws_assume_role()
         [string] $Region = 'eu-west-1'
     )
     $creds = ((aws sts assume-role --role-arn ${RoleARN} --role-session-name=${SessionName}) | ConvertFrom-Json).Credentials
+
+    Set-Item -Path Env:AWS_ACCESS_KEY_ID -Value $creds.AccessKeyId
+    Set-Item -Path Env:AWS_SECRET_ACCESS_KEY -Value $creds.SecretAccessKey
+    Set-Item -Path Env:AWS_SESSION_TOKEN -Value $creds.SessionToken
+    Set-Item -Path Env:AWS_REGION -Value $Region
+}
+
+function aws_set_mfa_session_for_profile()
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string] $MFADevice,
+        [Parameter(Mandatory=$true)]
+        [string] $MFAToken,
+        [Parameter(Mandatory=$true)]
+        [string] $Profile,
+        [string] $Duration = 3600,
+        [string] $Region = 'eu-west-1'
+    )
+    $creds = (
+        (
+            aws sts get-session-token           `
+                --duration-seconds $Duration    `
+                --output json                   `
+                --profile $Profile              `
+                --serial-number $MFADevice      `
+                --token-code $MFAToken
+        ) | ConvertFrom-Json).Credentials
 
     Set-Item -Path Env:AWS_ACCESS_KEY_ID -Value $creds.AccessKeyId
     Set-Item -Path Env:AWS_SECRET_ACCESS_KEY -Value $creds.SecretAccessKey
