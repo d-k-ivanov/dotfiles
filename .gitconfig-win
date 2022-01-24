@@ -1,17 +1,49 @@
 [include]
-    path = ~/.git.d/aliases.ini
-    path = ~/.git.d/colors.ini
-    path = ~/.git.d/core.ini
-    path = ~/.git.d/pager.ini
-    path = ~/.git.d/diff.ini
-    path = ~/.git.d/lfs.ini
-    path = ~/.git.d/misc.ini
-    path = ~/.git.d/operations.ini
-    path = ~/.git.d/url.ini
-    path = ~/.git.d/user.ini
-
+	path = ~/.git.d/aliases.ini
+	path = ~/.git.d/colors.ini
+	path = ~/.git.d/core.ini
+	path = ~/.git.d/pager.ini
+	path = ~/.git.d/diff.ini
+	path = ~/.git.d/lfs.ini
+	path = ~/.git.d/misc.ini
+	path = ~/.git.d/operations.ini
+	path = ~/.git.d/url.ini
+	path = ~/.git.d/user.ini
 [core]
-    autocrlf = true
-    safecrlf = false
-    ; Enable in case of NTFS-related errors, but usually it won't help
-    ; protectNTFS = false
+	autocrlf = true
+	safecrlf = false
+	editor = \"c:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
+[diff]
+	guitool = winmerge
+[difftool "winmerge"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+	cmd = \"C:/Program Files/WinMerge/winmergeu.exe\" -e -u \"$LOCAL\" \"$REMOTE\"
+[merge]
+	guitool = winmerge
+[mergetool "winmerge"]
+	path = C:/Program Files/WinMerge/winmergeu.exe
+	cmd = \"C:/Program Files/WinMerge/winmergeu.exe\" -e -u  -wl -wr -fm -dl \"Mine: $LOCAL\" -dm \"Merged: $BASE\" -dr \"Theirs: $REMOTE\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+[difftool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+	cmd = \"C:/Program Files/KDiff3/kdiff3.exe\" \"$LOCAL\" \"$REMOTE\"
+[mergetool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+	cmd = \"C:/Program Files/KDiff3/kdiff3.exe\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+[difftool "vscode"]
+	path = C:/Program Files/Microsoft VS Code/code.exe
+	cmd = \"C:/Program Files/Microsoft VS Code/code.exe\" --wait --diff \"$LOCAL\" \"$REMOTE\"
+[mergetool "vscode"]
+	path = C:/Program Files/Microsoft VS Code/code.exe
+	cmd = \"C:/Program Files/Microsoft VS Code/code.exe\" --wait \"$MERGED\"
+[difftool "meld"]
+	path = C:/Program Files (x86)/Meld/meld.exe
+	cmd = \"C:/Program Files (x86)/Meld/meld.exe\" \"$LOCAL\" \"$REMOTE\"
+[mergetool "meld"]
+	path = C:/Program Files (x86)/Meld/meld.exe
+	cmd = \"C:/Program Files (x86)/Meld/meld.exe\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"
