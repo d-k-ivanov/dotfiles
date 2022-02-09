@@ -75,6 +75,11 @@ alias   wst='cd ~/ws/tmp'
 # Straumann Shortcuts
 alias     wsc='cd ~/ws/clearcorrect'
 alias    wscc='cd ~/ws/clearcorrect/all_projects/cc-dev'
+alias   wscc1='cd ~/ws/clearcorrect/all_projects/cc-dev-1'
+alias   wscc2='cd ~/ws/clearcorrect/all_projects/cc-dev-2'
+alias   wscc3='cd ~/ws/clearcorrect/all_projects/cc-dev-3'
+alias   wscc4='cd ~/ws/clearcorrect/all_projects/cc-dev-4'
+alias   wsccv='cd ~/ws/clearcorrect/buildtool/vcpkg'
 alias    wscd='cd ~/ws/clearcorrect/devops'
 
 # IRQ Shortcuts
