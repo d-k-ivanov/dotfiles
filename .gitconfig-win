@@ -1,25 +1,19 @@
 [include]
-	path = ~/.git.d/aliases.ini
-	path = ~/.git.d/colors.ini
-	path = ~/.git.d/core.ini
-	path = ~/.git.d/pager.ini
-	path = ~/.git.d/diff.ini
-	path = ~/.git.d/lfs.ini
-	path = ~/.git.d/misc.ini
-	path = ~/.git.d/operations.ini
-	path = ~/.git.d/url.ini
-	path = ~/.git.d/user.ini
+    path = ~/.git.d/aliases.ini
+    path = ~/.git.d/colors.ini
+    path = ~/.git.d/core.ini
+    path = ~/.git.d/pager.ini
+    path = ~/.git.d/diff.ini
+    path = ~/.git.d/lfs.ini
+    path = ~/.git.d/misc.ini
+    path = ~/.git.d/operations.ini
+    path = ~/.git.d/url.ini
+    path = ~/.git.d/user.ini
 
 [core]
-	autocrlf = true
-	safecrlf = false
-	editor = \"c:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
-
-[diff]
-    guitool = winmerge
-
-[merge]
-    guitool = winmerge
+    autocrlf = true
+    safecrlf = false
+    editor = \"c:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
 
 [difftool "winmerge"]
     path = C:/Program Files/WinMerge/winmergeu.exe
@@ -52,3 +46,8 @@
 [mergetool "meld"]
     path = C:/Program Files (x86)/Meld/meld.exe
     cmd = \"C:/Program Files (x86)/Meld/meld.exe\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"
+
+[mergetool "smartsynchronize"]
+    path = C/Program Files/SmartSynchronize/bin/smartsynchronize.exe
+    cmd = \"C:/Program Files/SmartSynchronize/bin/smartsynchronize.exe' "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = false

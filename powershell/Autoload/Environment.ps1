@@ -120,6 +120,8 @@ function Initialize-Paths-APP
         "C:\PROGRA~1\Pandoc"
         "C:\PROGRA~1\Rust stable MSVC 1.33\bin"
         "C:\PROGRA~1\S3 Browser"
+        "C:\PROGRA~1\SmartGit\bin"
+        "C:\PROGRA~1\SmartSynchronize\bin"
         "C:\PROGRA~1\Sublime Text 3"
         "C:\PROGRA~1\TAP-Windows\bin"
         "C:\PROGRA~1\VcXsrv"
