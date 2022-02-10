@@ -273,7 +273,8 @@ function conan_install
     cenv_activate
     $conan_home = get_conan_home
 
-    if ($Shared) {
+    if ($Shared)
+    {
         conan install "$PathToConanFile" -pr "${conan_home}\.conan\profiles\windows-msvc-${MSVCVer}-shared-${Configuration}-${Arch}" --build=missing
     }
     else
