@@ -10,6 +10,10 @@ alias dclif='docker rmi -f $(docker images -q)'
 
 # Run docker container in interactive mode
 alias dri='docker run --rm -it'
+alias dri_entry='docker run --rm -it --entrypoint /bin/sh'
+alias dri_pwd='docker run --rm -it -v ${PWD}:/project'
+alias dri_pwd_ray='docker run --rm -it -v ${PWD}:/project -p 6379:6379 -p 8000:8000 -p 8076:8076 -p 8265:8265 -p 10001:10001'
+
 # Rewrite entry point to shell
 alias desh='docker run --rm -it --entrypoint /bin/sh'
 

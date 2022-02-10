@@ -34,6 +34,7 @@ if (Get-Command docker -ErrorAction SilentlyContinue | Test-Path)
 
     # Run docker container in interactive mode
     ${function:dri}         = { docker run --rm -it @args }
+    ${function:dri_entry}   = { docker run --rm -it --entrypoint /bin/sh @args }
     ${function:dri_pwd}     = { docker run --rm -it -v ${PWD}:/project @args }
     ${function:dri_pwd_ray} = { docker run --rm -it -v ${PWD}:/project -p 6379:6379 -p 8000:8000 -p 8076:8076 -p 8265:8265 -p 10001:10001 @args }
 
