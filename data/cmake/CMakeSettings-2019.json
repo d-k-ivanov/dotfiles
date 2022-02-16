@@ -4,13 +4,13 @@
             "environment": "platform_Win32",
             "namespace": "platform",
             "Name": "Win32",
-            "inheritEnvironments": [ "msvc_x86" ]
+            "inheritEnvironments": [ "msvc_x86_x64" ]
         },
         {
             "environment": "platform_x64",
             "namespace": "platform",
             "Name": "x64",
-            "inheritEnvironments": [ "msvc_x64" ]
+            "inheritEnvironments": [ "msvc_x64_x64" ]
         },
         {
             "environment": "system_Windows",
@@ -27,7 +27,7 @@
             "CMakeArgs": "-DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE"
         },
         {
-            "BuildCommandArgs": "/m /v:normal",
+            "BuildCommandArgs": "-m:8 -v:normal -p:PreferredToolArchitecture=x64",
             "CMakeCommandArgs": "${system.CMakeArgs}",
             "CTestCommandArgs": "",
             "BuildDir": "${workspaceRoot}\\_build"

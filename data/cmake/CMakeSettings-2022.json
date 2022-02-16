@@ -4,13 +4,13 @@
             "environment": "platform_Win32",
             "namespace": "platform",
             "Name": "Win32",
-            "inheritEnvironments": [ "msvc_x86" ]
+            "inheritEnvironments": [ "msvc_x86_x64" ]
         },
         {
             "environment": "platform_x64",
             "namespace": "platform",
             "Name": "x64",
-            "inheritEnvironments": [ "msvc_x64" ]
+            "inheritEnvironments": [ "msvc_x64_x64" ]
         },
         {
             "environment": "system_Windows",
@@ -27,7 +27,7 @@
             "CMakeArgs": "-DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE"
         },
         {
-            "BuildCommandArgs": "/m /v:normal",
+            "BuildCommandArgs": "-m:8 -v:normal -p:PreferredToolArchitecture=x64",
             "CMakeCommandArgs": "${system.CMakeArgs}",
             "CTestCommandArgs": "",
             "BuildDir": "${workspaceRoot}\\build"
@@ -36,7 +36,7 @@
     "configurations": [
         {
             "name": "x64-Debug",
-            "generator": "Visual Studio 17 2022",
+            "generator": "Visual Studio 17 2022 Win64",
             "configurationType": "Debug",
             "inheritEnvironments": [ "platform_x64", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
@@ -48,7 +48,7 @@
         },
         {
             "name": "x64-RelDebug",
-            "generator": "Visual Studio 17 2022",
+            "generator": "Visual Studio 17 2022 Win64",
             "configurationType": "RelWithDebInfo",
             "inheritEnvironments": [ "platform_x64", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",
@@ -60,7 +60,7 @@
         },
         {
             "name": "x64-Release",
-            "generator": "Visual Studio 17 2022",
+            "generator": "Visual Studio 17 2022 Win64",
             "configurationType": "Release",
             "inheritEnvironments": [ "platform_x64", "system_Windows" ],
             "buildRoot": "${env.BuildDir}\\${name}",

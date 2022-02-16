@@ -27,7 +27,7 @@
             "CMakeArgs": "-DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE"
         },
         {
-            "BuildCommandArgs": "/m /v:normal",
+            "BuildCommandArgs": "-m:8 -v:normal",
             "CMakeCommandArgs": "${system.CMakeArgs}",
             "CTestCommandArgs": "",
             "BuildDir": "${workspaceRoot}\\_build"
