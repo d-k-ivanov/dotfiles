@@ -60,8 +60,8 @@ foreach ($module in $modules)
 # $GitPromptSettings.EnableFileStatus = $false
 $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "C:\a"         # Dev folder for big repos
 $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "C:\boost"     # Boost libs
-$GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\libs\boost"          # Boost libs
-$GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\libs\UnrealEngine"   # Unreal Engine
+$GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\boost"          # Boost libs
+$GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\UnrealEngine"   # Unreal Engine
 # $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev"   # Heavy work project
 
 # Chocolatey profile
