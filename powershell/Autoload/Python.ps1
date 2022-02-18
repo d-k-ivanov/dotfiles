@@ -51,11 +51,13 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
     ${function:venv-install}    = { python -m pip install virtualenv }
     ${function:ipython-install} = { python -m pip install ipython }
 
-    function py_venv
+    function py_init_environmnet
     {
         python -m pip install --upgrade pip
-        python -m pip install --upgrade virtualenv
+        python -m pip install --upgrade flake8
         python -m pip install --upgrade ipython
+        python -m pip install --upgrade pytest
+        python -m pip install --upgrade virtualenv
     }
 
     function pyclean
@@ -66,8 +68,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         python -m pip uninstall -y -r "${TempFreezeFile}"
         Remove-Item -Force "${TempFreezeFile}"
         # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade virtualenv
+        py_init_environmnet
     }
 
     ${function:py_srv}  = { python -m http.server }
