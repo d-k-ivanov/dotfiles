@@ -305,6 +305,31 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
     }
     ${function:grt} = { get_repo_with_target @args }
 
+    function git_archive_repo
+    {
+        if (-Not $args[0])
+        {
+            Write-Host "You should enter repo URI."
+            Write-Host ( "Usage: {0} <repo_url>"  -f $MyInvocation.MyCommand )
+            Write-Host
+        }
+        else
+        {
+            $scheme = python -c "from urllib.parse import urlparse; uri='$($args[0])'; result = urlparse(uri); print(result.scheme)"
+            if ($scheme -eq "https")
+            {
+                $target = python -c "from urllib.parse import urlparse; import os.path; uri='$($args[0])'; result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]))"
+            }
+            else
+            {
+                $target = python -c "from urllib.parse import urlparse; import os.path; uri='$($args[0])'; result = urlparse(uri); path = os.path.splitext(result.path.split(':', 1)[-1]); print(os.path.basename(path[0]))"
+            }
+            Write-Host $target
+            git clone --mirror "$($args[0])" "$target"
+            tar -cjf "${target}.tar.bz2" "${target}"
+        }
+    }
+
     function Move-GitRepo
     {
         [CmdletBinding()]

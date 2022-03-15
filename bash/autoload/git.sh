@@ -364,3 +364,24 @@ git_remove_file_from_history()
 {
     git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all
 }
+
+git_archive_repo()
+{
+    if [ -z "$1" ] || [ $2 ]
+    then
+        echo "You should enter repo URI."
+        echo "Usage: git_archive_repo <repo_url>"
+        echo
+    else
+    scheme=$(python3 -c "from urllib.parse import urlparse; uri='${1}'; result = urlparse(uri); print(result.scheme)")
+        if [[ ${scheme} = "https" ]]
+        then
+            target=$(python3 -c "from urllib.parse import urlparse; import os.path; uri='${1}'; result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]))")
+        else
+            target=$(python3 -c "from urllib.parse import urlparse; import os.path; uri='${1}'; result = urlparse(uri); path = os.path.splitext(result.path.split(':', 1)[-1]); print(os.path.basename(path[0]))")
+        fi
+        git clone --mirror "${1}" "$target"
+        tar --remove-files -cjf "${target}.tar.bz2" "${target}/"
+    fi
+    return 0
+}
