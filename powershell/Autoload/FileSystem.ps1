@@ -56,13 +56,13 @@ ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine              
 ${function:wsmisc}  = { Set-Location D:\DevMisc                                     }
 
 # ClearCorrect Shortcuts
-${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                       }
-${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev   }
-${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-1 }
-${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-2 }
-${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-3 }
-${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev-4 }
-${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\buildtool\vcpkg       }
+${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                  }
+${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev  }
+${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev1 }
+${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2 }
+${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev3 }
+${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev4 }
+${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\vcpkg   }
 
 # IRQ Shortcuts
 ${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                           }
