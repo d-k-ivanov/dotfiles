@@ -331,8 +331,8 @@ function git_unarchive_repo
 {
     #TBD
     mkdir git_unarchive_repo
-    mv bare.git clone/.git
-    cd clone
+    mv archive_repo git_unarchive_repo/.git
+    cd git_unarchive_repo
     git config --local --bool core.bare false
     git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
     git checkout master
