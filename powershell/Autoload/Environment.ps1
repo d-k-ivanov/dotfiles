@@ -106,6 +106,7 @@ function Initialize-Paths-User
         "C:\PROGRA~1\ConEmu\ConEmu"
         "C:\PROGRA~1\ConEmu\ConEmu\wsl"
         "C:\PROGRA~1\gnuplot\bin"
+        "C:\PROGRA~1\Gource\cmd"
         "C:\PROGRA~1\ImageMagick-7.0.10-Q16-HDRI"
         "C:\PROGRA~1\ImageMagick-7.1.0-Q16-HDRI"
         "C:\PROGRA~1\KDiff3"
