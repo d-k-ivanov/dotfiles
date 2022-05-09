@@ -106,9 +106,9 @@ function CheckGit($Path)
     $host.UI.RawUI.WindowTitle = Microsoft.PowerShell.Management\Split-Path $pwd.ProviderPath -Leaf
     $Host.UI.RawUI.ForegroundColor = "White"
 
-    Microsoft.PowerShell.Utility\Write-Host "[" -NoNewline -ForegroundColor DarkGreen
+    # Microsoft.PowerShell.Utility\Write-Host "[" -NoNewline -ForegroundColor DarkGreen
     Microsoft.PowerShell.Utility\Write-Host $pwd.ProviderPath -NoNewLine -ForegroundColor Cyan
-    Microsoft.PowerShell.Utility\Write-Host "]" -NoNewline -ForegroundColor DarkGreen
+    # Microsoft.PowerShell.Utility\Write-Host "]" -NoNewline -ForegroundColor DarkGreen
 
     Microsoft.PowerShell.Utility\Write-Host $(checkGit($pwd.ProviderPath)) -NoNewline
 
