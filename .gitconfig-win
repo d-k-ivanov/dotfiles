@@ -51,3 +51,6 @@
     path = smartsynchronize
     cmd  = smartsynchronize "$LOCAL" "$REMOTE" "$MERGED"
     trustExitCode = false
+
+[safe]
+    directory = *
