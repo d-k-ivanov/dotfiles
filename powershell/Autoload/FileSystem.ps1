@@ -56,7 +56,7 @@ ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine              
 ${function:wsmisc}  = { Set-Location D:\DevMisc                                     }
 
 # ClearCorrect Shortcuts
-${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                  }
+${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical         }
 ${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev  }
 ${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev1 }
 ${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2 }

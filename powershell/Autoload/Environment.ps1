@@ -117,6 +117,7 @@ function Initialize-Paths-User
         "C:\PROGRA~1\Sublime Text 3"
         "C:\PROGRA~1\WinMerge"
         "C:\PROGRA~2\GitExtensions"
+        "C:\PROGRA~2\Nmap"
         "C:\PROGRA~2\pgAdmin 4\v4\runtime"
         "C:\Strawberry\perl\bin"
         # "C:\Strawberry\perl\site\bin"
