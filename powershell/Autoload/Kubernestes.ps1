@@ -21,6 +21,7 @@ if ($MyInvocation.InvocationName -ne '.')
 #}
 
 ${function:kdev}        = { kubectl --context dev               @args }
+${function:kdevops}     = { kubectl --context devopseu          @args }
 ${function:kstage}      = { kubectl --context stage             @args }
 ${function:kprod}       = { kubectl --context prod              @args }
 ${function:kdevcn}      = { kubectl --context devcn             @args }
@@ -29,6 +30,7 @@ ${function:kprodcn}     = { kubectl --context prodcn            @args }
 ${function:kdocker}     = { kubectl --context docker-desktop    @args }
 
 ${function:hdev}        = { helm --kube-context dev             @args }
+${function:hdevops}     = { helm --kube-context devopseu        @args }
 ${function:hstage}      = { helm --kube-context stage           @args }
 ${function:hprod}       = { helm --kube-context prod            @args }
 ${function:hdevcn}      = { helm --kube-context devcn           @args }
@@ -37,6 +39,7 @@ ${function:hprodcn}     = { helm --kube-context prodcn          @args }
 ${function:hdocker}     = { helm --kube-context docker-desktop  @args }
 
 ${function:kdev_proxy}          = { kdev     proxy --port=10001 }
+${function:kdevops_proxy}       = { kdevops  proxy --port=10001 }
 ${function:kstage_proxy}        = { kstage   proxy --port=10001 }
 ${function:kprod_proxy}         = { kprod    proxy --port=10001 }
 ${function:kdevcn_proxy}        = { kdevcn   proxy --port=10001 }
@@ -45,6 +48,7 @@ ${function:kprodcn_proxy}       = { kprodcn  proxy --port=10001 }
 ${function:kdocker_proxy}       = { kdocker  proxy --port=10001 }
 
 ${function:kdev_port_fwd}       = { kdev     port-forward --v=6 --address 0.0.0.0 service/@args }
+${function:kdevops_port_fwd}    = { kdevops  port-forward --v=6 --address 0.0.0.0 service/@args }
 ${function:kstage_port_fwd}     = { kstage   port-forward --v=6 --address 0.0.0.0 service/@args }
 ${function:kprod_port_fwd}      = { kprod    port-forward --v=6 --address 0.0.0.0 service/@args }
 ${function:kdevcn_port_fwd}     = { kdevcn   port-forward --v=6 --address 0.0.0.0 service/@args }
@@ -53,6 +57,7 @@ ${function:kprodcn_port_fwd}    = { kprodcn  port-forward --v=6 --address 0.0.0.
 ${function:kdocker_port_fwd}    = { kdocker  port-forward --v=6 --address 0.0.0.0 service/@args }
 
 ${function:kdev_consul}         = { kdev     port-forward --v=6 --address 0.0.0.0 service/consul 8300 8301 8302 8500 8600 }
+${function:kdevops_consul}      = { kdevops  port-forward --v=6 --address 0.0.0.0 service/consul 8300 8301 8302 8500 8600 }
 ${function:kstage_consul}       = { kstage   port-forward --v=6 --address 0.0.0.0 service/consul 8300 8301 8302 8500 8600 }
 ${function:kprod_consul}        = { kprod    port-forward --v=6 --address 0.0.0.0 service/consul 8300 8301 8302 8500 8600 }
 ${function:kdevcn_consul}       = { kdevcn   port-forward --v=6 --address 0.0.0.0 service/consul 8300 8301 8302 8500 8600 }
@@ -61,6 +66,7 @@ ${function:kprodcn_consul}      = { kprodcn  port-forward --v=6 --address 0.0.0.
 ${function:kdocker_consul}      = { kdocker  port-forward --v=6 --address 0.0.0.0 service/consul 8300 8301 8302 8500 8600 }
 
 ${function:kdev_rabbit}         = { kdev     port-forward --v=6 --address 0.0.0.0 service/rabbitmq-ha 4369 5672 15672 15692 }
+${function:kdevops_rabbit}      = { kdevops  port-forward --v=6 --address 0.0.0.0 service/rabbitmq-ha 4369 5672 15672 15692 }
 ${function:kstage_rabbit}       = { kstage   port-forward --v=6 --address 0.0.0.0 service/rabbitmq-ha 4369 5672 15672 15692 }
 ${function:kprod_rabbit}        = { kprod    port-forward --v=6 --address 0.0.0.0 service/rabbitmq-ha 4369 5672 15672 15692 }
 ${function:kdevcn_rabbit}       = { kdevcn   port-forward --v=6 --address 0.0.0.0 service/rabbitmq-ha 4369 5672 15672 15692 }
@@ -69,6 +75,7 @@ ${function:kprodcn_rabbit}      = { kprodcn  port-forward --v=6 --address 0.0.0.
 ${function:kdocker_rabbit}      = { kdocker  port-forward --v=6 --address 0.0.0.0 service/rabbitmq-ha 4369 5672 15672 15692 }
 
 ${function:kdev_exec}           = { kdev     exec -it @args "--" sh -c "(bash || ash || sh)" }
+${function:kdevops_exec}        = { kdevops  exec -it @args "--" sh -c "(bash || ash || sh)" }
 ${function:kstage_exec}         = { kstage   exec -it @args "--" sh -c "(bash || ash || sh)" }
 ${function:kprod_exec}          = { kprod    exec -it @args "--" sh -c "(bash || ash || sh)" }
 ${function:kdevcn_exec}         = { kdevcn   exec -it @args "--" sh -c "(bash || ash || sh)" }
@@ -80,6 +87,14 @@ function kdev_admin_token()
 {
     kdev -n kube-system get secret `
     $((kdev -o yaml -n kube-system get serviceaccounts admin-user `
+    | ConvertFrom-Yaml).secrets.name) -o jsonpath="{.data.token}" `
+    | ConvertFrom-Base64
+}
+
+function kdevops_admin_token()
+{
+    kdevops -n kube-system get secret `
+    $((kdevops -o yaml -n kube-system get serviceaccounts admin-user `
     | ConvertFrom-Yaml).secrets.name) -o jsonpath="{.data.token}" `
     | ConvertFrom-Base64
 }
