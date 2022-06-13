@@ -58,6 +58,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         python -m pip install --upgrade ipython
         python -m pip install --upgrade pytest
         python -m pip install --upgrade virtualenv
+        python -m pip install --upgrade cfn-lint
     }
 
     function pyclean
