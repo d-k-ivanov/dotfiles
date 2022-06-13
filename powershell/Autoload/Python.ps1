@@ -63,13 +63,21 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 
     function pyclean
     {
+        [CmdletBinding()]
+        param
+        (
+            [switch] $SkipInit
+        )
         [string] $SessionID = [System.Guid]::NewGuid()
         $TempFreezeFile  = (Join-Path "${Env:Temp}" "${SessionID}")
         python -m pip freeze > "${TempFreezeFile}"
         python -m pip uninstall -y -r "${TempFreezeFile}"
         Remove-Item -Force "${TempFreezeFile}"
         # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
-        py_init_environmnet
+        if(-Not $SkipInit)
+        {
+            py_init_environmnet
+        }
     }
 
     ${function:py_srv}  = { python -m http.server }
