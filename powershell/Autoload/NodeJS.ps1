@@ -15,6 +15,9 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+# Increase NODE memory local limit
+# $Env:NODE_OPTIONS = "--max-old-space-size=4096"
+
 if (Get-Command npm -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:npm-update}               = { npm install npm@latest -g }

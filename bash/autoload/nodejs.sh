@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Increase NODE memory local limit
+# export NODE_OPTIONS='--max-old-space-size=4096'
+
 alias npm-update='npm install npm@latest -g'
 alias npm-list-local='npm list --depth 0'
 alias npm-list-global='npm list -g --depth 0'
