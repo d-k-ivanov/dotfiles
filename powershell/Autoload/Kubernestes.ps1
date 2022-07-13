@@ -20,23 +20,52 @@ if ($MyInvocation.InvocationName -ne '.')
 #    $Env:KUBECONFIG += $kube_config.FullName -join ";"
 #}
 
-${function:kdev}        = { kubectl --context dev               @args }
-${function:kdevops}     = { kubectl --context devopseu          @args }
-${function:kstage}      = { kubectl --context stage             @args }
-${function:kprod}       = { kubectl --context prod              @args }
-${function:kdevcn}      = { kubectl --context devcn             @args }
-${function:kstagecn}    = { kubectl --context stagecn           @args }
-${function:kprodcn}     = { kubectl --context prodcn            @args }
 ${function:kdocker}     = { kubectl --context docker-desktop    @args }
+${function:hdocker}     = { helm --kube-context docker-desktop  @args }
+
+## =============== DevOps environment =============== ##
+${function:kdevops}     = { kubectl --context devops            @args }
+${function:kdevopscn}   = { kubectl --context devopscn          @args }
+${function:kdevopseu}   = { kubectl --context devopseu          @args }
+${function:kdevopsus}   = { kubectl --context devopsus          @args }
+
+${function:hdevops}     = { helm --kube-context devops          @args }
+${function:hdevopscn}   = { helm --kube-context devopscn        @args }
+${function:hdevopseu}   = { helm --kube-context devopseu        @args }
+${function:hdevopsus}   = { helm --kube-context devopsus        @args }
+
+## =============== Dev environment    =============== ##
+${function:kdev}        = { kubectl --context dev               @args }
+${function:kdevcn}      = { kubectl --context devcn             @args }
+${function:kdeveu}      = { kubectl --context deveu             @args }
+${function:kdevus}      = { kubectl --context devus             @args }
 
 ${function:hdev}        = { helm --kube-context dev             @args }
-${function:hdevops}     = { helm --kube-context devopseu        @args }
-${function:hstage}      = { helm --kube-context stage           @args }
-${function:hprod}       = { helm --kube-context prod            @args }
 ${function:hdevcn}      = { helm --kube-context devcn           @args }
+${function:hdeveu}      = { helm --kube-context deveu           @args }
+${function:hdevus}      = { helm --kube-context devus           @args }
+
+## =============== Stage environment  =============== ##
+${function:kstage}      = { kubectl --context stage             @args }
+${function:kstagecn}    = { kubectl --context stagecn           @args }
+${function:kstageeu}    = { kubectl --context stageeu           @args }
+${function:kstageus}    = { kubectl --context stageus           @args }
+
+${function:hstage}      = { helm --kube-context stage           @args }
 ${function:hstagecn}    = { helm --kube-context stagecn         @args }
+${function:hstageeu}    = { helm --kube-context stageeu         @args }
+${function:hstageus}    = { helm --kube-context stageus         @args }
+
+## =============== Prod environment   =============== ##
+${function:kprod}       = { kubectl --context prod              @args }
+${function:kprodcn}     = { kubectl --context prodcn            @args }
+${function:kprodeu}     = { kubectl --context prodeu            @args }
+${function:kprodus}     = { kubectl --context produs            @args }
+
+${function:hprod}       = { helm --kube-context prod            @args }
 ${function:hprodcn}     = { helm --kube-context prodcn          @args }
-${function:hdocker}     = { helm --kube-context docker-desktop  @args }
+${function:hprodeu}     = { helm --kube-context prodeu          @args }
+${function:hprodus}     = { helm --kube-context produs          @args }
 
 ${function:kdev_proxy}          = { kdev     proxy --port=10001 }
 ${function:kdevops_proxy}       = { kdevops  proxy --port=10001 }

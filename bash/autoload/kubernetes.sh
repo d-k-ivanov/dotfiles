@@ -1,22 +1,51 @@
 #!/usr/bin/env bash
 
+alias kdocker='kubectl --context docker-desktop'
+alias hdocker='helm --kube-context docker-desktop'
+
+## =============== DevOps environment =============== ##
+alias   kdevops='kubectl --context devops'
+alias kdevopscn='kubectl --context devopscn'
+alias kdevopseu='kubectl --context devopseu'
+alias kdevopsus='kubectl --context devopsus'
+
+alias   hdevops='helm --kube-context devops'
+alias hdevopscn='helm --kube-context devopscn'
+alias hdevopseu='helm --kube-context devopseu'
+alias hdevopsus='helm --kube-context devopsus'
+
+## =============== Dev environment    =============== ##
 alias     kdev='kubectl --context dev'
-alias  kdevops='kubectl --context devopseu'
-alias   kstage='kubectl --context stage'
-alias    kprod='kubectl --context prod'
 alias   kdevcn='kubectl --context devcn'
-alias kstagecn='kubectl --context stagecn'
-alias  kprodcn='kubectl --context prodcn'
-alias      kws='kubectl --context docker-desktop'
+alias   kdeveu='kubectl --context deveu'
+alias   kdevus='kubectl --context devus'
 
 alias     hdev='helm --kube-context dev'
-alias  hdevops='helm --kube-context devopseu'
-alias   hstage='helm --kube-context stage'
-alias    hprod='helm --kube-context prod'
 alias   hdevcn='helm --kube-context devcn'
+alias   hdeveu='helm --kube-context deveu'
+alias   hdevus='helm --kube-context devus'
+
+## =============== Stage environment  =============== ##
+alias   kstage='kubectl --context stage'
+alias kstagecn='kubectl --context stagecn'
+alias kstageeu='kubectl --context stageeu'
+alias kstageus='kubectl --context stageus'
+
+alias   hstage='helm --kube-context stage'
 alias hstagecn='helm --kube-context stagecn'
+alias hstageeu='helm --kube-context stageeu'
+alias hstageus='helm --kube-context stageus'
+
+## =============== Prod environment   =============== ##
+alias    kprod='kubectl --context prod'
+alias  kprodcn='kubectl --context prodcn'
+alias  kprodeu='kubectl --context prodeu'
+alias  kprodus='kubectl --context produs'
+
+alias    hprod='helm --kube-context prod'
 alias  hprodcn='helm --kube-context prodcn'
-alias      hws='helm --kube-context docker-desktop'
+alias  hprodeu='helm --kube-context prodeu'
+alias  hprodus='helm --kube-context produs'
 
 alias     kdev_proxy='kdev      proxy --port=10001'
 alias  kdevops_proxy='kdevops   proxy --port=10001'
