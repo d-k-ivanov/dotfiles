@@ -37,6 +37,7 @@ if (Get-Command bundle -ErrorAction SilentlyContinue | Test-Path)
 function Get-Rubies
 {
     $rubies = @(
+        'C:\tools\ruby31\bin'
         'C:\tools\ruby30\bin'
         'C:\tools\ruby29\bin'
         'C:\tools\ruby28\bin'
