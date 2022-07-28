@@ -176,7 +176,7 @@ function kdocker_admin_token()
     | ConvertFrom-Base64
 }
 
-function kimages()
+function kimages_slow()
 {
     [CmdletBinding()]
     [OutputType([System.Object[]])]
@@ -217,7 +217,7 @@ function kimages()
     return $ServicesTable
 }
 
-function kimages_fast()
+function kimages()
 {
     [CmdletBinding()]
     [OutputType([System.Object[]])]
