@@ -80,6 +80,7 @@ function Initialize-Paths-User
 {
     $paths = @(
         "${env:USERPROFILE}\OneDrive\bin"
+        "${env:USERPROFILE}\OneDrive\bin\work"
         "${env:USERPROFILE}\scoop\shims"
         "${env:GOPATH}\bin"
         "${env:M2_HOME}\bin"
@@ -130,6 +131,10 @@ function Initialize-Paths-User
         "C:\tools\doublecmd"
         "C:\tools\emsdk"
         "C:\tools\fasm"
+        "C:\tools\ghc-9.2.4\bin"
+        "C:\tools\ghc-9.2.3\bin"
+        "C:\tools\ghc-9.2.2\bin"
+        "C:\tools\ghc-9.2.1\bin"
         "C:\tools\ghc-9.0.1\bin"
         "C:\tools\gnuplot\bin"
         "C:\tools\msys64"
