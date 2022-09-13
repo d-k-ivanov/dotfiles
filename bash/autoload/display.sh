@@ -3,12 +3,14 @@
 alias c='clear'
 
 # Export DISPLAY variable. If local than it exports localhost, if remole it exports SSH Client
-alias disp='source ~/.bin/export-display.sh'
+alias      disp='source ~/.bin/export-display.sh'
+alias   gldirect='export LIBGL_ALWAYS_INDIRECT=1'
+alias glindirect='export LIBGL_ALWAYS_INDIRECT=0'
 
 # Export display for WSL:
 if [[ $WSL_DISTRO_NAME ]]
 then
-    export DISPLAY=$(ip route | grep default | awk '{print $3}'):0.0
+    export DISPLAY=localhost:0.0
 fi
 
 set-display-one()
@@ -228,3 +230,16 @@ set-display()
     esac
 }
 
+wsl-startx()
+{
+    export DISPLAY=localhost:0.0
+    export XDG_RUNTIME_DIR=~/runtime
+    export RUNLEVEL=3
+    sudo /etc/init.d/dbus restart
+    dbus-launch --exit-with-session ~/.xsession
+}
+
+wsl-stopx()
+{
+    sudo /etc/init.d/dbus stop
+}
