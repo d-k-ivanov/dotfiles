@@ -41,3 +41,10 @@ function Find-JBApps
 
 ${function:ide}  = { idea ${PWD} @args }
 ${function:cide} = { clion ${PWD} @args }
+
+function fix_jb_address_already_in_use
+{
+    net stop winnat
+    Sleep -Seconds 2
+    net start winnat
+}
