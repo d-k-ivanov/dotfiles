@@ -35,41 +35,42 @@ ${function:cd} = {
 ${function:~} = { Set-Location ~ }
 # PoSh won't allow ${function:..} because of an invalid path error, so...
 ${function:Set-ParentLocation} = { Set-Location .. }; Set-Alias ".." Set-ParentLocation
-${function:...}     = { Set-Location ..\..                                          }
-${function:....}    = { Set-Location ..\..\..                                       }
-${function:.....}   = { Set-Location ..\..\..\..                                    }
-${function:......}  = { Set-Location ..\..\..\..\..                                 }
-${function:.......} = { Set-Location ..\..\..\..\..\..                              }
+${function:...}     = { Set-Location ..\..             }
+${function:....}    = { Set-Location ..\..\..          }
+${function:.....}   = { Set-Location ..\..\..\..       }
+${function:......}  = { Set-Location ..\..\..\..\..    }
+${function:.......} = { Set-Location ..\..\..\..\..\.. }
 
 # Navigation Shortcuts
-${function:drop}    = { Set-Location ~\Dropbox                                      }
-${function:desk}    = { Set-Location ~\Desktop                                      }
-${function:docs}    = { Set-Location ~\Documents                                    }
-${function:down}    = { Set-Location ~\Downloads                                    }
-${function:ws}      = { Set-Location ${Env:WORKSPACE}                               }
-${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                            }
-${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                   }
-${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\dsc-windows-workstation    }
-${function:wsws}    = { Set-Location ${Env:WORKSPACE}\my\sandbox-workspaces         }
-${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                           }
-${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine                  }
-${function:wsmisc}  = { Set-Location D:\DevMisc                                     }
+${function:drop}    = { Set-Location ~\Dropbox                                          }
+${function:desk}    = { Set-Location ~\Desktop                                          }
+${function:docs}    = { Set-Location ~\Documents                                        }
+${function:down}    = { Set-Location ~\Downloads                                        }
+${function:ws}      = { Set-Location ${Env:WORKSPACE}                                   }
+${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                                }
+${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                       }
+${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\dsc-windows-workstation        }
+${function:wsws}    = { Set-Location ${Env:WORKSPACE}\my\sandbox-workspaces             }
+${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
+${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine                      }
+${function:wsmisc}  = { Set-Location D:\DevMisc                                         }
 
 # ClearCorrect Shortcuts
-${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical         }
-${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev  }
-${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev1 }
-${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2 }
-${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev3 }
-${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev4 }
-${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\vcpkg   }
+${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical             }
+${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev      }
+${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev1     }
+${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2     }
+${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev3     }
+${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev4     }
+${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\vcpkg       }
+${function:wsce}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\service-exporters    }
 
 # IRQ Shortcuts
-${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                           }
-${function:wsic}    = { Set-Location ${Env:WORKSPACE}\irq\common                    }
-${function:wsid}    = { Set-Location ${Env:WORKSPACE}\irq\devops                    }
-${function:wsim}    = { Set-Location ${Env:WORKSPACE}\irq\ml                        }
-${function:wsimm}   = { Set-Location ${Env:WORKSPACE}\irq\ml\irqml                  }
+${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                               }
+${function:wsic}    = { Set-Location ${Env:WORKSPACE}\irq\common                        }
+${function:wsid}    = { Set-Location ${Env:WORKSPACE}\irq\devops                        }
+${function:wsim}    = { Set-Location ${Env:WORKSPACE}\irq\ml                            }
+${function:wsimm}   = { Set-Location ${Env:WORKSPACE}\irq\ml\irqml                      }
 
 # Create a new directory and enter it
 function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; Set-Location $path}

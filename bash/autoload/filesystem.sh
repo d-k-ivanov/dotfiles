@@ -81,6 +81,7 @@ alias   wscc3='cd ~/ws/clearcorrect/clinical/cc-dev3'
 alias   wscc4='cd ~/ws/clearcorrect/clinical/cc-dev4'
 alias   wsccv='cd ~/ws/clearcorrect/clinical/vcpkg'
 alias    wscd='cd ~/ws/clearcorrect/devops'
+alias    wsce='cd ~/ws/clearcorrect/service-exporters'
 
 # IRQ Shortcuts
 alias   wsi='cd ~/ws/irq'
