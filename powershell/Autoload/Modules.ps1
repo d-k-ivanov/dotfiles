@@ -31,7 +31,7 @@ $modules = @(
     "Posh-Docker"
     "Posh-Git"
     # "Posh-SSH" # - SLOW
-    # "powershell-yaml"
+    "powershell-yaml"
     "PSReadline"
 )
 
