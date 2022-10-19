@@ -34,4 +34,6 @@ function cht
 }
 
 # Show command definiton
-${function:show}  = { if ($args[0] -and -Not $args[1]) { (Get-Command ${args}).Definition } else {Write-Host "Wrong command!`nUsage: show <command>"}}
+Remove-Item alias:type -ErrorAction SilentlyContinue
+${function:type}  = { if ($args[0] -and -Not $args[1]) { (Get-Command ${args}).Definition } else {Write-Host "Wrong command!`nUsage: show <command>"}}
+Set-Alias show type
