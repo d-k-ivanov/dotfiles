@@ -32,6 +32,29 @@ function aws_set_env_vars()
     $Env:AWS_DEFAULT_REGION     = "$Region"
 }
 
+function aws_unset_env_vars()
+{
+    if ($env:AWS_ACCESS_KEY_ID)
+    {
+        Remove-Item Env:AWS_ACCESS_KEY_ID
+    }
+    if ($env:AWS_DEFAULT_REGION)
+    {
+        Remove-Item Env:AWS_DEFAULT_REGION
+    }
+    if ($env:AWS_SECRET_ACCESS_KEY)
+    {
+        Remove-Item Env:AWS_SECRET_ACCESS_KEY
+    }
+    if ($env:AWS_REGION)
+    {
+        Remove-Item Env:AWS_REGION
+    }
+    if ($env:AWS_SESSION_TOKEN)
+    {
+        Remove-Item Env:AWS_SESSION_TOKEN
+    }
+}
 
 # Get all instances state
 function aws_print_all_instances()
