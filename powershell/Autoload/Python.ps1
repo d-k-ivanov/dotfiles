@@ -169,8 +169,8 @@ function Set-Py
     [Environment]::SetEnvironmentVariable("PYTHON_PATH", $ChoosenVersion, "Machine")
     Set-Item -Path Env:PYTHON_PATH -Value "$ChoosenVersion"
 
-    [Environment]::SetEnvironmentVariable("PYTHONPATH", "${ChoosenVersion}\Lib\;${ChoosenVersion}\DLLs\", "Machine")
-    Set-Item -Path Env:PYTHONPATH -Value "${ChoosenVersion}\Lib\;${ChoosenVersion}\DLLs\"
+    # [Environment]::SetEnvironmentVariable("PYTHONPATH", "${ChoosenVersion}\Lib\;${ChoosenVersion}\DLLs\", "Machine")
+    # Set-Item -Path Env:PYTHONPATH -Value "${ChoosenVersion}\Lib\;${ChoosenVersion}\DLLs\"
     # Set-Env
 }
 
