@@ -80,10 +80,10 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         }
     }
 
-    ${function:py_srv}  = { python -m http.server }
-    if (Get-Command pyserv.ps1 -ErrorAction SilentlyContinue | Test-Path)
+    ${function:srv}  = { python -m http.server 8000 }
+    if (Get-Command serv.ps1 -ErrorAction SilentlyContinue | Test-Path)
     {
-        ${function:pyserv}  = { pyserv.ps1 }
+        ${function:serv}  = { serv.ps1 }
     }
 }
 

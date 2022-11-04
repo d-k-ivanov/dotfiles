@@ -18,7 +18,7 @@ class SimpleHTTPRequestHandlerNoCache(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    PORT = 8080
+    PORT = 8000
     # Handler = http.server.SimpleHTTPRequestHandler # Default
     Handler = SimpleHTTPRequestHandlerNoCache
 

@@ -54,3 +54,5 @@
 
 [safe]
     directory = *
+[credential "https://git-codecommit.eu-central-1.amazonaws.com"]
+	provider = generic
