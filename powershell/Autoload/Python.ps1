@@ -90,6 +90,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 function Get-PyList
 {
     $serpents = @(
+        'C:\Python311'
         'C:\Python310'
         'C:\Python39'
         'C:\Python38'
@@ -108,6 +109,7 @@ function Get-PyList
         'C:\Python27-32'
         'C:\Python26-32'
         'C:\Python25-32'
+        "$env:LOCALAPPDATA\Programs\Python\Python311"
         "$env:LOCALAPPDATA\Programs\Python\Python310"
         "$env:LOCALAPPDATA\Programs\Python\Python39"
         "$env:LOCALAPPDATA\Programs\Python\Python38"
