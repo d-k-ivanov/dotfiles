@@ -25,6 +25,13 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 #   Stop-Process -Id $PID
 # }
 
+# Remove Aliases:
+Remove-Alias -Name gc   -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gci  -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gcm  -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gl   -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name type -Force -ErrorAction SilentlyContinue
+
 Get-ChildItem "$(Join-Path $PSScriptRoot "Autoload")\*.ps1" | ForEach-Object { . $_ }
 Get-ChildItem "$(Join-Path $PSScriptRoot "Completion")\*.ps1" | ForEach-Object { . $_ }
 
