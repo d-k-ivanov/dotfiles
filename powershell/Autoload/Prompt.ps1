@@ -116,7 +116,7 @@ function CheckGit($Path)
     # $username = $(Split-Path (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object UserName).UserName -Leaf)
     $username = Split-Path $Env:USERPROFILE -Leaf
     $compname = (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object DNSHostName).DNSHostName
-    Microsoft.PowerShell.Utility\Write-Host "`n${now} ${username}@${compname} λ " -NoNewLine -ForegroundColor DarkGray
+    Microsoft.PowerShell.Utility\Write-Host "`n${now} ${username}@${compname} λ " -NoNewLine -ForegroundColor DarkBlue
 
     $global:LASTEXITCODE = $realLASTEXITCODE
     return " "
