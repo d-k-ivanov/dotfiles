@@ -18,7 +18,7 @@ if ($MyInvocation.InvocationName -ne '.')
 
 # Main
 ${function:g}           = { git.exe @args }
-${function:gg}          = { git.exe -c core.pager='delta --light --features=code-review-light' @args }
+${function:gg}          = { git.exe -c core.pager='delta --light --features=code-review-dark' @args }
 ${function:gunsec}      = { git.exe -c http.sslVerify=false @args }
 
 # Logs
@@ -52,26 +52,26 @@ ${function:gwwwwwwww}   = { git.exe show HEAD^^^^^^^ @args  }
 ${function:gw^^^^^^^^}  = { git.exe show HEAD^^^^^^^^ @args }
 ${function:gwwwwwwwww}  = { git.exe show HEAD^^^^^^^^ @args }
 
-${function:ggw}         = { git.exe -c core.pager='delta --light --features=code-review-light' show @args              }
-${function:ggw^}        = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^ @args        }
-${function:ggww}        = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^ @args        }
-${function:ggw^^}       = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^ @args       }
-${function:ggwww}       = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^ @args       }
-${function:ggw^^^}      = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^ @args      }
-${function:ggwwww}      = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^ @args      }
-${function:ggw^^^^}     = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^ @args     }
-${function:ggwwwww}     = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^ @args     }
-${function:ggw^^^^^}    = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^ @args    }
-${function:ggwwwwww}    = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^ @args    }
-${function:ggw^^^^^^}   = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^^ @args   }
-${function:ggwwwwwww}   = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^^ @args   }
-${function:ggw^^^^^^^}  = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^^^ @args  }
-${function:ggwwwwwwww}  = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^^^ @args  }
-${function:ggw^^^^^^^^} = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^^^^ @args }
-${function:ggwwwwwwwww} = { git.exe -c core.pager='delta --light --features=code-review-light' show HEAD^^^^^^^^ @args }
+${function:ggw}         = { git.exe -c core.pager='delta --light --features=code-review-dark' show @args              }
+${function:ggw^}        = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^ @args        }
+${function:ggww}        = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^ @args        }
+${function:ggw^^}       = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^ @args       }
+${function:ggwww}       = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^ @args       }
+${function:ggw^^^}      = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^ @args      }
+${function:ggwwww}      = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^ @args      }
+${function:ggw^^^^}     = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^ @args     }
+${function:ggwwwww}     = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^ @args     }
+${function:ggw^^^^^}    = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^ @args    }
+${function:ggwwwwww}    = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^ @args    }
+${function:ggw^^^^^^}   = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^^ @args   }
+${function:ggwwwwwww}   = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^^ @args   }
+${function:ggw^^^^^^^}  = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^^^ @args  }
+${function:ggwwwwwwww}  = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^^^ @args  }
+${function:ggw^^^^^^^^} = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^^^^ @args }
+${function:ggwwwwwwwww} = { git.exe -c core.pager='delta --light --features=code-review-dark' show HEAD^^^^^^^^ @args }
 
 ${function:gd}          = { git.exe diff HEAD @args }
-${function:ggd}         = { git.exe -c core.pager='delta --light --features=code-review-light' diff HEAD @args }
+${function:ggd}         = { git.exe -c core.pager='delta --light --features=code-review-dark' diff HEAD @args }
 ${function:gdo}         = { git.exe diff --cached @args }
 
 # Add and Commit

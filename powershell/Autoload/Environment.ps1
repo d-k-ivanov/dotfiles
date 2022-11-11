@@ -52,6 +52,8 @@ $PSReadLineOptions = @{
     MaximumHistoryCount = 32767
     HistoryNoDuplicates = $true
     HistorySearchCursorMovesToEnd = $true
+    PredictionSource = "None"
+    # PredictionViewStyle = "ListView"
     ShowToolTips = $false
 }
 Set-PSReadLineOption @PSReadLineOptions
