@@ -109,6 +109,7 @@ function Initialize-Paths-User
         "C:\Go\bin"
         "C:\HashiCorp\Vagrant\bin"
         "C:\msys64"
+        "C:\texlive\2022\bin\win32"
         "C:\opscode\chefdk\bin"
         "C:\PROGRA~1\Azure Data Studio\bin"
         "C:\PROGRA~1\ConEmu\ConEmu"
