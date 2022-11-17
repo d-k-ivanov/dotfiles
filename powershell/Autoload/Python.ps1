@@ -176,6 +176,11 @@ function Set-Py
     # Set-Env
 }
 
+function Set-Py-Double
+{
+    Set-Item -Path Env:PATH -Value "C:\tools\python2;C:\tools\python3;${Env:PATH}"
+}
+
 function Clear-Py
 {
     [Environment]::SetEnvironmentVariable("PYTHON_PATH", $null, "Machine")
