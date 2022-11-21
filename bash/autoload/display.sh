@@ -8,9 +8,10 @@ alias   gldirect='export LIBGL_ALWAYS_INDIRECT=1'
 alias glindirect='export LIBGL_ALWAYS_INDIRECT=0'
 
 # Export display for WSL:
-if [[ $WSL_DISTRO_NAME ]]
+if [[ $WSL_HOST_IP ]]
 then
-    export DISPLAY=localhost:0.0
+    # export DISPLAY=localhost:0.0
+    export DISPLAY={WSL_HOST_IP}:0.0
 fi
 
 set-display-one()
