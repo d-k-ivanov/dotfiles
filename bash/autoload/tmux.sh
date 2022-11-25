@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-alias tmux='tmux -2'
+alias tmux='tmux -2 -u'
 alias   tm='tmux'
 alias  tma='tmux attach'
 alias tmat='tmux attach -t'

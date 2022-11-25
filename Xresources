@@ -7,7 +7,7 @@ Xft.hinting:                1
 Xft.antialias:              1
 Xft.rgba:                   rgb
 Xcursor.theme:              Vanilla-DMZ-AA
-!Xcursor.theme:              ComixCursors-Slim-White
+!Xcursor.theme:             ComixCursors-Slim-White
 Xcursor.theme_core:         True
 Xcursor.size:               32
 
@@ -37,8 +37,8 @@ XTerm*xftAntialias:         True
 !XTerm..faceName: Inconsolata:size=20:antialias=false
 
 *font:                      -xos4-terminus-medium-r-normal--28-280-72-72-c-140-iso10646-1
-!*font:                      -xos4-terminus-medium-r-normal--24-240-72-72-c-120-iso10646-1
-!*font:                      -xos4-terminus-bold-r-normal--24-240-72-72-c-120-iso10646-1
+!*font:                     -xos4-terminus-medium-r-normal--24-240-72-72-c-120-iso10646-1
+!*font:                     -xos4-terminus-bold-r-normal--24-240-72-72-c-120-iso10646-1
 *wideFont:                  -misc-takaomincho-medium-r-normal--28-0-0-0-p-0-iso10646-1
 
 ! Trim trailing spaces
@@ -127,54 +127,95 @@ XTerm*charClass:            33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:
 
 #define                     _cursorColor  #928374
 
-*background:                _background
-*foreground:                _foreground
-*cursorColor:               _cursorColor
-*color0:                    _color0
-*color8:                    _color8
-*color1:                    _color1
-*color9:                    _color9
-*color2:                    _color2
-*color10:                   _color10
-*color3:                    _color3
-*color11:                   _color11
-*color4:                    _color4
-*color12:                   _color12
-*color5:                    _color5
-*color13:                   _color13
-*color6:                    _color6
-*color14:                   _color14
-*color7:                    _color7
-*color15:                   _color15
+! *background:              _background
+! *foreground:              _foreground
+! *cursorColor:             _cursorColor
+! *color0:                  _color0
+! *color8:                  _color8
+! *color1:                  _color1
+! *color9:                  _color9
+! *color2:                  _color2
+! *color10:                 _color10
+! *color3:                  _color3
+! *color11:                 _color11
+! *color4:                  _color4
+! *color12:                 _color12
+! *color5:                  _color5
+! *color13:                 _color13
+! *color6:                  _color6
+! *color14:                 _color14
+! *color7:                  _color7
+! *color15:                 _color15
+
+## Nord Colors
+#define nord0   #2E3440
+#define nord1   #3B4252
+#define nord2   #434C5E
+#define nord3   #4C566A
+#define nord4   #D8DEE9
+#define nord5   #E5E9F0
+#define nord6   #ECEFF4
+#define nord7   #8FBCBB
+#define nord8   #88C0D0
+#define nord9   #81A1C1
+#define nord10  #5E81AC
+#define nord11  #BF616A
+#define nord12  #D08770
+#define nord13  #EBCB8B
+#define nord14  #A3BE8C
+#define nord15  #B48EAD
+
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading: 35
+*fadeColor: nord3
+
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
 
 ! URxvt -----------------------------------------------------------------------
 ! General settings
 URxvt.title:                rxvt-unicode
-URxvt.saveLines: 						2000
-URxvt.scrollBar: 						False
-URxvt.scrollstyle: 					rxvt
-URxvt.termName: 						xterm-256color
-!URxvt.visualBell:           False
-URxvt.urgentOnBell: 				True
-URxvt.cursorBlink: 					False
+URxvt.saveLines:            2000
+URxvt.scrollBar:            False
+URxvt.scrollstyle:          rxvt
+URxvt.termName:             xterm-256color
+!URxvt.visualBell:          False
+URxvt.urgentOnBell:         True
+URxvt.cursorBlink:          False
 ! Extensions
-!URxvt.perl-ext-common: 			default,clipboard,keyboard-select,url-select
-URxvt.urlLauncher: 					xdg-open
-URxvt.urlButton: 						1
-URxvt.underlineURLs: 				True
+!URxvt.perl-ext-common:     default,clipboard,keyboard-select,url-select
+URxvt.urlLauncher:          xdg-open
+URxvt.urlButton:            1
+URxvt.underlineURLs:        True
 ! Clipboard
-URxvt.copyCommand:  				xclip -i -selection clipboard
-URxvt.pasteCommand: 				xclip -o -selection clipboard
+URxvt.copyCommand:          xclip -i -selection clipboard
+URxvt.pasteCommand:         xclip -o -selection clipboard
 ! Keybindings
-URxvt.keysym.Mod4-c: 				perl:clipboard:copy
-URxvt.keysym.Mod4-v: 				perl:clipboard:paste
-URxvt.keysym.Mod4-C-v: 			perl:clipboard:paste_escaped
-URxvt.keysym.M-c: 					perl:clipboard:copy
-URxvt.keysym.M-v: 					perl:clipboard:paste
-URxvt.keysym.M-C-v: 				perl:clipboard:paste_escaped
-URxvt.keysym.M-Escape:			perl:keyboard-select:activate
-URxvt.keysym.C-Escape: 			perl:keyboard-select:activate
-URxvt.keysym.M-u: 					perl:url-select:select_next
+URxvt.keysym.Mod4-c:        perl:clipboard:copy
+URxvt.keysym.Mod4-v:        perl:clipboard:paste
+URxvt.keysym.Mod4-C-v:      perl:clipboard:paste_escaped
+URxvt.keysym.M-c:           perl:clipboard:copy
+URxvt.keysym.M-v:           perl:clipboard:paste
+URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.C-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-u:           perl:url-select:select_next
 ! Font
 !URxvt.font:                 xft:Inconsolata:pixelsize=12
 !URxvt.boldFont:             xft:Inconsolata:bold:pixelsize=12
@@ -309,7 +350,7 @@ xscreensaver.dateFormat:                      %I:%M%P %a %b %d, %Y
 !XCalc*ShapeStyle:                       rectangle
 ! -----------------------------------------------------------------------------
 
-!xcalc*font:                             -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
+!xcalc*font:                            -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
 xcalc*font:                             -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1
 xcalc*ti.button1.vertDistance:          4
 xcalc*ti.button2.vertDistance:          4
