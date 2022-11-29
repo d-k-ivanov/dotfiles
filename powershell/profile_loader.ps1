@@ -52,6 +52,12 @@ If (Test-Path $PrivatePSAutoladFolder)
     Get-ChildItem "$PrivatePSAutoladFolder\*.ps1" | ForEach-Object { . $_ }
 }
 
+$PrivatePSAutoladFolderW = $(Join-Path $Env:USERPROFILE "OneDrive - STG-Business\bin\ps_autoload")
+If (Test-Path $PrivatePSAutoladFolderW)
+{
+    Get-ChildItem "$PrivatePSAutoladFolderW\*.ps1" | ForEach-Object { . $_ }
+}
+
 # Loading Cmder Profile
 # if (Get-Command cmder.exe -ErrorAction SilentlyContinue | Test-Path) {
 #   $cmder_home = Get-Command cmder.exe | Select-Object -ExpandProperty Definition | Split-Path

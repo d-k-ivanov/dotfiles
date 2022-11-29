@@ -87,6 +87,8 @@ function Initialize-Paths-User
     $paths = @(
         "${env:USERPROFILE}\OneDrive\bin"
         "${env:USERPROFILE}\OneDrive\bin\work"
+        "${env:USERPROFILE}\OneDrive - STG-Business\bin"
+        "${env:USERPROFILE}\OneDrive - STG-Business\bin\work"
         "${env:USERPROFILE}\scoop\shims"
         "${env:GOPATH}\bin"
         "${env:M2_HOME}\bin"
