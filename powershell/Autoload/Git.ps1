@@ -214,14 +214,22 @@ function ugr
     param
     (
         [Parameter(ValueFromRemainingArguments = $true)]
-        [string]$Options = ""
+        [string] $Options = ""
     )
 
     $dir = Get-Location
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
         Set-Location $_.FullName
-        & git.exe pull $Options
+        If ($Options -match '\S')
+        {
+            git pull $Options
+
+        }
+        else
+        {
+            git pull
+        }
     }
 
     Set-Location $dir
@@ -239,7 +247,15 @@ function ugrf
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
         Set-Location $_.FullName
-        & git.exe fetch $Options
+        If ($Options -match '\S')
+        {
+            git fetch $Options
+
+        }
+        else
+        {
+            git fetch
+        }
     }
 
     Set-Location $dir
