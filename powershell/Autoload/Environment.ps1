@@ -263,6 +263,7 @@ function Initialize-Paths-System
         "C:\PROGRA~1\OpenVPN\bin"
         "C:\PROGRA~1\Rust stable MSVC 1.33\bin"
         "C:\PROGRA~1\S3 Browser"
+        "C:\PROGRA~1\Sublime Text"
         "C:\PROGRA~1\TAP-Windows\bin"
         "C:\PROGRA~1\VcXsrv"
         "C:\PROGRA~1\Wolfram Research\WolframScript"

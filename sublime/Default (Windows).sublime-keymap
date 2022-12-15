@@ -1,0 +1,4 @@
+[
+	{ "keys": ["ctrl+shift+d"], "command": "find_under_expand" },
+	{ "keys": ["ctrl+d"], "command": "duplicate_line" }
+]
