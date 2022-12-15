@@ -6,6 +6,6 @@
 	[
 		"Vintage",
 	],
-	"theme": "auto",
-	"color_scheme": "Breakers.sublime-color-scheme",
+	"theme": "Reverse Gravity.sublime-theme",
+	"color_scheme": "Brackets Light.sublime-color-scheme",
 }
