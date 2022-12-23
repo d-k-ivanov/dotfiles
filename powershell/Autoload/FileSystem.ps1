@@ -50,9 +50,9 @@ ${function:ws}      = { Set-Location ${Env:WORKSPACE}                           
 ${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                                }
 ${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                       }
 ${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\dsc-windows-workstation        }
-${function:wsws}    = { Set-Location ${Env:WORKSPACE}\my\sandbox-workspaces             }
 ${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
 ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine                      }
+${function:wsws}    = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace              }
 ${function:wsmisc}  = { Set-Location D:\DevMisc                                         }
 
 # ClearCorrect Shortcuts

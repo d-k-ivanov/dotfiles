@@ -181,72 +181,72 @@ function Find-VC
     Write-Host "List of VC versions on this PC:"
     if ($CommunityVersions2017)
     {
-        foreach ($v in $CommunityVersions2017) {Write-Host " -" $v " (VS Community 2017)"}
+        foreach ($v in $CommunityVersions2017) {Write-Host " - $v (VS Community 2017)"}
     }
 
     if ($BuildToolsVersions2017)
     {
-        foreach ($v in $BuildToolsVersions2017) {Write-Host " -" $v " (VS BuildTools 2017)"}
+        foreach ($v in $BuildToolsVersions2017) {Write-Host " - $v (VS BuildTools 2017)"}
     }
 
     if ($ProfessionalVersions2017)
     {
-        foreach ($v in $ProfessionalVersions2017) {Write-Host " -" $v " (VS Professional 2017)"}
+        foreach ($v in $ProfessionalVersions2017) {Write-Host " - $v (VS Professional 2017)"}
     }
 
     if ($EnterpriseVersions2017)
     {
-        foreach ($v in $EnterpriseVersions2017) {Write-Host " -" $v " (VS Enterprise 2017)"}
+        foreach ($v in $EnterpriseVersions2017) {Write-Host " - $v (VS Enterprise 2017)"}
     }
 
     if ($PreviewVersions2019)
     {
-        foreach ($v in $PreviewVersions2019) {Write-Host " -" $v " (VS Preview 2019)"}
+        foreach ($v in $PreviewVersions2019) {Write-Host " - $v (VS Preview 2019)"}
     }
 
     if ($CommunityVersions2019)
     {
-        foreach ($v in $CommunityVersions2019) {Write-Host " -" $v " (VS Community 2019)"}
+        foreach ($v in $CommunityVersions2019) {Write-Host " - $v (VS Community 2019)"}
     }
 
     if ($BuildToolsVersions2019)
     {
-        foreach ($v in $BuildToolsVersions2019) {Write-Host " -" $v " (VS BuildTools 2019)"}
+        foreach ($v in $BuildToolsVersions2019) {Write-Host " - $v (VS BuildTools 2019)"}
     }
 
     if ($ProfessionalVersions2019)
     {
-        foreach ($v in $ProfessionalVersions2019) {Write-Host " -" $v " (VS Professional 2019)"}
+        foreach ($v in $ProfessionalVersions2019) {Write-Host " - $v (VS Professional 2019)"}
     }
 
     if ($EnterpriseVersions2019)
     {
-        foreach ($v in $EnterpriseVersions2019) {Write-Host " -" $v " (VS Enterprise 2019)"}
+        foreach ($v in $EnterpriseVersions2019) {Write-Host " - $v (VS Enterprise 2019)"}
     }
 
     if ($PreviewVersions2022)
     {
-        foreach ($v in $PreviewVersions2022) {Write-Host " -" $v " (VS Preview 2022)"}
+        foreach ($v in $PreviewVersions2022) {Write-Host " - $v (VS Preview 2022)"}
     }
 
     if ($CommunityVersions2022)
     {
-        foreach ($v in $CommunityVersions2022) {Write-Host " -" $v " (VS Community 2022)"}
+        foreach ($v in $CommunityVersions2022) {Write-Host " - $v (VS Community 2022)"}
     }
 
     if ($BuildToolsVersions2022)
     {
-        foreach ($v in $BuildToolsVersions2022) {Write-Host " -" $v " (VS BuildTools 2022)"}
+        foreach ($v in $BuildToolsVersions2022) {Write-Host " - $v (VS BuildTools 2022)"}
     }
 
     if ($ProfessionalVersions2022)
     {
-        foreach ($v in $ProfessionalVersions2022) {Write-Host " -" $v " (VS Professional 2022)"}
+        foreach ($v in $ProfessionalVersions2022) {Write-Host " - $v (VS Professional 2022)"}
     }
 
     if ($EnterpriseVersions2022)
     {
-        foreach ($v in $EnterpriseVersions2022) {Write-Host " -" $v " (VS Enterprise 2022)"}
+        foreach ($v in $EnterpriseVersions2022) {Write-Host " - $v (VS Enterprise 2022)"}
     }
 }
 
@@ -595,22 +595,6 @@ ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 ${function:vss}                 = { cs; vs . }
-
-if (Test-Path "C:\Program Files\Microsoft VS Code\bin")
-{
-    ${function:icode}  = {code.cmd @args}
-    ${function:vscode} = {code.cmd @args}
-}
-elseif (Test-Path "C:\Program Files\Microsoft VS Code Insiders\bin")
-{
-    ${function:icode} = {code-insiders.cmd @args}
-}
-elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code Insiders\bin")
-{
-    ${function:icode} = {code-insiders.cmd @args}
-}
-
-${function:ic} = { icode . }
 
 ${function:cl_build}      = { cl /EHsc @args }
 ${function:cl_link}       = { cl /EHsc @args /link }
