@@ -13,3 +13,5 @@ function list_groups()
 {
     cat /etc/group | awk -F ':' '{print $0}' | sort -nk3 -t ':'
 }
+
+alias get_all_capabilities='/sbin/capsh --decode=$(grep CapBnd /proc/1/status|cut -f2)'
