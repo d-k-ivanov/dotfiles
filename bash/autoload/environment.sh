@@ -43,7 +43,13 @@ fi
 # Defult
 # export COMP_WORDBREAKS='"><=;|&(:'
 
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
 bind '\C-w:backward-kill-word'
+bind 'set completion-ignore-case on'
+bind 'set completion-map-case on'
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
 
 # Colors in Vim and TMUX. Do not set this variables if you not shure why.
 # https://wiki.archlinux.org/index.php/Home_and_End_keys_inot_working
