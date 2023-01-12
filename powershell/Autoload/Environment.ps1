@@ -204,6 +204,7 @@ function Initialize-Paths-System
         "C:\PROGRA~1\CMake\bin"
         "C:\PROGRA~1\COMMON~1\Intel\WirelessCommon"
         "C:\PROGRA~1\Cppcheck"
+        "C:\tools\docker"
         "C:\PROGRA~1\RedHat\Podman\"
         "C:\PROGRA~1\Docker\Docker\resources\bin"
         "C:\PROGRA~1\dotnet"
