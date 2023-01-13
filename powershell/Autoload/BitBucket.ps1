@@ -184,8 +184,8 @@ function Invoke-BitbucketAPI
     param
     (
         [string]$RequestPath,
-        [string]$Type           = '/pullrequests',
-        [string]$UriSuffix      = 'repositories/ormcornd/orthoplatform',
+        [string]$Type           = '',
+        [string]$UriSuffix      = 'repositories',
         [string]$APIVersion     = '2.0',
         [string]$Method         = 'GET'
     )
@@ -203,8 +203,8 @@ function Invoke-BitbucketAPI-Curl
     param
     (
         [string] $RequestPath,
-        [string] $Type              = '/pullrequests',
-        [string] $UriSuffix         = 'repositories/ormcornd/orthoplatform',
+        [string] $Type              = '',
+        [string] $UriSuffix         = 'repositories',
         [string] $APIVersion        = '2.0',
         [string] $Method            = 'GET',
         [string[]] $CurlArgs        = @('-s'),
@@ -432,7 +432,7 @@ function Get-BitbucketWikiPage
     (
         [string]$WikiPage = 'Code Reviewers'
     )
-    # https://bitbucket.org/ormcornd/orthoplatform/wiki/Protected_branches
+    # https://bitbucket.org/XXX/XXX/wiki/Protected_branches
     $Response = Invoke-BitbucketAPI -RequestPath "/$WikiPage" -Type '/wiki' -APIVersion '1.0'
     return $Response
 }
