@@ -8,4 +8,3 @@ for file in ${HOME}/.bash/autoload/*; do
 done
 
 source ${HOME}/.bash/bash-preexec.sh
-
