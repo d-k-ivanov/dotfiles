@@ -15,7 +15,7 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-if (Get-Command youtube-dl.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command youtube-dl -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:yget} = {
         [CmdletBinding()]
@@ -25,6 +25,6 @@ if (Get-Command youtube-dl.exe -ErrorAction SilentlyContinue | Test-Path)
             [String] $link,
             [String] $dst = "./youtube.mp4"
         )
-        youtube-dl.exe ${link} -o ${dst} -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' @args
+        youtube-dl ${link} -o ${dst} -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' @args
     }
   }

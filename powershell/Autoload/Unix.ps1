@@ -50,8 +50,6 @@ function time
 #     $sw.Elapsed
 # }
 
-${function:bash-wsl}    = { conemu-cyg-64.exe --wsl -cur_console:h0 }
-
 Set-Alias wc Measure-Object
 
 ${function:now}     = { Write-Output $(Get-Date -Format "yyyy-dd-MM-HH-mm") }

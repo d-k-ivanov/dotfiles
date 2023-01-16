@@ -15,29 +15,31 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+${function:bash-wsl}    = { conemu-cyg-64.exe --wsl -cur_console:h0 }
+
 function Find-WSL()
 {
-    wslconfig.exe /l @args
+    wslconfig /l @args
 }
 
 function Remove-WSL()
 {
-    wslconfig.exe /u @args
+    wslconfig /u @args
 }
 
 function Set-WSL()
 {
-    wslconfig.exe /s @args
+    wslconfig /s @args
 }
 
 function Stop-WSL()
 {
-    wslconfig.exe /t @args
+    wslconfig /t @args
 }
 
 function Update-WSL()
 {
-    wslconfig.exe /upgrade @args
+    wslconfig /upgrade @args
 }
 
 function Get-WSL-UUID()
@@ -51,7 +53,7 @@ function Get-WSL-UUID-Short()
 }
 function List-WSLDistros()
 {
-    wsl.exe --list -v
+    wsl --list -v
 }
 
 function anyconnect-wsl-fix()

@@ -16,5 +16,5 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-${function:wt_ps} = { wt -p pwsh.exe `; split-pane -p pwsh.exe }
-${function:wt_ws} = { wt -p pwsh.exe `; split-pane -p pwsh.exe `; new-tab wsl.exe }
+${function:wt_ps} = { wt -p pwsh `; split-pane -p pwsh }
+${function:wt_ws} = { wt -p pwsh `; split-pane -p pwsh `; new-tab wsl }

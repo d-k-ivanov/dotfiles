@@ -15,7 +15,7 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-if (Get-Command dig.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command dig -ErrorAction SilentlyContinue | Test-Path)
 {
     function dig-init
     {

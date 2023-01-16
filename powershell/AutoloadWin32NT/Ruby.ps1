@@ -16,10 +16,10 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # Ruby aliases
-if (Get-Command ruby.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command ruby -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:ruby} = { ruby.exe -w @args }
-    ${function:rre}  = { ruby.exe exec @args }
+    ${function:ruby} = { ruby -w @args }
+    ${function:rre}  = { ruby exec @args }
 }
 
 if (Get-Command gem -ErrorAction SilentlyContinue | Test-Path)
@@ -64,11 +64,11 @@ function Find-Ruby
     {
         if ($ruby -match "jruby")
         {
-            $rubyBin = (Join-Path $ruby "jruby.exe")
+            $rubyBin = (Join-Path $ruby "jruby")
         }
         else
         {
-            $rubyBin = (Join-Path $ruby "ruby.exe")
+            $rubyBin = (Join-Path $ruby "ruby")
         }
 
         if (Test-Path $rubyBin)
@@ -87,11 +87,11 @@ function Set-Ruby
     {
         if ($ruby -match "jruby")
         {
-            $rubyBin = (Join-Path $ruby "jruby.exe")
+            $rubyBin = (Join-Path $ruby "jruby")
         }
         else
         {
-            $rubyBin = (Join-Path $ruby "ruby.exe")
+            $rubyBin = (Join-Path $ruby "ruby")
         }
 
         if (Test-Path $rubyBin)

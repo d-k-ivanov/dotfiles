@@ -15,6 +15,8 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+if ([System.Environment]::OSVersion.Platform -eq "Win32NT" )
+{
 ### Enable 256 Colors
 Add-Type -MemberDefinition @"
 [DllImport("kernel32.dll", SetLastError=true)]
@@ -25,29 +27,30 @@ public static extern IntPtr GetStdHandle(int handle);
 public static extern bool GetConsoleMode(IntPtr handle, out int mode);
 "@ -namespace win32 -name nativemethods
 
-$h = [win32.nativemethods]::getstdhandle(-11) #  stdout
-$m = 0
-$null = [win32.nativemethods]::getconsolemode($h, [ref]$m)
-$m = $m -bor 4 # undocumented flag to enable ansi/vt100
-$null = [win32.nativemethods]::setconsolemode($h, $m)
+    $h = [win32.nativemethods]::getstdhandle(-11) #  stdout
+    $m = 0
+    $null = [win32.nativemethods]::getconsolemode($h, [ref]$m)
+    $m = $m -bor 4 # undocumented flag to enable ansi/vt100
+    $null = [win32.nativemethods]::setconsolemode($h, $m)
 
-### Set Main Colors
-#[console]::ForegroundColor          = "White"
-#[console]::BackgroundColor          = "Black"
+    ### Set Main Colors
+    #[console]::ForegroundColor          = "White"
+    #[console]::BackgroundColor          = "Black"
 
-### Set Foreground Colors
-#$Host.PrivateData.ErrorForegroundColor = 'Red'
-#$Host.PrivateData.WarningForegroundColor = 'Yellow'
-#$Host.PrivateData.DebugForegroundColor = 'DarkGreen'
-#$Host.PrivateData.VerboseForegroundColor = 'DarkGray'
-#$Host.PrivateData.ProgressForegroundColor = 'Gray'
+    ### Set Foreground Colors
+    #$Host.PrivateData.ErrorForegroundColor = 'Red'
+    #$Host.PrivateData.WarningForegroundColor = 'Yellow'
+    #$Host.PrivateData.DebugForegroundColor = 'DarkGreen'
+    #$Host.PrivateData.VerboseForegroundColor = 'DarkGray'
+    #$Host.PrivateData.ProgressForegroundColor = 'Gray'
 
-### Set Background Colors
-#$Host.PrivateData.ErrorBackgroundColor = 'DarkMagenta'
-#$Host.PrivateData.WarningBackgroundColor = 'DarkMagenta'
-#$Host.PrivateData.DebugBackgroundColor = 'DarkMagenta'
-#$Host.PrivateData.VerboseBackgroundColor = 'DarkMagenta'
-#$Host.PrivateData.ProgressBackgroundColor = 'DarkCyan'
+    ### Set Background Colors
+    #$Host.PrivateData.ErrorBackgroundColor = 'DarkMagenta'
+    #$Host.PrivateData.WarningBackgroundColor = 'DarkMagenta'
+    #$Host.PrivateData.DebugBackgroundColor = 'DarkMagenta'
+    #$Host.PrivateData.VerboseBackgroundColor = 'DarkMagenta'
+    #$Host.PrivateData.ProgressBackgroundColor = 'DarkCyan'
+}
 
 ### Show current console colors
 function Show-Colors-Current

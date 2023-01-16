@@ -101,7 +101,7 @@ function bamboo_generate_specs()
     else
     {
         Write-Host "ERROR: mvn not found..." -ForegroundColor Red
-        Write-Host "ERROR: Maven should be installed and mvn.exe added to the %PATH% env" -ForegroundColor Red
+        Write-Host "ERROR: Maven should be installed and mvn added to the %PATH% env" -ForegroundColor Red
     }
 }
 

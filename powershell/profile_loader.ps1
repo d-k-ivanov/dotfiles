@@ -44,25 +44,29 @@ else
 }
 
 Get-ChildItem "$(Join-Path $PSScriptRoot "Autoload")\*.ps1"   | ForEach-Object { . $_ }
+if ([System.Environment]::OSVersion.Platform -eq "Win32NT" )
+{
+    Get-ChildItem "$(Join-Path $PSScriptRoot "AutoloadWin32NT")\*.ps1"   | ForEach-Object { . $_ }
+    $PrivatePSAutoladFolder = $(Join-Path $Env:USERPROFILE "OneDrive\bin\ps_autoload")
+    $PrivatePSAutoladFolderW = $(Join-Path $Env:USERPROFILE "OneDrive - STG-Business\bin\ps_autoload")
+}
+if ([System.Environment]::OSVersion.Platform -eq "Unix" )
+{
+    Get-ChildItem "$(Join-Path $PSScriptRoot "AutoloadUnix")\*.ps1"   | ForEach-Object { . $_ }
+    $PrivatePSAutoladFolder = $(Join-Path $Home "OneDrive\bin\ps_autoload")
+    $PrivatePSAutoladFolderW = $(Join-Path $Home "OneDrive - STG-Business\bin\ps_autoload")
+}
 Get-ChildItem "$(Join-Path $PSScriptRoot "Completion")\*.ps1" | ForEach-Object { . $_ }
 
-$PrivatePSAutoladFolder = $(Join-Path $Env:USERPROFILE "OneDrive\bin\ps_autoload")
 If (Test-Path $PrivatePSAutoladFolder)
 {
     Get-ChildItem "$PrivatePSAutoladFolder\*.ps1" | ForEach-Object { . $_ }
 }
 
-$PrivatePSAutoladFolderW = $(Join-Path $Env:USERPROFILE "OneDrive - STG-Business\bin\ps_autoload")
 If (Test-Path $PrivatePSAutoladFolderW)
 {
     Get-ChildItem "$PrivatePSAutoladFolderW\*.ps1" | ForEach-Object { . $_ }
 }
-
-# Loading Cmder Profile
-# if (Get-Command cmder.exe -ErrorAction SilentlyContinue | Test-Path) {
-#   $cmder_home = Get-Command cmder.exe | Select-Object -ExpandProperty Definition | Split-Path
-#   if (Test-Path (Join-Path $cmder_home "vendor\profile.ps1"   ))  { . (Join-Path $cmder_home "vendor\profile.ps1")      }
-# }
 
 # Invovoke ANSI 256 Color Console
 # AnsiColors256

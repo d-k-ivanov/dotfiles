@@ -64,7 +64,7 @@ function jp
         break
     }
 
-    if (-Not (Get-Command virtualenv.exe -ErrorAction SilentlyContinue | Test-Path))
+    if (-Not (Get-Command virtualenv -ErrorAction SilentlyContinue | Test-Path))
     {
         python -m pip install virtualenv
     }
@@ -83,18 +83,18 @@ function jp
 
     & $jenvDir\Scripts\activate.ps1
 
-    if (-Not (Get-Command jupyter.exe -ErrorAction SilentlyContinue | Test-Path))
+    if (-Not (Get-Command jupyter -ErrorAction SilentlyContinue | Test-Path))
     {
         python -m pip install jupyter
     }
 
     if ($NoteBookPath)
     {
-        jupyter.exe $Command --port $Port $NoteBookPath
+        jupyter $Command --port $Port $NoteBookPath
     }
     else
     {
-        jupyter.exe $Command --port $Port
+        jupyter $Command --port $Port
     }
 
     if (-Not $KeepEnv)
@@ -134,7 +134,7 @@ function jp-conf
         break
     }
 
-    if (-Not (Get-Command virtualenv.exe -ErrorAction SilentlyContinue | Test-Path))
+    if (-Not (Get-Command virtualenv -ErrorAction SilentlyContinue | Test-Path))
     {
         python -m pip install virtualenv
     }
@@ -187,7 +187,7 @@ function jp-install
         break
     }
 
-    if (-Not (Get-Command virtualenv.exe -ErrorAction SilentlyContinue | Test-Path))
+    if (-Not (Get-Command virtualenv -ErrorAction SilentlyContinue | Test-Path))
     {
         python -m pip install virtualenv
     }

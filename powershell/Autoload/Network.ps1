@@ -15,9 +15,9 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-if (Get-Command dig.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command dig -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:myip}   = { dig.exe +short myip.opendns.com `@resolver1.opendns.com }
+    ${function:myip}   = { dig +short myip.opendns.com `@resolver1.opendns.com }
     function digga
     {
         [CmdletBinding()]
@@ -30,7 +30,7 @@ if (Get-Command dig.exe -ErrorAction SilentlyContinue | Test-Path)
             [string] $DNSServer
         )
 
-        $cmd  = "dig.exe"
+        $cmd  = "dig"
 
         if ($DNSServer)
         {
@@ -56,7 +56,7 @@ if (Get-Command dig.exe -ErrorAction SilentlyContinue | Test-Path)
             [string] $DNSServer
         )
 
-        $cmd  = "dig.exe"
+        $cmd  = "dig"
 
         if ($DNSServer)
         {

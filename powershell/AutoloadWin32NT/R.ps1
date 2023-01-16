@@ -16,10 +16,10 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # R aliases
-if (Get-Command R.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command R -ErrorAction SilentlyContinue | Test-Path)
 {
-    Set-Alias -Name R -Value R.exe -Force -Option AllScope
-    ${function:rver} = { echo 'paste0(version[c("major","minor")], collapse = ".")' | R.exe --no-save --no-echo }
+    Set-Alias -Name R -Value R -Force -Option AllScope
+    ${function:rver} = { echo 'paste0(version[c("major","minor")], collapse = ".")' | R --no-save --no-echo }
 }
 
 function Get-RProjectPaths
@@ -60,7 +60,7 @@ function Find-RProjects
     Write-Host "List of R interpretators on this PC:"
     foreach ($r in $rPathList)
     {
-        $rBin = (Join-Path $r "R.exe")
+        $rBin = (Join-Path $r "R")
 
         if (Test-Path $rBin)
         {
@@ -77,7 +77,7 @@ function Set-RProject
 
     foreach ($r in $rPathList)
     {
-        $rBin = (Join-Path $r "R.exe")
+        $rBin = (Join-Path $r "R")
 
         if (Test-Path $rBin)
         {

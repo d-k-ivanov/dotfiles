@@ -15,11 +15,11 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-if (Get-Command conda.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command conda -ErrorAction SilentlyContinue | Test-Path)
 {
     #region conda initialize
     # !! Contents within this block are managed by 'conda init' !!
-    (& "conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
+    (& "conda" "shell.powershell" "hook") | Out-String | Invoke-Expression
     #endregion
 
     ${function:cnl}     = { conda env list          @args }

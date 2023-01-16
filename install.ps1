@@ -9,52 +9,52 @@ $dotfilesScriptsDir = Join-Path $dotfilesProfileDir "Scripts"
 "COMPLEX"     | Out-File ( Join-Path $PSScriptRoot "bash/var.prompt" )
 
 # Cleanup profile
-If (Test-Path "${Env:USERPROFILE}\.bash"                 ){ [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bash"                 , $true)}
-If (Test-Path "${Env:USERPROFILE}\.bin"                  ){ [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bin"                  , $true)}
-If (Test-Path "${Env:USERPROFILE}\.conan_my"             ){ [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan_my"             , $true)}
-If (Test-Path "${Env:USERPROFILE}\.git.d"                ){ [System.IO.Directory]::Delete("${Env:USERPROFILE}\.git.d"                , $true)}
-If (Test-Path "${Env:USERPROFILE}\.tmux"                 ){ [System.IO.Directory]::Delete("${Env:USERPROFILE}\.tmux"                 , $true)}
-If (Test-Path "${Env:USERPROFILE}\.vim"                  ){ [System.IO.Directory]::Delete("${Env:USERPROFILE}\.vim"                  , $true)}
-If (Test-Path "${Env:LOCALAPPDATA}\nvim"                 ){ [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\nvim"                 , $true)}
-If (Test-Path "${Env:APPDATA}\NuGet"                     ){ [System.IO.Directory]::Delete("${Env:APPDATA}\NuGet"                     , $true)}
-If (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User"){ [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true)}
-If (Test-Path "${Env:USERPROFILE}\.bash_profile"         ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bash_profile"  -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.bashrc"               ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bashrc"        -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.gemrc"                ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gemrc"         -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.gitconfig"            ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gitconfig"     -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.gitmessage"           ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gitmessage"    -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.profile"              ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.profile"       -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.tmux.conf"            ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.tmux.conf"     -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.vimrc"                ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.vimrc"         -Confirm:$false}
-If (Test-Path "${Env:USERPROFILE}\.wslconfig"            ){ Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.wslconfig"     -Confirm:$false}
+If (Test-Path "${Env:USERPROFILE}\.bash"                 ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bash"                 , $true) }
+If (Test-Path "${Env:USERPROFILE}\.bin"                  ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bin"                  , $true) }
+If (Test-Path "${Env:USERPROFILE}\.conan_my"             ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan_my"             , $true) }
+If (Test-Path "${Env:USERPROFILE}\.git.d"                ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.git.d"                , $true) }
+If (Test-Path "${Env:USERPROFILE}\.tmux"                 ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.tmux"                 , $true) }
+If (Test-Path "${Env:USERPROFILE}\.vim"                  ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.vim"                  , $true) }
+If (Test-Path "${Env:LOCALAPPDATA}\nvim"                 ) { [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\nvim"                 , $true) }
+If (Test-Path "${Env:APPDATA}\NuGet"                     ) { [System.IO.Directory]::Delete("${Env:APPDATA}\NuGet"                     , $true) }
+If (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User") { [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true) }
+If (Test-Path "${Env:USERPROFILE}\.bash_profile"         ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bash_profile"  -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.bashrc"               ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bashrc"        -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.gemrc"                ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gemrc"         -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.gitconfig"            ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gitconfig"     -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.gitmessage"           ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gitmessage"    -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.profile"              ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.profile"       -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.tmux.conf"            ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.tmux.conf"     -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.vimrc"                ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.vimrc"         -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.wslconfig"            ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.wslconfig"     -Confirm:$false }
 
 
 # Making Symlinks
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:USERPROFILE}\.bash"                  "${PSScriptRoot}\bash"          
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:USERPROFILE}\.bin"                   "${PSScriptRoot}\bin"           
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:USERPROFILE}\.conan_my"              "${PSScriptRoot}\conan"         
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:USERPROFILE}\.git.d"                 "${PSScriptRoot}\git.d"         
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:USERPROFILE}\.tmux"                  "${PSScriptRoot}\tmux"          
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:LOCALAPPDATA}\nvim"                  "${PSScriptRoot}\nvim"          
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:APPDATA}\NuGet"                      "${PSScriptRoot}\NuGet"         
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User" "${PSScriptRoot}\sublime"       
-C:\Windows\System32\cmd.exe /c mklink /d "${Env:USERPROFILE}\.vim"                   "${PSScriptRoot}\vim"           
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.bash_profile"          "${PSScriptRoot}\bash_profile"  
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.profile"               "${PSScriptRoot}\bash_profile"  
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.bashrc"                "${PSScriptRoot}\bashrc"        
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.gemrc"                 "${PSScriptRoot}\gemrc"         
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.gitconfig"             "${PSScriptRoot}\.gitconfig-win"
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.gitmessage"            "${PSScriptRoot}\.gitmessage"   
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.tmux.conf"             "${PSScriptRoot}\tmux.conf"     
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.vimrc"                 "${PSScriptRoot}\vimrc"         
-C:\Windows\System32\cmd.exe /c mklink    "${Env:USERPROFILE}\.wslconfig"             "${PSScriptRoot}\wslconfig"     
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.bash"                  "${PSScriptRoot}\bash"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.bin"                   "${PSScriptRoot}\bin"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan_my"              "${PSScriptRoot}\conan"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.git.d"                 "${PSScriptRoot}\git.d"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.tmux"                  "${PSScriptRoot}\tmux"
+C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\nvim"                  "${PSScriptRoot}\nvim"
+C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\NuGet"                      "${PSScriptRoot}\NuGet"
+C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User" "${PSScriptRoot}\sublime"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.vim"                   "${PSScriptRoot}\vim"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bash_profile"          "${PSScriptRoot}\bash_profile"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.profile"               "${PSScriptRoot}\bash_profile"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bashrc"                "${PSScriptRoot}\bashrc"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gemrc"                 "${PSScriptRoot}\gemrc"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gitconfig"             "${PSScriptRoot}\.gitconfig-win"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gitmessage"            "${PSScriptRoot}\.gitmessage"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.tmux.conf"             "${PSScriptRoot}\tmux.conf"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.vimrc"                 "${PSScriptRoot}\vimrc"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.wslconfig"             "${PSScriptRoot}\wslconfig"
 
 # Set dot source string to default PS profile for Current User
 if (Test-Path $profile) { Remove-Item -Force -Confirm:$false $profile }
 ". `"$PSScriptRoot\powershell\profile_loader.ps1`"" | Out-File $profile
 
 # Install Nuget package provide if needed
-if (-Not (Get-packageProvider -Name NuGet -ListAvailable -ErrorAction SilentlyContinue))
+if (-Not (Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction SilentlyContinue))
 {
     Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 }
@@ -85,24 +85,6 @@ if (Test-Path "C:\Program Files\ConEmu\ConEmu64.exe")
 }
 Remove-Item -Force -Confirm:$false -Recurse -ErrorAction SilentlyContinue (Join-Path ${Env:APPDATA} "ConEmu.xml")
 cmd /c mklink (Join-Path ${Env:APPDATA} "ConEmu.xml") (Join-Path $PSScriptRoot "data\conemu\ConEmu.xml")
-
-# if (Get-Command cmder.exe -ErrorAction SilentlyContinue | Test-Path)
-# {
-#     $cmder_home = Get-Command cmder.exe | Select-Object -ExpandProperty Definition | Split-Path
-#     Remove-Item -Force -Confirm:$false -Recurse -ErrorAction SilentlyContinue (Join-Path $cmder_home "config\user-ConEmu.xml")
-#     Remove-Item -Force -Confirm:$false -Recurse -ErrorAction SilentlyContinue (Join-Path $cmder_home "config\user-aliases.cmd")
-#     Remove-Item -Force -Confirm:$false -Recurse -ErrorAction SilentlyContinue (Join-Path $cmder_home "vendor\init.bat")
-#     Remove-Item -Force -Confirm:$false -Recurse -ErrorAction SilentlyContinue (Join-Path $cmder_home "vendor\profile.ps1")
-#     Remove-Item -Force -Confirm:$false -Recurse -ErrorAction SilentlyContinue (Join-Path $cmder_home "vendor\conemu-maximus5\ConEmu.xml")
-#
-#     C:\Windows\System32\cmd.exe /c mklink (Join-Path $cmder_home "config\user-ConEmu.xml") (Join-Path $PSScriptRoot "data\conemu\user-ConEmu.xml")
-#     C:\Windows\System32\cmd.exe /c mklink (Join-Path $cmder_home "config\user-aliases.cmd") (Join-Path $PSScriptRoot "data\conemu\useuser-aliasesr_aliases.cmd")
-#     C:\Windows\System32\cmd.exe /c mklink (Join-Path $cmder_home "vendor\init.bat") (Join-Path $PSScriptRoot "data\conemu\init.bat")
-#     C:\Windows\System32\cmd.exe /c mklink (Join-Path $cmder_home "vendor\profile.ps1") (Join-Path $PSScriptRoot "data\conemu\profile.ps1")
-#     C:\Windows\System32\cmd.exe /c mklink (Join-Path $cmder_home "vendor\conemu-maximus5\ConEmu.xml") (Join-Path $PSScriptRoot "data\conemu\ConEmu.xml")
-#
-#     Set-ApplicationCompatibility -CurrentUser -ApplicationLocation (Get-Command cmder.exe | Select-Object -ExpandProperty Definition) -PrivilegeLevel
-# }
 
 $workspace_path = 'c:\ws'
 New-Item $workspace_path -ItemType Directory -ErrorAction SilentlyContinue

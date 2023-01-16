@@ -129,22 +129,22 @@ function Convert-ToDiskSize
 }
 Set-Alias du Get-DiskUsage
 
-# Directory Listing: Use `ls.exe` if available
-if (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
+# Directory Listing: Use `ls` if available
+if (Get-Command busybox -ErrorAction SilentlyContinue | Test-Path)
 {
     Remove-Item alias:ls -ErrorAction SilentlyContinue
-    # Set `ls` to call `ls.exe` and always use --color
-    # ${function:ls} = { busybox.exe ls --color --group-directories-first @args }
-    ${function:ls}      = { busybox.exe ls --group-directories-first @args }
+    # Set `ls` to call `ls` and always use --color
+    # ${function:ls} = { busybox ls --color --group-directories-first @args }
+    ${function:ls}      = { busybox ls --group-directories-first @args }
     # List all files in long format
     ${function:l}       = { ls -CFh @args }
     # List all files in long format, including hidden files
     ${function:la}      = { ls -alh @args }
     ${function:ll}      = { ls -alFh @args }
-    ${function:fls}     = { ls -l  @args | busybox.exe grep -v ^d }
-    ${function:flsa}    = { ls -la @args | busybox.exe grep -v ^d }
-    ${function:dirs}    = { ls -l  @args | busybox.exe grep ^d }
-    ${function:dirsa}   = { ls -la @args | busybox.exe grep ^d }
+    ${function:fls}     = { ls -l  @args | busybox grep -v ^d }
+    ${function:flsa}    = { ls -la @args | busybox grep -v ^d }
+    ${function:dirs}    = { ls -l  @args | busybox grep ^d }
+    ${function:dirsa}   = { ls -la @args | busybox grep ^d }
     # List only directories
     ${function:lsd}     = { Get-ChildItem -Directory -Force @args }
     # List directories recursively
@@ -211,10 +211,10 @@ function Remove-File-Recursively
     }
 }
 
-#if (Get-Command rm.exe -ErrorAction SilentlyContinue | Test-Path)
+#if (Get-Command rm -ErrorAction SilentlyContinue | Test-Path)
 # {
-#   ${function:rmf}  = { rm.exe -f  @args }
-#   ${function:rmrf} = { rm.exe -rf @args }
+#   ${function:rmf}  = { rm -f  @args }
+#   ${function:rmrf} = { rm -rf @args }
 # }
 # else
 # {
@@ -225,7 +225,7 @@ function Remove-File-Recursively
 function touch($file) { $null | Out-File -Append $file -Encoding ASCII }
 
 # Mounts
-${function:mountW} = { subst.exe W: ( Join-Path $Env:USERPROFILE "workspace" ) }
+${function:mountW} = { subst W: ( Join-Path $Env:USERPROFILE "workspace" ) }
 
 # Find files
 function find
@@ -311,7 +311,7 @@ function mkl
         [Parameter(Mandatory = $True)]
         [String] $Destination
     )
-    $cmd = "cmd.exe /c 'mklink /d"
+    $cmd = "cmd /c 'mklink /d"
     $cmd += " $($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$Destination"))".trim('\')
     $cmd += " $(Convert-Path $Source)".trim('\')
     $cmd += "'"

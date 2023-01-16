@@ -150,7 +150,7 @@ function Invoke-BambooLink-Curl
         Write-Host "Request URI: ${Link}" -ForegroundColor Yellow
     }
 
-    $Response = (curl.exe -k -u $CredentialsPair -X ${Method} -H ${Headers} ${Link} ${CurlArgs})
+    $Response = (curl -k -u $CredentialsPair -X ${Method} -H ${Headers} ${Link} ${CurlArgs})
     return $Response
 }
 
@@ -208,6 +208,6 @@ function Invoke-BambooREST-Curl
         Write-Host "Request URI: ${UrlBase}${Path}" -ForegroundColor Yellow
     }
 
-    $Response = (curl.exe -k -X ${Method} -H ${Headers} ${UrlBase}${Path} ${CurlArgs})
+    $Response = (curl -k -X ${Method} -H ${Headers} ${UrlBase}${Path} ${CurlArgs})
     return $Response
 }

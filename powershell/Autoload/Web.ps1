@@ -15,23 +15,23 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-# WGet: Use `wget.exe` if available
-if (Get-Command wget.exe -ErrorAction SilentlyContinue | Test-Path)
+# WGet: Use `wget` if available
+if (Get-Command wget -ErrorAction SilentlyContinue | Test-Path)
 {
     Remove-Item alias:wget -ErrorAction SilentlyContinue
 }
 
-# curl: Use `curl.exe` if available
-if (Get-Command curl.exe -ErrorAction SilentlyContinue | Test-Path)
+# curl: Use `curl` if available
+if (Get-Command curl -ErrorAction SilentlyContinue | Test-Path)
 {
     Remove-Item alias:curl -ErrorAction SilentlyContinue
-    ${function:curl}    = { curl.exe @args }
+    ${function:curl}    = { curl @args }
     # Gzip-enabled `curl`
-    ${function:gurl}    = { curl.exe --compressed @args }
+    ${function:gurl}    = { curl --compressed @args }
 
     # Weather
-    ${function:wet}     = { curl.exe http://wttr.in/@args }
-    ${function:wet2}    = { curl.exe http://v2.wttr.in/@args }
+    ${function:wet}     = { curl http://wttr.in/@args }
+    ${function:wet2}    = { curl http://v2.wttr.in/@args }
     ${function:wetM}    = { wet Moscow }
     ${function:wetM2}   = { wet2 Moscow }
 }
@@ -50,25 +50,4 @@ function curlex($url)
     if ( test-path $path ) { Remove-Item -Force $path }
     (new-object net.webclient).DownloadFile($url, $path)
     return new-object io.fileinfo $path
-}
-
-# Start IIS Express Server with an optional path and port
-function Start-IISExpress
-{
-    [CmdletBinding()]
-    param
-    (
-        [String] $path = (Get-Location).Path,
-        [Int32]  $port = 3000
-    )
-    if ((Test-Path "${env:ProgramFiles}\IIS Express\iisexpress.exe") -or (Test-Path "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"))
-    {
-        $iisExpress = Resolve-Path "${env:ProgramFiles}\IIS Express\iisexpress.exe" -ErrorAction SilentlyContinue
-        if (-Not $iisExpress) { $iisExpress = Get-Item "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe" }
-        & $iisExpress @("/path:${path}") /port:$port
-    }
-    else
-    {
-        Write-Warning "Unable to find iisexpress.exe"
-    }
 }

@@ -18,13 +18,13 @@ if ($MyInvocation.InvocationName -ne '.')
 Set-Alias gre findstr
 
 # Greps with status
-if (Get-Command grep11.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command grep -ErrorAction SilentlyContinue | Test-Path)
 {
     Set-Alias -Name gerp -Value grep
     Set-Alias -Name greo -Value grep
     ${function:gHS}  = { grep -e "status" -e "health" @args }
 }
-elseif (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
+elseif (Get-Command busybox -ErrorAction SilentlyContinue | Test-Path)
 {
     function grep
     {
@@ -96,7 +96,7 @@ elseif (Get-Command busybox.exe -ErrorAction SilentlyContinue | Test-Path)
 
         End
         {
-            Invoke-Expression "busybox.exe grep $Arguments $File"
+            Invoke-Expression "busybox grep $Arguments $File"
             Remove-Item -Force -ErrorAction SilentlyContinue "${TempFile}"
         }
     }

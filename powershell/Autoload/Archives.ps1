@@ -89,7 +89,7 @@ function Unzip
 }
 
 ## Save PuTTY sessons and configs
-if (Get-Command putty.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command putty -ErrorAction SilentlyContinue | Test-Path)
 {
     ## Export to Desktop
     ${function:Export-Putty-Config}     = { reg export HKCU\Software\SimonTatham ([Environment]::GetFolderPath("Desktop") + "\putty.reg") }

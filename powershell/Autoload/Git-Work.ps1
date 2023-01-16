@@ -16,7 +16,7 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # Git:
-if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
 {
     function grcpr
     {

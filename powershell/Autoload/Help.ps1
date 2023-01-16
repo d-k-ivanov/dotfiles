@@ -27,9 +27,9 @@ function cht
     )
     $site = "cheat.sh/" + $Language + "/" + ($SearchString -join '+')
 
-    if (Get-Command curl.exe -ErrorAction SilentlyContinue | Test-Path)
+    if (Get-Command curl -ErrorAction SilentlyContinue | Test-Path)
     {
-        curl.exe $site
+        curl $site
     }
 }
 

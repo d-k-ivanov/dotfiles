@@ -72,7 +72,7 @@ function Get-BitbucketOAuthTokenCurl
     $Secret     = $(Get-Content $SecretFile -First 2)[-1]
 
     $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Client_id,$Secret)))
-    $Response = (curl.exe -k -X POST -H "Authorization: Basic ${base64AuthInfo})" $UriToken -d "grant_type=client_credentials" -s) | ConvertFrom-Json
+    $Response = (curl -k -X POST -H "Authorization: Basic ${base64AuthInfo})" $UriToken -d "grant_type=client_credentials" -s) | ConvertFrom-Json
     return $Response.access_token
 }
 
@@ -128,7 +128,7 @@ function Invoke-BitbucketAPIUri-Curl
         Write-Host "Request URI: $Uri" -ForegroundColor Yellow
     }
 
-    $Response = (curl.exe -k -X ${Method} -H ${Headers} ${Uri} ${CurlArgs})
+    $Response = (curl -k -X ${Method} -H ${Headers} ${Uri} ${CurlArgs})
     return $Response
 }
 
@@ -437,7 +437,7 @@ function Get-BitbucketWikiPage
     return $Response
 }
 
-if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:list_bb_user_repos} = {
         Write-Host "Listing all Bitbucket repos of $($args[0])" -ForegroundColor Magenta
@@ -462,7 +462,7 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
             foreach ($repo in $repoList.values)
             {
                 $response = Invoke-BitbucketAPIUri "https://api.bitbucket.org/2.0/repositories/$($repo.full_name)"
-                git.exe clone --recurse-submodules $(($response.links.clone | Where-Object {$_.name -eq 'https'}).href)
+                git clone --recurse-submodules $(($response.links.clone | Where-Object {$_.name -eq 'https'}).href)
             }
         } while ($repoList.next -And ($repoList = Invoke-BitbucketAPIUri "$($repoList.next)"))
     }
@@ -475,7 +475,7 @@ if (Get-Command git.exe -ErrorAction SilentlyContinue | Test-Path)
             foreach ($repo in $repoList.values)
             {
                 $response = Invoke-BitbucketAPIUri "https://api.bitbucket.org/2.0/repositories/$($repo.full_name)"
-                git.exe clone --recurse-submodules $(($response.links.clone | Where-Object {$_.name -eq 'ssh'}).href)
+                git clone --recurse-submodules $(($response.links.clone | Where-Object {$_.name -eq 'ssh'}).href)
             }
         } while ($repoList.next -And ($repoList = Invoke-BitbucketAPIUri "$($repoList.next)"))
     }
