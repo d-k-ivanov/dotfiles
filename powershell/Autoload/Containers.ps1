@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-Docker scripts.
+Container shortcuts
 
 .DESCRIPTION
-Docker scripts.
+Container shortcuts
 #>
 
 # Check invocation
@@ -58,4 +58,44 @@ if (Get-Command docker -ErrorAction SilentlyContinue | Test-Path)
 if (Get-Command $Env:ProgramFiles\Docker\Docker\DockerCli.exe -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:dokkaSD} = { & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon }
+}
+
+# Podman
+if (Get-Command podman -ErrorAction SilentlyContinue | Test-Path)
+{
+    ${function:pi}    = { podman images }
+    ${function:pc}    = { podman ps -a }
+    ${function:pcle}  = { podman rm $(podman ps -aqf status=exited) }
+    ${function:pclc}  = { podman rm $(podman ps -aqf status=created) }
+    ${function:pcli}  = { podman rmi $(podman images -q) }
+    ${function:pclif} = { podman rmi -f $(podman images -q) }
+    ${function:pcla}  = {
+        podman rm $(podman ps -aqf status=exited)
+        podman rmi $(podman images -qf dangling=true)
+        podman volume rm $(podman volume ls -qf dangling=true)
+    }
+
+    ${function:psprune}  = { podman system prune }
+
+    # Run podman container in interactive mode
+    ${function:pri}         = { podman run --rm -it @args }
+    ${function:pri_entry}   = { podman run --rm -it --entrypoint /bin/sh @args }
+    ${function:pri_pwd}     = { podman run --rm -it -v ${PWD}:/project @args }
+    ${function:pri_pwd_ray} = { podman run --rm -it -v ${PWD}:/project -p 6379:6379 -p 8000:8000 -p 8076:8076 -p 8265:8265 -p 10001:10001 @args }
+
+    # Rewrite entry point to shell
+    ${function:pesh}        = { podman run --rm -it --entrypoint /bin/sh @args }
+
+    # inspect podman images
+    ${function:pc_trace_cmd} = {
+        ${parent}= $(podman inspect -f '{{ .Parent }}' $args[0])
+        [int]${level}=$args[1]
+        Write-Host ${level}: $(podman inspect -f '{{ .ContainerConfig.Cmd }}' $args[0])
+        ${level}=${level}+1
+        if (${parent})
+        {
+            Write-Host ${level}: ${parent}
+            pc_trace_cmd ${parent} ${level}
+        }
+    }
 }
