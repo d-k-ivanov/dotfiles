@@ -17,168 +17,168 @@ if ($MyInvocation.InvocationName -ne '.')
 
 
 # Main
-${function:g}           = { git @args }
-${function:gg}          = { git -c core.pager='delta --features=code-review-chameleon' @args }
-${function:gunsec}      = { git -c http.sslVerify=false @args }
+${function:g} = { git @args }
+${function:gg} = { git -c core.pager='delta --features=code-review-chameleon' @args }
+${function:gunsec} = { git -c http.sslVerify=false @args }
 
 # Logs
-${function:gll}         = { git log --pretty=format:"%h - %an, %ar : %s" @args }
-${function:glL}         = { git log --pretty=format:"%H - %an, %ar : %s" @args }
+${function:gll} = { git log --pretty=format:"%h - %an, %ar : %s" @args }
+${function:glL} = { git log --pretty=format:"%H - %an, %ar : %s" @args }
 
 # Clone
-${function:gcr}         = { git clone --recurse-submodules @args }
-${function:gcb}         = { git clone --single-branch --branch @args }
-${function:gcrb}        = { git clone --recurse-submodules --single-branch --branch @args }
+${function:gcr} = { git clone --recurse-submodules @args }
+${function:gcb} = { git clone --single-branch --branch @args }
+${function:gcrb} = { git clone --recurse-submodules --single-branch --branch @args }
 
 # Look for satus or changes
-${function:gs}          = { git status @args }
-${function:gss}         = { git status @args }
+${function:gs} = { git status @args }
+${function:gss} = { git status @args }
 
-${function:gw}          = { git show @args              }
-${function:gw^}         = { git show HEAD^ @args        }
-${function:gww}         = { git show HEAD^ @args        }
-${function:gw^^}        = { git show HEAD^^ @args       }
-${function:gwww}        = { git show HEAD^^ @args       }
-${function:gw^^^}       = { git show HEAD^^^ @args      }
-${function:gwwww}       = { git show HEAD^^^ @args      }
-${function:gw^^^^}      = { git show HEAD^^^^ @args     }
-${function:gwwwww}      = { git show HEAD^^^^ @args     }
-${function:gw^^^^^}     = { git show HEAD^^^^^ @args    }
-${function:gwwwwww}     = { git show HEAD^^^^^ @args    }
-${function:gw^^^^^^}    = { git show HEAD^^^^^^ @args   }
-${function:gwwwwwww}    = { git show HEAD^^^^^^ @args   }
-${function:gw^^^^^^^}   = { git show HEAD^^^^^^^ @args  }
-${function:gwwwwwwww}   = { git show HEAD^^^^^^^ @args  }
-${function:gw^^^^^^^^}  = { git show HEAD^^^^^^^^ @args }
-${function:gwwwwwwwww}  = { git show HEAD^^^^^^^^ @args }
+${function:gw} = { git show @args }
+${function:gw^} = { git show HEAD^ @args }
+${function:gww} = { git show HEAD^ @args }
+${function:gw^^} = { git show HEAD^^ @args }
+${function:gwww} = { git show HEAD^^ @args }
+${function:gw^^^} = { git show HEAD^^^ @args }
+${function:gwwww} = { git show HEAD^^^ @args }
+${function:gw^^^^} = { git show HEAD^^^^ @args }
+${function:gwwwww} = { git show HEAD^^^^ @args }
+${function:gw^^^^^} = { git show HEAD^^^^^ @args }
+${function:gwwwwww} = { git show HEAD^^^^^ @args }
+${function:gw^^^^^^} = { git show HEAD^^^^^^ @args }
+${function:gwwwwwww} = { git show HEAD^^^^^^ @args }
+${function:gw^^^^^^^} = { git show HEAD^^^^^^^ @args }
+${function:gwwwwwwww} = { git show HEAD^^^^^^^ @args }
+${function:gw^^^^^^^^} = { git show HEAD^^^^^^^^ @args }
+${function:gwwwwwwwww} = { git show HEAD^^^^^^^^ @args }
 
-${function:ggw}         = { git -c core.pager='delta --features=code-review-chameleon' show @args              }
-${function:ggw^}        = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^ @args        }
-${function:ggww}        = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^ @args        }
-${function:ggw^^}       = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^ @args       }
-${function:ggwww}       = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^ @args       }
-${function:ggw^^^}      = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^ @args      }
-${function:ggwwww}      = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^ @args      }
-${function:ggw^^^^}     = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^ @args     }
-${function:ggwwwww}     = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^ @args     }
-${function:ggw^^^^^}    = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^ @args    }
-${function:ggwwwwww}    = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^ @args    }
-${function:ggw^^^^^^}   = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^ @args   }
-${function:ggwwwwwww}   = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^ @args   }
-${function:ggw^^^^^^^}  = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^^ @args  }
-${function:ggwwwwwwww}  = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^^ @args  }
+${function:ggw} = { git -c core.pager='delta --features=code-review-chameleon' show @args }
+${function:ggw^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^ @args }
+${function:ggww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^ @args }
+${function:ggw^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^ @args }
+${function:ggwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^ @args }
+${function:ggw^^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^ @args }
+${function:ggwwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^ @args }
+${function:ggw^^^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^ @args }
+${function:ggwwwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^ @args }
+${function:ggw^^^^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^ @args }
+${function:ggwwwwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^ @args }
+${function:ggw^^^^^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^ @args }
+${function:ggwwwwwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^ @args }
+${function:ggw^^^^^^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^^ @args }
+${function:ggwwwwwwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^^ @args }
 ${function:ggw^^^^^^^^} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^^^ @args }
 ${function:ggwwwwwwwww} = { git -c core.pager='delta --features=code-review-chameleon' show HEAD^^^^^^^^ @args }
 
-${function:gd}          = { git diff HEAD @args }
-${function:ggd}         = { git -c core.pager='delta --features=code-review-chameleon' diff HEAD @args }
-${function:gdo}         = { git diff --cached @args }
+${function:gd} = { git diff HEAD @args }
+${function:ggd} = { git -c core.pager='delta --features=code-review-chameleon' diff HEAD @args }
+${function:gdo} = { git diff --cached @args }
 
 # Add and Commit
-${function:gco}         = { if ($args) {git commit -m @args} else {git commit -v}} # "git commit only"
-${function:ga}          = { git add @args }
-${function:gca}         = { git add --all; gco @args} # "git commit all"
-${function:gcn}         = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): ${args}" }
-${function:gcnd}        = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): $(now) ${args}" }
-${function:gcv}         = { git commit -v @args }
-${function:gcof}        = { git commit --no-verify -m @args }
-${function:gcaf}        = { (git add --all) -and (gcof @args) }
-${function:gam}         = { git commit --amend @args }
-${function:gamne}       = { git commit --amend --no-edit @args }
-${function:gamm}        = { git add --all; git commit --amend -C HEAD @args }
-${function:gammf}       = { gamm --no-verify @args }
+${function:gco} = { if ($args) { git commit -m @args } else { git commit -v } } # "git commit only"
+${function:ga} = { git add @args }
+${function:gca} = { git add --all; gco @args } # "git commit all"
+${function:gcn} = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): ${args}" }
+${function:gcnd} = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): $(now) ${args}" }
+${function:gcv} = { git commit -v @args }
+${function:gcof} = { git commit --no-verify -m @args }
+${function:gcaf} = { (git add --all) -and (gcof @args) }
+${function:gam} = { git commit --amend @args }
+${function:gamne} = { git commit --amend --no-edit @args }
+${function:gamm} = { git add --all; git commit --amend -C HEAD @args }
+${function:gammf} = { gamm --no-verify @args }
 
 # Cleanup
-${function:gcoc}        = { gco Cleanup. @args }
-${function:gcac}        = { gca Cleanup. @args }
-${function:gcow}        = { gco Whitespace. @args }
-${function:gcaw}        = { gca Whitespace. @args }
-${function:gfr}         = { git fetch --all; git reset --hard @args }
-${function:gfrmn}       = { git fetch --all; git reset --hard origin/main @args }
-${function:gfrms}       = { git fetch --all; git reset --hard origin/master @args }
-${function:gfrmn}       = { git fetch --all; git reset --hard github/main @args }
-${function:gfrms}       = { git fetch --all; git reset --hard github/master @args }
-${function:gclean}      = { while ((git diff-index HEAD --)) {git reset --hard HEAD}; git clean -d -x -f @args }
-${function:gclean2}     = { while ((git diff-index HEAD --)) {git reset --hard HEAD}; git clean -d -X -f @args }
-${function:gclean3}     = { while ((git diff-index HEAD --)) {git reset --hard HEAD}; git clean -d -f @args }
+${function:gcoc} = { gco Cleanup. @args }
+${function:gcac} = { gca Cleanup. @args }
+${function:gcow} = { gco Whitespace. @args }
+${function:gcaw} = { gca Whitespace. @args }
+${function:gfr} = { git fetch --all; git reset --hard @args }
+${function:gfrmn} = { git fetch --all; git reset --hard origin/main @args }
+${function:gfrms} = { git fetch --all; git reset --hard origin/master @args }
+${function:gfrmn} = { git fetch --all; git reset --hard github/main @args }
+${function:gfrms} = { git fetch --all; git reset --hard github/master @args }
+${function:gclean} = { while ((git diff-index HEAD --)) { git reset --hard HEAD }; git clean -d -x -f @args }
+${function:gclean2} = { while ((git diff-index HEAD --)) { git reset --hard HEAD }; git clean -d -X -f @args }
+${function:gclean3} = { while ((git diff-index HEAD --)) { git reset --hard HEAD }; git clean -d -f @args }
 
 # Pull
-${function:gpl}         = { git pull origin $(git rev-parse --abbrev-ref HEAD) }
-${function:gplmn}       = { git pull origin main }
-${function:gplms}       = { git pull origin master }
-${function:gpl_gh}      = { git pull github $(git rev-parse --abbrev-ref HEAD) }
-${function:gplmn_gh}    = { git pull github main }
-${function:gplms_gh}    = { git pull github master }
-${function:gpls}        = { git stash; git pull @args; git stash pop}
-${function:gplm}        = { git pull; git submodule update }
-${function:gplp}        = { git pull --rebase; git push @args } # Can't pull because you forgot to track? Run this.
+${function:gpl} = { git pull origin $(git rev-parse --abbrev-ref HEAD) }
+${function:gplmn} = { git pull origin main }
+${function:gplms} = { git pull origin master }
+${function:gpl_gh} = { git pull github $(git rev-parse --abbrev-ref HEAD) }
+${function:gplmn_gh} = { git pull github main }
+${function:gplms_gh} = { git pull github master }
+${function:gpls} = { git stash; git pull @args; git stash pop }
+${function:gplm} = { git pull; git submodule update }
+${function:gplp} = { git pull --rebase; git push @args } # Can't pull because you forgot to track? Run this.
 
 # Push
 # ${function:gp}        = { git push @args }  # Comment if you use Get-Property and use gpp insted
-${function:gpp}         = { git push @args }
-${function:gppg}        = { git push github @args }
-${function:gppf}        = { git push --force @args }
-${function:gppu}        = { git push -u @args }
-${function:gppt}        = { git push --tags @args }
+${function:gpp} = { git push @args }
+${function:gppg} = { git push github @args }
+${function:gppf} = { git push --force @args }
+${function:gppu} = { git push -u @args }
+${function:gppt} = { git push --tags @args }
 
 # Checkout
-${function:gck}         = { git checkout @args }
-${function:gb}          = { git checkout -b @args }
-${function:got}         = { git checkout - @args }
-${function:gomn}        = { git checkout main @args }
-${function:goms}        = { git checkout master @args }
+${function:gck} = { git checkout @args }
+${function:gb} = { git checkout -b @args }
+${function:got} = { git checkout - @args }
+${function:gomn} = { git checkout main @args }
+${function:goms} = { git checkout master @args }
 
 # Remove Branches
-${function:gbr}         = { git branch -d @args }
-${function:gbrf}        = { git branch -D @args }
-${function:gbrr}        = { git push origin --delete @args }
-${function:gbrrm}       = { git branch -D @args; git push origin --delete @args }
-${function:gbrr_gh}     = { git push github --delete @args }
-${function:gbrrm_gh}    = { git branch -D @args; git push github --delete @args }
-${function:g-to-main}   = { git branch -m master main; git fetch origin; git branch -u origin/main main; git remote set-head origin -a }
+${function:gbr} = { git branch -d @args }
+${function:gbrf} = { git branch -D @args }
+${function:gbrr} = { git push origin --delete @args }
+${function:gbrrm} = { git branch -D @args; git push origin --delete @args }
+${function:gbrr_gh} = { git push github --delete @args }
+${function:gbrrm_gh} = { git branch -D @args; git push github --delete @args }
+${function:g-to-main} = { git branch -m master main; git fetch origin; git branch -u origin/main main; git remote set-head origin -a }
 
 # Rebase
-${function:gcp}         = { git cherry-pick @args }
-${function:grb}         = { git rebase -i origin/@args }
-${function:grbmn}       = { git rebase -i origin/main @args }
-${function:grbms}       = { git rebase -i origin/master @args }
-${function:gba}         = { git rebase --abort @args }
-${function:gbc}         = { git add -A; git rebase --continue @args }
-${function:gbmn}        = { git fetch origin main; git rebase origin/main @args }
-${function:gbms}        = { git fetch origin master; git rebase origin/master @args }
-${function:gCH}         = { git rebase -i --root @args }
+${function:gcp} = { git cherry-pick @args }
+${function:grb} = { git rebase -i origin/@args }
+${function:grbmn} = { git rebase -i origin/main @args }
+${function:grbms} = { git rebase -i origin/master @args }
+${function:gba} = { git rebase --abort @args }
+${function:gbc} = { git add -A; git rebase --continue @args }
+${function:gbmn} = { git fetch origin main; git rebase origin/main @args }
+${function:gbms} = { git fetch origin master; git rebase origin/master @args }
+${function:gCH} = { git rebase -i --root @args }
 
 # Code-Review
-${function:git-review}  = { if ($args[0] -and -Not $args[1]) {git push origin HEAD:refs/for/@args[0]} else {Write-Host "Wrong command!`nUsage: git-review <branch_name>"}}
-${function:grw}         = { git-review }
+${function:git-review} = { if ($args[0] -and -Not $args[1]) { git push origin HEAD:refs/for/@args[0] } else { Write-Host "Wrong command!`nUsage: git-review <branch_name>" } }
+${function:grw} = { git-review }
 
 # Tags
-${function:grmt}        = { git tag --delete @args }
-${function:grmto}       = { git push --delete origin @args }
-${function:grmto_gh}    = { git push --delete github @args }
+${function:grmt} = { git tag --delete @args }
+${function:grmto} = { git push --delete origin @args }
+${function:grmto_gh} = { git push --delete github @args }
 
 # Submodules
-${function:gsu}         = { git submodule update --recursive --remote @args }
-${function:gsumn}       = { git submodule foreach git pull origin main @args }
-${function:gsums}       = { git submodule foreach git pull origin master @args }
-${function:gsumn_gh}    = { git submodule foreach git pull github main @args }
-${function:gsums_gh}    = { git submodule foreach git pull github master @args }
+${function:gsu} = { git submodule update --recursive --remote @args }
+${function:gsumn} = { git submodule foreach git pull origin main @args }
+${function:gsums} = { git submodule foreach git pull origin master @args }
+${function:gsumn_gh} = { git submodule foreach git pull github main @args }
+${function:gsums_gh} = { git submodule foreach git pull github master @args }
 
 # Misc
-${function:gex}         = { GitExtensions.exe browse @args }
-${function:gitinfo}     = { ssh gitolite@git info @args }   # Gitolite list repos
-${function:gittest-gh}  = { ssh -T git@github.com }
-${function:gittest-gl}  = { ssh -T git@gitlab.com }
-${function:gittest-bb}  = { ssh -T git@bitbucket.org }
+${function:gex} = { GitExtensions.exe browse @args }
+${function:gitinfo} = { ssh gitolite@git info @args }   # Gitolite list repos
+${function:gittest-gh} = { ssh -T git@github.com }
+${function:gittest-gl} = { ssh -T git@gitlab.com }
+${function:gittest-bb} = { ssh -T git@bitbucket.org }
 
 # Accounts
-${function:git-home}    = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com' }
+${function:git-home} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com' }
 
 # Straumann
-${function:git-cc}      = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com' }
+${function:git-cc} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com' }
 
 # IRQ
-${function:git-irq}     = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'divanov@irq.ru' }
+${function:git-irq} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'divanov@irq.ru' }
 
 function gprune
 {
@@ -300,7 +300,7 @@ function get_repo_with_target
     if (-Not $args[0])
     {
         Write-Host "You should enter repo URI."
-        Write-Host ( "Usage: {0} <repo_url>"  -f $MyInvocation.MyCommand )
+        Write-Host ( "Usage: {0} <repo_url>" -f $MyInvocation.MyCommand )
         Write-Host
     }
     else
@@ -324,7 +324,7 @@ function git_archive_repo
     if (-Not $args[0])
     {
         Write-Host "You should enter repo URI."
-        Write-Host ( "Usage: {0} <repo_url>"  -f $MyInvocation.MyCommand )
+        Write-Host ( "Usage: {0} <repo_url>" -f $MyInvocation.MyCommand )
         Write-Host
     }
     else
@@ -360,15 +360,15 @@ function Move-GitRepo
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$From,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$To
     )
     [string] $SessionID = [System.Guid]::NewGuid()
 
     Invoke-Expression "git clone --mirror $From $SessionID"
-    $RepoDir  = (Join-Path $env:Temp $SessionID)
+    $RepoDir = (Join-Path $env:Temp $SessionID)
     Set-Location $RepoDir
     Invoke-Expression "git push --mirror $To"
     Set-Location $env:Temp
@@ -382,50 +382,50 @@ function Set-GitVerbosity
 {
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Button,
-        [string]$Category='all'
+        [string]$Category = 'all'
     )
     switch ($Button)
     {
-        ({$PSItem -eq 'On' -Or $PSItem -eq 'on'})
+        ({ $PSItem -eq 'On' -Or $PSItem -eq 'on' })
         {
             if (($Category -eq 'curl') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_CURL_VERBOSE=1
-                $Env:GIT_TRACE_CURL=1
+                $Env:GIT_CURL_VERBOSE = 1
+                $Env:GIT_TRACE_CURL = 1
             }
             if (($Category -eq 'trace') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE=1
+                $Env:GIT_TRACE = 1
             }
             if (($Category -eq 'pack') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_PACK_ACCESS=1
+                $Env:GIT_TRACE_PACK_ACCESS = 1
             }
             if (($Category -eq 'packet') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_PACKET=1
+                $Env:GIT_TRACE_PACKET = 1
             }
             if (($Category -eq 'perf') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_PERFORMANCE=1
+                $Env:GIT_TRACE_PERFORMANCE = 1
             }
             if (($Category -eq 'setup') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_SETUP=1
+                $Env:GIT_TRACE_SETUP = 1
             }
             break
         }
-        ({$PSItem -eq 'Off' -Or $PSItem -eq 'off'})
+        ({ $PSItem -eq 'Off' -Or $PSItem -eq 'off' })
         {
-            $Env:GIT_CURL_VERBOSE=0
-            $Env:GIT_TRACE_CURL=0
-            $Env:GIT_TRACE=0
-            $Env:GIT_TRACE_PACK_ACCESS=0
-            $Env:GIT_TRACE_PACKET=0
-            $Env:GIT_TRACE_PERFORMANCE=0
-            $Env:GIT_TRACE_SETUP=0
+            $Env:GIT_CURL_VERBOSE = 0
+            $Env:GIT_TRACE_CURL = 0
+            $Env:GIT_TRACE = 0
+            $Env:GIT_TRACE_PACK_ACCESS = 0
+            $Env:GIT_TRACE_PACKET = 0
+            $Env:GIT_TRACE_PERFORMANCE = 0
+            $Env:GIT_TRACE_SETUP = 0
             break
         }
         default
@@ -442,9 +442,9 @@ function Show-Diff_Of_Git_Branches
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Branch1,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Branch2
     )
 
@@ -463,7 +463,7 @@ function Get-GitCommitsByAuthor
         [string]$Author = "d-k-ivanov",
         [switch]$AllBranches
     )
-    $cmd  = "git log "
+    $cmd = "git log "
     $cmd += "--pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' "
     $cmd += "--abbrev-commit --date=relative "
 
@@ -486,7 +486,7 @@ function git_change_email_in_my_commits
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$OldMail,
         [string]$NewMail = 'd.k.ivanov@live.com',
         [string]$GitName = 'Dmitry Ivanov'
@@ -518,7 +518,7 @@ function git_remove_file_from_history
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [string] $File
     )
     git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $File" --prune-empty --tag-name-filter cat -- --all
@@ -540,7 +540,7 @@ function git_upstream
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $Upstream
     )
     git branch --set-upstream-to=origin/${Upstream} ${Upstream}
@@ -551,7 +551,7 @@ function git_upstream_gh
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $Upstream
     )
     git branch --set-upstream-to=github/${Upstream} ${Upstream}
@@ -563,7 +563,7 @@ function Remove-GitSubmodule
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $SubmoduleName
     )
 
@@ -596,4 +596,22 @@ function Remove-GitSubmodule
     # 6. Commit changes
     # 7. Delete files
     # rm -rf path/to/submodule
+}
+
+function show_git_remote_recursively
+{
+    param
+    (
+        [string] $Path = ".",
+        [string] $Depth = "0"
+    )
+
+    Get-ChildItem -Path $Path -Depth $Depth -Directory | ForEach-Object {
+        if (Test-Path -Path $(Join-Path $_.FullName ".git"))
+        {
+            Write-Output "# $($_.FullName)"
+            # Get-Item $_.FullName/.. | Split-Path -Leaf | Write-Output
+            Write-Output $(git -C $_.FullName remote -v | Select-Object -First 1).Split()[1]
+        }
+    }
 }
