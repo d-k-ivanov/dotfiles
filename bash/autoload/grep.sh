@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-alias grep='grep --color=auto'
+if [ -x /usr/bin/dircolors ]; then
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 alias gerp='grep'
 
 # Greps with status

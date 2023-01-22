@@ -19,7 +19,11 @@ mkd()
 platform=`uname`
 case ${platform} in
     Linux )
-        alias ls='ls --color=auto '
+        if [ -x /usr/bin/dircolors ]; then
+            alias ls='ls --color=auto '
+            # alias dir='dir --color=auto '
+            # alias vdir='vdir --color=auto '
+        fi
         ;;
     Darwin )
         alias ls='gls --color=auto '
@@ -28,7 +32,11 @@ case ${platform} in
         alias ls='ls -G '
         ;;
     MSYS_NT-10.0 )
-        alias ls='ls --color=auto '
+        if [ -x /usr/bin/dircolors ]; then
+            alias ls='ls --color=auto '
+            # alias dir='dir --color=auto '
+            # alias vdir='vdir --color=auto '
+        fi
         ;;
 esac
 

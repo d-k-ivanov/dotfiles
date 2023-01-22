@@ -10,7 +10,12 @@ do
 done
 
 # Weather
-alias  weth1="curl http://wttr.in/"
-alias  weth2="curl http://v2.wttr.in/"
-alias wethM1="curl http://wttr.in/Moscow"
-alias wethM2="curl http://v2.wttr.in/Moscow"
+alias weather="curl http://wttr.in/"
+alias w-mad="curl http://wttr.in/Madrid"
+alias w-mal="curl http://wttr.in/Malaga"
+alias w-mos="curl http://wttr.in/Moscow"
+
+alias weather_v2="curl http://v2.wttr.in/"
+alias w-mad-v2="curl http://v2.wttr.in/Madrid"
+alias w-mal-v2="curl http://v2.wttr.in/Malaga"
+alias w-mos-v2="curl http://v2.wttr.in/Moscow"

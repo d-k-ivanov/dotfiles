@@ -42,7 +42,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
     ${function:va}      = { .\venv\Scripts\activate }
     ${function:vd}      = { deactivate }
     ${function:vr}      = { rmrf venv }
-    ${function:vpi}     = { python -m pip install  }
+    ${function:vpi}     = { python -m pip install }
     ${function:vins}    = { python -m pip install -r .\requirements.txt }
     ${function:vgen}    = { python -m pip freeze > .\requirements.txt }
 

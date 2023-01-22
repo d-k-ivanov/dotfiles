@@ -6,7 +6,8 @@ umask 027
 # alias gvim='nvim-qt'
 export EDITOR='vim'
 # No duplicates in history.
-export HISTCONTROL=ignoredups
+# export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
 # Big history
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
@@ -20,6 +21,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 shopt -s histappend
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+# shopt -s globstar
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -78,12 +82,6 @@ case $platform in
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
         # Opt
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
-        [[ -d /opt/cmake-3.20.2-linux-x86_64/bin ]] && export PATH=$PATH:/opt/cmake-3.20.2-linux-x86_64/bin
-        [[ -d /opt/cmake-3.21.1-linux-x86_64/bin ]] && export PATH=$PATH:/opt/cmake-3.21.1-linux-x86_64/bin
-        [[ -d /opt/cmake-3.21.4-linux-x86_64/bin ]] && export PATH=$PATH:/opt/cmake-3.21.4-linux-x86_64/bin
-        [[ $(/bin/hostname) == 'Caracal' ]]         && export PATH=$PATH:/opt/rh/devtoolset-9/root/usr/bin
-        # [[ -d /opt/rh/devtoolset-9/root/usr/bin  ]] && export PATH=$PATH:/opt/rh/devtoolset-9/root/usr/bin
-        # [[ -d /opt/rh/devtoolset-6/root/usr/bin  ]] && export PATH=$PATH:/opt/rh/devtoolset-6/root/usr/bin
         # Root binaries
         [[ -d /sbin ]]                              && export PATH=$PATH:/sbin
         [[ -d /usr/sbin ]]                          && export PATH=$PATH:/usr/sbin
@@ -96,6 +94,7 @@ case $platform in
         [[ -d /opt/local/bin ]]                     && export PATH=$PATH:/opt/local/bin
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
         # Snap
+        [[ -d /snap/bin ]]                          && export PATH=$PATH:/snap/bin
         [[ -d /var/lib/snapd/snap/bin ]]            && export PATH=$PATH:/var/lib/snapd/snap/bin
         # Ubuntu games
         [[ -d /usr/games ]]                         && export PATH=$PATH:/usr/games
