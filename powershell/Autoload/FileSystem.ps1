@@ -54,7 +54,7 @@ ${function:wsconf}  = { Set-Location ${Env:WORKSPACE}\my\workstations           
 ${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
 ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine                      }
 ${function:wsws}    = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace              }
-${function:wsmisc}  = { Set-Location D:\DevMisc                                         }
+${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
 
 # ClearCorrect Shortcuts
 ${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical             }
