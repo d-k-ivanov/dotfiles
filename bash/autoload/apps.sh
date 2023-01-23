@@ -12,3 +12,8 @@ fi
 
 alias ic="icode ."
 alias ww="icode ~/OneDrive/Workspace"
+
+show()
+{
+    type $@
+}
