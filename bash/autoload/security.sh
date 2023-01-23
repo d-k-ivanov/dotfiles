@@ -58,3 +58,22 @@ convert_openssh_to_rsa()
 
     ssh-keygen -p -P "${2:=''}" -N "${3:=''}" -m pem -f "$FullPath"
 }
+
+convert_pfx_to_crt_and_key()
+{
+    if [ -z "$1" ]
+    then
+        Usage: convert_pfx_to_crt_and_key key_path
+        exit 1
+    fi
+    pfx_full_path=$(realpath ${1})
+    pfx_path=$(dirname ${pfx_full_path})
+    pfx_file=$(basename ${pfx_full_path})
+    pfx_file_name="${pfx_file%.*}"
+
+    echo $pfx_path
+
+    openssl pkcs12 -in "${pfx_full_path}" -nocerts -out "${pfx_path}/${pfx_file_name}.key"
+    openssl pkcs12 -in "${pfx_full_path}" -clcerts -nokeys -out "${pfx_path}/${pfx_file_name}.crt"
+    openssl rsa -in "${pfx_path}/${pfx_file_name}.key" -out "${pfx_path}/${pfx_file_name}-decrypted.key"
+}
