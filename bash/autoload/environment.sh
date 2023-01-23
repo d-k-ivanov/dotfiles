@@ -65,6 +65,7 @@ bind 'set show-all-if-ambiguous on'
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 # export LC_ALL=C
+export LC_COLLATE=C
 export LC_CTYPE=$LANG
 export LANGUAGE=$LANG
 # export LC_CTYPE=C
