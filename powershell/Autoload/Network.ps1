@@ -17,6 +17,15 @@ if ($MyInvocation.InvocationName -ne '.')
 
 if (Get-Command dig -ErrorAction SilentlyContinue | Test-Path)
 {
+    function dig-init
+    {
+        # mkdir $env:SystemRoot\System32\Drivers\etc\
+        # Write-Output 'nameserver 8.8.8.8' > $env:SystemRoot\System32\Drivers\etc\resolv.conf
+        # Write-Output 'nameserver 77.88.8.8' >> $env:SystemRoot\System32\Drivers\etc\resolv.conf
+        Write-Output 'nameserver 1.1.1.1' > $env:SystemRoot\System32\Drivers\etc\resolv.conf
+        Write-Output 'nameserver 1.0.0.1' > $env:SystemRoot\System32\Drivers\etc\resolv.conf
+    }
+
     ${function:myip}   = { dig +short myip.opendns.com `@resolver1.opendns.com }
     function digga
     {

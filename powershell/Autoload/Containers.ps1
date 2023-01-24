@@ -15,8 +15,48 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+function Get-ContainerEngineList
+{
+    $ContainerEngines = @(
+        'C:\PROGRA~1\Docker\Docker\resources\bin'
+        'C:\PROGRA~1\RedHat\Podman\'
+        'C:\tools\docker'
+    )
+    return $ContainerEngines
+}
+
+function List-ContainerEngines
+{
+    $ContainerEngines = Get-ContainerEngineList
+
+    Write-Host "List of Container Engines on this PC:"
+    foreach ($engine in $ContainerEngines)
+    {
+        if (Test-Path $engine)
+        {
+            Write-Host " -> $engine"
+        }
+    }
+}
+
+function Set-ContainerEngine
+{
+    $ContainerEngines = Get-ContainerEngineList
+    $ValidatedEngines = @()
+    foreach ($engine in $ContainerEngines)
+    {
+        if (Test-Path $engine)
+        {
+            $ValidatedEngines += $engine
+        }
+    }
+    $ChoosenVersion = Select-From-List $ValidatedEngines "Container Engines"
+    [Environment]::SetEnvironmentVariable("CONTAINER_ENGINE_PATH", $ChoosenVersion, "Machine")
+    Set-Item -Path Env:CONTAINER_ENGINE_PATH -Value "$ChoosenVersion"
+}
+
 # Docker
-if (Get-Command docker -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command docker.exe -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:di}    = { docker images }
     ${function:dc}    = { docker ps -a }
@@ -57,11 +97,13 @@ if (Get-Command docker -ErrorAction SilentlyContinue | Test-Path)
 
 if (Get-Command $Env:ProgramFiles\Docker\Docker\DockerCli.exe -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:dokkaSD} = { & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon }
+    ${function:dokkaSD}              = { & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon }
+    ${function:docker_switch_daemon} = { & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon }
+    ${function:docker_switch_engine} = { & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon }
 }
 
 # Podman
-if (Get-Command podman -ErrorAction SilentlyContinue | Test-Path)
+if (Get-Command podman.exe -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:pi}    = { podman images }
     ${function:pc}    = { podman ps -a }

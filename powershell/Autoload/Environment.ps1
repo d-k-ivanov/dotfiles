@@ -97,7 +97,6 @@ function Initialize-Paths-User
         "${env:USERPROFILE}\.dotnet\tools"
         "${env:USERPROFILE}\.krew\bin"
         "${env:USERPROFILE}\AppData\Local\Android\Sdk\platform-tools"
-        "${env:USERPROFILE}\AppData\Local\Microsoft\WindowsApps"
         "${env:USERPROFILE}\AppData\Local\Pandoc"
         "${env:USERPROFILE}\AppData\Local\Programs\Fiddler"
         "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code Insiders\bin"
@@ -111,9 +110,11 @@ function Initialize-Paths-User
         "C:\Go\bin"
         "C:\HashiCorp\Vagrant\bin"
         "C:\msys64"
+        "C:\texlive\2023\bin\win32"
         "C:\texlive\2022\bin\win32"
         "C:\opscode\chefdk\bin"
         "C:\PROGRA~1\Azure Data Studio\bin"
+        "C:\PROGRA~1\Conan\conan"
         "C:\PROGRA~1\ConEmu\ConEmu"
         "C:\PROGRA~1\ConEmu\ConEmu\wsl"
         "C:\PROGRA~1\gnuplot\bin"
@@ -169,7 +170,7 @@ function Initialize-Paths-User
         "C:\VulkanSDK\1.2.189.2\Bin"
         "C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin"
         "C:\ProgramData\chocolatey\lib\wmiexplorer\tools"
-        "C:\ProgramData\DockerDesktop\version-bin"
+        # "C:\ProgramData\DockerDesktop\version-bin"
     )
 
     $final_path = "${env:USERPROFILE}\.bin"
@@ -196,6 +197,7 @@ function Initialize-Paths-System
 {
     $paths = @(
         "C:\PROGRA~1\PowerShell\7"
+        "${env:USERPROFILE}\AppData\Local\Microsoft\WindowsApps"
         "C:\PROGRA~1\Amazon\AWSCLI\bin"
         "C:\PROGRA~1\Amazon\AWSCLIV2"
         "C:\PROGRA~1\AutoHotkey"
@@ -204,9 +206,9 @@ function Initialize-Paths-System
         "C:\PROGRA~1\CMake\bin"
         "C:\PROGRA~1\COMMON~1\Intel\WirelessCommon"
         "C:\PROGRA~1\Cppcheck"
-        "C:\tools\docker"
-        "C:\PROGRA~1\RedHat\Podman\"
-        "C:\PROGRA~1\Docker\Docker\resources\bin"
+        # "C:\tools\docker"
+        # "C:\PROGRA~1\RedHat\Podman\"
+        # "C:\PROGRA~1\Docker\Docker\resources\bin"
         "C:\PROGRA~1\dotnet"
         "C:\PROGRA~1\doxygen\bin"
         "C:\PROGRA~1\f3d\bin"
@@ -271,6 +273,7 @@ function Initialize-Paths-System
         "C:\PROGRA~1\TAP-Windows\bin"
         "C:\PROGRA~1\VcXsrv"
         "C:\PROGRA~1\Wolfram Research\WolframScript"
+        "C:\PROGRA~1\AutoFirma\AutoFirma"
         # "C:\PROGRA~2\Common Files\Oracle\Java\javapath"
         # "C:\PROGRA~2\dotnet"
         "C:\PROGRA~2\Dr. Memory\bin64"
@@ -278,6 +281,7 @@ function Initialize-Paths-System
         "C:\PROGRA~2\GNU\GnuPG\pub"
         "C:\PROGRA~2\GnuWin32\bin"
         "C:\PROGRA~2\Gpg4win\..\GnuPG\bin"
+        "C:\PROGRA~2\Intel\Intel(R) Management Engine Components\DAL"
         "C:\PROGRA~2\Intel\TXE Components\DAL"
         "C:\PROGRA~2\Intel\TXE Components\IPT"
         "C:\PROGRA~2\Intel\TXE Components\TCS"
@@ -336,6 +340,11 @@ function Set-Env
     Reset-Environment
 
     $system_path = "C:\tools\bin"
+    if ($Env:CONTAINER_ENGINE_PATH)
+    {
+        $system_path += ";$Env:CONTAINER_ENGINE_PATH"
+    }
+
     if ($Env:PYTHON_PATH)
     {
         $system_path += ";$Env:PYTHON_PATH\Scripts"

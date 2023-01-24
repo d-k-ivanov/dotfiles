@@ -60,7 +60,7 @@ function Find-RProjects
     Write-Host "List of R interpretators on this PC:"
     foreach ($r in $rPathList)
     {
-        $rBin = (Join-Path $r "R")
+        $rBin = (Join-Path $r "R.exe")
 
         if (Test-Path $rBin)
         {
@@ -77,7 +77,7 @@ function Set-RProject
 
     foreach ($r in $rPathList)
     {
-        $rBin = (Join-Path $r "R")
+        $rBin = (Join-Path $r "R.exe")
 
         if (Test-Path $rBin)
         {

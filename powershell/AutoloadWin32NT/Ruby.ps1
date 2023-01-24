@@ -64,11 +64,11 @@ function Find-Ruby
     {
         if ($ruby -match "jruby")
         {
-            $rubyBin = (Join-Path $ruby "jruby")
+            $rubyBin = (Join-Path $ruby "jruby.exe")
         }
         else
         {
-            $rubyBin = (Join-Path $ruby "ruby")
+            $rubyBin = (Join-Path $ruby "ruby.exe")
         }
 
         if (Test-Path $rubyBin)
@@ -87,11 +87,11 @@ function Set-Ruby
     {
         if ($ruby -match "jruby")
         {
-            $rubyBin = (Join-Path $ruby "jruby")
+            $rubyBin = (Join-Path $ruby "jruby.exe")
         }
         else
         {
-            $rubyBin = (Join-Path $ruby "ruby")
+            $rubyBin = (Join-Path $ruby "ruby.exe")
         }
 
         if (Test-Path $rubyBin)
