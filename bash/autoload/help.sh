@@ -8,7 +8,7 @@ cht()
 
     if [ $# -eq 0 ]
     then
-        echo "Usage: `basename $0` <langiage> <search string>"
+        echo "Usage: `basename $0` <language> <search string>"
         return 1
     fi
 
