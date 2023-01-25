@@ -57,7 +57,8 @@ ${function:wsws}    = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace      
 ${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
 
 # ClearCorrect Shortcuts
-${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical             }
+${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                      }
+${function:wscl}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical             }
 ${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev      }
 ${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev1     }
 ${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2     }

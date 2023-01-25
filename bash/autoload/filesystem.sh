@@ -103,6 +103,7 @@ alias   wst='cd ~/ws/tmp'
 
 # Straumann Shortcuts
 alias     wsc='cd ~/ws/clearcorrect'
+alias    wscl='cd ~/ws/clearcorrect/clinical'
 alias    wscc='cd ~/ws/clearcorrect/clinical/cc-dev'
 alias   wscc1='cd ~/ws/clearcorrect/clinical/cc-dev1'
 alias   wscc2='cd ~/ws/clearcorrect/clinical/cc-dev2'
