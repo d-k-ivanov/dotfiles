@@ -73,9 +73,30 @@ alias     ws='cd ~/ws'
 alias    wsm='cd ~/ws/my'
 alias   wsdf='cd ~/ws/my/dotfiles'
 alias   wsws='cd ~/OneDrive/Workspace'
-alias  wsdsc='cd ~/ws/my/workstations'
-alias wsconf='cd ~/ws/my/workstations'
 alias wsmisc='cd ~/ws/misc'
+
+case ${OS_DISTRIBUTION} in
+    "Archlinux" )
+        alias  wsdsc='cd ~/ws/my/workstations/arch'
+        alias wsconf='cd ~/ws/my/workstations/arch'
+        ;;
+
+    "Ubuntu" )
+        if [ ! "${WSL_DISTRO_NAME}" != "Ubuntu"   ]
+        then
+            alias  wsdsc='cd ~/ws/my/workstations/wsl'
+            alias wsconf='cd ~/ws/my/workstations/wsl'
+        else
+            alias  wsdsc='cd ~/ws/my/workstations/ubuntu'
+            alias wsconf='cd ~/ws/my/workstations/ubuntu'
+        fi
+        ;;
+
+    * )
+        alias  wsdsc='cd ~/ws/my/workstations'
+        alias wsconf='cd ~/ws/my/workstations'
+        ;;
+esac
 
 alias  wsaw='cd ~/.config/awesome'
 alias   wst='cd ~/ws/tmp'
