@@ -16,6 +16,7 @@ If (Test-Path "${Env:USERPROFILE}\.git.d"                ) { [System.IO.Director
 If (Test-Path "${Env:USERPROFILE}\.tmux"                 ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.tmux"                 , $true) }
 If (Test-Path "${Env:USERPROFILE}\.vim"                  ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.vim"                  , $true) }
 If (Test-Path "${Env:LOCALAPPDATA}\nvim"                 ) { [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\nvim"                 , $true) }
+If (Test-Path "${Env:APPDATA}\Greenshot"                 ) { [System.IO.Directory]::Delete("${Env:APPDATA}\Greenshot"                 , $true) }
 If (Test-Path "${Env:APPDATA}\NuGet"                     ) { [System.IO.Directory]::Delete("${Env:APPDATA}\NuGet"                     , $true) }
 If (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User") { [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true) }
 If (Test-Path "${Env:USERPROFILE}\.bash_profile"         ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bash_profile"  -Confirm:$false }
@@ -35,16 +36,17 @@ C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.bin"                  
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan_my"              "${PSScriptRoot}\conan"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.git.d"                 "${PSScriptRoot}\git.d"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.tmux"                  "${PSScriptRoot}\tmux"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.vim"                   "${PSScriptRoot}\vim"
 C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\nvim"                  "${PSScriptRoot}\nvim"
+C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Greenshot"                  "${PSScriptRoot}\data\Greenshot"
 C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\NuGet"                      "${PSScriptRoot}\NuGet"
 C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User" "${PSScriptRoot}\sublime"
-C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.vim"                   "${PSScriptRoot}\vim"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bash_profile"          "${PSScriptRoot}\bash_profile"
-C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.profile"               "${PSScriptRoot}\bash_profile"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bashrc"                "${PSScriptRoot}\bashrc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gemrc"                 "${PSScriptRoot}\gemrc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gitconfig"             "${PSScriptRoot}\.gitconfig-win"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gitmessage"            "${PSScriptRoot}\.gitmessage"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.profile"               "${PSScriptRoot}\bash_profile"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.tmux.conf"             "${PSScriptRoot}\tmux.conf"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.vimrc"                 "${PSScriptRoot}\vimrc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.wslconfig"             "${PSScriptRoot}\wslconfig"
