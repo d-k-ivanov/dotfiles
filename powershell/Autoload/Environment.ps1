@@ -159,6 +159,7 @@ function Initialize-Paths-User
         "C:\tools\stlink\1.7.0\bin"
         "C:\tools\swig"
         "C:\tools\vcpkg"
+        "C:\tools\vim\bin"
         "C:\tools\wabt\1.0.24"
         "C:\tools\wsl\arch"
         "C:\tools\wsl\debian"
