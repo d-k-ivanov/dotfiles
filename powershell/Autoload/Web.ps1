@@ -15,25 +15,20 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-# WGet: Use `wget` if available
-if (Get-Command wget -ErrorAction SilentlyContinue | Test-Path)
-{
-    Remove-Item alias:wget -ErrorAction SilentlyContinue
-}
+${function:wget-cc} = { wget --user ${Env:CC_NEXUS_USER} --password ${Env:CC_NEXUS_PASSWORD} @args }
+${function:curl-cc} = { curl -L -u "${Env:CC_NEXUS_USER}:${Env:CC_NEXUS_PASSWORD}" @args }
 
-# curl: Use `curl` if available
+# Weather
+${function:wet}     = { curl http://wttr.in/@args }
+${function:wet2}    = { curl http://v2.wttr.in/@args }
+${function:wetM}    = { wet Moscow }
+${function:wetM2}   = { wet2 Moscow }
+
 if (Get-Command curl -ErrorAction SilentlyContinue | Test-Path)
 {
-    Remove-Item alias:curl -ErrorAction SilentlyContinue
-    ${function:curl}    = { curl @args }
     # Gzip-enabled `curl`
     ${function:gurl}    = { curl --compressed @args }
 
-    # Weather
-    ${function:wet}     = { curl http://wttr.in/@args }
-    ${function:wet2}    = { curl http://v2.wttr.in/@args }
-    ${function:wetM}    = { wet Moscow }
-    ${function:wetM2}   = { wet2 Moscow }
 }
 else
 {

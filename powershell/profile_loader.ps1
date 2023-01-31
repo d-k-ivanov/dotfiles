@@ -28,19 +28,23 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 # Remove Aliases:
 If($PSVersionTable.PSVersion.Major -ge '6')
 {
+    Remove-Alias -Name curl -Force -ErrorAction SilentlyContinue
     Remove-Alias -Name gc   -Force -ErrorAction SilentlyContinue
     Remove-Alias -Name gci  -Force -ErrorAction SilentlyContinue
     Remove-Alias -Name gcm  -Force -ErrorAction SilentlyContinue
     Remove-Alias -Name gl   -Force -ErrorAction SilentlyContinue
     Remove-Alias -Name type -Force -ErrorAction SilentlyContinue
+    Remove-Alias -Name wget -Force -ErrorAction SilentlyContinue
 }
 else
 {
+    Remove-Item alias:curl -ErrorAction SilentlyContinue
     Remove-Item alias:gc   -ErrorAction SilentlyContinue
     Remove-Item alias:gci  -ErrorAction SilentlyContinue
     Remove-Item alias:gcm  -ErrorAction SilentlyContinue
     Remove-Item alias:gl   -ErrorAction SilentlyContinue
     Remove-Item alias:type -ErrorAction SilentlyContinue
+    Remove-Item alias:wget -ErrorAction SilentlyContinue
 }
 
 Get-ChildItem "$(Join-Path $PSScriptRoot "Autoload")\*.ps1"   | ForEach-Object { . $_ }
