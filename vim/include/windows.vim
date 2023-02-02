@@ -1,6 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Windows finalization
+" => Windows
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set fileformats=dos,unix
 nnoremap <Leader><leader>d :e ++ff=dos<CR>
 set nolist
 

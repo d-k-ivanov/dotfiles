@@ -25,7 +25,7 @@
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
+    syntax on
 endif
 
 " Background: Personalized for light console themes.
@@ -45,8 +45,8 @@ colorscheme nord
 " colorscheme summerfruit256
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=80
+set textwidth=120
+set colorcolumn=120
 set wrap
 
 " Enable line numbers
@@ -93,7 +93,7 @@ set ttyfast
 " :hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 " :hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 " if has("gui_running")
-    set cursorline
+"    set cursorline
 " else
 "     set cursorline
 "     :hi CursorLine   cterm=NONE ctermbg=3
@@ -107,13 +107,13 @@ set ttyfast
 " Max 500 lines for syntax
 " syntax sync minlines=500
 
-if ((!has('win32') || !has('win64')) && (has('unix') || has('macunix')))
+if (has('unix') || has('macunix'))
     " Split symbols
     if has("multi_byte")
         set fillchars=stl:\ ,stlnc:\ ,vert:┆,fold:-,diff:-
     else
         set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
-endif
+    endif
 
 " Whitespace symbols
     if has("multi_byte")

@@ -69,4 +69,3 @@ noremap <leader>ii :set paste<CR>
 
 " Turn off search highligting until the next search
 nnoremap <leader>3 :nohl<CR>
-
