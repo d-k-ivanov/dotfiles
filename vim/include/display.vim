@@ -107,7 +107,7 @@ set ttyfast
 " Max 500 lines for syntax
 " syntax sync minlines=500
 
-if (has('unix') || has('macunix'))
+if ((!has('win32') || !has('win64')) && (has('unix') || has('macunix')))
     " Split symbols
     if has("multi_byte")
         set fillchars=stl:\ ,stlnc:\ ,vert:┆,fold:-,diff:-
