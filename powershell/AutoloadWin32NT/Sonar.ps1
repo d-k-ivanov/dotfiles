@@ -50,7 +50,7 @@ function sonar_run_msbuild_cpp
     build-wrapper-win-x86-64.exe --out-dir bw-output msbuild $Path /t:Clean;Rebuild /m:$Threads /p:Configuration=Release /p:Platform=x64 /verbosity:normal
 }
 
-function sonar_scan_ormco_cpp
+function sonar_scan_wrapper
 {
     [CmdletBinding()]
     param
@@ -83,7 +83,7 @@ function sonar_scan_ormco_cpp
         }
         'dotnet'
         {
-            $cmd  = 'dotnet sonarscanner begin /o:"ormcornd" /k:"ormcornd_alignerweb-api" /d:sonar.host.url="https://sonarcloud.io"; '
+            $cmd  = "dotnet sonarscanner begin /o:`"${Organization}`" /k:`"${ProjectKey}`" /d:sonar.host.url=`"https://sonarcloud.io`"; "
             $cmd  = 'dotnet build -c release; '
             $cmd  = 'dotnet sonarscanner end'
         }
