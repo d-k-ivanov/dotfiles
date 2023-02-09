@@ -17,22 +17,11 @@ if ($MyInvocation.InvocationName -ne '.')
 
 function Get-JavaList
 {
-    <#
-    .SYNOPSIS
-        List installed Java versions on current PC.
-    .DESCRIPTION
-        List installed Java versions on current PC.
-    .EXAMPLE
-        Get-JavaList
-    .INPUTS
-        None
-    .OUTPUTS
-        Validated Java Kits Array
-    .NOTES
-        Written by: Dmitry Ivanov
-    #>
     $javaBases = @(
+        'C:\Program Files\Android\jdk\jdk-8.0.302.8-hotspot\'
+        'C:\Program Files\Eclipse Adoptium\'
         'C:\Program Files\Java\'
+        'C:\Program Files\Microsoft\'
         'C:\Program Files\OpenJDK\'
         'C:\Program Files (x86)\Java\'
         'C:\Program Files (x86)\OpenJDK\'
@@ -43,7 +32,7 @@ function Get-JavaList
     {
         if (Test-Path $javaBase)
         {
-            $((Get-ChildItem $javaBase).FullName | ForEach-Object { $javas += $_ })
+            $((Get-ChildItem $javaBase -filter "*j*" -Directory).FullName | ForEach-Object { $javas += $_ })
         }
     }
 
@@ -61,27 +50,24 @@ function Get-JavaList
 
 function Find-Java
 {
+    $coffee_cups = Get-JavaList
+
     Write-Host "List of Java Kits on this PC:"
-    return Get-JavaList
+    foreach ($cup in $coffee_cups)
+    {
+        $javaBin = (Join-Path $cup "bin/java.exe")
+
+        if (Test-Path $javaBin)
+        {
+            $javaVersion = $($(& "${javaBin}"-version 2>&1 | Select-Object -first 1) -replace '\D+(\d+.\d+.\d+)\D.*','$1')
+            Write-Host "- [${javaVersion}]`t-> $cup"
+        }
+    }
 }
 
 
 function Set-Java
 {
-    <#
-    .SYNOPSIS
-        Enable to use particular version of JAVA within current session.
-    .DESCRIPTION
-        Enable to use particular version of JAVA within current session.
-    .EXAMPLE
-        Set-Java
-    .INPUTS
-        Note
-    .OUTPUTS
-        None
-    .NOTES
-        Written by: Dmitry Ivanov
-    #>
     $ChoosenJavaVersion = Select-From-List $(Get-JavaList) "Java path"
     [Environment]::SetEnvironmentVariable("JAVA_HOME", ${ChoosenJavaVersion}, "Machine")
     $env:JAVA_HOME = ${ChoosenJavaVersion}
