@@ -16,10 +16,11 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # CMake Settings
-${function:cmake-settings-22} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-19} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-17} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-nj} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json ${PWD}\CMakeSettings.json }
+${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-19e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-17e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja-envs.json ${PWD}\CMakeSettings.json }
+${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json      ${PWD}\CMakeSettings.json }
 
 ${function:cgen-22-reldebug} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/RelDebug -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo @args }
 ${function:cgen-19-reldebug} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/RelDebug -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo @args }
@@ -41,10 +42,10 @@ ${function:cgen-nj-release} = { cmake -G "Ninja"                 -A x64 -B build
 ${function:cgen-nj-multy} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S . @args }
 
 # CMake Aliases
-Set-Alias cs cmake-settings-22
-Set-Alias cs22 cmake-settings-22
-Set-Alias cs19 cmake-settings-19
-Set-Alias cs17 cmake-settings-17
+Set-Alias cs cmake-settings-nj
+Set-Alias cs22 cmake-settings-22-envs
+Set-Alias cs19 cmake-settings-19-envs
+Set-Alias cs17 cmake-settings-17-envs
 Set-Alias cgen  cgen-22-debug
 Set-Alias cgend cgen-22-debug
 Set-Alias cgenr cgen-22-release

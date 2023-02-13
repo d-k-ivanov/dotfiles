@@ -4,13 +4,17 @@
             "environment": "platform_Win32",
             "namespace": "platform",
             "Name": "Win32",
-            "inheritEnvironments": [ "msvc_x86_x64" ]
+            "inheritEnvironments": [
+                "msvc_x86_x64"
+            ]
         },
         {
             "environment": "platform_x64",
             "namespace": "platform",
             "Name": "x64",
-            "inheritEnvironments": [ "msvc_x64_x64" ]
+            "inheritEnvironments": [
+                "msvc_x64_x64"
+            ]
         },
         {
             "environment": "system_Windows",
@@ -38,8 +42,12 @@
             "name": "x64-Debug",
             "generator": "Visual Studio 17 2022 Win64",
             "configurationType": "Debug",
-            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "inheritEnvironments": [
+                "platform_x64",
+                "system_Windows"
+            ],
             "buildRoot": "${env.BuildDir}\\${name}",
+            "installRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
             "cmakeCommandArgs": "${env.CMakeCommandArgs}",
             "ctestCommandArgs": "${env.CTestCommandArgs}",
@@ -47,11 +55,15 @@
             "variables": []
         },
         {
-            "name": "x64-RelDebug",
+            "name": "x64-RelWithDebInfo",
             "generator": "Visual Studio 17 2022 Win64",
             "configurationType": "RelWithDebInfo",
-            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "inheritEnvironments": [
+                "platform_x64",
+                "system_Windows"
+            ],
             "buildRoot": "${env.BuildDir}\\${name}",
+            "installRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
             "cmakeCommandArgs": "${env.CMakeCommandArgs}",
             "ctestCommandArgs": "${env.CTestCommandArgs}",
@@ -62,8 +74,12 @@
             "name": "x64-Release",
             "generator": "Visual Studio 17 2022 Win64",
             "configurationType": "Release",
-            "inheritEnvironments": [ "platform_x64", "system_Windows" ],
+            "inheritEnvironments": [
+                "platform_x64",
+                "system_Windows"
+            ],
             "buildRoot": "${env.BuildDir}\\${name}",
+            "installRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
             "cmakeCommandArgs": "${env.CMakeCommandArgs}",
             "ctestCommandArgs": "${env.CTestCommandArgs}",
@@ -74,8 +90,12 @@
             "name": "x86-Debug",
             "generator": "Visual Studio 17 2022",
             "configurationType": "Debug",
-            "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
+            "inheritEnvironments": [
+                "platform_Win32",
+                "system_Windows"
+            ],
             "buildRoot": "${env.BuildDir}\\${name}",
+            "installRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
             "cmakeCommandArgs": "${env.CMakeCommandArgs}",
             "ctestCommandArgs": "${env.CTestCommandArgs}",
@@ -83,11 +103,15 @@
             "variables": []
         },
         {
-            "name": "x86-RelDebug",
+            "name": "x86-RelWithDebInfo",
             "generator": "Visual Studio 17 2022",
             "configurationType": "RelWithDebInfo",
-            "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
+            "inheritEnvironments": [
+                "platform_Win32",
+                "system_Windows"
+            ],
             "buildRoot": "${env.BuildDir}\\${name}",
+            "installRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
             "cmakeCommandArgs": "${env.CMakeCommandArgs}",
             "ctestCommandArgs": "${env.CTestCommandArgs}",
@@ -98,8 +122,12 @@
             "name": "x86-Release",
             "generator": "Visual Studio 17 2022",
             "configurationType": "Release",
-            "inheritEnvironments": [ "platform_Win32", "system_Windows" ],
+            "inheritEnvironments": [
+                "platform_Win32",
+                "system_Windows"
+            ],
             "buildRoot": "${env.BuildDir}\\${name}",
+            "installRoot": "${env.BuildDir}\\${name}",
             "buildCommandArgs": "${env.BuildCommandArgs}",
             "cmakeCommandArgs": "${env.CMakeCommandArgs}",
             "ctestCommandArgs": "${env.CTestCommandArgs}",
