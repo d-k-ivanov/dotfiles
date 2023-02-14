@@ -594,7 +594,12 @@ else
 ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
-${function:vss}                 = { cs; vs . }
+${function:vss}                 = { cs;    vs . }
+${function:vssn}                = { csn;   vs . }
+${function:vss22}               = { cs22;  vs . }
+${function:vss22e}              = { cs22e; vs . }
+${function:vss19e}              = { cs19e; vs . }
+${function:vss17e}              = { cs17e; vs . }
 
 ${function:cl_build}      = { cl /EHsc @args }
 ${function:cl_link}       = { cl /EHsc @args /link }
