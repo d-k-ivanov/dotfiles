@@ -16,7 +16,7 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # CMake Settings
-${function:cmake-presets-nj}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json       ${PWD}\CMakePresets.json }
+${function:cmake-presets-nj}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json       ${PWD}\CMakePresets.json  }
 ${function:cmake-settings-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json       ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json      ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }
@@ -24,24 +24,25 @@ ${function:cmake-settings-19e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\c
 ${function:cmake-settings-17e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017-envs.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja-envs.json ${PWD}\CMakeSettings.json }
 
-${function:cgen-22-reldebug} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
-${function:cgen-19-reldebug} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
-${function:cgen-17-reldebug} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
-${function:cgen-17-reldebug} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
-
-${function:cgen-22-debug} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
-${function:cgen-19-debug} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
-${function:cgen-17-debug} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
-${function:cgen-17-debug} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
-${function:cgen-nj-debug} = { cmake -G "Ninja"                 -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
-
-${function:cgen-22-release} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
-${function:cgen-19-release} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
-${function:cgen-17-release} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
-${function:cgen-15-release} = { cmake -G "Visual Studio 15 2015" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
-${function:cgen-nj-release} = { cmake -G "Ninja"                 -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
-
 ${function:cgen-nj-multy} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S . @args }
+
+${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
+${function:cgen-debug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
+${function:cgen-debug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
+${function:cgen-debug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
+${function:cgen-debug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
+
+${function:cgen-release-nj} = { cmake -G "Ninja"                        -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
+${function:cgen-release-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
+${function:cgen-release-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
+${function:cgen-release-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
+${function:cgen-release-15} = { cmake -G "Visual Studio 15 2015" -A x64 -B build/x64-Release -S . -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=TRUE @args }
+
+${function:cgen-reldebug-nj} = { cmake -G "Ninja"                        -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
+${function:cgen-reldebug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
+${function:cgen-reldebug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
+${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
+${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
 
 # CMake Aliases
 Set-Alias cs cmake-settings-22

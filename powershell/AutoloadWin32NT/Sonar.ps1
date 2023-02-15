@@ -15,9 +15,9 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-${function:sonar-buiild-debug}    = { build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/x64-Debug          --config Debug          @args }
-${function:sonar-buiild-reldebug} = { build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/x64-RelWithDebInfo --config Release        @args }
-${function:sonar-buiild-release}  = { build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/x64-Release        --config RelWithDebInfo @args }
+${function:sonar-build-debug}    = { build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/x64-Debug          --config Debug          @args }
+${function:sonar-build-release}  = { build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/x64-Release        --config Release        @args }
+${function:sonar-build-reldebug} = { build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
 
 function sonar_set_token
 {
