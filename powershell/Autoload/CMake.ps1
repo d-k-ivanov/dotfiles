@@ -52,10 +52,10 @@ Set-Alias cs22 cmake-settings-22
 Set-Alias cs22e cmake-settings-22-envs
 Set-Alias cs19e cmake-settings-19-envs
 Set-Alias cs17e cmake-settings-17-envs
-Set-Alias cgen  cgen-22-debug
-Set-Alias cgend cgen-22-debug
-Set-Alias cgenr cgen-22-release
-Set-Alias cgenrd cgen-22-reldebug
+Set-Alias cgen  cgen-debug-22
+Set-Alias cgend cgen-debug-22
+Set-Alias cgenr cgen-release-22
+Set-Alias cgenrd cgen-reldebug-22
 
 # CMake Gen&Build Aliases (Release)
 ${function:cmake2022x86} = { dev32; cgen-22-release ; cmake --build build/x64-Release --config "Release" }
