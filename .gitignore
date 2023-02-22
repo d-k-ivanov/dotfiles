@@ -13,15 +13,10 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN
 
-# =========================
-# Operating System Files
-# =========================
 # OSX
-# =========================
 .DS_Store
 .AppleDouble
 .LSOverride
-.vscode
 
 # Icon must ends with two \r.
 Icon
@@ -47,3 +42,5 @@ SpIp.txt
 
 **/OOSU10.ini
 jetbrains-toolbox
+
+NuGet/config/
