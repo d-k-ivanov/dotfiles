@@ -596,6 +596,7 @@ ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 ${function:vss}                 = { cs;    vs . }
 ${function:vssn}                = { csn;   vs . }
+${function:vssp}                = { csp;   vs . }
 ${function:vss22}               = { cs22;  vs . }
 ${function:vss22e}              = { cs22e; vs . }
 ${function:vss19e}              = { cs19e; vs . }

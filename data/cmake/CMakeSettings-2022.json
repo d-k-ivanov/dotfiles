@@ -1,15 +1,15 @@
 {
     "configurations": [
         {
-            "name": "x64-Debug",
+            "name": "x64-Release",
             "generator": "Visual Studio 17 2022 Win64",
-            "configurationType": "Debug",
+            "configurationType": "Release",
             "inheritEnvironments": [ "msvc_x64_x64" ],
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
             "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
-            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Debug --output-on-failure",
+            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Release --output-on-failure",
             "intelliSenseMode": "windows-msvc-x64",
             "variables": []
         },
@@ -27,28 +27,28 @@
             "variables": []
         },
         {
-            "name": "x64-Release",
+            "name": "x64-Debug",
             "generator": "Visual Studio 17 2022 Win64",
-            "configurationType": "Release",
+            "configurationType": "Debug",
             "inheritEnvironments": [ "msvc_x64_x64" ],
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
             "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
-            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Release --output-on-failure",
+            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Debug --output-on-failure",
             "intelliSenseMode": "windows-msvc-x64",
             "variables": []
         },
         {
-            "name": "x86-Debug",
+            "name": "x86-Release",
             "generator": "Visual Studio 17 2022",
-            "configurationType": "Debug",
+            "configurationType": "Release",
             "inheritEnvironments": [ "msvc_x86_x64" ],
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
             "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
-            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Debug --output-on-failure",
+            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Release --output-on-failure",
             "intelliSenseMode": "windows-msvc-x86",
             "variables": []
         },
@@ -66,15 +66,15 @@
             "variables": []
         },
         {
-            "name": "x86-Release",
+            "name": "x86-Debug",
             "generator": "Visual Studio 17 2022",
-            "configurationType": "Release",
+            "configurationType": "Debug",
             "inheritEnvironments": [ "msvc_x86_x64" ],
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
             "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
-            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Release --output-on-failure",
+            "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Debug --output-on-failure",
             "intelliSenseMode": "windows-msvc-x86",
             "variables": []
         }
