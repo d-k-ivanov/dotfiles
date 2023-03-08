@@ -81,25 +81,6 @@ case $platform in
         # Local
         [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
-        # Opt
-        [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
-        # Root binaries
-        [[ -d /sbin ]]                              && export PATH=$PATH:/sbin
-        [[ -d /usr/sbin ]]                          && export PATH=$PATH:/usr/sbin
-        [[ -d /usr/local/sbin ]]                    && export PATH=$PATH:/usr/local/sbin
-        [[ -d /opt/local/sbin ]]                    && export PATH=$PATH:/opt/local/sbin
-        # User's
-        [[ -d /bin ]]                               && export PATH=$PATH:/bin
-        [[ -d /usr/bin ]]                           && export PATH=$PATH:/usr/bin
-        [[ -d /usr/local/bin ]]                     && export PATH=$PATH:/usr/local/bin
-        [[ -d /opt/local/bin ]]                     && export PATH=$PATH:/opt/local/bin
-        [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
-        # Snap
-        [[ -d /snap/bin ]]                          && export PATH=$PATH:/snap/bin
-        [[ -d /var/lib/snapd/snap/bin ]]            && export PATH=$PATH:/var/lib/snapd/snap/bin
-        # Ubuntu games
-        [[ -d /usr/games ]]                         && export PATH=$PATH:/usr/games
-        [[ -d /usr/local/games ]]                   && export PATH=$PATH:/usr/local/games
         # LLVM
         [[ -d /usr/lib/llvm/6/bin ]]                && export PATH=$PATH:/usr/lib/llvm/6/bin
         # Ruby
@@ -114,6 +95,25 @@ case $platform in
         [[ -d "$HOME/Android/Sdk/platform-tools" ]] && export PATH=$PATH:$HOME/Android/Sdk/platform-tools
         # Python
         # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
+        # Opt
+        [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
+        # User's
+        [[ -d /bin ]]                               && export PATH=$PATH:/bin
+        [[ -d /usr/bin ]]                           && export PATH=$PATH:/usr/bin
+        [[ -d /usr/local/bin ]]                     && export PATH=$PATH:/usr/local/bin
+        [[ -d /opt/local/bin ]]                     && export PATH=$PATH:/opt/local/bin
+        [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
+        # Snap
+        [[ -d /snap/bin ]]                          && export PATH=$PATH:/snap/bin
+        [[ -d /var/lib/snapd/snap/bin ]]            && export PATH=$PATH:/var/lib/snapd/snap/bin
+        # Ubuntu games
+        [[ -d /usr/games ]]                         && export PATH=$PATH:/usr/games
+        [[ -d /usr/local/games ]]                   && export PATH=$PATH:/usr/local/games
+        # Root binaries
+        [[ -d /sbin ]]                              && export PATH=$PATH:/sbin
+        [[ -d /usr/sbin ]]                          && export PATH=$PATH:/usr/sbin
+        [[ -d /usr/local/sbin ]]                    && export PATH=$PATH:/usr/local/sbin
+        [[ -d /opt/local/sbin ]]                    && export PATH=$PATH:/opt/local/sbin
         ;;
     Darwin )
         [[ -d /usr/local/bin ]]                     && export PATH=/usr/local/bin
