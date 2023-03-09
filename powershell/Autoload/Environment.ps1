@@ -152,6 +152,7 @@ function Initialize-Paths-User
         "C:\tools\ghc-9.2.1\bin"
         "C:\tools\ghc-9.0.1\bin"
         "C:\tools\gnuplot\bin"
+        "C:\tools\miniconda3\condabin"
         "C:\tools\msys64"
         "C:\tools\neovim\Neovim\bin"
         "C:\tools\ProccessHacker"
@@ -357,11 +358,11 @@ function Set-Env
         $system_path += ";$Env:PYTHON_PATH"
     }
 
-    # if ($env:PYENV)
-    # {
-    #     $system_path += ";$env:PYENV\bin"
-    #     $system_path += ";$env:PYENV\shims"
-    # }
+    if ($env:PYENV)
+    {
+        $system_path += ";$env:PYENV\bin"
+        $system_path += ";$env:PYENV\shims"
+    }
 
     if ($env:RUBY_PATH)
     {
