@@ -82,6 +82,9 @@ case $platform in
         # Local
         [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
+        # Qt
+        [[ -d $HOME/Qt/Tools/QtCreator/bin ]]       && export PATH=$PATH:$HOME/Qt/Tools/QtCreator/bin
+        [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
         # LLVM
         [[ -d /usr/lib/llvm/6/bin ]]                && export PATH=$PATH:/usr/lib/llvm/6/bin
         # Ruby
@@ -99,7 +102,6 @@ case $platform in
         # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
         # Opt
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
-        [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
         # User's
         [[ -d /bin ]]                               && export PATH=$PATH:/bin
         [[ -d /usr/bin ]]                           && export PATH=$PATH:/usr/bin
