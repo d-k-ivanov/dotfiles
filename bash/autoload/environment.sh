@@ -99,6 +99,7 @@ case $platform in
         # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
         # Opt
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
+        [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
         # User's
         [[ -d /bin ]]                               && export PATH=$PATH:/bin
         [[ -d /usr/bin ]]                           && export PATH=$PATH:/usr/bin
