@@ -8,3 +8,6 @@ for file in ${HOME}/.bash/autoload/*; do
 done
 
 source ${HOME}/.bash/bash-preexec.sh
+
+# command -v pyenv >/dev/null && eval "$(pyenv init -)"
+# command -v pyenv >/dev/null && eval "$(pyenv virtualenv-init -)"

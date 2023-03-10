@@ -73,6 +73,7 @@ export LANGUAGE=$LANG
 test -r ${HOME}/.bash/dir_colors_nord && eval $(dircolors ${HOME}/.bash/dir_colors_nord)
 export GPG_TTY=$(tty)
 export XZ_OPT="--threads=0"
+export PYENV_ROOT="$HOME/.pyenv"
 
 # Set PATHs
 platform=`uname`
@@ -94,6 +95,7 @@ case $platform in
         # Android
         [[ -d "$HOME/Android/Sdk/platform-tools" ]] && export PATH=$PATH:$HOME/Android/Sdk/platform-tools
         # Python
+        [[ -d $PYENV_ROOT ]]                        && export PATH="$PYENV_ROOT/bin:$PATH"
         # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
         # Opt
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
