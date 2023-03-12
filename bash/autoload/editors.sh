@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Do not prompt using Windows native with WSL
-export DONT_PROMPT_WSL_INSTALL='true'
+# alias vim='nvim'
+# alias gvim='nvim-qt'
 
 if command -v code-insiders >/dev/null
 then
@@ -12,8 +12,3 @@ fi
 
 alias ic="icode ."
 alias ww="icode ~/OneDrive/Workspace"
-
-show()
-{
-    type $@
-}

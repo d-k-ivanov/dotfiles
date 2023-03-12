@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+export XDG_RUNTIME_DIR=~/.local/runtime
+export RUNLEVEL=3
+
 alias c='clear'
 
 # Export DISPLAY variable. If local than it exports localhost, if remole it exports SSH Client
@@ -229,9 +232,6 @@ set-display()
 
 wsl-startx()
 {
-    export DISPLAY=localhost:0.0
-    export XDG_RUNTIME_DIR=~/runtime
-    export RUNLEVEL=3
     sudo /etc/init.d/dbus restart
     dbus-launch --exit-with-session ~/.xsession
 }

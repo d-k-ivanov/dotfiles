@@ -13,3 +13,8 @@ print_success()
     local ZZ="\033[0m"      # Reset
     printf "${G}${@}${ZZ}\n"
 }
+
+show()
+{
+    type $@
+}

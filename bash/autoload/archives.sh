@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export XZ_OPT="--threads=0"
+
 # Extract archives - use: extract <file>
 # Credits to http://dotfiles.org/~pseup/.bashrc
 extract()

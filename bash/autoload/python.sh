@@ -24,3 +24,6 @@ py_venv()
     python -m pip install --upgrade ipython
 }
 alias pip_update='py_venv'
+
+# command -v pyenv >/dev/null && eval "$(pyenv init -)"
+# command -v pyenv >/dev/null && eval "$(pyenv virtualenv-init -)"

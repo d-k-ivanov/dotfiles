@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+test -r ${HOME}/.bash/dir_colors_nord && eval $(dircolors ${HOME}/.bash/dir_colors_nord)
+
 alias        ..='cd ..'
 alias       ...='cd ../..'
 alias      ....='cd ../../..'
