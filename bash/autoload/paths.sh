@@ -10,6 +10,8 @@ case $platform in
         # Qt
         [[ -d $HOME/Qt/Tools/QtCreator/bin ]]       && export PATH=$PATH:$HOME/Qt/Tools/QtCreator/bin
         [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
+        # CLion
+        [[ -d $HOME/CLion/bin ]]                    && export PATH=$PATH:$HOME/CLion/bin
         # LLVM
         [[ -d /usr/lib/llvm/6/bin ]]                && export PATH=$PATH:/usr/lib/llvm/6/bin
         # Ruby
