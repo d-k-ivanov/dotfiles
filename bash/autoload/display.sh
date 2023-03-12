@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p ~/.local/runtime
+chmod 7700 ~/.local/runtime
 export XDG_RUNTIME_DIR=~/.local/runtime
 export RUNLEVEL=3
 
