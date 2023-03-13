@@ -17,6 +17,7 @@ if ($MyInvocation.InvocationName -ne '.')
 
 # CMake Settings
 ${function:cmake-presets-nj}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json       ${PWD}\CMakePresets.json  }
+${function:cmake-presets-22}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-2022.json        ${PWD}\CMakePresets.json  }
 ${function:cmake-settings-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json       ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json      ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }
@@ -47,11 +48,15 @@ ${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B buil
 # CMake Aliases
 Set-Alias cs cmake-settings-22
 Set-Alias csn cmake-settings-nj
-Set-Alias csp cmake-presets-nj
 Set-Alias cs22 cmake-settings-22
 Set-Alias cs22e cmake-settings-22-envs
 Set-Alias cs19e cmake-settings-19-envs
 Set-Alias cs17e cmake-settings-17-envs
+
+Set-Alias csp cmake-presets-nj
+Set-Alias cspnj cmake-presets-nj
+Set-Alias csp22 cmake-presets-22
+
 Set-Alias cgen  cgen-debug-22
 Set-Alias cgend cgen-debug-22
 Set-Alias cgenr cgen-release-22
