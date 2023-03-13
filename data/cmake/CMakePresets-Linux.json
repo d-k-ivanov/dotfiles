@@ -1,0 +1,113 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "x64-Debug",
+      "displayName": "Debug (x64)",
+      "description": "Debug on Linux (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-Debug",
+      "installDir": "${sourceDir}/install/x64-Debug",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copySourcesOptions": {
+            "exclusionList": [
+              ".vs",
+              "build",
+              "out"
+            ]
+          },
+          "intelliSenseMode": "linux-gcc-x64",
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "description": "RelWithDebInfo on Linux (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-RelWithDebInfo",
+      "installDir": "${sourceDir}/install/x64-RelWithDebInfo",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copySourcesOptions": {
+            "exclusionList": [
+              ".vs",
+              "build",
+              "out"
+            ]
+          },
+          "intelliSenseMode": "linux-gcc-x64",
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "x64-Release",
+      "displayName": "Release (x64)",
+      "description": "Release on Linux (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-Release",
+      "installDir": "${sourceDir}/install/x64-Release",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "copySourcesOptions": {
+            "exclusionList": [
+              ".vs",
+              "build",
+              "out"
+            ]
+          },
+          "intelliSenseMode": "linux-gcc-x64",
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      }
+    }
+  ]
+}
