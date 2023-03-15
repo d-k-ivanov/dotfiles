@@ -17,7 +17,8 @@ if ($MyInvocation.InvocationName -ne '.')
 
 # CMake Settings
 ${function:cmake-presets-nj}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json       ${PWD}\CMakePresets.json  }
-${function:cmake-presets-22}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-2022.json        ${PWD}\CMakePresets.json  }
+${function:cmake-presets-22}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-MSVC-22.json     ${PWD}\CMakePresets.json  }
+
 ${function:cmake-settings-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json       ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json      ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }

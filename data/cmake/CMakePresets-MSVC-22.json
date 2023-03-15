@@ -1,8 +1,94 @@
 {
-  "version": 4,
+  "version": 2,
   "configurePresets": [
     {
-      "name": "x64-Debug",
+      "name": "Windows-x64-Debug",
+      "displayName": "Debug (x64)",
+      "description": "Debug on Windows (64-bit)",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/x64-Debug",
+      "installDir": "${sourceDir}/install/x64-Debug",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-msvc-x64"
+        }
+      }
+    },
+    {
+      "name": "Windows-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "description": "RelWithDebInfo on Windows (64-bit)",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/x64-RelWithDebInfo",
+      "installDir": "${sourceDir}/install/x64-RelWithDebInfo",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-msvc-x64"
+        }
+      }
+    },
+    {
+      "name": "Windows-x64-Release",
+      "displayName": "Release (x64)",
+      "description": "Release on Windows (64-bit)",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "${sourceDir}/build/x64-Release",
+      "installDir": "${sourceDir}/install/x64-Release",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-msvc-x64"
+        }
+      }
+    },
+    {
+      "name": "Linux-x64-Debug",
       "displayName": "Debug (x64)",
       "description": "Debug on Linux (64-bit)",
       "generator": "Ninja",
@@ -38,7 +124,7 @@
       }
     },
     {
-      "name": "x64-RelWithDebInfo",
+      "name": "Linux-x64-RelWithDebInfo",
       "displayName": "RelWithDebInfo (x64)",
       "description": "RelWithDebInfo on Linux (64-bit)",
       "generator": "Ninja",
@@ -57,6 +143,7 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -74,7 +161,7 @@
       }
     },
     {
-      "name": "x64-Release",
+      "name": "Linux-x64-Release",
       "displayName": "Release (x64)",
       "description": "Release on Linux (64-bit)",
       "generator": "Ninja",
@@ -93,6 +180,7 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {

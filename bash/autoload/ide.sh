@@ -19,4 +19,4 @@ alias ic="icode ."
 alias ww="icode ~/OneDrive/Workspace"
 
 # alias vss='clion .'
-alias vssp="cp -rf ${WORKSPACE}/my/dotfiles/data/cmake/CMakePresets-Linux.json ./CMakePresets.json && icode ."
+alias vssp="cp -rf ${WORKSPACE}/my/dotfiles/data/cmake/CMakePresets-Linux-GCC.json ./CMakePresets.json && icode ."

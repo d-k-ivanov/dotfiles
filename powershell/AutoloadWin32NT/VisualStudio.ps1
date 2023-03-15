@@ -595,6 +595,7 @@ ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 
+## CS aliases moved to CMake.ps1
 ${function:vss}                 = { cs;    vs . }
 ${function:vssn}                = { csn;   vs . }
 ${function:vss22}               = { cs22;  vs . }

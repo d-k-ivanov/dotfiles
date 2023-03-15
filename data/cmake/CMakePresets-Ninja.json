@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 2,
   "configurePresets": [
     {
       "name": "Windows-x64-Debug",
@@ -49,6 +49,7 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -77,6 +78,7 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -141,6 +143,7 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -177,6 +180,7 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
