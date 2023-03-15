@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 6,
   "configurePresets": [
     {
       "name": "x64-Debug",
@@ -22,19 +22,6 @@
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
         "ENABLE_TESTING": "TRUE"
-      },
-      "vendor": {
-        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
-          "copySourcesOptions": {
-            "exclusionList": [
-              ".vs",
-              "build",
-              "out"
-            ]
-          },
-          "intelliSenseMode": "linux-gcc-x64",
-          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
-        }
       }
     },
     {
