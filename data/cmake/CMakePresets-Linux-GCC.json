@@ -1,8 +1,8 @@
 {
-  "version": 6,
+  "version": 4,
   "configurePresets": [
     {
-      "name": "x64-Debug",
+      "name": "Linux-x64-Debug",
       "displayName": "Debug (x64)",
       "description": "Debug on Linux (64-bit)",
       "generator": "Ninja",
@@ -25,7 +25,7 @@
       }
     },
     {
-      "name": "x64-RelWithDebInfo",
+      "name": "Linux-x64-RelWithDebInfo",
       "displayName": "RelWithDebInfo (x64)",
       "description": "RelWithDebInfo on Linux (64-bit)",
       "generator": "Ninja",
@@ -49,7 +49,7 @@
       }
     },
     {
-      "name": "x64-Release",
+      "name": "Linux-x64-Release",
       "displayName": "Release (x64)",
       "description": "Release on Linux (64-bit)",
       "generator": "Ninja",
@@ -70,6 +70,70 @@
         "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Linux-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Linux-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Linux-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Linux-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Linux-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Linux-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
       }
     }
   ]

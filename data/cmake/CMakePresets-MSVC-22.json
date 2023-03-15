@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 4,
   "configurePresets": [
     {
       "name": "Windows-x64-Debug",
@@ -195,6 +195,130 @@
           "intelliSenseMode": "linux-gcc-x64",
           "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
         }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Windows-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Windows-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Windows-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Windows-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Windows-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Windows-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Linux-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Linux-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Linux-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Windows-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Windows-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Windows-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Windows-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Windows-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Windows-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Linux-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Linux-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Linux-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
       }
     }
   ]
