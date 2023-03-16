@@ -132,6 +132,7 @@ function Initialize-Paths-User
         "C:\PROGRA~2\GitExtensions"
         "C:\PROGRA~2\Nmap"
         "C:\PROGRA~2\pgAdmin 4\v4\runtime"
+        "C:\Qt\Tools\QtCreator\bin"
         "C:\Strawberry\perl\bin"
         # "C:\Strawberry\perl\site\bin"
         "C:\tools\acli"
