@@ -142,7 +142,6 @@ function Initialize-Paths-User
         "C:\tools\CppDepend"
         "C:\tools\dart-sdk\bin"
         "C:\tools\doublecmd"
-        "C:\tools\emsdk"
         "C:\tools\fasm"
         "C:\tools\ghc-9.4.4\bin"
         "C:\tools\ghc-9.4.2\bin"
