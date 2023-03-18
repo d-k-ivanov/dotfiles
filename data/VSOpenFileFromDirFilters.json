@@ -1,0 +1,15 @@
+{
+  "dirs": [
+    ".git",
+    ".vs",
+    "bin",
+    "build",
+    "obj",
+    "out",
+    "vcpkg"
+  ],
+  "files": [
+    "*.tar",
+    "*.zip"
+  ]
+}

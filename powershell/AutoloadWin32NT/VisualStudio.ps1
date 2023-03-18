@@ -595,17 +595,21 @@ ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 
-## CS aliases moved to CMake.ps1
-${function:vss}                 = { cs;    vs . }
-${function:vssn}                = { csn;   vs . }
-${function:vss22}               = { cs22;  vs . }
-${function:vss19e}              = { cs19e; vs . }
-${function:vss17e}              = { cs17e; vs . }
-${function:vss22e}              = { cs22e; vs . }
+# CMake Settings
+${function:vs-copy-open-file-settings} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\VSOpenFileFromDirFilters.json ${PWD}\VSOpenFileFromDirFilters.json }
+Set-Alias vscofs vs-copy-open-file-settings
 
-${function:vssp}                = { cspnj; vs . }
-${function:vsspn}               = { cspnj; vs . }
-${function:vssp22}              = { csp22; vs . }
+## CS aliases moved to CMake.ps1
+${function:vss}                 = { vscofs; cs;    vs . }
+${function:vssn}                = { vscofs; csn;   vs . }
+${function:vss22}               = { vscofs; cs22;  vs . }
+${function:vss19e}              = { vscofs; cs19e; vs . }
+${function:vss17e}              = { vscofs; cs17e; vs . }
+${function:vss22e}              = { vscofs; cs22e; vs . }
+
+${function:vssp}                = { vscofs; cspnj; vs . }
+${function:vsspn}               = { vscofs; cspnj; vs . }
+${function:vssp22}              = { vscofs; csp22; vs . }
 
 ${function:cl_build}      = { cl /EHsc @args }
 ${function:cl_link}       = { cl /EHsc @args /link }
