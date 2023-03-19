@@ -51,10 +51,10 @@ ${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                        
 ${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                       }
 ${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\workstations\windows           }
 ${function:wsconf}  = { Set-Location ${Env:WORKSPACE}\my\workstations\windows           }
-${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
-${function:wsue}    = { Set-Location ${Env:WORKSPACE}\UnrealEngine                      }
-${function:wsws}    = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace              }
 ${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
+${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
+${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                                }
+${function:wsws}    = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace              }
 
 # ClearCorrect Shortcuts
 ${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                      }
@@ -313,7 +313,11 @@ function mkl
         [Parameter(Mandatory = $True)]
         [String] $Destination
     )
-    $cmd = "cmd /c 'mklink /d"
+    $cmd = "cmd /c 'mklink"
+    if ((Get-Item $Source) -is [System.IO.DirectoryInfo])
+    {
+        $cmd += " /d"
+    }
     $cmd += " $($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$Destination"))".trim('\')
     $cmd += " $(Convert-Path $Source)".trim('\')
     $cmd += "'"
