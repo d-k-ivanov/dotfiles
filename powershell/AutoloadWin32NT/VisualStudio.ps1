@@ -596,7 +596,7 @@ ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 
 # CMake Settings
-${function:vs-copy-open-file-settings} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\VSOpenFileFromDirFilters.json ${PWD}\VSOpenFileFromDirFilters.json }
+${function:vs-copy-open-file-settings} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\VSOpenFileFromDirFilters.json ${PWD}\VSOpenFileFromDirFilters.json }
 Set-Alias vscofs vs-copy-open-file-settings
 
 ## CS aliases moved to CMake.ps1
