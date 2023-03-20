@@ -139,14 +139,14 @@ if (Get-Command busybox -ErrorAction SilentlyContinue | Test-Path)
     # ${function:ls} = { busybox ls --color --group-directories-first @args }
     ${function:ls}      = { busybox ls --group-directories-first @args }
     # List all files in long format
-    ${function:l}       = { ls -CFh @args }
+    ${function:l}       = { ls -CFhH  @args }
     # List all files in long format, including hidden files
-    ${function:la}      = { ls -alh @args }
-    ${function:ll}      = { ls -alFh @args }
-    ${function:fls}     = { ls -l  @args | busybox grep -v ^d }
-    ${function:flsa}    = { ls -la @args | busybox grep -v ^d }
-    ${function:dirs}    = { ls -l  @args | busybox grep ^d }
-    ${function:dirsa}   = { ls -la @args | busybox grep ^d }
+    ${function:la}      = { ls -alhH  @args }
+    ${function:ll}      = { ls -alFhH @args }
+    ${function:fls}     = { ls -lH    @args | busybox grep -v ^d }
+    ${function:flsa}    = { ls -laH   @args | busybox grep -v ^d }
+    ${function:dirs}    = { ls -lH    @args | busybox grep ^d }
+    ${function:dirsa}   = { ls -laH   @args | busybox grep ^d }
     # List only directories
     ${function:lsd}     = { Get-ChildItem -Directory -Force @args }
     # List directories recursively

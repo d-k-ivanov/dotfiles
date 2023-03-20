@@ -42,28 +42,28 @@ case ${platform} in
         ;;
 esac
 
-alias l='ls -CFh --group-directories-first '
-alias la='ls -alh --group-directories-first '
-alias ll='ls -alFh --group-directories-first '
+alias l='ls -CFhH --group-directories-first '
+alias la='ls -alhH --group-directories-first '
+alias ll='ls -alFhH --group-directories-first '
 
 fls()
 {
-    ls -l  "${@}" | grep -v ^d
+    ls -lH  "${@}" | grep -v ^d
 }
 
 flsa()
 {
-    ls -la "${@}" | grep -v ^d
+    ls -laH "${@}" | grep -v ^d
 }
 
 dirs()
 {
-    ls -l  "${@}" | grep ^d
+    ls -lH  "${@}" | grep ^d
 }
 
 dirsa()
 {
-    ls -la "${@}" | grep ^d
+    ls -laH "${@}" | grep ^d
 }
 
 # Navigation Shortcuts
