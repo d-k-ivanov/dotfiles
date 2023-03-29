@@ -288,6 +288,7 @@ function Initialize-Paths-System
         "C:\PROGRA~2\GNU\GnuPG\pub"
         "C:\PROGRA~2\GnuWin32\bin"
         "C:\PROGRA~2\Gpg4win\..\GnuPG\bin"
+        "C:\PROGRA~2\IncrediBuild"
         "C:\PROGRA~2\Intel\Intel(R) Management Engine Components\DAL"
         "C:\PROGRA~2\Intel\TXE Components\DAL"
         "C:\PROGRA~2\Intel\TXE Components\IPT"
