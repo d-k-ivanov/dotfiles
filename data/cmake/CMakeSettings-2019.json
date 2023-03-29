@@ -21,7 +21,7 @@
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
-            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
+            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=TRUE",
             "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C RelWithDebInfo --output-on-failure",
             "intelliSenseMode": "windows-msvc-x64",
             "variables": []
@@ -34,7 +34,7 @@
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
-            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
+            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=TRUE",
             "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Release --output-on-failure",
             "intelliSenseMode": "windows-msvc-x64",
             "variables": []
@@ -60,7 +60,7 @@
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
-            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
+            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=TRUE",
             "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C RelWithDebInfo --output-on-failure",
             "intelliSenseMode": "windows-msvc-x86",
             "variables": []
@@ -73,7 +73,7 @@
             "buildRoot": "${projectDir}\\build\\${name}",
             "installRoot": "${projectDir}\\build\\${name}",
             "buildCommandArgs": "",
-            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE",
+            "cmakeCommandArgs": "-DCMAKE_SYSTEM_VERSION=10.0 -DENABLE_TESTING=TRUE -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=TRUE",
             "ctestCommandArgs": "--test-dir ${projectDir}\\build\\${name} -C Release --output-on-failure",
             "intelliSenseMode": "windows-msvc-x86",
             "variables": []
