@@ -44,7 +44,6 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       }
     },
@@ -68,7 +67,6 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
         "ENABLE_TESTING": "TRUE"
       }
     }

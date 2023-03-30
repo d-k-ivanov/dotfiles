@@ -30,16 +30,14 @@
     {
       "name": "Release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
+        "CMAKE_BUILD_TYPE": "Release"
       },
       "hidden": true
     },
     {
       "name": "RelWithDebInfo",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       },
       "hidden": true
     },
