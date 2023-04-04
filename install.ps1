@@ -11,7 +11,8 @@ $dotfilesScriptsDir = Join-Path $dotfilesProfileDir "Scripts"
 # Cleanup profile
 If (Test-Path "${Env:USERPROFILE}\.bash"                    ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bash"                 , $true) }
 If (Test-Path "${Env:USERPROFILE}\.bin"                     ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bin"                  , $true) }
-If (Test-Path "${Env:USERPROFILE}\.conan_my"                ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan_my"             , $true) }
+If (Test-Path "${Env:USERPROFILE}\.conan1_my"               ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan1_my"            , $true) }
+If (Test-Path "${Env:USERPROFILE}\.conan2_my"               ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan2_my"            , $true) }
 If (Test-Path "${Env:USERPROFILE}\.git.d"                   ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.git.d"                , $true) }
 If (Test-Path "${Env:USERPROFILE}\.tmux"                    ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.tmux"                 , $true) }
 If (Test-Path "${Env:USERPROFILE}\.vim"                     ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.vim"                  , $true) }
@@ -32,7 +33,8 @@ If (Test-Path "${Env:APPDATA}\Greenshot\greenshot-fixed.ini") { Remove-Item -For
 # Making Symlinks
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.bash"                     "${PSScriptRoot}\bash"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.bin"                      "${PSScriptRoot}\bin"
-C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan_my"                 "${PSScriptRoot}\conan"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan1_my"                "${PSScriptRoot}\conan1"
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan2_my"                "${PSScriptRoot}\conan2"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.git.d"                    "${PSScriptRoot}\git.d"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.tmux"                     "${PSScriptRoot}\tmux"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.vim"                      "${PSScriptRoot}\vim"
