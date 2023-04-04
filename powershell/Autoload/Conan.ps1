@@ -85,18 +85,18 @@ function conan_clean_vars
 # Variables
 $conan_env_path = 'c:\tools\conan_env'
 
-function conan1_symlinks
+function conan_symlinks
 {
     if ($Env:CONAN_USER_HOME)
     {
-        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan1_my"
+        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan_my"
         $conan_config   = Join-Path $Env:CONAN_USER_HOME ".conan\conan.conf"
         $conan_hooks    = Join-Path $Env:CONAN_USER_HOME ".conan\hooks"
         $conan_profiles = Join-Path $Env:CONAN_USER_HOME ".conan\profiles"
     }
     else
     {
-        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan1_my"
+        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan_my"
         $conan_config   = Join-Path $Env:USERPROFILE ".conan\conan.conf"
         $conan_hooks    = Join-Path $Env:USERPROFILE ".conan\hooks"
         $conan_profiles = Join-Path $Env:USERPROFILE ".conan\profiles"

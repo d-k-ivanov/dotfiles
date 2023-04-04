@@ -6,16 +6,14 @@ arch_build=x86
 compiler=clang
 compiler.version=10
 compiler.libcxx=libc++
-build_type=Debug
+build_type=Release
 
 [options]
 
-[buildenv]
+[build_requires]
+
+[env]
 CC=clang-cl
 CXX=clang-cl
 CONAN_CMAKE_GENERATOR=Ninja
 CONAN_CMAKE_PROGRAM=cmake.exe
-
-[tool_requires]
-
-[conf]

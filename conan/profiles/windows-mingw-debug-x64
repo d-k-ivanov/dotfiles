@@ -1,8 +1,8 @@
 [settings]
 os=Windows
 os_build=Windows
-arch=x86
-arch_build=x86
+arch=x86_64
+arch_build=x86_64
 compiler=gcc
 compiler.version=10
 compiler.libcxx=libstdc++11
@@ -12,12 +12,10 @@ build_type=Debug
 
 [options]
 
-[buildenv]
+[build_requires]
+
+[env]
 CC=gcc.exe
 CXX=c++.exe
 CONAN_CMAKE_GENERATOR=Unix Makefiles
 CONAN_CMAKE_PROGRAM=cmake.exe
-
-[tool_requires]
-
-[conf]
