@@ -28,6 +28,7 @@ ${function:cmake-settings-19e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\c
 ${function:cmake-settings-17e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017-envs.json    ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja-envs.json   ${PWD}\CMakeSettings.json }
 
+${function:cgen-22}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S . -DENABLE_TESTING=TRUE @args }
 ${function:cgen-nj-multy} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S . @args }
 
 ${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S . -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=TRUE @args }
@@ -62,7 +63,7 @@ Set-Alias csp22  cmake-presets-22
 Set-Alias csprnj cmake-presets-rnj
 Set-Alias cspr22 cmake-presets-r22
 
-Set-Alias cgen   cgen-reldebug-22
+Set-Alias cgen   cgen-22
 Set-Alias cgend  cgen-debug-22
 Set-Alias cgenr  cgen-release-22
 Set-Alias cgenrd cgen-reldebug-22
