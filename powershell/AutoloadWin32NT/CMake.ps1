@@ -16,15 +16,17 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # CMake Settings
-${function:cmake-presets-nj}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json       ${PWD}\CMakePresets.json  }
-${function:cmake-presets-22}   = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-MSVC-22.json     ${PWD}\CMakePresets.json  }
+${function:cmake-presets-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json          ${PWD}\CMakePresets.json }
+${function:cmake-presets-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-MSVC-22.json        ${PWD}\CMakePresets.json }
+${function:cmake-presets-rnj} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-RelDebug-Ninja.json ${PWD}\CMakePresets.json }
+${function:cmake-presets-r22} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-RelDebug-MSVC.json  ${PWD}\CMakePresets.json }
 
-${function:cmake-settings-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json       ${PWD}\CMakeSettings.json }
-${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json      ${PWD}\CMakeSettings.json }
-${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-19e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019-envs.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-17e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017-envs.json  ${PWD}\CMakeSettings.json }
-${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja-envs.json ${PWD}\CMakeSettings.json }
+${function:cmake-settings-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json         ${PWD}\CMakeSettings.json }
+${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json        ${PWD}\CMakeSettings.json }
+${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json    ${PWD}\CMakeSettings.json }
+${function:cmake-settings-19e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019-envs.json    ${PWD}\CMakeSettings.json }
+${function:cmake-settings-17e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017-envs.json    ${PWD}\CMakeSettings.json }
+${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja-envs.json   ${PWD}\CMakeSettings.json }
 
 ${function:cgen-nj-multy} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S . @args }
 
@@ -47,20 +49,22 @@ ${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B buil
 ${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S . -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_TESTING=TRUE @args }
 
 # CMake Aliases
-Set-Alias cs cmake-settings-22
-Set-Alias csn cmake-settings-nj
-Set-Alias cs22 cmake-settings-22
+Set-Alias cs    cmake-settings-22
+Set-Alias csn   cmake-settings-nj
+Set-Alias cs22  cmake-settings-22
 Set-Alias cs22e cmake-settings-22-envs
 Set-Alias cs19e cmake-settings-19-envs
 Set-Alias cs17e cmake-settings-17-envs
 
-Set-Alias csp cmake-presets-nj
-Set-Alias cspnj cmake-presets-nj
-Set-Alias csp22 cmake-presets-22
+Set-Alias csp    cmake-presets-nj
+Set-Alias cspnj  cmake-presets-nj
+Set-Alias csp22  cmake-presets-22
+Set-Alias csprnj cmake-presets-rnj
+Set-Alias cspr22 cmake-presets-r22
 
-Set-Alias cgen  cgen-debug-22
-Set-Alias cgend cgen-debug-22
-Set-Alias cgenr cgen-release-22
+Set-Alias cgen   cgen-reldebug-22
+Set-Alias cgend  cgen-debug-22
+Set-Alias cgenr  cgen-release-22
 Set-Alias cgenrd cgen-reldebug-22
 
 # CMake Gen&Build Aliases (Release)
@@ -73,7 +77,7 @@ ${function:cmake2017x64} = { Set-VC-Vars-All x64; cgen-17-release ; cmake --buil
 ${function:cmake2015x86} = { Set-VC-Vars-All x86; cgen-15-release ; cmake --build build/x64-Release --config "Release" }
 ${function:cmake2015x64} = { Set-VC-Vars-All x64; cgen-15-release ; cmake --build build/x64-Release --config "Release" }
 
-${function:cbuild} = { cmake --build @args }
+${function:cbuild}   = { cmake --build @args }
 ${function:cbuilddb} = { cmake --build --config Debug          @args }
 ${function:cbuildrl} = { cmake --build --config Release        @args }
 ${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args }

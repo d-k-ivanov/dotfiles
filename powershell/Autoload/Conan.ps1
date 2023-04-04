@@ -85,7 +85,7 @@ function conan_clean_vars
 # Variables
 $conan_env_path = 'c:\tools\conan_env'
 
-function conan_symlinks
+function conan1_symlinks
 {
     if ($Env:CONAN_USER_HOME)
     {
@@ -100,6 +100,50 @@ function conan_symlinks
         $conan_config   = Join-Path $Env:USERPROFILE ".conan\conan.conf"
         $conan_hooks    = Join-Path $Env:USERPROFILE ".conan\hooks"
         $conan_profiles = Join-Path $Env:USERPROFILE ".conan\profiles"
+    }
+
+    if (-Not (Test-Path $conan_hooks))
+    {
+        New-Item "${conan_hooks}" -ItemType Directory -ErrorAction SilentlyContinue
+    }
+
+    if (-Not (Test-Path $conan_profiles))
+    {
+        New-Item "${conan_profiles}" -ItemType Directory -ErrorAction SilentlyContinue
+    }
+
+    if (Test-Path $conan_my_path)
+    {
+        Remove-Item -Force -Confirm:$false "${conan_config}" -ErrorAction SilentlyContinue
+        cmd.exe /c mklink "${conan_config}" "${conan_my_path}\conan.conf"
+
+        Get-ChildItem "${conan_my_path}\hooks\" | ForEach-Object {
+            Remove-Item -Force -Confirm:$false "${conan_hooks}\$($_.Name)" -ErrorAction SilentlyContinue
+            cmd.exe /c mklink "${conan_hooks}\$($_.Name)" "$($_.FullName)"
+        }
+
+        Get-ChildItem "${conan_my_path}\profiles\" | ForEach-Object {
+            Remove-Item -Force -Confirm:$false "${conan_profiles}\$($_.Name)" -ErrorAction SilentlyContinue
+            cmd.exe /c mklink "${conan_profiles}\$($_.Name)" "$($_.FullName)"
+        }
+    }
+}
+
+function conan2_symlinks
+{
+    if ($Env:CONAN_USER_HOME)
+    {
+        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan_my"
+        $conan_config   = Join-Path $Env:CONAN_USER_HOME ".conan2\conan.conf"
+        $conan_hooks    = Join-Path $Env:CONAN_USER_HOME ".conan2\hooks"
+        $conan_profiles = Join-Path $Env:CONAN_USER_HOME ".conan2\profiles"
+    }
+    else
+    {
+        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan_my"
+        $conan_config   = Join-Path $Env:USERPROFILE ".conan2\conan.conf"
+        $conan_hooks    = Join-Path $Env:USERPROFILE ".conan2\hooks"
+        $conan_profiles = Join-Path $Env:USERPROFILE ".conan2\profiles"
     }
 
     if (-Not (Test-Path $conan_hooks))

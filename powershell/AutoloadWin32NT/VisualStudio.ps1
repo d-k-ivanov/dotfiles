@@ -607,9 +607,11 @@ ${function:vss19e}              = { vscofs; cs19e; vs . }
 ${function:vss17e}              = { vscofs; cs17e; vs . }
 ${function:vss22e}              = { vscofs; cs22e; vs . }
 
-${function:vssp}                = { vscofs; cspnj; vs . }
-${function:vsspn}               = { vscofs; cspnj; vs . }
-${function:vssp22}              = { vscofs; csp22; vs . }
+${function:vssp}                = { vscofs; cspnj;  vs . }
+${function:vsspn}               = { vscofs; cspnj;  vs . }
+${function:vssp22}              = { vscofs; csp22;  vs . }
+${function:vssprnj}             = { vscofs; csprnj; vs . }
+${function:vsspr22}             = { vscofs; cspr22; vs . }
 
 ${function:cl_build}      = { cl /EHsc @args }
 ${function:cl_link}       = { cl /EHsc @args /link }
