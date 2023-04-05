@@ -600,14 +600,14 @@ ${function:vs-copy-open-file-settings} = { Copy-Item ${Env:WORKSPACE}\my\dotfile
 Set-Alias vscofs vs-copy-open-file-settings
 
 ## CS aliases moved to CMake.ps1
-${function:vss}                 = { vscofs; cs;    vs . }
+${function:vss}                 = { vscofs; cs22;  vs . }
 ${function:vssn}                = { vscofs; csn;   vs . }
 ${function:vss22}               = { vscofs; cs22;  vs . }
 ${function:vss19e}              = { vscofs; cs19e; vs . }
 ${function:vss17e}              = { vscofs; cs17e; vs . }
 ${function:vss22e}              = { vscofs; cs22e; vs . }
 
-${function:vssp}                = { vscofs; cspnj;  vs . }
+${function:vssp}                = { vscofs; csp;    vs . }
 ${function:vsspn}               = { vscofs; cspnj;  vs . }
 ${function:vssp22}              = { vscofs; csp22;  vs . }
 ${function:vssprnj}             = { vscofs; csprnj; vs . }
