@@ -52,9 +52,12 @@ case $platform in
         [[ -d /usr/local/sbin ]]                    && export PATH=$PATH:/usr/local/sbin
         [[ -d /usr/local/opt/python3/bin ]]         && export PATH=$PATH:/usr/local/opt/python3/bin
         [[ -d $HOME/Library/Python/3.6/bin ]]       && export PATH=$PATH:Library/Python/3.6/bin
-        [[ -d $HOME/Library/Python/3.7/bin ]]       && export PATH=$PATH:Library/Python/3.6/bin
-        [[ -d $HOME/Library/Python/3.8/bin ]]       && export PATH=$PATH:Library/Python/3.6/bin
-        [[ -d $HOME/Library/Python/3.9/bin ]]       && export PATH=$PATH:Library/Python/3.6/bin
+        [[ -d $HOME/Library/Python/3.7/bin ]]       && export PATH=$PATH:Library/Python/3.7/bin
+        [[ -d $HOME/Library/Python/3.8/bin ]]       && export PATH=$PATH:Library/Python/3.8/bin
+        [[ -d $HOME/Library/Python/3.9/bin ]]       && export PATH=$PATH:Library/Python/3.9/bin
+        [[ -d $HOME/Library/Python/3.10/bin ]]      && export PATH=$PATH:Library/Python/3.10/bin
+        [[ -d $HOME/Library/Python/3.11/bin ]]      && export PATH=$PATH:Library/Python/3.11/bin
+        [[ -d $HOME/Library/Python/3.12/bin ]]      && export PATH=$PATH:Library/Python/3.12/bin
         [[ -d /usr/local/opt/python2/bin ]]         && export PATH=$PATH:/usr/local/opt/python2/bin
         [[ -d $HOME/Library/Python/2.7/bin ]]       && export PATH=$PATH:Library/Python/2.7/bin
         [[ -d /usr/bin ]]                           && export PATH=$PATH:/usr/bin
