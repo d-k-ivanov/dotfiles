@@ -103,7 +103,7 @@ function jp
     }
 }
 
-function jp-conf
+function jpactivate
 {
     <#
     .SYNOPSIS
@@ -113,8 +113,8 @@ function jp-conf
     .PARAMETER ReInstall
         Remove environment and install from scratch
     .EXAMPLE
-        jpconf
-        jpconf -ReInstall
+        jpactivate
+        jpactivate -ReInstall
     .INPUTS
         Switch
     .OUTPUTS
@@ -139,7 +139,6 @@ function jp-conf
         python -m pip install virtualenv
     }
 
-
     $jenvDir = Join-Path $env:USERPROFILE .jpenv
     if ($ReInstall -And (Test-Path $jenvDir) )
     {
@@ -156,7 +155,7 @@ function jp-conf
     & $jenvDir\Scripts\activate.ps1
 }
 
-function jp-install
+function jpinstall
 {
     <#
     .SYNOPSIS
@@ -166,8 +165,8 @@ function jp-install
     .PARAMETER ReInstall
         Remove environment and install from scratch
     .EXAMPLE
-        jpconf
-        jpconf -ReInstall
+        jpinstall
+        jpinstall -ReInstall
     .INPUTS
         Switch
     .OUTPUTS
@@ -220,7 +219,7 @@ function jp-install
     deactivate
 }
 
-function jp-remove
+function jpremove
 {
     <#
     .SYNOPSIS
