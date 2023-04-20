@@ -212,6 +212,7 @@ function jpinstall
     python -m pip install --upgrade numpy
     python -m pip install --upgrade numpy-stl
     python -m pip install --upgrade pandas
+    python -m pip install --upgrade scipy
     python -m pip install --upgrade seaborn
     python -m pip install --upgrade sklearn
     # python -m pip install --upgrade powershell_kernel
