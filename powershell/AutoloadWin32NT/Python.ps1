@@ -90,6 +90,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 function Get-PyList
 {
     $serpents = @(
+        'C:\Python312'
         'C:\Python311'
         'C:\Python310'
         'C:\Python39'
@@ -196,3 +197,23 @@ function Clear-Py
     }
     # Set-Env
 }
+
+function PyEnv-Enable
+{
+    Clear-Py
+    $PyEnvLocation = "${env:USERPROFILE}\.pyenv\pyenv-win\"
+    [Environment]::SetEnvironmentVariable("PYENV", $PyEnvLocation, "User")
+    Set-Item -Path Env:PYENV -Value "$PyEnvLocation"
+    # Set-Env
+}
+
+function PyEnv-Disable
+{
+    [Environment]::SetEnvironmentVariable("PYENV", $null, "User")
+    if ($env:PYENV)
+    {
+        Remove-Item Env:PYENV
+    }
+    # Set-Env
+}
+
