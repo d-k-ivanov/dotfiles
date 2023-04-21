@@ -70,12 +70,13 @@ dirsa()
 alias   drop='cd ~/Dropbox'
 alias   desk='cd ~/Desktop'
 alias   docs='cd ~/Documents'
-alias   down='cd ~/down'
+alias   down='cd ~/Downloads'
 alias     ws='cd ~/ws'
 alias    wsm='cd ~/ws/my'
 alias   wsdf='cd ~/ws/my/dotfiles'
-alias   wsws='cd ~/OneDrive/Workspace'
+alias   wsws='cd ~/ws/my/workspace'
 alias wsmisc='cd ~/ws/misc'
+# alias   wsws='cd ~/OneDrive/Workspace'
 
 case ${OS_DISTRIBUTION} in
     "Archlinux" )
