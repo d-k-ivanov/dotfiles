@@ -86,7 +86,7 @@ function Set-RProject
         }
     }
 
-    $ChoosenVersion = Select-From-List $ValidatedVersions "R Prokect Version" $Versions
+    $ChoosenVersion = Select-From-List $ValidatedVersions "R Project Version" $Versions
     [Environment]::SetEnvironmentVariable("RPROJECT_PATH", $ChoosenVersion, "Machine")
     Set-Item -Path Env:RPROJECT_PATH -Value "$ChoosenVersion"
     # Set-Env

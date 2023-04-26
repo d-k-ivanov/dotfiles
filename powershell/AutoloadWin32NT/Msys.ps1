@@ -20,15 +20,15 @@ function Use-Msys2
     [CmdletBinding()]
     param
     (
-        [string] $arch = '64'
+        [string] $toolchain = 'clang64'
     )
     $msys_path = $(Get-Command msys2.exe -ErrorAction SilentlyContinue | Split-Path)
 
     if ($msys_path)
     {
         $msys_bin_path  = $(Join-Path $msys_path "usr\bin")
-        $mingw_bin_path = $(Join-Path $msys_path "mingw${arch}\bin")
-        Set-Item -Path Env:PATH -Value "${msys_bin_path};${mingw_bin_path};${Env:PATH}"
+        $toolchain_bin_path = $(Join-Path $msys_path "${toolchain}\bin")
+        Set-Item -Path Env:PATH -Value "${msys_bin_path};${toolchain_bin_path};${Env:PATH}"
     }
     else
     {
