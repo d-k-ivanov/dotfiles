@@ -141,6 +141,7 @@ function Initialize-Paths-User
         # "C:\tools\Atlassian\atlassian-plugin-sdk-8.2.7\bin"
         "C:\tools\BCURRAN3"
         "C:\tools\binaryen\bin"
+        "C:\tools\cobertura"
         "C:\tools\CppDepend"
         "C:\tools\dart-sdk\bin"
         "C:\tools\doublecmd"
