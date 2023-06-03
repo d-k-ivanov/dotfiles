@@ -188,3 +188,7 @@ wsl-rebind-mounts()
 {
     sudo mount --bind /mnt/c /c && sudo mount --bind /mnt/d /d
 }
+
+# rm aliases
+alias rmf='rm -f '
+alias rmrf='rm -rf '
