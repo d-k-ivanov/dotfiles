@@ -576,16 +576,21 @@ function Set-VC-Vars-All
     }
 }
 
+
+# Open File From Directory Config
+${function:vs-copy-open-file-settings} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\VSOpenFileFromDirFilters.json ${PWD}\VSOpenFileFromDirFilters.json }
+Set-Alias vscofs vs-copy-open-file-settings
+
 if ($ENV:VSDevEnv)
 {
-    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { dev }; devenv @args }
+    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { dev }; vscofs; devenv @args }
     ${function:vsix}            = { dev; VSIXInstaller.exe @args }
     # color picker: 11559f0c-c44f-4a26-98e7-f5015f07d691
     ${function:vsix_remove}     = { dev; VSIXInstaller.exe /u:@args }
 }
 else
 {
-    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { Set-VC-Vars-All }; devenv @args }
+    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { Set-VC-Vars-All }; vscofs; devenv @args }
     ${function:vsix}            = { Set-VC-Vars-All; VSIXInstaller.exe @args }
     # color picker: 11559f0c-c44f-4a26-98e7-f5015f07d691
     ${function:vsix_remove}     = { Set-VC-Vars-All; VSIXInstaller.exe /u:@args }
@@ -595,9 +600,6 @@ ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 
-# CMake Settings
-${function:vs-copy-open-file-settings} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\VSOpenFileFromDirFilters.json ${PWD}\VSOpenFileFromDirFilters.json }
-Set-Alias vscofs vs-copy-open-file-settings
 
 ## CS aliases moved to CMake.ps1
 ${function:vss}                 = { vscofs; cs22;  vs . }
