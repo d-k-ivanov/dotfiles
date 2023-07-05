@@ -583,14 +583,14 @@ Set-Alias vscofs vs-copy-open-file-settings
 
 if ($ENV:VSDevEnv)
 {
-    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { dev }; vscofs; devenv @args }
+    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { dev }; devenv @args }
     ${function:vsix}            = { dev; VSIXInstaller.exe @args }
     # color picker: 11559f0c-c44f-4a26-98e7-f5015f07d691
     ${function:vsix_remove}     = { dev; VSIXInstaller.exe /u:@args }
 }
 else
 {
-    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { Set-VC-Vars-All }; vscofs; devenv @args }
+    ${function:vs}              = { if (-Not ${ENV:VCToolsVersion}) { Set-VC-Vars-All }; devenv @args }
     ${function:vsix}            = { Set-VC-Vars-All; VSIXInstaller.exe @args }
     # color picker: 11559f0c-c44f-4a26-98e7-f5015f07d691
     ${function:vsix_remove}     = { Set-VC-Vars-All; VSIXInstaller.exe /u:@args }
@@ -602,27 +602,30 @@ ${function:vssafe}              = { vs /SafeMode @args }
 
 
 ## CS aliases moved to CMake.ps1
-${function:vss}                 = { vscofs; cs22;  vs . }
-${function:vssn}                = { vscofs; csn;   vs . }
-${function:vss22}               = { vscofs; cs22;  vs . }
-${function:vss19e}              = { vscofs; cs19e; vs . }
-${function:vss17e}              = { vscofs; cs17e; vs . }
-${function:vss22e}              = { vscofs; cs22e; vs . }
+${function:vss}                 = { cs22;  vs . }
+${function:vssn}                = { csn;   vs . }
+${function:vss22}               = { cs22;  vs . }
+${function:vss19e}              = { cs19e; vs . }
+${function:vss17e}              = { cs17e; vs . }
+${function:vss22e}              = { cs22e; vs . }
 
-${function:vssp}                = { vscofs; csp;    vs . }
-${function:vsspn}               = { vscofs; cspnj;  vs . }
-${function:vssp22}              = { vscofs; csp22;  vs . }
-${function:vssprnj}             = { vscofs; csprnj; vs . }
-${function:vsspr22}             = { vscofs; cspr22; vs . }
+${function:vssp}                = { csp;    vs . }
+${function:vsspn}               = { cspnj;  vs . }
+${function:vssp22}              = { csp22;  vs . }
+${function:vssprnj}             = { csprnj; vs . }
+${function:vsspr22}             = { cspr22; vs . }
 
-${function:cl_build}      = { cl /EHsc @args }
-${function:cl_link}       = { cl /EHsc @args /link }
-${function:cl_preprocess} = { cl /P @args }
+${function:cl_build}            = { cl /EHsc @args }
+${function:cl_link}             = { cl /EHsc @args /link }
+${function:cl_preprocess}       = { cl /P @args }
 
 # Work aliases
-${function:build_aligner_x32}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=Win32 /verbosity:normal }
-${function:build_aligner_x64}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=x64   /verbosity:normal }
-${function:build_aligner_x32_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=Win32 /verbosity:normal }
-${function:build_aligner_x64_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=x64   /verbosity:normal }
-${function:build_aligner_x32_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=Win32 /verbosity:normal }
-${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=x64   /verbosity:normal }
+${function:vscc}                = { vs .\build\cc-dev.sln }
+
+# Work Obsolete
+# ${function:build_aligner_x32}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=Win32 /verbosity:normal }
+# ${function:build_aligner_x64}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=x64   /verbosity:normal }
+# ${function:build_aligner_x32_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=Win32 /verbosity:normal }
+# ${function:build_aligner_x64_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=x64   /verbosity:normal }
+# ${function:build_aligner_x32_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=Win32 /verbosity:normal }
+# ${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=x64   /verbosity:normal }
