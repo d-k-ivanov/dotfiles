@@ -616,3 +616,18 @@ function show_git_remote_recursively
         }
     }
 }
+
+if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
+{
+    function grcpr
+    {
+        git fetch origin main
+        git checkout DEV/Copyright
+        git rebase main
+    }
+
+    function grcpr_push
+    {
+        git push --force origin DEV/Copyright
+    }
+}

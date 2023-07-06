@@ -66,7 +66,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         [CmdletBinding()]
         param
         (
-            [switch] $SkipInit
+            [switch] $InstallBaseModules
         )
         [string] $SessionID = [System.Guid]::NewGuid()
         $TempFreezeFile  = (Join-Path "${Env:Temp}" "${SessionID}")
@@ -74,7 +74,9 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         python -m pip uninstall -y -r "${TempFreezeFile}"
         Remove-Item -Force "${TempFreezeFile}"
         # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
-        if(-Not $SkipInit)
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade virtualenv
+        if($InstallBaseModules)
         {
             py_init_environmnet
         }

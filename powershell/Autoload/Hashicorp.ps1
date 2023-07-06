@@ -35,4 +35,3 @@ if (Get-Command terraform -ErrorAction SilentlyContinue | Test-Path)
 
 ${function:packer_verbose_logs_on}  = { $Env:PACKER_LOG=1 }
 ${function:packer_verbose_logs_off} = { $Env:PACKER_LOG=0 }
-
