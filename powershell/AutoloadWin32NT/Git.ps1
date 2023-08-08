@@ -20,6 +20,7 @@ if ($MyInvocation.InvocationName -ne '.')
 ${function:g} = { git @args }
 ${function:gg} = { git -c core.pager='delta --features=code-review-chameleon' @args }
 ${function:gunsec} = { git -c http.sslVerify=false @args }
+${function:gb} = { git branch @args }
 
 # Logs
 ${function:gll} = { git log --pretty=format:"%h - %an, %ar : %s" @args }
@@ -123,14 +124,16 @@ ${function:gppt} = { git push --tags @args }
 
 # Checkout
 ${function:gck} = { git checkout @args }
-${function:gb} = { git checkout -b @args }
-${function:got} = { git checkout - @args }
-${function:gomn} = { git checkout main @args }
-${function:goms} = { git checkout master @args }
+${function:gckb} = { git checkout -b @args }
+${function:gckt} = { git checkout - @args }
+${function:gckmn} = { git checkout main @args }
+${function:gckms} = { git checkout master @args }
 
 # Remove Branches
 ${function:gbr} = { git branch -d @args }
+${function:gbr_filter} = { git branch | grep @args | %{ gbr $_.trim() } }
 ${function:gbrf} = { git branch -D @args }
+${function:gbrf_filter} = { git branch | grep @args | %{ gbrf -D $_.trim() } }
 ${function:gbrr} = { git push origin --delete @args }
 ${function:gbrrm} = { git branch -D @args; git push origin --delete @args }
 ${function:gbrr_gh} = { git push github --delete @args }

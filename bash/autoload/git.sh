@@ -120,6 +120,7 @@ gprune()
 # Main
 alias g="git"
 alias gunsec="git -c http.sslVerify=false"
+alias gb="git branch"
 
  # Logs
 alias gll='git log --pretty=format:"%h - %an, %ar : %s"'
@@ -213,10 +214,10 @@ alias gps='(git stash --include-untracked | grep -v "No local changes to save") 
 
 # Checkout
 alias gck="git checkout"
-alias gb="git checkout -b"
-alias got="git checkout -"
-alias gomn="git checkout main"
-alias goms="git checkout master"
+alias gckb="git checkout -b"
+alias gckt="git checkout -"
+alias gckmn="git checkout main"
+alias gckms="git checkout master"
 alias gabr='git branch -r | grep -v "\->" | while read remote; do git branch --track "${remote#origin/}" "$remote"; done'
 
 # Remove Branches
