@@ -66,7 +66,7 @@ ${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-d
 ${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev3     }
 ${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev4     }
 ${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\vcpkg                             }
-${function:wsce}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\service-exporters    }
+${function:wsce}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\exporters            }
 
 # IRQ Shortcuts
 ${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                               }
