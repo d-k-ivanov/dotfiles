@@ -12,8 +12,8 @@ swap=32GB
 # Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
 # swapfile=%USERPROFILE%\AppData\Local\Temp\swap.vhdx
 
-# Boolean to turn on or off support for GUI applications (WSLg) in WSL. Only available for Windows 11.
-# guiApplications=false
+# Boolean to turn on or off support for GUI applications (WSLg) in WSL.
+guiApplications=false
 
 # Specify a custom Linux kernel to use with your installed distros. The default kernel used can be found at https://github.com/microsoft/WSL2-Linux-Kernel
 # kernel=C:\\temp\\myCustomKernel
