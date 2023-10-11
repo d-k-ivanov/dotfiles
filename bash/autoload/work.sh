@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-CC_VCPKG_DEV=${HOME}/v
-CC_VCPKG_ROOT=${HOME}/vcpkg
+export CC_VCPKG_DEV=${HOME}/v
+export CC_VCPKG_ROOT=${HOME}/vcpkg
 
 # === Current === #
 alias ccdev=" ln -sf ${HOME}/ws/vcpkg                                          ${CC_VCPKG_DEV}"
@@ -17,4 +17,3 @@ alias ccdev3=" ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 
 alias ccdev4=" ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 ${HOME}/vcpkg-export-latest"
 alias ccdev5l="ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 ${HOME}/vcpkg-export-latest"
 alias ccdev6l="ln -sf ${CC_VCPKG_ROOT}/fea1b6ae25a41b52e4581ff690c178d4a9224740 ${HOME}/vcpkg-export-latest"
-

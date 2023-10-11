@@ -172,6 +172,7 @@ function Initialize-Paths-User
         "C:\tools\wsl\debian"
         "C:\tools\wsl\kali"
         "C:\tools\wsl\ubuntu"
+        # "C:\tools\wsltty\bin"
         "C:\VulkanSDK\1.3.211.0\Bin"
         "C:\VulkanSDK\1.3.204.1\Bin"
         "C:\VulkanSDK\1.2.198.1\Bin"
