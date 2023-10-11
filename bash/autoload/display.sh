@@ -13,7 +13,7 @@ alias   gldirect='export LIBGL_ALWAYS_INDIRECT=1'
 alias glindirect='export LIBGL_ALWAYS_INDIRECT=0'
 
 # Export display for WSL:
-if [[ ! -n "${WSLENV}" ]]
+if [[ -n "${WSL_DISTRO_NAME}" ]]
 then
     # export DISPLAY=localhost:0.0
     export DISPLAY=$(ip route show default | awk '/default/ {print $3}'):0.0
