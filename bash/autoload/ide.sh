@@ -5,6 +5,14 @@
 # alias gvim='nvim-qt'
 # alias  vim='nvim'
 
+if command -v intellij-idea-ultimate >/dev/null
+then
+    alias idea='intellij-idea-ultimate'
+elif command -v intellij-idea-community >/dev/null
+then
+    alias idea='intellij-idea-community'
+fi
+
 # alias cide='clion .'
 # alias  ide='idea  .'
 
