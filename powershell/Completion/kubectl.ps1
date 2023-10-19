@@ -24,7 +24,7 @@ filter __kubectl_escapeStringWithSpecialChars {
     $_ -replace '\s|#|@|\$|;|,|''|\{|\}|\(|\)|"|`|\||<|>|&','`$&'
 }
 
-Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock {
+[scriptblock]$__kubectlCompleterBlock = {
     param(
             $WordToComplete,
             $CommandAst,
@@ -58,6 +58,7 @@ Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock {
     # Prepare the command to request completions for the program.
     # Split the command at the first space to separate the program and arguments.
     $Program,$Arguments = $Command.Split(" ",2)
+
     $RequestComp="$Program __complete $Arguments"
     __kubectl_debug "RequestComp: $RequestComp"
 
@@ -87,10 +88,12 @@ Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock {
     }
 
     __kubectl_debug "Calling $RequestComp"
+    # First disable ActiveHelp which is not supported for Powershell
+    $env:KUBECTL_ACTIVE_HELP=0
+
     #call the command store the output in $out and redirect stderr and stdout to null
     # $Out is an array contains each line per element
     Invoke-Expression -OutVariable out "$RequestComp" 2>&1 | Out-Null
-
 
     # get directive from last line
     [int]$Directive = $Out[-1].TrimStart(':')
@@ -237,3 +240,5 @@ Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock {
 
     }
 }
+
+Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock $__kubectlCompleterBlock
