@@ -10,7 +10,7 @@ filter __eksctl_escapeStringWithSpecialChars {
     $_ -replace '\s|#|@|\$|;|,|''|\{|\}|\(|\)|"|`|\||<|>|&','`$&'
 }
 
-Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock {
+[scriptblock]$__eksctlCompleterBlock = {
     param(
             $WordToComplete,
             $CommandAst,
@@ -40,10 +40,12 @@ Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock {
     $ShellCompDirectiveNoFileComp=4
     $ShellCompDirectiveFilterFileExt=8
     $ShellCompDirectiveFilterDirs=16
+    $ShellCompDirectiveKeepOrder=32
 
     # Prepare the command to request completions for the program.
     # Split the command at the first space to separate the program and arguments.
     $Program,$Arguments = $Command.Split(" ",2)
+
     $RequestComp="$Program __completeNoDesc $Arguments"
     __eksctl_debug "RequestComp: $RequestComp"
 
@@ -68,15 +70,26 @@ Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock {
         # If the last parameter is complete (there is a space following it)
         # We add an extra empty parameter so we can indicate this to the go method.
         __eksctl_debug "Adding extra empty parameter"
-        # We need to use `"`" to pass an empty argument a "" or '' does not work!!!
-        $RequestComp="$RequestComp" + ' `"`"'
+        # PowerShell 7.2+ changed the way how the arguments are passed to executables,
+        # so for pre-7.2 or when Legacy argument passing is enabled we need to use
+        # `"`" to pass an empty argument, a "" or '' does not work!!!
+        if ($PSVersionTable.PsVersion -lt [version]'7.2.0' -or
+            ($PSVersionTable.PsVersion -lt [version]'7.3.0' -and -not [ExperimentalFeature]::IsEnabled("PSNativeCommandArgumentPassing")) -or
+            (($PSVersionTable.PsVersion -ge [version]'7.3.0' -or [ExperimentalFeature]::IsEnabled("PSNativeCommandArgumentPassing")) -and
+              $PSNativeCommandArgumentPassing -eq 'Legacy')) {
+             $RequestComp="$RequestComp" + ' `"`"'
+        } else {
+             $RequestComp="$RequestComp" + ' ""'
+        }
     }
 
     __eksctl_debug "Calling $RequestComp"
+    # First disable ActiveHelp which is not supported for Powershell
+    $env:EKSCTL_ACTIVE_HELP=0
+
     #call the command store the output in $out and redirect stderr and stdout to null
     # $Out is an array contains each line per element
     Invoke-Expression -OutVariable out "$RequestComp" 2>&1 | Out-Null
-
 
     # get directive from last line
     [int]$Directive = $Out[-1].TrimStart(':')
@@ -97,7 +110,7 @@ Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock {
     }
 
     $Longest = 0
-    $Values = $Out | ForEach-Object {
+    [Array]$Values = $Out | ForEach-Object {
         #Split the output in name and description
         $Name, $Description = $_.Split("`t",2)
         __eksctl_debug "Name: $Name Description: $Description"
@@ -140,6 +153,11 @@ Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock {
             __eksctl_debug "Join the equal sign flag back to the completion value"
             $_.Name = $Flag + "=" + $_.Name
         }
+    }
+
+    # we sort the values in ascending order by name if keep order isn't passed
+    if (($Directive -band $ShellCompDirectiveKeepOrder) -eq 0 ) {
+        $Values = $Values | Sort-Object -Property Name
     }
 
     if (($Directive -band $ShellCompDirectiveNoFileComp) -ne 0 ) {
@@ -223,3 +241,5 @@ Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock {
 
     }
 }
+
+Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock $__eksctlCompleterBlock

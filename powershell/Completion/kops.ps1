@@ -10,7 +10,7 @@ filter __kops_escapeStringWithSpecialChars {
     $_ -replace '\s|#|@|\$|;|,|''|\{|\}|\(|\)|"|`|\||<|>|&','`$&'
 }
 
-Register-ArgumentCompleter -CommandName 'kops' -ScriptBlock {
+[scriptblock]$__kopsCompleterBlock = {
     param(
             $WordToComplete,
             $CommandAst,
@@ -226,3 +226,5 @@ Register-ArgumentCompleter -CommandName 'kops' -ScriptBlock {
 
     }
 }
+
+Register-ArgumentCompleter -CommandName 'kops' -ScriptBlock $__kopsCompleterBlock
