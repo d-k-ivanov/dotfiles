@@ -4,12 +4,16 @@
 # (this can be changed by modifying the channel_alias key; see below).
 # The default is just 'defaults'.
 channels:
-  - conda-forge
   - defaults
+  - conda-forge
 
+# Don't keep base environment active
 auto_activate_base: false
 
 # With strict channel priority, packages in lower priority channels
 # are not considered if a package with the same name appears in a
 # higher priority channel.
 channel_priority: strict
+
+# conda install -n base conda-libmamba-solver
+solver: libmamba
