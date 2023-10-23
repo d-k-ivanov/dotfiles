@@ -21,6 +21,7 @@ If (Test-Path "${Env:APPDATA}\NuGet"                        ) { [System.IO.Direc
 If (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User"   ) { [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true) }
 If (Test-Path "${Env:USERPROFILE}\.bash_profile"            ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bash_profile"  -Confirm:$false }
 If (Test-Path "${Env:USERPROFILE}\.bashrc"                  ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bashrc"        -Confirm:$false }
+If (Test-Path "${Env:USERPROFILE}\.condarc"                 ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.condarc"       -Confirm:$false }
 If (Test-Path "${Env:USERPROFILE}\.gemrc"                   ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gemrc"         -Confirm:$false }
 If (Test-Path "${Env:USERPROFILE}\.gitconfig"               ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gitconfig"     -Confirm:$false }
 If (Test-Path "${Env:USERPROFILE}\.gitmessage"              ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.gitmessage"    -Confirm:$false }
@@ -43,6 +44,7 @@ C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\NuGet"                     
 C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User"    "${PSScriptRoot}\sublime"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bash_profile"             "${PSScriptRoot}\bash_profile"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bashrc"                   "${PSScriptRoot}\bashrc"
+C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.condarc"                  "${PSScriptRoot}\condarc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gemrc"                    "${PSScriptRoot}\gemrc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gitconfig"                "${PSScriptRoot}\.gitconfig-win"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.gitmessage"               "${PSScriptRoot}\.gitmessage"
