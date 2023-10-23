@@ -17,7 +17,7 @@ if ($MyInvocation.InvocationName -ne '.')
 
 if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m virtualenv -p $python venv }
+    ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv venv }
     ${function:va}      = { .\venv\Scripts\activate }
     ${function:vd}      = { deactivate }
     ${function:vr}      = { rmrf venv }
@@ -27,7 +27,6 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 
     # Basic environment
     ${function:pip-update}      = { python -m pip install --upgrade pip }
-    ${function:venv-install}    = { python -m pip install virtualenv }
     ${function:ipython-install} = { python -m pip install ipython }
 
     function py_init_environmnet
@@ -36,7 +35,6 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         python -m pip install --upgrade flake8
         python -m pip install --upgrade ipython
         python -m pip install --upgrade pytest
-        python -m pip install --upgrade virtualenv
         python -m pip install --upgrade cfn-lint
     }
 
@@ -54,7 +52,6 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         Remove-Item -Force "${TempFreezeFile}"
         # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
         python -m pip install --upgrade pip
-        python -m pip install --upgrade virtualenv
         if($InstallBaseModules)
         {
             py_init_environmnet

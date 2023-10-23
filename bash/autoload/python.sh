@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-alias vc='python -m virtualenv -p $(which python) venv'
-alias vc2='python2 -m virtualenv -p $(which python2) venv' # init py2 venv in curent dir
-alias vc3='python3 -m virtualenv -p $(which python3) venv' # init py3 venv in curent dir
+alias vc='python -m venv venv'
+alias vc3='python3 -m venv venv'
+alias vc2='python2 -m virtualenv -p $(which python2) venv'
 alias va='source ./venv/bin/activate'
 alias vd='deactivate'
 alias vr='rm -rf ./venv'
@@ -12,7 +12,6 @@ alias vgen='python -m pip freeze > requirements.txt'
 
 # Basic environment
 alias pip-update='python -m pip install --upgrade pip'
-alias venv-install='python -m pip install virtualenv'
 alias ipython-install='python -m pip install ipython'
 
 alias srv='python -m http.server 8000'

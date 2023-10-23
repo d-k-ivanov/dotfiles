@@ -15,30 +15,10 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-# Python virtualenv aliases - personal
-if (Get-Command c:\tools\python2\python -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:vc2}     = { c:\tools\python2\python -m virtualenv -p c:\tools\python2\python venv } # init py2 venv in curent dir
-}
-
-if (Get-Command c:\tools\python2\python -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:vc2-32}  = { c:\tools\python2_x86\python -m virtualenv -p c:\tools\python2_x86\python venv } # init py2 venv in curent dir x86
-}
-
-if (Get-Command c:\tools\python3\python -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:vc3}     = { c:\tools\python3\python -m virtualenv -p c:\tools\python3\python venv } # init py3 venv in curent dir
-}
-
-if (Get-Command c:\tools\python3\python -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:vc3-32}  = { c:\tools\python3_x86\python -m virtualenv -p c:\tools\python3_x86\python venv } # init py3 venv in curent dir x86
-}
-
 if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m virtualenv -p $python venv }
+    # ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv -p $python venv }
+    ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv venv }
     ${function:va}      = { .\venv\Scripts\activate }
     ${function:vd}      = { deactivate }
     ${function:vr}      = { rmrf venv }
@@ -48,7 +28,6 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 
     # Basic environment
     ${function:pip-update}      = { python -m pip install --upgrade pip }
-    ${function:venv-install}    = { python -m pip install virtualenv }
     ${function:ipython-install} = { python -m pip install ipython }
 
     function py_init_environmnet
@@ -57,7 +36,6 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         python -m pip install --upgrade flake8
         python -m pip install --upgrade ipython
         python -m pip install --upgrade pytest
-        python -m pip install --upgrade virtualenv
         python -m pip install --upgrade cfn-lint
     }
 
@@ -75,7 +53,6 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         Remove-Item -Force "${TempFreezeFile}"
         # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
         python -m pip install --upgrade pip
-        python -m pip install --upgrade virtualenv
         if($InstallBaseModules)
         {
             py_init_environmnet
@@ -92,6 +69,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
 function Get-PyList
 {
     $serpents = @(
+        'C:\Python313'
         'C:\Python312'
         'C:\Python311'
         'C:\Python310'
@@ -112,6 +90,8 @@ function Get-PyList
         'C:\Python27-32'
         'C:\Python26-32'
         'C:\Python25-32'
+        "$env:LOCALAPPDATA\Programs\Python\Python313"
+        "$env:LOCALAPPDATA\Programs\Python\Python312"
         "$env:LOCALAPPDATA\Programs\Python\Python311"
         "$env:LOCALAPPDATA\Programs\Python\Python310"
         "$env:LOCALAPPDATA\Programs\Python\Python39"
@@ -122,6 +102,11 @@ function Get-PyList
         "$env:LOCALAPPDATA\Programs\Python\Python27"
         "$env:LOCALAPPDATA\Programs\Python\Python26"
         "$env:LOCALAPPDATA\Programs\Python\Python25"
+        "$env:LOCALAPPDATA\Programs\Python\Python313-32"
+        "$env:LOCALAPPDATA\Programs\Python\Python312-32"
+        "$env:LOCALAPPDATA\Programs\Python\Python311-32"
+        "$env:LOCALAPPDATA\Programs\Python\Python310-32"
+        "$env:LOCALAPPDATA\Programs\Python\Python39-32"
         "$env:LOCALAPPDATA\Programs\Python\Python38-32"
         "$env:LOCALAPPDATA\Programs\Python\Python37-32"
         "$env:LOCALAPPDATA\Programs\Python\Python36-32"
@@ -135,6 +120,18 @@ function Get-PyList
         'C:\tools\python2_x86'
         'C:\tools\miniconda3'
         'C:\tools\miniconda2'
+        'C:\tools\python-embed-x64'
+        'C:\tools\python-embed-win32'
+        'C:\tools\python-embed-313-x64'
+        'C:\tools\python-embed-313-win32'
+        'C:\tools\python-embed-312-x64'
+        'C:\tools\python-embed-312-win32'
+        'C:\tools\python-embed-311-x64'
+        'C:\tools\python-embed-311-win32'
+        'C:\tools\python-embed-310-x64'
+        'C:\tools\python-embed-310-win32'
+        'C:\tools\python-embed-39-win32'
+        'C:\tools\python-embed-39-x64'
         'C:\tools\python-embed-38-x64'
         'C:\tools\python-embed-38-win32'
     )
