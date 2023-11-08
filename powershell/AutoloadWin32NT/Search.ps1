@@ -136,3 +136,6 @@ function which($name)
 Set-Alias Show-Command which
 New-Alias which1 Get-Command -Force
 ${function:which2} = { Get-Command @args -All | Format-Table CommandType, Name, Definition }
+
+${function:count-stl} = { Write-Host (Get-ChildItem -Path @args -Recurse -Filter '*.stl'| Measure-Object).Count }
+${function:count-xml} = { Write-Host (Get-ChildItem -Path @args -Recurse -Filter '*.xml'| Measure-Object).Count }
