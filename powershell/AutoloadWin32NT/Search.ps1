@@ -139,3 +139,40 @@ ${function:which2} = { Get-Command @args -All | Format-Table CommandType, Name, 
 
 ${function:count-stl} = { Write-Host (Get-ChildItem -Path @args -Recurse -Filter '*.stl'| Measure-Object).Count }
 ${function:count-xml} = { Write-Host (Get-ChildItem -Path @args -Recurse -Filter '*.xml'| Measure-Object).Count }
+
+function compare-dirs-and-list-missing {
+    [CmdletBinding()]
+    param
+    (
+        [ValidateNotNullOrEmpty()] [ValidateScript({Test-Path -Path $_})]
+        [string] $Folder1,
+        [ValidateNotNullOrEmpty()] [ValidateScript({Test-Path -Path $_})]
+        [string] $Folder2,
+        [string] $FileType = "stl"
+    );
+    $Folder1 = (Convert-Path -LiteralPath $Folder1.TrimEnd('\'))
+    $Folder2 = (Convert-Path -LiteralPath $Folder2.TrimEnd('\'))
+    $Depth = $Folder1.Split('\').Count
+
+    Write-Host "Comparing ${Folder1} and ${Folder2} with depth ${Depth}" -ForegroundColor Yellow
+
+    $Files = @();
+    Get-ChildItem ${Folder1} -Recurse -Filter "*.${FileType}" | ForEach-Object { $Files += $(($_.FullName -split '[\\/]' | Select -Skip $Depth) -join "\") };
+
+    [uint32] $counterEqual = 0;
+    [uint32] $counterMissing = 0;
+
+    foreach ($File in $Files)
+    {
+        If(Test-Path "${Folder2}\$File")
+        {
+            $counterEqual++;
+            continue;
+        }
+        $counterMissing++;
+        Write-Output $File;
+    }
+
+    Write-Host -ForegroundColor Yellow "Number of missing ${FileType} files: ${counterMissing}";
+    Write-Host -ForegroundColor Yellow "Number of equal ${FileType} files: ${counterEqual}";
+}
