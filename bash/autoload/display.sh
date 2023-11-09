@@ -8,7 +8,8 @@ export RUNLEVEL=3
 alias c='clear'
 
 # Export DISPLAY variable. If local than it exports localhost, if remole it exports SSH Client
-alias      disp='source ~/.bin/export-display.sh'
+alias       disp='source ~/.bin/export-display.sh'
+alias disp_local='export DISPLAY=:0'
 alias   gldirect='export LIBGL_ALWAYS_INDIRECT=1'
 alias glindirect='export LIBGL_ALWAYS_INDIRECT=0'
 
