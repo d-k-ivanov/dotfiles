@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "..\\.aws"
+		},
+		{
+			"path": "..\\.conan"
+		},
+		{
+			"path": "..\\.conan2"
+		},
+		{
+			"path": "..\\.conda"
+		},
+		{
+			"path": "..\\.config"
+		},
+		{
+			"path": "..\\.gradle"
+		},
+		{
+			"path": "..\\.kube"
+		},
+		{
+			"path": "..\\.m2"
+		},
+		{
+			"path": "..\\.ssh"
+		},
+		{
+			"path": "O:\\"
+		}
+	]
+}
