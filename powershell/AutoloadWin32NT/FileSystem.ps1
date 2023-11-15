@@ -54,6 +54,7 @@ ${function:wsconf}  = { Set-Location ${Env:WORKSPACE}\my\workstations\windows   
 ${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
 ${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
 ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                                }
+${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg-gh                          }
 ${function:wsws}    = { Set-Location ${Env:WORKSPACE}\my\workspace                      }
 # ${function:wsws}  = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace              }
 
