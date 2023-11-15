@@ -7,6 +7,7 @@ case $platform in
         # Local
         [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
+        [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
         # Qt
         [[ -d $HOME/Qt/Tools/QtCreator/bin ]]       && export PATH=$PATH:$HOME/Qt/Tools/QtCreator/bin
         [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
@@ -66,6 +67,7 @@ case $platform in
         [[ -d /sbin ]]                              && export PATH=$PATH:/sbin
         [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
+        [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
         # Ruby
         [[ -s "$HOME/.rvm/scripts/rvm" ]]           && source "$HOME/.rvm/scripts/rvm"
         # VS Code

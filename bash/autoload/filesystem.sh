@@ -103,6 +103,7 @@ esac
 
 alias  wsaw='cd ~/.config/awesome'
 alias   wst='cd ~/ws/tmp'
+alias   wsv='cd ~/.vcpkg'
 
 # Straumann Shortcuts
 alias     wsc='cd ~/ws/clearcorrect'
