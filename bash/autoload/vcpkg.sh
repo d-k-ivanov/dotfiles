@@ -13,7 +13,7 @@ alias   vcpkg-install-osx='vcpkg install           --triplet x64-osx'
 alias  vcpkg-remove-osx-r='vcpkg remove  --recurse --triplet x64-osx'
 alias vcpkg-install-osx-r='vcpkg install --recurse --triplet x64-osx'
 
-vcpkg-cmake
+vcpkg-cmake()
 {
     vcpkgPath=$(dirname $(which vcpkg))
     echo -n "-DCMAKE_TOOLCHAIN_FILE=${vcpkNixPath}/scripts/buildsystems/vcpkg.cmake"
