@@ -24,3 +24,10 @@ ${function:vcpkg-remove-x86}    = { vcpkg remove            --triplet x86-window
 ${function:vcpkg-remove-x86-r}  = { vcpkg remove  --recurse --triplet x86-windows @args }
 ${function:vcpkg-install-x86}   = { vcpkg install           --triplet x86-windows @args }
 ${function:vcpkg-install-x86-r} = { vcpkg install --recurse --triplet x86-windows @args }
+
+function vcpkg-cmake
+{
+    $vcpkgPath = (Get-Item (Get-Command vcpkg.exe -ErrorAction SilentlyContinue).Path).Directory.FullName
+    $vcpkNixPath = ($vcpkgPath -replace "\\","/").ToLower().Trim("/")
+    Write-Output "-DCMAKE_TOOLCHAIN_FILE=${vcpkNixPath}/scripts/buildsystems/vcpkg.cmake"
+}
