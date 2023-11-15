@@ -16,5 +16,5 @@ alias vcpkg-install-osx-r='vcpkg install --recurse --triplet x64-osx'
 vcpkg-cmake()
 {
     vcpkgPath=$(dirname $(which vcpkg))
-    echo -n "-DCMAKE_TOOLCHAIN_FILE=${vcpkNixPath}/scripts/buildsystems/vcpkg.cmake"
+    echo -n "-DCMAKE_TOOLCHAIN_FILE=${vcpkgPath}/scripts/buildsystems/vcpkg.cmake"
 }
