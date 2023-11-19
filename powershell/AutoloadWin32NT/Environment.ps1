@@ -149,6 +149,7 @@ function Initialize-Paths-User
         "C:\tools\dart-sdk\bin"
         "C:\tools\doublecmd"
         "C:\tools\fasm"
+        "C:\tools\ghc-9.8.1\bin"
         "C:\tools\ghc-9.6.2\bin"
         "C:\tools\ghc-9.6.1\bin"
         "C:\tools\gnuplot\bin"
@@ -168,12 +169,6 @@ function Initialize-Paths-User
         "C:\tools\wsl\kali"
         "C:\tools\wsl\ubuntu"
         # "C:\tools\wsltty\bin"
-        "C:\VulkanSDK\1.3.268.0\Bin"
-        "C:\VulkanSDK\1.3.261.1\Bin"
-        "C:\VulkanSDK\1.3.211.0\Bin"
-        "C:\VulkanSDK\1.3.204.1\Bin"
-        "C:\VulkanSDK\1.2.198.1\Bin"
-        "C:\VulkanSDK\1.2.189.2\Bin"
         "C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin"
         "C:\ProgramData\chocolatey\lib\wmiexplorer\tools"
         # "C:\ProgramData\DockerDesktop\version-bin"
@@ -400,6 +395,11 @@ function Set-Env
     if ($env:VISUALGDB_DIR)
     {
         $system_path += ";$env:VISUALGDB_DIR"
+    }
+
+    if ($env:VULKAN_SDK)
+    {
+        $system_path += ";$env:VULKAN_SDK"
     }
 
     $system_path += ";$env:PathsSys"
