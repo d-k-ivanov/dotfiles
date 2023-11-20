@@ -125,3 +125,15 @@ function Set-OptiX
     [Environment]::SetEnvironmentVariable("OptiX_INSTALL_DIR", ${Selected}, "Machine")
     $Env:OptiX_INSTALL_DIR = ${Selected}
 }
+
+function Set-DevIL
+{
+    [Environment]::SetEnvironmentVariable("IL_INCLUDE_DIR", "C:\Nvidia\DevIL\include",         "Machine")
+    [Environment]::SetEnvironmentVariable("IL_LIBRARIES",   "C:\Nvidia\DevIL\lib\x64\Release", "Machine")
+    [Environment]::SetEnvironmentVariable("ILU_LIBRARIES",  "C:\Nvidia\DevIL\lib\x64\Release", "Machine")
+    [Environment]::SetEnvironmentVariable("ILUT_LIBRARIES", "C:\Nvidia\DevIL\lib\x64\Release", "Machine")
+    $Env:IL_INCLUDE_DIR = "C:\Nvidia\DevIL\include"
+    $Env:IL_LIBRARIES   = "C:\Nvidia\DevIL\lib\x64\Release"
+    $Env:ILU_LIBRARIES  = "C:\Nvidia\DevIL\lib\x64\Release"
+    $Env:ILUT_LIBRARIES = "C:\Nvidia\DevIL\lib\x64\Release"
+}
