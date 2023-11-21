@@ -126,14 +126,45 @@ function Set-OptiX
     $Env:OptiX_INSTALL_DIR = ${Selected}
 }
 
+function Get-DevIL
+{
+    $Locations = @(
+        'C:\Nvidia\DevIL'
+        'D:\Nvidia\DevIL'
+    )
+
+    $LIBs = @()
+    foreach ($SubFolder in $Locations)
+    {
+        if (Test-Path $SubFolder)
+        {
+            $((Get-ChildItem $SubFolder -Directory).FullName | ForEach-Object { $LIBs += $_ })
+        }
+    }
+
+    $LIBsValidated = @()
+    foreach ($LIB in $LIBs)
+    {
+        if (Test-Path "${LIB}\include\IL\DevIL.i")
+        {
+            $LIBsValidated  += $LIB
+        }
+    }
+
+    return $LIBsValidated
+}
+
 function Set-DevIL
 {
-    [Environment]::SetEnvironmentVariable("IL_INCLUDE_DIR", "C:\Nvidia\DevIL\include",         "Machine")
-    [Environment]::SetEnvironmentVariable("IL_LIBRARIES",   "C:\Nvidia\DevIL\lib\x64\Release", "Machine")
-    [Environment]::SetEnvironmentVariable("ILU_LIBRARIES",  "C:\Nvidia\DevIL\lib\x64\Release", "Machine")
-    [Environment]::SetEnvironmentVariable("ILUT_LIBRARIES", "C:\Nvidia\DevIL\lib\x64\Release", "Machine")
-    $Env:IL_INCLUDE_DIR = "C:\Nvidia\DevIL\include"
-    $Env:IL_LIBRARIES   = "C:\Nvidia\DevIL\lib\x64\Release"
-    $Env:ILU_LIBRARIES  = "C:\Nvidia\DevIL\lib\x64\Release"
-    $Env:ILUT_LIBRARIES = "C:\Nvidia\DevIL\lib\x64\Release"
+    $Selected = Select-From-List $(Get-DevIL) 'Developers Image Library (DevIL)'
+    [Environment]::SetEnvironmentVariable("DEVIL_PATH",     "${Selected}",                   "Machine")
+    [Environment]::SetEnvironmentVariable("IL_INCLUDE_DIR", "${Selected}\include",         "Machine")
+    [Environment]::SetEnvironmentVariable("IL_LIBRARIES",   "${Selected}\lib\x64\Release", "Machine")
+    [Environment]::SetEnvironmentVariable("ILU_LIBRARIES",  "${Selected}\lib\x64\Release", "Machine")
+    [Environment]::SetEnvironmentVariable("ILUT_LIBRARIES", "${Selected}\lib\x64\Release", "Machine")
+    $Env:DEVIL_PATH     = "${Selected}"
+    $Env:IL_INCLUDE_DIR = "${Selected}\include"
+    $Env:IL_LIBRARIES   = "${Selected}\lib\x64\Release"
+    $Env:ILU_LIBRARIES  = "${Selected}\lib\x64\Release"
+    $Env:ILUT_LIBRARIES = "${Selected}\lib\x64\Release"
 }
