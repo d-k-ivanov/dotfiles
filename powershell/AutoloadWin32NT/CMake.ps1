@@ -45,9 +45,12 @@ ${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\c
 # Set-Alias cs17e cmake-settings-17-envs
 
 # CMake Generators
-${function:cgen-22}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S @args }
-${function:cgen-22-cl}    = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S @args }
-${function:cgen-nj-multy} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S @args }
+${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S @args }
+${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S @args }
+${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config" -A x64 -B build -S @args }
+
+${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S @args $(vcpkg-cmake) }
+${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S @args $(vcpkg-cmake) }
 
 ${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
@@ -69,6 +72,7 @@ ${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B buil
 
 # CMake Generators Aliases
 Set-Alias cgen   cgen-22
+Set-Alias cgenv  cgen-22-v
 Set-Alias cgencl cgen-22-cl
 Set-Alias cgend  cgen-debug-22
 Set-Alias cgenr  cgen-release-22
