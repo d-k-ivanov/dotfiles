@@ -45,30 +45,30 @@ ${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\c
 # Set-Alias cs17e cmake-settings-17-envs
 
 # CMake Generators
-${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S @args }
-${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S @args }
-${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config" -A x64 -B build -S @args }
+${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config" -A x64               -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
-${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S @args $(vcpkg-cmake) }
-${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config" -A x64 -B build -S @args $(vcpkg-cmake) }
+${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
+${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config"    -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 
-${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
-${function:cgen-debug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
-${function:cgen-debug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
-${function:cgen-debug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
-${function:cgen-debug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-Debug -S @args -DCMAKE_BUILD_TYPE=Debug }
+${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
+${function:cgen-debug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
+${function:cgen-debug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
+${function:cgen-debug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
+${function:cgen-debug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 
-${function:cgen-release-nj} = { cmake -G "Ninja"                        -B build/x64-Release -S @args -DCMAKE_BUILD_TYPE=Release }
-${function:cgen-release-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Release -S @args -DCMAKE_BUILD_TYPE=Release }
-${function:cgen-release-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Release -S @args -DCMAKE_BUILD_TYPE=Release }
-${function:cgen-release-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Release -S @args -DCMAKE_BUILD_TYPE=Release }
-${function:cgen-release-15} = { cmake -G "Visual Studio 15 2015" -A x64 -B build/x64-Release -S @args -DCMAKE_BUILD_TYPE=Release }
+${function:cgen-release-nj} = { cmake -G "Ninja"                        -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
+${function:cgen-release-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
+${function:cgen-release-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
+${function:cgen-release-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
+${function:cgen-release-15} = { cmake -G "Visual Studio 15 2015" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
 
-${function:cgen-reldebug-nj} = { cmake -G "Ninja"                        -B build/x64-RelWithDebInfo -S @args -DCMAKE_BUILD_TYPE=RelWithDebInfo }
-${function:cgen-reldebug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-RelWithDebInfo -S @args -DCMAKE_BUILD_TYPE=RelWithDebInfo }
-${function:cgen-reldebug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-RelWithDebInfo -S @args -DCMAKE_BUILD_TYPE=RelWithDebInfo }
-${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S @args -DCMAKE_BUILD_TYPE=RelWithDebInfo }
-${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S @args -DCMAKE_BUILD_TYPE=RelWithDebInfo }
+${function:cgen-reldebug-nj} = { cmake -G "Ninja"                        -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
+${function:cgen-reldebug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
+${function:cgen-reldebug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
+${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
+${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 
 # CMake Generators Aliases
 Set-Alias cgen   cgen-22
