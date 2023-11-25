@@ -15,92 +15,63 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-# Ruby aliases
-if (Get-Command ruby -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:ruby} = { ruby -w @args }
-    ${function:rre}  = { ruby exec @args }
-}
-
-if (Get-Command gem -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:rgi}  = { gem install @args }
-    ${function:rbi}  = { gem bundle install @args }
-}
-
-if (Get-Command bundle -ErrorAction SilentlyContinue | Test-Path)
-{
-    ${function:rbu}  = { bundle update @args }
-    ${function:rbe}  = { bundle exec @args }
-}
-
 function Get-Rubies
 {
-    $rubies = @(
-        'C:\tools\ruby31\bin'
-        'C:\tools\ruby30\bin'
-        'C:\tools\ruby29\bin'
-        'C:\tools\ruby28\bin'
-        'C:\tools\ruby27\bin'
-        'C:\tools\ruby26\bin'
-        'C:\tools\ruby25\bin'
-        'C:\tools\ruby24\bin'
-        'C:\tools\ruby23\bin'
-        'C:\tools\ruby22\bin'
-        'C:\tools\ruby21\bin'
-        'C:\tools\jruby92\bin'
-        'C:\tools\jruby91\bin'
-        'C:\tools\jruby90\bin'
+    $RubyLocations = @(
+        'C:\tools\'
     )
-    return $rubies
+    $Rubies = @()
+    foreach ($location in $RubyLocations)
+    {
+        $Rubies += (Get-ChildItem ${location} -Directory -Filter "*ruby*").FullName
+    }
+
+    $RubiesValidated = @()
+    foreach ($ruby in $Rubies)
+    {
+        if (Test-Path "${ruby}\bin")
+        {
+            if ($ruby -match "jruby")
+            {
+                $RubiesValidated += (Join-Path $ruby "bin\jruby.exe")
+            }
+            else
+            {
+                $RubiesValidated += (Join-Path $ruby "bin\ruby.exe")
+            }
+        }
+    }
+    return $RubiesValidated
 }
 
-function Find-Ruby
+function List-Rubies
 {
-    $rubies = Get-Rubies
+    $Rubies = Get-Rubies
 
     Write-Host "List of Ruby interpretators on this PC:"
-    foreach ($ruby in $rubies)
+    foreach ($ruby in $Rubies)
     {
-        if ($ruby -match "jruby")
+        if (Test-Path $ruby)
         {
-            $rubyBin = (Join-Path $ruby "jruby.exe")
-        }
-        else
-        {
-            $rubyBin = (Join-Path $ruby "ruby.exe")
-        }
-
-        if (Test-Path $rubyBin)
-        {
-            Write-Host "- [$($( & $rubyBin --version 2>&1) -replace '\D+(\d.\d.\d+)\D.*','$1')] -> $ruby"
+            Write-Host "- [$($( & $ruby --version 2>&1) -replace '\D+(\d.\d.\d+)\D.*','$1')] -> $ruby"
         }
     }
 }
 
 function Set-Ruby
 {
-    $rubies = Get-Rubies
+    $Rubies = Get-Rubies
     $ValidatedRubies = @()
     $Versions = @()
-    foreach ($ruby in $rubies)
+    foreach ($ruby in $Rubies)
     {
-        if ($ruby -match "jruby")
-        {
-            $rubyBin = (Join-Path $ruby "jruby.exe")
-        }
-        else
-        {
-            $rubyBin = (Join-Path $ruby "ruby.exe")
-        }
-
-        if (Test-Path $rubyBin)
+        if (Test-Path $ruby)
         {
             $ValidatedRubies += $ruby
-            $Versions += "$($( & $rubyBin --version 2>&1) -replace '\D+(\d.\d.\d+)\D.*','$1')"
+            $Versions += "$($( & $ruby --version 2>&1) -replace '\D+(\d.\d.\d+)\D.*','$1')"
         }
     }
-    $ChoosenVersion = Select-From-List $ValidatedRubies "Ruby Version" $Versions
+    $ChoosenVersion = Split-Path -parent $(Select-From-List $ValidatedRubies "Ruby Version" $Versions)
     [Environment]::SetEnvironmentVariable("RUBY_PATH", $ChoosenVersion, "Machine")
     Set-Item -Path Env:RUBY_PATH -Value "$ChoosenVersion"
     # Set-Env
