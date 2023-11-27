@@ -15,6 +15,11 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+function jkinit
+{
+    bundle install
+    bundle exec jekyll build
+}
 
 function jkpost
 {
@@ -37,7 +42,5 @@ function jkpost
 
 function jkserv
 {
-    bundle install
-    bundle exec jekyll build
     bundle exec jekyll server --incremental --host 0.0.0.0
 }
