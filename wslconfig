@@ -13,7 +13,8 @@ swap=32GB
 # swapfile=%USERPROFILE%\AppData\Local\Temp\swap.vhdx
 
 # Boolean to turn on or off support for GUI applications (WSLg) in WSL.
-guiApplications=false
+# guiApplications=false
+guiApplications=true
 
 # Specify a custom Linux kernel to use with your installed distros. The default kernel used can be found at https://github.com/microsoft/WSL2-Linux-Kernel
 # kernel=C:\\temp\\myCustomKernel

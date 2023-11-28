@@ -10,24 +10,25 @@ alias c='clear'
 # Export DISPLAY variable. If local than it exports localhost, if remole it exports SSH Client
 alias       disp='source ~/.bin/export-display.sh'
 alias disp_local='export DISPLAY=:0'
+alias disp_xserv="export DISPLAY=$(ip route show default | awk '/default/ {print $3}'):0.0"
 alias   gldirect='export LIBGL_ALWAYS_INDIRECT=1'
 alias glindirect='export LIBGL_ALWAYS_INDIRECT=0'
 
-# Export display for WSL:
-if [[ -n "${WSL_DISTRO_NAME}" ]]
-then
-    # export DISPLAY=localhost:0.0
-    export DISPLAY=$(ip route show default | awk '/default/ {print $3}'):0.0
-fi
+# (deprecated) Export display for WSL:
+# if [[ -n "${WSL_DISTRO_NAME}" ]]
+# then
+#     # export DISPLAY=localhost:0.0
+#     export DISPLAY=$(ip route show default | awk '/default/ {print $3}'):0.0
+# fi
 
-set-display-one()
+set-displays-single()
 {
     # nvidia-settings --assign CurrentMetaMode="DPY-5: nvidia-auto-select @2880x1620 +0+0 {ViewPortIn=2880x1620, ViewPortOut=2880x1620+0+0}, DPY-2: nvidia-auto-select @2880x1620 +3840+0 {ViewPortIn=2880x1620, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=On}"
     # xrandr --output DP-1 --scale 1.5x1.5
     xrandr --output eDP-1 --primary --mode 2880x1620 --pos 0x0 --rotate normal --panning 2880x1620+0+0
 }
 
-set-display()
+set-displays()
 {
     case $1 in
         reset )
