@@ -106,7 +106,7 @@ function Initialize-Paths-User
         "${env:USERPROFILE}\AppData\Roaming\local\bin"
         "${env:USERPROFILE}\AppData\Roaming\npm"
         "${env:USERPROFILE}\AppData\Roaming\Pub\Cache\bin"
-        "${env:WORKSPACE}\vcpkg-gh"
+        "${env:MY_VCPKG_ROOT}"
         "C:\usr\bin"
         "C:\boost\dist\bin"
         "C:\Coq\bin"

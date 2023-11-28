@@ -15,6 +15,62 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+function Get-VCPKGList
+{
+    $Directories = @(
+        "${env:WORKSPACE}\vcpkg"
+        "${env:WORKSPACE}\vcpkg-gh"
+        "c:\v"
+        "d:\v"
+    )
+
+    $GroupDirectories = @(
+        "c:\vcpkg"
+        "d:\vcpkg"
+    )
+
+    $Output = @()
+    foreach ($Directory in $Directories)
+    {
+        if (Test-Path $Directory)
+        {
+            $Result = (Get-ChildItem ${Directory} -File -Recurse -Depth 1 -Include .vcpkg-root).FullName
+            foreach ($p in $Result)
+            {
+                $Output += (Get-Item $p).Directory.FullName
+            }
+        }
+    }
+
+    foreach ($Directory in $GroupDirectories)
+    {
+        if (Test-Path $Directory)
+        {
+            $Result = (Get-ChildItem ${Directory} -File -Recurse -Depth 2 -Include .vcpkg-root).FullName
+            foreach ($p in $Result)
+            {
+                $Output += (Get-Item $p).Directory.FullName
+            }
+        }
+    }
+
+    return $Output
+}
+
+function Set-VCPKG
+{
+    $Selected = Select-From-List $(Get-VCPKGList) 'available VCPKG locations'
+    [Environment]::SetEnvironmentVariable("MY_VCPKG_ROOT", ${Selected}, "Machine")
+    $Env:MY_VCPKG_ROOT = ${Selected}
+    Set-Item -Path Env:PATH -Value "${Selected};${Env:PATH}"
+}
+
+function Use-VCPKG
+{
+    $Selected = Select-From-List $(Get-VCPKGList) 'available VCPKG locations'
+    Set-Item -Path Env:PATH -Value "${Selected};${Env:PATH}"
+}
+
 ${function:vcpkg-remove}        = { vcpkg remove            --triplet x64-windows @args }
 ${function:vcpkg-remove-r}      = { vcpkg remove  --recurse --triplet x64-windows @args }
 ${function:vcpkg-install}       = { vcpkg install           --triplet x64-windows @args }
