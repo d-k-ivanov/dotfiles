@@ -87,7 +87,7 @@ echo ========================   INSTALL COMPLETE   =============================
 echo ================================================================================
 echo Exporting %libs_no_features% to %OUTPUT_DIR%
 echo --------------------------------------------------------------------------------
-echo vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR%" "%libs_no_features%" || exit /b 1
+vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR%" %libs_no_features% || exit /b 1
 echo !CURRENT_HASH!> "%OUTPUT_DIR%\repo-git-hash.txt"
 
 :: The mess below calculates elapsed time
