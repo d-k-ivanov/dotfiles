@@ -49,6 +49,7 @@ ${function:down}    = { Set-Location ~\Downloads                                
 ${function:ws}      = { Set-Location ${Env:WORKSPACE}                                   }
 ${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                                }
 ${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                       }
+${function:wsdfp}   = { Set-Location ${Env:WORKSPACE}\my\dotfiles-private               }
 ${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\workstations\windows           }
 ${function:wsconf}  = { Set-Location ${Env:WORKSPACE}\my\workstations\windows           }
 ${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
