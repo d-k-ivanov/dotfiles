@@ -73,17 +73,21 @@ echo ===============      Building triplet: %build_triplet%
 echo ================================================================================
 :: yasm (x86 version) is a build dependency for yaml-cpp on Windows...
 echo vcpkg install --keep-going --recurse yasm:x86-windows
-@REM vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
+vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
+
 echo vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%
-@REM BuildConsole /command="vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%" || exit /b 1
 vcpkg install --keep-going --recurse --triplet %build_triplet% %libs% || exit /b 1
+
+:: Incredibuld
+:: BuildConsole /command="vcpkg install --keep-going --recurse yasm:x86-windows" || exit /b 1
+:: BuildConsole /command="vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%" || exit /b 1
 
 echo ================================================================================
 echo ========================   INSTALL COMPLETE   ==================================
 echo ================================================================================
 echo Exporting %libs_no_features% to %OUTPUT_DIR%
 echo --------------------------------------------------------------------------------
-vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR=%" "%libs_no_features%" || exit /b 1
+echo vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR%" "%libs_no_features%" || exit /b 1
 echo !CURRENT_HASH!> "%OUTPUT_DIR%\repo-git-hash.txt"
 
 :: The mess below calculates elapsed time

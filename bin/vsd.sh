@@ -69,8 +69,8 @@ fi
 echo ================================================================================
 echo =============== Building triplet: ${build_triplet}
 echo ================================================================================
-echo vcpkg install --keep-going --triplet --clean-buildtrees-after-build ${build_triplet} ${libs}
-./vcpkg install --keep-going --triplet ${build_triplet} --clean-buildtrees-after-build ${libs}
+echo vcpkg install --keep-going --triplet ${build_triplet} ${libs}
+./vcpkg install --keep-going --triplet ${build_triplet} ${libs}
 
 if [[ $? != 0 ]]; then
     echo "Error while installing libs"
@@ -82,7 +82,7 @@ echo ======================== INSTALL COMPLETE =================================
 echo ================================================================================
 echo Exporting to "${output_dir}"
 echo --------------------------------------------------------------------------------
-./vcpkg export --raw --triplet ${build_triplet} --output="${output_dir}" ${libs}
+echo ./vcpkg export --raw --triplet ${build_triplet} --output="${output_dir}" ${libs_no_features}
 
 if [[ $? != 0 ]]; then
     echo "Error while exporting libs"
