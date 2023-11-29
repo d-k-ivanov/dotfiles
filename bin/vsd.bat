@@ -4,6 +4,7 @@ setlocal enabledelayedexpansion
 :: The code for calculating elapsed time is from StackOverflow... Just a nice-to-have feature
 set "startTime=%time: =0%" & rem fix single digit hour
 
+::set VCPKG_FEATURE_FLAGS=-binarycaching
 set DEFAULT_TRIPLET=x64-windows
 set build_triplet=%DEFAULT_TRIPLET%
 set "OUTPUT_DIR=C:\vcpkg\dev"
@@ -15,12 +16,16 @@ if NOT "%~2" == "" (set vcpkg_library_list=%~2)
 if not exist %CD%\.vcpkg-root exit /b 1
 
 :: Remove vcpkg.exe for smooth upgrades...
-@REM del /F/S vcpkg.exe
+del /F/S vcpkg.exe
 call bootstrap-vcpkg.bat -disableMetrics || exit /b 1
 
-git rev-parse @ > setup-hash.txt
-set /p CURRENT_HASH=< setup-hash.txt
-del setup-hash.txt
+set /p CURRENT_HASH=<..\vcpkg_hash
+if [!CURRENT_HASH!] equ [] (
+  @echo File vcpkg_hash was not found. Using latest git revision...
+  git rev-parse @ > setup-hash.txt
+  set /p CURRENT_HASH=< setup-hash.txt
+  del setup-hash.txt
+)
 :: Here we determine if there have been any changes since the last build
 
 if EXIST "%OUTPUT_DIR%\repo-git-hash.txt" (
@@ -29,15 +34,17 @@ if EXIST "%OUTPUT_DIR%\repo-git-hash.txt" (
     set OLD_HASH=
 )
 
-if "%OLD_HASH%" == "%CURRENT_HASH%" (
-	echo Dependencies are up to date^^! To force export, delete the export dir '%OUTPUT_DIR%'
-	exit /b 0
-)
+@REM if "%OLD_HASH%" == "!CURRENT_HASH!" (
+@REM 	echo Dependencies are up to date^^! To force export, delete the export dir '%OUTPUT_DIR%'
+@REM 	exit /b 0
+@REM )
+@REM echo vcpkg hash changed from '%OLD_HASH%' to '!CURRENT_HASH!'; will rebuild/reexport...
 
-echo vcpkg hash changed from '%OLD_HASH%' to '%CURRENT_HASH%'; will rebuild/reexport...
+echo vcpkg old hash: '%OLD_HASH%'
+echo vcpkg current hash: '!CURRENT_HASH!'
 
 set libs=
-for /f "delims=" %%x in ('type cc-required-libs-windows.txt') do set "libs=!libs! %%x"
+for /f "delims=" %%x in ('type %vcpkg_library_list%') do set "libs=!libs! %%x"
 :: Here are some locations where things tend to get cached, and how to remove...
 :: We can also disable binary caching, if people want that.
 :: rd /s/q buildtrees
@@ -48,14 +55,15 @@ for /f "delims=" %%x in ('type cc-required-libs-windows.txt') do set "libs=!libs
 echo ================================================================================
 echo ===============      Cleaning up
 echo ================================================================================
-:: Remove old build and export folder
+:: These are stale and need to be removed
 set "BUILD_DIR=%CD%\..\build"
 if EXIST "%BUILD_DIR%" ( rd /s/q "%BUILD_DIR%" || ((echo Unable to remove build dir '%BUILD_DIR%') && exit /b 1))
 if EXIST "%OUTPUT_DIR%" ( rd /s/q "%OUTPUT_DIR%" || ((echo Unable to remove output dir '%OUTPUT_DIR%') && exit /b 1 ))
 
 @REM Uncomment this section to remove currently installed libraries
-@REM echo vcpkg remove --triplet %build_triplet% %libs%
+@REM echo vcpkg remove --recurse yasm:x86-windows
 @REM vcpkg remove --recurse yasm:x86-windows || exit /b 1
+@REM echo vcpkg remove --recurse --triplet %build_triplet% %libs%
 @REM vcpkg remove --recurse --triplet %build_triplet% %libs% || exit /b 1
 
 echo ================================================================================
@@ -65,7 +73,7 @@ echo ===========================================================================
 echo vcpkg install --keep-going --recurse yasm:x86-windows
 vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
 echo vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%
-vcpkg install --keep-going --recurse --triplet %build_triplet%  %libs% || exit /b 1
+vcpkg install --keep-going --recurse --triplet %build_triplet% %libs% || exit /b 1
 
 echo ================================================================================
 echo ========================   INSTALL COMPLETE   ==================================
@@ -73,7 +81,7 @@ echo ===========================================================================
 echo Exporting to %OUTPUT_DIR%
 echo --------------------------------------------------------------------------------
 vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR%" %libs% || exit /b 1
-echo %CURRENT_HASH%> "%OUTPUT_DIR%\repo-git-hash.txt"
+echo !CURRENT_HASH!> "%OUTPUT_DIR%\repo-git-hash.txt"
 
 :: The mess below calculates elapsed time
 set "endTime=%time: =0%" & rem fix single digit hour
@@ -96,3 +104,4 @@ echo Build Ended:         %endTime%
 echo Build Elapsed Time:  %hh:~1%%COLON%%mm:~1%%COLON%%ss:~1%%DOT%%cc:~1% & rem display as regional
 echo Delete your build directory if it still exists.
 endlocal
+

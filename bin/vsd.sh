@@ -35,12 +35,13 @@ else
     old_hash=""
 fi
 
-if [[ "${old_hash}" == "${current_hash}" ]]; then
-    echo "Dependencies are up to date! To force export, delete the export dir '${output_dir}'"
-    exit 0
-fi
-
-echo "vcpkg hash changed from '${old_hash}' to '${current_hash}'; will rebuild/re-export..."
+# if [[ "${old_hash}" == "${current_hash}" ]]; then
+# 	echo "Dependencies are up to date! To force export, delete the export dir '${output_dir}'";
+# 	exit 0;
+# fi
+# echo "vcpkg hash changed from '${old_hash}' to '${current_hash}'; will rebuild/re-export..."
+echo "vcpkg old hash: '${old_hash}'"
+echo "vcpkg current hash: '${old_hash}'"
 
 libs=$(cat ${vcpkg_library_list})
 # rm -rf buildtrees
