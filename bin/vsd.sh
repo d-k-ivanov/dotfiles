@@ -44,6 +44,7 @@ echo "vcpkg old hash: '${old_hash}'"
 echo "vcpkg current hash: '${old_hash}'"
 
 libs=$(cat ${vcpkg_library_list})
+libs_no_features=${libs//\[contrib\]/}
 # rm -rf buildtrees
 # rm -rf installed
 # rm -rf vcpkg-export-latest

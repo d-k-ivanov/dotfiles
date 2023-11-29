@@ -4,7 +4,8 @@ setlocal enabledelayedexpansion
 :: The code for calculating elapsed time is from StackOverflow... Just a nice-to-have feature
 set "startTime=%time: =0%" & rem fix single digit hour
 
-::set VCPKG_FEATURE_FLAGS=-binarycaching
+:: set VCPKG_FEATURE_FLAGS=-binarycaching
+:: set VCPKG_CONCURRENCY=24
 set DEFAULT_TRIPLET=x64-windows
 set build_triplet=%DEFAULT_TRIPLET%
 set "OUTPUT_DIR=C:\vcpkg\dev"
@@ -45,6 +46,7 @@ echo vcpkg current hash: '!CURRENT_HASH!'
 
 set libs=
 for /f "delims=" %%x in ('type %vcpkg_library_list%') do set "libs=!libs! %%x"
+set libs_no_features=%libs:[contrib]=%
 :: Here are some locations where things tend to get cached, and how to remove...
 :: We can also disable binary caching, if people want that.
 :: rd /s/q buildtrees
@@ -71,16 +73,17 @@ echo ===============      Building triplet: %build_triplet%
 echo ================================================================================
 :: yasm (x86 version) is a build dependency for yaml-cpp on Windows...
 echo vcpkg install --keep-going --recurse yasm:x86-windows
-vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
+@REM vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
 echo vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%
+@REM BuildConsole /command="vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%" || exit /b 1
 vcpkg install --keep-going --recurse --triplet %build_triplet% %libs% || exit /b 1
 
 echo ================================================================================
 echo ========================   INSTALL COMPLETE   ==================================
 echo ================================================================================
-echo Exporting to %OUTPUT_DIR%
+echo Exporting %libs_no_features% to %OUTPUT_DIR%
 echo --------------------------------------------------------------------------------
-vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR%" %libs% || exit /b 1
+vcpkg export --raw --triplet %build_triplet% --output="%OUTPUT_DIR=%" "%libs_no_features%" || exit /b 1
 echo !CURRENT_HASH!> "%OUTPUT_DIR%\repo-git-hash.txt"
 
 :: The mess below calculates elapsed time
