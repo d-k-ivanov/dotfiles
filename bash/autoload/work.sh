@@ -4,10 +4,14 @@ export CC_VCPKG_DEV=${HOME}/v
 export CC_VCPKG_ROOT=${HOME}/vcpkg
 
 # === Current === #
-alias ccdev=" ln -sf ${HOME}/ws/vcpkg                                          ${CC_VCPKG_DEV}"
-alias ccdev5="ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 ${CC_VCPKG_DEV}"
-alias ccdev6="ln -sf ${CC_VCPKG_ROOT}/fea1b6ae25a41b52e4581ff690c178d4a9224740 ${CC_VCPKG_DEV}"
-alias ccdev7="ln -sf ${CC_VCPKG_ROOT}/9c921f33c ${CC_VCPKG_DEV}"
+alias   ccdev="ln -sf ${CC_VCPKG_ROOT}/dev                                      ${CC_VCPKG_DEV}"
+alias  ccdevm="ln -sf ${WORKSPACE}/vcpkg                                        ${CC_VCPKG_DEV}"
+alias  ccdevs="ln -sf ${CC_VCPKG_ROOT}/shit                                     ${CC_VCPKG_DEV}"
+alias  ccdev5="ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 ${CC_VCPKG_DEV}"
+alias ccdev60="ln -sf ${CC_VCPKG_ROOT}/fea1b6ae25a41b52e4581ff690c178d4a9224740 ${CC_VCPKG_DEV}"
+alias ccdev61="ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 ${CC_VCPKG_DEV}"
+alias ccdev70="ln -sf ${CC_VCPKG_ROOT}/9c921f33c                                ${CC_VCPKG_DEV}"
+alias ccdev71="ln -sf ${CC_VCPKG_ROOT}/a101126ba                                ${CC_VCPKG_DEV}"
 
 # === Legacy  === #
 alias ccdev24="ln -sf ${CC_VCPKG_ROOT}/db5bd8485aea62500c09491a959a0fe7cc254e85 ${HOME}/vcpkg-export-latest"
