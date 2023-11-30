@@ -71,6 +71,7 @@ If (Test-Path $PrivatePSAutoladFolderW)
 }
 
 # Invovoke ANSI 256 Color Console
+chcp 65001
 # AnsiColors256
 AnsiConsole
 
