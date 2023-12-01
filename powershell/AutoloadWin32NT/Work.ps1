@@ -35,6 +35,7 @@ ${function:ccdev60} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicL
 ${function:ccdev61} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\a761262edcfa6bb92eab2917ac9c4382138b3bf5" -Force}
 ${function:ccdev70} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\9c921f33c" -Force}
 ${function:ccdev71} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\a101126ba" -Force}
+${function:ccdev72} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\286666521" -Force}
 
 # === Legacy  === #
 ${function:ccdev24} = { New-Item -Path "${Env:USERPROFILE}\vcpkg-export-latest" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\db5bd8485aea62500c09491a959a0fe7cc254e85" -Force}
