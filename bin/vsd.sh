@@ -8,16 +8,16 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     build_triplet='x64-osx'
 fi
 
-if [ ! -z "$1" ]; then
-    build_triplet="$1"
+if [ ! -z "$2" ]; then
+    build_triplet="$2"
 fi
 
 output_dir="${HOME}/vcpkg/dev"
 
 # The name of file with list of libraries to install:
 vcpkg_library_list="cc-required-libs-linux.txt"
-if [ ! -z "$2" ]; then
-    vcpkg_library_list="$2"
+if [ ! -z "$3" ]; then
+    vcpkg_library_list="$3"
 fi
 
 [ ! -f .vcpkg-root ] && exit 1
@@ -58,8 +58,10 @@ rm -rf "${build_dir}"
 rm -rf "${output_dir}"
 
 # Uncomment this section to remove currently installed libraries
-# echo vcpkg remove --triplet ${build_triplet} ${libs}
-# ./vcpkg remove --recurse --triplet ${build_triplet} ${libs}
+if [ "${1}" == "force" ]; then
+    echo vcpkg remove --triplet ${build_triplet} ${libs_no_features}
+    ./vcpkg remove --recurse --triplet ${build_triplet} ${libs_no_features}
+fi
 
 if [[ $? != 0 ]]; then
     echo "Error while removing libs"

@@ -11,8 +11,8 @@ set build_triplet=%DEFAULT_TRIPLET%
 set "OUTPUT_DIR=C:\vcpkg\dev"
 set vcpkg_library_list="cc-required-libs-windows.txt"
 
-if NOT "%~1" == "" (set build_triplet=%~1)
-if NOT "%~2" == "" (set vcpkg_library_list=%~2)
+if NOT "%~2" == "" (set build_triplet=%~1)
+if NOT "%~3" == "" (set vcpkg_library_list=%~2)
 
 if not exist %CD%\.vcpkg-root exit /b 1
 
@@ -35,11 +35,11 @@ if EXIST "%OUTPUT_DIR%\repo-git-hash.txt" (
     set OLD_HASH=
 )
 
-@REM if "%OLD_HASH%" == "!CURRENT_HASH!" (
-@REM 	echo Dependencies are up to date^^! To force export, delete the export dir '%OUTPUT_DIR%'
-@REM 	exit /b 0
-@REM )
-@REM echo vcpkg hash changed from '%OLD_HASH%' to '!CURRENT_HASH!'; will rebuild/reexport...
+:: if "%OLD_HASH%" == "!CURRENT_HASH!" (
+:: 	echo Dependencies are up to date^^! To force export, delete the export dir '%OUTPUT_DIR%'
+:: 	exit /b 0
+:: )
+:: echo vcpkg hash changed from '%OLD_HASH%' to '!CURRENT_HASH!'; will rebuild/reexport...
 
 echo vcpkg old hash: '%OLD_HASH%'
 echo vcpkg current hash: '!CURRENT_HASH!'
@@ -62,11 +62,13 @@ set "BUILD_DIR=%CD%\..\build"
 if EXIST "%BUILD_DIR%" ( rd /s/q "%BUILD_DIR%" || ((echo Unable to remove build dir '%BUILD_DIR%') && exit /b 1))
 if EXIST "%OUTPUT_DIR%" ( rd /s/q "%OUTPUT_DIR%" || ((echo Unable to remove output dir '%OUTPUT_DIR%') && exit /b 1 ))
 
-@REM Uncomment this section to remove currently installed libraries
-@REM echo vcpkg remove --recurse yasm:x86-windows
-@REM vcpkg remove --recurse yasm:x86-windows || exit /b 1
-@REM echo vcpkg remove --recurse --triplet %build_triplet% %libs%
-@REM vcpkg remove --recurse --triplet %build_triplet% %libs% || exit /b 1
+:: Uncomment this section to remove currently installed libraries
+if "%~1" == "force" (
+    echo vcpkg remove --recurse yasm:x86-windows
+    vcpkg remove --recurse yasm:x86-windows || exit /b 1
+    echo vcpkg remove --recurse --triplet %build_triplet% %libs_no_features%
+    vcpkg remove --recurse --triplet %build_triplet% %libs_no_features% || exit /b 1
+)
 
 echo ================================================================================
 echo ===============      Building triplet: %build_triplet%
