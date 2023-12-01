@@ -74,11 +74,21 @@ echo ===========================================================================
 echo ===============      Building triplet: %build_triplet%
 echo ================================================================================
 :: yasm (x86 version) is a build dependency for yaml-cpp on Windows...
-echo vcpkg install --keep-going --recurse yasm:x86-windows
-vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
+if "%~1" == "force" (
+    echo vcpkg install --keep-going --recurse --no-binarycaching yasm:x86-windows
+    vcpkg install --keep-going --recurse --no-binarycaching yasm:x86-windows || exit /b 1
+) else (
+    echo vcpkg install --keep-going --recurse yasm:x86-windows
+    vcpkg install --keep-going --recurse yasm:x86-windows || exit /b 1
+)
 
-echo vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%
-vcpkg install --keep-going --recurse --triplet %build_triplet% %libs% || exit /b 1
+if "%~1" == "force" (
+    echo vcpkg install --keep-going --recurse --no-binarycaching --triplet %build_triplet% %libs%
+    vcpkg install --keep-going --recurse --no-binarycaching --triplet %build_triplet% %libs% || exit /b 1
+) else (
+    echo vcpkg install --keep-going --recurse --triplet %build_triplet% %libs%
+    vcpkg install --keep-going --recurse --triplet %build_triplet% %libs% || exit /b 1
+)
 
 :: Incredibuld
 :: BuildConsole /command="vcpkg install --keep-going --recurse yasm:x86-windows" || exit /b 1
