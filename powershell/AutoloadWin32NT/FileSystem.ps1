@@ -42,7 +42,7 @@ ${function:......}  = { Set-Location ..\..\..\..\..    }
 ${function:.......} = { Set-Location ..\..\..\..\..\.. }
 
 # Navigation Shortcuts
-${function:drop}    = { Set-Location ~\Dropbox                                          }
+${function:drop}    = { Set-Location ${env:MY_DROPBOX}                                  }
 ${function:desk}    = { Set-Location ~\Desktop                                          }
 ${function:docs}    = { Set-Location ~\Documents                                        }
 ${function:down}    = { Set-Location ~\Downloads                                        }
@@ -56,8 +56,7 @@ ${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                      
 ${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
 ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                                }
 ${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg-gh                          }
-${function:wsws}    = { Set-Location ${Env:WORKSPACE}\my\workspace                      }
-# ${function:wsws}  = { Set-Location ${Env:USERPROFILE}\OneDrive\Workspace              }
+${function:wsws}    = { Set-Location ${env:MY_DROPBOX}\Workspace                        }
 
 # ClearCorrect Shortcuts
 ${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                      }

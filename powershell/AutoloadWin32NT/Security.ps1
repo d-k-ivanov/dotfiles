@@ -59,16 +59,6 @@ ${function:gpg_search_sks}      = { gpg --keyserver pool.sks-keyservers.net --se
 ${function:gpg_search_ubuntu}   = { gpg --keyserver keyserver.ubuntu.com --search-key  @args }
 ${function:gpg_search_mit}      = { gpg --keyserver pgp.mit.edu --search-key  @args }
 
-${function:mount_meta_d}        = { encfs ${env:USERPROFILE}\Dropbox\.meta M: }
-${function:umount_meta_d}       = { dokanctl /u M: }
-Set-Alias -Name mmmm -Value mount_meta_d
-Set-Alias -Name mmmu -Value umount_meta_d
-
-${function:mount_meta_o}        = { encfs ${env:USERPROFILE}\OneDrive\.meta O: }
-${function:umount_meta_o}       = { dokanctl /u O: }
-Set-Alias -Name ooom -Value mount_meta_o
-Set-Alias -Name ooou -Value umount_meta_o
-
 function gpg_file_e()
 {
     [CmdletBinding()]
