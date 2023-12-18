@@ -4,8 +4,9 @@
 platform=`uname`
 case $platform in
     Linux )
+        export PATH=.
         # Local
-        [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin
+        [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
         [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
         # Qt
@@ -13,6 +14,9 @@ case $platform in
         [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
         # CLion
         [[ -d $HOME/CLion/bin ]]                    && export PATH=$PATH:$HOME/CLion/bin
+        # CUDA
+        [[ -d /usr/local/cuda-12.2/bin ]]           && export PATH=$PATH:/usr/local/cuda-12.2/bin
+        [[ -d /usr/local/cuda-11.0/bin ]]           && export PATH=$PATH:/usr/local/cuda-12.0/bin
         # LLVM
         [[ -d /usr/lib/llvm/6/bin ]]                && export PATH=$PATH:/usr/lib/llvm/6/bin
         # Ruby
@@ -82,7 +86,6 @@ case $platform in
         ;;
     MSYS_NT-10.0 )
         [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin:$PATH
-        echo
         ;;
 esac
 
