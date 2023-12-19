@@ -49,7 +49,7 @@ function Set-NVAPI
 {
     $Selected = Select-From-List $(Get-NVAPIList) 'Nvidia API'
     [Environment]::SetEnvironmentVariable("NVAPI_LOCATION", ${Selected}, "Machine")
-    $Env:NVAPI_LOCATION = ${Selected}
+    Set-Item -Path Env:NVAPI_LOCATION -Value ${Selected}
 }
 
 function Get-NsightAfterMath
@@ -86,7 +86,7 @@ function Set-NsightAfterMath
 {
     $Selected = Select-From-List $(Get-NsightAfterMath) 'Nvidia API'
     [Environment]::SetEnvironmentVariable("NSIGHT_AFTERMATH_SDK", ${Selected}, "Machine")
-    $Env:NSIGHT_AFTERMATH_SDK = ${Selected}
+    Set-Item -Path Env:NSIGHT_AFTERMATH_SDK -Value ${Selected}
 }
 
 
@@ -123,7 +123,7 @@ function Set-OptiX
 {
     $Selected = Select-From-List $(Get-OptiX) 'Nvidia OptiX'
     [Environment]::SetEnvironmentVariable("OptiX_INSTALL_DIR", ${Selected}, "Machine")
-    $Env:OptiX_INSTALL_DIR = ${Selected}
+    Set-Item -Path Env:OptiX_INSTALL_DIR -Value ${Selected}
 }
 
 function Get-DevIL
@@ -162,9 +162,9 @@ function Set-DevIL
     [Environment]::SetEnvironmentVariable("IL_LIBRARIES",   "${Selected}\lib\x64\Release", "Machine")
     [Environment]::SetEnvironmentVariable("ILU_LIBRARIES",  "${Selected}\lib\x64\Release", "Machine")
     [Environment]::SetEnvironmentVariable("ILUT_LIBRARIES", "${Selected}\lib\x64\Release", "Machine")
-    $Env:DEVIL_PATH     = "${Selected}"
-    $Env:IL_INCLUDE_DIR = "${Selected}\include"
-    $Env:IL_LIBRARIES   = "${Selected}\lib\x64\Release"
-    $Env:ILU_LIBRARIES  = "${Selected}\lib\x64\Release"
-    $Env:ILUT_LIBRARIES = "${Selected}\lib\x64\Release"
+    Set-Item -Path Env:DEVIL_PATH     -Value "${Selected}"
+    Set-Item -Path Env:IL_INCLUDE_DIR -Value "${Selected}\include"
+    Set-Item -Path Env:IL_LIBRARIES   -Value "${Selected}\lib\x64\Release"
+    Set-Item -Path Env:ILU_LIBRARIES  -Value "${Selected}\lib\x64\Release"
+    Set-Item -Path Env:ILUT_LIBRARIES -Value "${Selected}\lib\x64\Release"
 }

@@ -25,7 +25,7 @@ function Set-DropboxLocation
 
     $Selected = Select-From-List $StorageLocationsValidated 'Dropbox'
     [Environment]::SetEnvironmentVariable("MY_DROPBOX", ${Selected}, "Machine")
-    $Env:MY_DROPBOX = ${Selected}
+    Set-Item -Path Env:MY_DROPBOX -Value ${Selected}
 }
 
 function Set-OneDriveLocation
@@ -47,7 +47,7 @@ function Set-OneDriveLocation
 
     $Selected = Select-From-List $StorageLocationsValidated 'OneDrive'
     [Environment]::SetEnvironmentVariable("MY_ONEDRIVE", ${Selected}, "Machine")
-    $Env:MY_ONEDRIVE = ${Selected}
+    Set-Item -Path Env:MY_ONEDRIVE -Value ${Selected}
 }
 
 ${function:mount_meta_d} = { encfs ${env:MY_DROPBOX}\.meta M: }

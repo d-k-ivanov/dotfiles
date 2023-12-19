@@ -27,7 +27,7 @@ function conan_set_vars
     # Set Conan Home Path
     if ($ConanHome -ne "None")
     {
-        $Env:CONAN_USER_HOME="${ConanHome}"
+        Set-Item -Path Env:CONAN_USER_HOME -Value "${ConanHome}"
         [Environment]::SetEnvironmentVariable("CONAN_USER_HOME", "${Env:CONAN_USER_HOME}", "Machine")
         if (-Not (Test-Path "${Env:CONAN_USER_HOME}"))
         {
@@ -38,7 +38,7 @@ function conan_set_vars
     # Set Conan Home Short Path
     if ($ConanShort -ne "None")
     {
-        $Env:CONAN_USER_HOME_SHORT="${ConanShort}"
+        Set-Item -Path Env:CONAN_USER_HOME_SHORT -Value "${ConanShort}"
         [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT", "${Env:CONAN_USER_HOME_SHORT}", "Machine")
         if (-Not (Test-Path "${Env:CONAN_USER_HOME_SHORT}"))
         {
@@ -47,18 +47,18 @@ function conan_set_vars
     }
     else
     {
-        $Env:CONAN_USER_HOME_SHORT="None"
+        Set-Item -Path Env:CONAN_USER_HOME_SHORT -Value "None"
         [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT", "${Env:CONAN_USER_HOME_SHORT}", "Machine")
     }
 
     if ($Env:CONAN_USER_HOME)
     {
-        $Env:CONAN_TRACE_FILE="${Env:CONAN_USER_HOME}\conan.log"
+        Set-Item -Path Env:CONAN_TRACE_FILE -Value "${Env:CONAN_USER_HOME}\conan.log"
         [Environment]::SetEnvironmentVariable("CONAN_TRACE_FILE", "${Env:CONAN_USER_HOME}\conan.log", "Machine")
     }
     else
     {
-        $Env:CONAN_TRACE_FILE="${Env:USERPROFILE}\.conan\conan.log"
+        Set-Item -Path Env:CONAN_TRACE_FILE -Value "${Env:USERPROFILE}\.conan\conan.log"
         [Environment]::SetEnvironmentVariable("CONAN_TRACE_FILE", "${Env:USERPROFILE}\.conan\conan.log", "Machine")
     }
 }

@@ -21,9 +21,9 @@ function Set-CCVCPKG
     ${local:vcpkg_dev_path} = "c:\v"
 
     [Environment]::SetEnvironmentVariable("CC_VCPKG_ROOT", $vcpkg_root_path , "Machine")
-    $Env:CC_VCPKG_ROOT = $vcpkg_root_path
+    Set-Item -Path Env:CC_VCPKG_ROOT -Value $vcpkg_root_path
     [Environment]::SetEnvironmentVariable("CC_VCPKG_DEV", $vcpkg_dev_path, "Machine")
-    $Env:CC_VCPKG_DEV = $vcpkg_dev_path
+    Set-Item -Path Env:CC_VCPKG_DEV -Value $vcpkg_dev_path
 }
 
 # === Current === #

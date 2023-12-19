@@ -27,9 +27,9 @@ function aws_set_env_vars()
         [string] $Region = 'us-east-1'
 
     )
-    $Env:AWS_ACCESS_KEY_ID      = "$AccessKey"
-    $Env:AWS_SECRET_ACCESS_KEY  = "$SecretKey"
-    $Env:AWS_DEFAULT_REGION     = "$Region"
+    Set-Item -Path Env:AWS_ACCESS_KEY_ID      -Value "$AccessKey"
+    Set-Item -Path Env:AWS_SECRET_ACCESS_KEY  -Value "$SecretKey"
+    Set-Item -Path Env:AWS_DEFAULT_REGION     -Value "$Region"
 }
 
 function aws_unset_env_vars()

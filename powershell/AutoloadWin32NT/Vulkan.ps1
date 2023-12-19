@@ -69,9 +69,9 @@ function Set-VulkanSDK
     $Selected = Select-From-List $(Get-VulkanSDKList) 'Vulkan SDK'
     [Environment]::SetEnvironmentVariable("VK_SDK_PATH", ${Selected}, "Machine")
     [Environment]::SetEnvironmentVariable("VULKAN_SDK", ${Selected}, "Machine")
-    $Env:VK_SDK_PATH = ${Selected}
-    $Env:VULKAN_SDK = ${Selected}
-    $Env:PATH = "${Env:VULKAN_SDK}\Bin;${Env:PATH}"
+    Set-Item -Path Env:VK_SDK_PATH -Value ${Selected}
+    Set-Item -Path Env:VULKAN_SDK  -Value ${Selected}
+    Set-Item -Path Env:PATH -Value "${Env:VULKAN_SDK}\Bin;${Env:PATH}"
 }
 
 function Get-VulkanSDK

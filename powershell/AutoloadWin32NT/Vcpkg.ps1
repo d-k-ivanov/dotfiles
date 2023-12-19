@@ -61,7 +61,7 @@ function Set-VCPKG
 {
     $Selected = Select-From-List $(Get-VCPKGList) 'available VCPKG locations'
     [Environment]::SetEnvironmentVariable("MY_VCPKG_ROOT", ${Selected}, "Machine")
-    $Env:MY_VCPKG_ROOT = ${Selected}
+    Set-Item -Path Env:MY_VCPKG_ROOT -Value ${Selected}
     Set-Item -Path Env:PATH -Value "${Selected};${Env:PATH}"
 }
 

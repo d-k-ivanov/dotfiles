@@ -396,40 +396,40 @@ function Set-GitVerbosity
         {
             if (($Category -eq 'curl') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_CURL_VERBOSE = 1
-                $Env:GIT_TRACE_CURL = 1
+                Set-Item -Path Env:GIT_CURL_VERBOSE -Value 1
+                Set-Item -Path Env:GIT_TRACE_CURL   -Value 1
             }
             if (($Category -eq 'trace') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE = 1
+                Set-Item -Path Env:GIT_TRACE -Value 1
             }
             if (($Category -eq 'pack') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_PACK_ACCESS = 1
+                Set-Item -Path Env:GIT_TRACE_PACK_ACCESS -Value 1
             }
             if (($Category -eq 'packet') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_PACKET = 1
+                Set-Item -Path Env:GIT_TRACE_PACKET -Value 1
             }
             if (($Category -eq 'perf') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_PERFORMANCE = 1
+                Set-Item -Path Env:GIT_TRACE_PERFORMANCE -Value 1
             }
             if (($Category -eq 'setup') -Or ($Category -eq 'all'))
             {
-                $Env:GIT_TRACE_SETUP = 1
+                Set-Item -Path Env:GIT_TRACE_SETUP -Value 1
             }
             break
         }
         ({ $PSItem -eq 'Off' -Or $PSItem -eq 'off' })
         {
-            $Env:GIT_CURL_VERBOSE = 0
-            $Env:GIT_TRACE_CURL = 0
-            $Env:GIT_TRACE = 0
-            $Env:GIT_TRACE_PACK_ACCESS = 0
-            $Env:GIT_TRACE_PACKET = 0
-            $Env:GIT_TRACE_PERFORMANCE = 0
-            $Env:GIT_TRACE_SETUP = 0
+            Set-Item -Path Env:GIT_CURL_VERBOSE       -Value 0
+            Set-Item -Path Env:GIT_TRACE_CURL         -Value 0
+            Set-Item -Path Env:GIT_TRACE              -Value 0
+            Set-Item -Path Env:GIT_TRACE_PACK_ACCESS  -Value 0
+            Set-Item -Path Env:GIT_TRACE_PACKET       -Value 0
+            Set-Item -Path Env:GIT_TRACE_PERFORMANCE  -Value 0
+            Set-Item -Path Env:GIT_TRACE_SETUP        -Value 0
             break
         }
         default
