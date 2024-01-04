@@ -15,6 +15,21 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+function NsightLegacyDebugger-On
+{
+    [Environment]::SetEnvironmentVariable("CUDBG_USE_LEGACY_DEBUGGER", 1, "Machine")
+    Set-Item -Path Env:CUDBG_USE_LEGACY_DEBUGGER -Value 1
+}
+
+function NsightLegacyDebugger-Off
+{
+    [Environment]::SetEnvironmentVariable("CUDBG_USE_LEGACY_DEBUGGER", $null, "Machine")
+    if ($Env:CUDBG_USE_LEGACY_DEBUGGER)
+    {
+        Remove-Item Env:CUDBG_USE_LEGACY_DEBUGGER
+    }
+}
+
 function Get-NVAPIList
 {
     $APILocations = @(
