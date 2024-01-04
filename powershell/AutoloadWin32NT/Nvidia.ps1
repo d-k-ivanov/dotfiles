@@ -30,6 +30,37 @@ function NsightLegacyDebugger-Off
     }
 }
 
+function NsightCUDADebugger-On
+{
+    [Environment]::SetEnvironmentVariable("NSIGHT_CUDA_DEBUGGER", 1, "Machine")
+    Set-Item -Path Env:NSIGHT_CUDA_DEBUGGER -Value 1
+}
+
+function NsightCUDAyDebugger-Off
+{
+    [Environment]::SetEnvironmentVariable("NSIGHT_CUDA_DEBUGGER", $null, "Machine")
+    if ($Env:NSIGHT_CUDA_DEBUGGER)
+    {
+        Remove-Item Env:CUDBG_USE_LEGACY_DEBUGGER
+    }
+}
+
+function NsightDebuggerPreemption-On
+{
+    [Environment]::SetEnvironmentVariable("CUDA_DEBUGGER_SOFTWARE_PREEMPTION", 1, "Machine")
+    Set-Item -Path Env:CUDA_DEBUGGER_SOFTWARE_PREEMPTION -Value 1
+}
+
+
+function NsightDebuggerPreemption-Off
+{
+    [Environment]::SetEnvironmentVariable("CUDA_DEBUGGER_SOFTWARE_PREEMPTION", $null, "Machine")
+    if ($Env:CUDA_DEBUGGER_SOFTWARE_PREEMPTION)
+    {
+        Remove-Item Env:CUDBG_USE_LEGACY_DEBUGGER
+    }
+}
+
 function Get-NVAPIList
 {
     $APILocations = @(
