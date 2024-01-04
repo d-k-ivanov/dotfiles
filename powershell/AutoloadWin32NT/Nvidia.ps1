@@ -36,7 +36,7 @@ function NsightCUDADebugger-On
     Set-Item -Path Env:NSIGHT_CUDA_DEBUGGER -Value 1
 }
 
-function NsightCUDAyDebugger-Off
+function NsightCUDADebugger-Off
 {
     [Environment]::SetEnvironmentVariable("NSIGHT_CUDA_DEBUGGER", $null, "Machine")
     if ($Env:NSIGHT_CUDA_DEBUGGER)
