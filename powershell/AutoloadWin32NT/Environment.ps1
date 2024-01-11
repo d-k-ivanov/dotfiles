@@ -113,8 +113,9 @@ function Initialize-Paths-User
         "C:\Go\bin"
         "C:\HashiCorp\Vagrant\bin"
         "C:\msys64"
-        "C:\texlive\2023\bin\\windows"
-        "C:\texlive\2022\bin\win32"
+        "C:\texlive\2024\bin\windows"
+        # "C:\texlive\2023\bin\windows"
+        # "C:\texlive\2022\bin\win32"
         "C:\opscode\chefdk\bin"
         "C:\PROGRA~1\Azure Data Studio\bin"
         "C:\PROGRA~1\Conan\conan"
@@ -171,7 +172,6 @@ function Initialize-Paths-User
         # "C:\tools\wsltty\bin"
         "C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin"
         "C:\ProgramData\chocolatey\lib\wmiexplorer\tools"
-        # "C:\ProgramData\DockerDesktop\version-bin"
     )
 
     $final_path = "${env:USERPROFILE}\.bin"
@@ -207,9 +207,9 @@ function Initialize-Paths-System
         "C:\PROGRA~1\CMake\bin"
         "C:\PROGRA~1\COMMON~1\Intel\WirelessCommon"
         "C:\PROGRA~1\Cppcheck"
-        "C:\tools\docker"
-        "C:\PROGRA~1\RedHat\Podman\"
-        # "C:\PROGRA~1\Docker\Docker\resources\bin"
+        # "C:\tools\docker"                         ## Use Set-ContainerEngine
+        # "C:\PROGRA~1\RedHat\Podman\"              ## Use Set-ContainerEngine
+        # "C:\PROGRA~1\Docker\Docker\resources\bin" ## Use Set-ContainerEngine
         "C:\PROGRA~1\dotnet"
         "C:\PROGRA~1\doxygen\bin"
         "C:\PROGRA~1\f3d\bin"
