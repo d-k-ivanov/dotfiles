@@ -15,6 +15,9 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+$Env:VCPKG_DISABLE_METRICS = 1
+# $Env:VCPKG_FEATURE_FLAGS = "versions"
+
 function Get-VCPKGList
 {
     $Directories = @(
@@ -85,6 +88,6 @@ function vcpkg-cmake
 {
     # $vcpkgPath = (Get-Item (Get-Command vcpkg.exe -ErrorAction SilentlyContinue).Path).Directory.FullName
     # $vcpkNixPath = ($vcpkgPath -replace "\\","/").ToLower().Trim("/")
-    $vcpkNixPath = ($env:MY_VCPKG_ROOT -replace "\\","/").ToLower().Trim("/")
+    $vcpkNixPath = ($env:MY_VCPKG_ROOT -replace "\\", "/").ToLower().Trim("/")
     Write-Output "-DCMAKE_TOOLCHAIN_FILE=${vcpkNixPath}/scripts/buildsystems/vcpkg.cmake"
 }

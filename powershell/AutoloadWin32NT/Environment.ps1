@@ -35,10 +35,6 @@ $Env:OLDPWD = Get-Location
 # Virtual Env Fix (if prompt in ReadOnly mode)
 # $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 
-# VCPKG:
-$Env:VCPKG_DISABLE_METRICS = 1
-# $Env:VCPKG_FEATURE_FLAGS = "versions"
-
 # PS Readline:
 $PSReadLineOptions = @{
     # EditMode = "Vi"
@@ -106,7 +102,6 @@ function Initialize-Paths-User
         "${env:USERPROFILE}\AppData\Roaming\local\bin"
         "${env:USERPROFILE}\AppData\Roaming\npm"
         "${env:USERPROFILE}\AppData\Roaming\Pub\Cache\bin"
-        "${env:MY_VCPKG_ROOT}"
         "C:\usr\bin"
         "C:\boost\dist\bin"
         "C:\Coq\bin"
@@ -175,6 +170,10 @@ function Initialize-Paths-User
     )
 
     $final_path = "${env:USERPROFILE}\.bin"
+    if ($Env:MY_VCPKG_ROOT)
+    {
+        $final_path += ";$Env:MY_VCPKG_ROOT"
+    }
 
     foreach ($path in $paths)
     {
