@@ -15,6 +15,7 @@ case $platform in
         # CLion
         [[ -d $HOME/CLion/bin ]]                    && export PATH=$PATH:$HOME/CLion/bin
         # CUDA
+        [[ -d /usr/local/cuda-12.3/bin ]]           && export PATH=$PATH:/usr/local/cuda-12.3/bin
         [[ -d /usr/local/cuda-12.2/bin ]]           && export PATH=$PATH:/usr/local/cuda-12.2/bin
         [[ -d /usr/local/cuda-11.0/bin ]]           && export PATH=$PATH:/usr/local/cuda-12.0/bin
         # LLVM
