@@ -111,6 +111,7 @@ function CheckGit($Path)
     # Microsoft.PowerShell.Utility\Write-Host "]" -NoNewline -ForegroundColor DarkGreen
 
     Microsoft.PowerShell.Utility\Write-Host $(checkGit($pwd.ProviderPath)) -NoNewline
+    Microsoft.PowerShell.Utility\Write-Host "" ${Env:CONDA_PROMPT_MODIFIER} -NoNewline -ForegroundColor DarkYellow
 
     $now      = Get-date -Format "HH:mm:ss"
     # $username = $(Split-Path (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object UserName).UserName -Leaf)
