@@ -11,9 +11,9 @@ clang_format_all()
     find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
 }
 
-alias cppck="cppcheck -j8 --enable=all --force"
-alias cppcki="cppck --inline-suppr"
-alias cppckif="cppcki --suppressions-list=cppcheck-suppressions.txt"
+alias cppck="cppcheck -j8 --enable=all --force "
+alias cppcki="cppck --inline-suppr "
+alias cppckif="cppcki --suppressions-list=cppcheck-suppressions.txt "
 
 cppckxml()
 {

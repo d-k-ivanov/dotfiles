@@ -17,7 +17,7 @@ if ($MyInvocation.InvocationName -ne '.')
 
 if (Get-Command cppcheck -ErrorAction SilentlyContinue | Test-Path)
 {
-    ${function:cppck} = { cppcheck -j8 --enable=all --force  @args }
+    ${function:cppck} = { cppcheck -j8 --enable=all --force @args }
     ${function:cppcki} = { cppck --inline-suppr @args }
     ${function:cppckif} = { cppcki --suppressions-list=cppcheck-suppressions.txt @args }
 
