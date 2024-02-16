@@ -154,7 +154,8 @@ function Initialize-Paths-User
         "C:\tools\msys64"
         "C:\tools\neovim\Neovim\bin"
         "C:\tools\ProccessHacker"
-        "C:\tools\Sharpmake\"
+        "C:\tools\SHADERed"
+        "C:\tools\Sharpmake"
         "C:\tools\sonar\bin"
         "C:\tools\stlink\bin"
         "C:\tools\swig"
@@ -208,7 +209,7 @@ function Initialize-Paths-System
         "C:\PROGRA~1\COMMON~1\Intel\WirelessCommon"
         "C:\PROGRA~1\Cppcheck"
         # "C:\tools\docker"                         ## Use Set-ContainerEngine
-        # "C:\PROGRA~1\RedHat\Podman\"              ## Use Set-ContainerEngine
+        # "C:\PROGRA~1\RedHat\Podman"               ## Use Set-ContainerEngine
         # "C:\PROGRA~1\Docker\Docker\resources\bin" ## Use Set-ContainerEngine
         "C:\PROGRA~1\dotnet"
         "C:\PROGRA~1\doxygen\bin"
