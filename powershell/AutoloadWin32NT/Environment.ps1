@@ -400,7 +400,7 @@ function Set-Env
 
     if ($env:VULKAN_SDK)
     {
-        $system_path += ";$env:VULKAN_SDK"
+        $system_path += ";$env:VULKAN_SDK\Bin"
     }
 
     $system_path += ";$env:PathsSys"
