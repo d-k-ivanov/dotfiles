@@ -262,6 +262,7 @@ function Initialize-Paths-System
         "C:\PROGRA~1\NVIDIA~2\CUDA\v12.1\nvvm\bin"
         "C:\PROGRA~1\OpenConnect-GUI"
         "C:\PROGRA~1\OpenCppCoverage"
+        "C:\PROGRA~1\OpenSCAD"
         "C:\PROGRA~1\OpenSSH-Win64"
         "C:\PROGRA~1\OpenSSL\bin"
         "C:\PROGRA~1\OpenVPN\bin"
