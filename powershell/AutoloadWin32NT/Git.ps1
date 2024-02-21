@@ -469,7 +469,7 @@ function Get-GitCommitsByAuthor
     )
     $cmd = "git log "
     $cmd += "--pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' "
-    $cmd += "--abbrev-commit --date=relative "
+    $cmd += "--abbrev-commit --date=iso8601 "
 
     if ($AllBranches)
     {
