@@ -15,5 +15,5 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-${function:fix-texlive-formats-sys} = { fmtutil-sys --all; updmap -sys }
-${function:fix-texlive-formats-usr} = { fmtutil-user --all; updmap -user }
+${function:fix-texlive-formats-sys} = { fmtutil-sys --all; updmap -sys; fc-cache -fsv; luaotfload-tool -f -u -v }
+${function:fix-texlive-formats-usr} = { fmtutil-user --all; updmap -user; fc-cache -fsv; luaotfload-tool -f -u -v }
