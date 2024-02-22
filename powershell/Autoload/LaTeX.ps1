@@ -15,5 +15,5 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-${function:fix-texlive-formats-sys} = { fmtutil-sys --all  }
-${function:fix-texlive-formats-usr} = { fmtutil-user --all }
+${function:fix-texlive-formats-sys} = { fmtutil-sys --all; updmap }
+${function:fix-texlive-formats-usr} = { fmtutil-user --all; updmap }
