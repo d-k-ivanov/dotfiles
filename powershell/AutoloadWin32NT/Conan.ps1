@@ -117,12 +117,12 @@ function conan_symlinks
         Remove-Item -Force -Confirm:$false "${conan_config}" -ErrorAction SilentlyContinue
         cmd.exe /c mklink "${conan_config}" "${conan_my_path}\conan.conf"
 
-        Get-ChildItem "${conan_my_path}\hooks\" | ForEach-Object {
+        Get-ChildItem "${conan_my_path}\hooks" | ForEach-Object {
             Remove-Item -Force -Confirm:$false "${conan_hooks}\$($_.Name)" -ErrorAction SilentlyContinue
             cmd.exe /c mklink "${conan_hooks}\$($_.Name)" "$($_.FullName)"
         }
 
-        Get-ChildItem "${conan_my_path}\profiles\" | ForEach-Object {
+        Get-ChildItem "${conan_my_path}\profiles" | ForEach-Object {
             Remove-Item -Force -Confirm:$false "${conan_profiles}\$($_.Name)" -ErrorAction SilentlyContinue
             cmd.exe /c mklink "${conan_profiles}\$($_.Name)" "$($_.FullName)"
         }
@@ -161,12 +161,12 @@ function conan2_symlinks
         Remove-Item -Force -Confirm:$false "${conan_config}" -ErrorAction SilentlyContinue
         cmd.exe /c mklink "${conan_config}" "${conan_my_path}\conan.conf"
 
-        Get-ChildItem "${conan_my_path}\hooks\" | ForEach-Object {
+        Get-ChildItem "${conan_my_path}\hooks" | ForEach-Object {
             Remove-Item -Force -Confirm:$false "${conan_hooks}\$($_.Name)" -ErrorAction SilentlyContinue
             cmd.exe /c mklink "${conan_hooks}\$($_.Name)" "$($_.FullName)"
         }
 
-        Get-ChildItem "${conan_my_path}\profiles\" | ForEach-Object {
+        Get-ChildItem "${conan_my_path}\profiles" | ForEach-Object {
             Remove-Item -Force -Confirm:$false "${conan_profiles}\$($_.Name)" -ErrorAction SilentlyContinue
             cmd.exe /c mklink "${conan_profiles}\$($_.Name)" "$($_.FullName)"
         }

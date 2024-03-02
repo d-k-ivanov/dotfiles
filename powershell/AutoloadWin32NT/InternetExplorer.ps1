@@ -19,7 +19,7 @@ if ($MyInvocation.InvocationName -ne '.')
 function Disable-AutomaticallyDetectProxySettings
 {
     # Read connection settings from Internet Explorer.
-    $regKeyPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Connections\"
+    $regKeyPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Connections"
     $conSet = $(Get-ItemProperty $regKeyPath).DefaultConnectionSettings
 
     # Index into DefaultConnectionSettings where the relevant flag resides.
