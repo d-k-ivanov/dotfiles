@@ -58,9 +58,9 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
         }
     }
 
-    ${function:srv}  = { python -m http.server 8000 }
+    ${function:srv}  = { python -m http.server @args }
     if (Get-Command serv.ps1 -ErrorAction SilentlyContinue | Test-Path)
     {
-        ${function:serv}  = { serv.ps1 }
+        ${function:serv}  = { serv.ps1 @args }
     }
 }

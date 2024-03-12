@@ -3,6 +3,7 @@
 # python >= 3.6
 
 # TODO: implement new class to allow forced stop
+import sys
 import http.server
 import socketserver
 
@@ -18,7 +19,10 @@ class SimpleHTTPRequestHandlerNoCache(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    PORT = 9091
+    if sys.argv[1:]:
+        PORT = int(sys.argv[1])
+    else:
+        PORT = 9091
     # Handler = http.server.SimpleHTTPRequestHandler # Default
     Handler = SimpleHTTPRequestHandlerNoCache
 

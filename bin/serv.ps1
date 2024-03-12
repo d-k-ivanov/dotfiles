@@ -8,4 +8,4 @@
 # (Get-Item $PSCommandPath).FullName         # C:\Users\${Env:HOME}\.bin\serv.ps1
 
 $Script = $PSScriptRoot + "\" + (Get-Item $PSCommandPath).BaseName + ".py"
-python $Script
+python $Script $args[0]
