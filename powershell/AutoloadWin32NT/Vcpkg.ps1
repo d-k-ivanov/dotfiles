@@ -74,6 +74,15 @@ function Use-VCPKG
     Set-Item -Path Env:PATH -Value "${Selected};${Env:PATH}"
 }
 
+function Unset-VCPKG
+{
+    [Environment]::SetEnvironmentVariable("MY_VCPKG_ROOT", $null, "Machine")
+    if ($env:MY_VCPKG_ROOT)
+    {
+        Remove-Item Env:MY_VCPKG_ROOT
+    }
+}
+
 ${function:vcpkg-remove}        = { vcpkg remove            --triplet x64-windows @args }
 ${function:vcpkg-remove-r}      = { vcpkg remove  --recurse --triplet x64-windows @args }
 ${function:vcpkg-install}       = { vcpkg install           --triplet x64-windows @args }
