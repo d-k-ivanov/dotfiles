@@ -95,21 +95,21 @@ ${function:cbuildrl} = { cmake --build --config Release        @args build/x64-R
 ${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args build/x64-RelWithDebInfo }
 
 # CTest
-${function:ctest}            = { ctest --test-dir build @args    }
-${function:ctest-show}       = { ctest --test-dir build -N       }
-${function:ctest-filter}     = { ctest --test-dir build -R @args }
+${function:cc-ctest}            = { ctest --test-dir build @args    }
+${function:cc-ctest-show}       = { ctest --test-dir build -N       }
+${function:cc-ctest-filter}     = { ctest --test-dir build -R @args }
 
-${function:ctest-r}         = { ctest --test-dir build/x64-Release @args    }
-${function:ctest-r-show}    = { ctest --test-dir build/x64-Release -N       }
-${function:ctest-r-filter}  = { ctest --test-dir build/x64-Release -R @args }
+${function:cc-ctest-r}         = { ctest --test-dir build/x64-Release @args    }
+${function:cc-ctest-r-show}    = { ctest --test-dir build/x64-Release -N       }
+${function:cc-ctest-r-filter}  = { ctest --test-dir build/x64-Release -R @args }
 
-${function:ctest-d}         = { ctest --test-dir build/x64-Debug @args    }
-${function:ctest-d-show}    = { ctest --test-dir build/x64-Debug -N       }
-${function:ctest-d-filter}  = { ctest --test-dir build/x64-Debug -R @args }
+${function:cc-ctest-d}         = { ctest --test-dir build/x64-Debug @args    }
+${function:cc-ctest-d-show}    = { ctest --test-dir build/x64-Debug -N       }
+${function:cc-ctest-d-filter}  = { ctest --test-dir build/x64-Debug -R @args }
 
-${function:ctest-rd}        = { ctest --test-dir build/x64-RelWithDebInfo @args    }
-${function:ctest-rd-show}   = { ctest --test-dir build/x64-RelWithDebInfo -N       }
-${function:ctest-rd-filter} = { ctest --test-dir build/x64-RelWithDebInfo -R @args }
+${function:cc-ctest-rd}        = { ctest --test-dir build/x64-RelWithDebInfo @args    }
+${function:cc-ctest-rd-show}   = { ctest --test-dir build/x64-RelWithDebInfo -N       }
+${function:cc-ctest-rd-filter} = { ctest --test-dir build/x64-RelWithDebInfo -R @args }
 
 function ccc
 {
