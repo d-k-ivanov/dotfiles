@@ -36,8 +36,5 @@ if (Get-Command npm -ErrorAction SilentlyContinue | Test-Path)
 if (Get-Command tsc -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:tsc-all} = { Get-ChildItem -Path src-ts -Filter "*.ts" | % { tsc -strict -target ES2022 --outDir public_html/js $_ } }
-    ${function:tsc-all-here} = { Get-ChildItem -Path src-ts -Filter "*.ts" | % { tsc -strict -target ES2022 --outDir $_ } }
     ${function:tsc-build} = { tsc -strict -target ES2022 --outDir public_html/js @args }
-    ${function:tsc-build-here} = { tsc -strict -target ES2022 @args }
-
 }
