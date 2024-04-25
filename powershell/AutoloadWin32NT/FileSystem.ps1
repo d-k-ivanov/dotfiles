@@ -55,7 +55,7 @@ ${function:wsconf}  = { Set-Location ${Env:WORKSPACE}\my\workstations\windows   
 ${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
 ${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
 ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                                }
-${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg-gh                          }
+${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg                             }
 ${function:wsws}    = { Set-Location ${env:MY_ONEDRIVE}\Workspace                       }
 
 # ClearCorrect Shortcuts
@@ -66,7 +66,7 @@ ${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-d
 ${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2     }
 ${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev3     }
 ${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev4     }
-${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\vcpkg                             }
+${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\vcpkg-cc                          }
 ${function:wsce}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\exporters            }
 
 # IRQ Shortcuts
