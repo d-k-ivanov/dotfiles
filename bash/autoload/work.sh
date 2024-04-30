@@ -5,7 +5,7 @@ export CC_VCPKG_ROOT=${HOME}/vcpkg
 
 # === Current === #
 alias   ccdev="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/dev                                      ${CC_VCPKG_DEV}"
-alias  ccdevm="rm -f ${CC_VCPKG_DEV}; ln -sf ${WORKSPACE}/vcpkg                                        ${CC_VCPKG_DEV}"
+alias  ccdevm="rm -f ${CC_VCPKG_DEV}; ln -sf ${WORKSPACE}/.vcpkg                                       ${CC_VCPKG_DEV}"
 alias  ccdevs="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/shit                                     ${CC_VCPKG_DEV}"
 alias  ccdev5="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/a761262edcfa6bb92eab2917ac9c4382138b3bf5 ${CC_VCPKG_DEV}"
 alias ccdev60="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/fea1b6ae25a41b52e4581ff690c178d4a9224740 ${CC_VCPKG_DEV}"
