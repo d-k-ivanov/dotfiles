@@ -100,3 +100,56 @@ function vcpkg-cmake
     $vcpkNixPath = ($env:MY_VCPKG_ROOT -replace "\\", "/").ToLower().Trim("/")
     Write-Output "-DCMAKE_TOOLCHAIN_FILE=${vcpkNixPath}/scripts/buildsystems/vcpkg.cmake"
 }
+
+function vcpkg-batch-install
+{
+    $BuildTriplet = "x64-windows"
+    $Packages = @(
+        "3dxware"
+        "assimp"
+        "boost"
+        "catch2"
+        "cgal"
+        "dirent"
+        "draco"
+        "eigen3"
+        "embree3"
+        "fakeit"
+        "fmt"
+        "freeglut"
+        "glad"
+        "glew"
+        "glfw3"
+        "glib"
+        "glm"
+        "gts"
+        "imgui[docking-experimental,glfw-binding,opengl3-binding,vulkan-binding]"
+        "imguizmo"
+        "libjpeg-turbo"
+        "lodepng"
+        "ode"
+        "opencv4[contrib]"
+        "openssl"
+        "pugixml"
+        "qt3d"
+        "qtbase"
+        "qtsvg"
+        "qttools"
+        "qt5-3d"
+        "qt5-base"
+        "qt5-tools"
+        "quazip"
+        "quazip5"
+        "spdlog"
+        "stb"
+        "vtk"
+        "vulkan"
+        "yaml-cpp"
+    )
+
+    foreach ($Package in $Packages)
+    {
+        vcpkg install --triplet $BuildTriplet $Package
+    }
+}
+

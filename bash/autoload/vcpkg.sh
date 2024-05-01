@@ -18,3 +18,53 @@ vcpkg-cmake()
     vcpkgPath=$(dirname $(which vcpkg))
     echo -n "-DCMAKE_TOOLCHAIN_FILE=${vcpkgPath}/scripts/buildsystems/vcpkg.cmake"
 }
+
+vcpkg-batch-install()
+{
+    build_triplet='x64-linux'
+    if [[ $(uname -s) == 'Darwin' ]]; then
+        build_triplet='x64-osx'
+    fi
+
+    vcpkg install --triplet ${build_triplet} \
+        "3dxware" \
+        "assimp" \
+        "boost" \
+        "catch2" \
+        "cgal" \
+        "dirent" \
+        "draco" \
+        "eigen3" \
+        "embree3" \
+        "fakeit" \
+        "fmt" \
+        "freeglut" \
+        "glad" \
+        "glew" \
+        "glfw3" \
+        "glib" \
+        "glm" \
+        "gts" \
+        "imgui[docking-experimental,glfw-binding,opengl3-binding,vulkan-binding]" \
+        "imguizmo" \
+        "libjpeg-turbo" \
+        "lodepng" \
+        "ode" \
+        "opencv4[contrib]" \
+        "openssl" \
+        "pugixml" \
+        "qt3d" \
+        "qtbase" \
+        "qtsvg" \
+        "qttools" \
+        "qt5-3d" \
+        "qt5-base" \
+        "qt5-tools" \
+        "quazip" \
+        "quazip5" \
+        "spdlog" \
+        "stb" \
+        "vtk" \
+        "vulkan" \
+        "yaml-cpp"
+}
