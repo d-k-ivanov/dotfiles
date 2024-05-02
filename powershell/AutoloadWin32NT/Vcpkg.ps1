@@ -149,7 +149,7 @@ function vcpkg-batch-install
 
     foreach ($Package in $Packages)
     {
-        vcpkg install --triplet $BuildTriplet $Package
+        vcpkg install --keep-going --recurse --triplet $BuildTriplet $Package
     }
 }
 

@@ -26,7 +26,7 @@ vcpkg-batch-install()
         build_triplet='x64-osx'
     fi
 
-    vcpkg install --triplet ${build_triplet} \
+    vcpkg install --keep-going --recurse --triplet ${build_triplet} \
         "3dxware" \
         "assimp" \
         "boost" \
