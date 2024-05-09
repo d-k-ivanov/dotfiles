@@ -152,6 +152,7 @@ function Initialize-Paths-User
         "C:\tools\msys64"
         "C:\tools\neovim\Neovim\bin"
         "C:\tools\ProccessHacker"
+        "C:\tools\processing-4.3\"
         "C:\tools\SHADERed"
         "C:\tools\Sharpmake"
         "C:\tools\sonar\bin"
