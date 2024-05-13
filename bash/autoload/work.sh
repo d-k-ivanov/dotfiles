@@ -14,6 +14,7 @@ alias ccdev70="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/9c921f33c         
 alias ccdev71="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/a101126ba                                ${CC_VCPKG_DEV}"
 alias ccdev72="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/286666521                                ${CC_VCPKG_DEV}"
 alias ccdev73="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/617fb6a9d                                ${CC_VCPKG_DEV}"
+alias ccdev74="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/6ef94459d                                ${CC_VCPKG_DEV}"
 alias ccdev80="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/3f605a228                                ${CC_VCPKG_DEV}"
 
 
