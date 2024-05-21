@@ -4,13 +4,10 @@
 # Commits only what's in the index (what's been "git add"ed).
 # When given an argument, uses that for a message.
 # With no argument, opens an editor that also shows the diff (-v).
-gco()
-{
-    if [ -z "$1" ]
-    then
+gco() {
+    if [ -z "$1" ]; then
         git commit -v
-    elif [ -z "$2" ]
-    then
+    elif [ -z "$2" ]; then
         git commit "$1"
     else
         git commit "$1" -m "$2"
@@ -21,30 +18,24 @@ gco()
 # Commits all changes, deletions and additions.
 # When given an argument, uses that for a message.
 # With no argument, opens an editor that also shows the diff (-v).
-gca()
-{
+gca() {
     git add --all && gco "$1"
 }
 
 # "git get"
 # Clones the given repo and then cd:s into that directory.
-gget()
-{
-    git clone "$1" && cd $( basename "$1" .git )
+gget() {
+    git clone "$1" && cd $(basename "$1" .git)
 }
 
-
-get_repo_with_target()
-{
-    if [ -z "$1" ] || [ $2 ]
-    then
+get_repo_with_target() {
+    if [ -z "$1" ] || [ $2 ]; then
         echo "You should enter repo URI."
         echo "Usage: get_repo_with_target <repo_url>"
         echo
     else
         scheme=$(python3 -c "from urllib.parse import urlparse; uri='${1}'; result = urlparse(uri); print(result.scheme)")
-        if [[ ${scheme} = "https" ]]
-        then
+        if [[ ${scheme} = "https" ]]; then
             target=$(python3 -c "from urllib.parse import urlparse; import os.path; uri='${1}'; result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]) + '-' + os.path.dirname(path[0]))")
         else
             target=$(python3 -c "from urllib.parse import urlparse; import os.path; uri='${1}'; result = urlparse(uri); path = os.path.splitext(result.path.split(':', 1)[-1]); print(os.path.basename(path[0]) + '-' + os.path.dirname(path[0]))")
@@ -57,23 +48,19 @@ get_repo_with_target()
 alias grt='get_repo_with_target'
 
 # Function to recursive clone repo from souurce URL to target direcrtory formated as <<repo_name>>-<<username>> (".git" - removed from path)
-gcsr()
-{
-    if [ -z "$1" ] || [ $2 ]
-    then
+gcsr() {
+    if [ -z "$1" ] || [ $2 ]; then
         echo "You should enter repo URI."
         echo "Usage: $0 <repo_url>"
         echo
     else
-        target=`python -c "from urlparse import urlparse; import os.path; uri='$1';result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]) + '-' + os.path.dirname(path[0]))"`
+        target=$(python -c "from urlparse import urlparse; import os.path; uri='$1';result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]) + '-' + os.path.dirname(path[0]))")
         git clone --recurse-submodules "${1}" "${target}"
     fi
 }
 
-gitreview()
-{
-    if [ -z "$1" ] || [ "$2" ]
-    then
+gitreview() {
+    if [ -z "$1" ] || [ "$2" ]; then
         echo "Wrong command!"
         echo "Usage: $0 <branch_name>"
         echo
@@ -82,10 +69,8 @@ gitreview()
     fi
 }
 
-gprune()
-{
-    if [ -z "$1" ] || [ "$2" ]
-    then
+gprune() {
+    if [ -z "$1" ] || [ "$2" ]; then
         primary_branch=main
     else
         primary_branch=$1
@@ -122,7 +107,7 @@ alias g="git"
 alias gunsec="git -c http.sslVerify=false"
 alias gb="git branch"
 
- # Logs
+# Logs
 alias gll='git log --pretty=format:"%h - %an, %ar : %s"'
 alias glL='git log --pretty=format:"%H - %an, %ar : %s"'
 
@@ -246,14 +231,14 @@ alias grmto='git push --delete origin'
 
 # Update
 alias gsu='git submodule update --recursive --remote'
-alias ugr='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git pull; cd ..; done' # Update all repos in current directory
-alias ugrmn='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git checkout main; git pull; cd ..; done' # Check out to main and update all repos in current directory
+alias ugr='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git pull; cd ..; done'                        # Update all repos in current directory
+alias ugrmn='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git checkout main; git pull; cd ..; done'   # Check out to main and update all repos in current directory
 alias ugrms='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git checkout master; git pull; cd ..; done' # Check out to master and update all repos in current directory
-alias ugrs='root=${PWD}; for dir in `ls`; do cd "${root}/${dir}" && ugr; done'    # Update all repos within all sub directories from curent
+alias ugrs='root=${PWD}; for dir in `ls`; do cd "${root}/${dir}" && ugr; done'                           # Update all repos within all sub directories from curent
 
- # Misc
+# Misc
 alias gex='mono GitExtensions.exe browse'
-alias ginfo='ssh gitolite@git info'             # Gitolite list repos
+alias ginfo='ssh gitolite@git info' # Gitolite list repos
 
 # Accounts
 alias git-home="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com'"
@@ -264,10 +249,8 @@ alias git-cc="git config --local user.name 'Dmitry Ivanov'; git config --local u
 # IRQ
 alias git-irq="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'divanov@irq.ru'"
 
-git-verbose()
-{
-    if [ -z "${1}" ] || [ ${3} ]
-    then
+git-verbose() {
+    if [ -z "${1}" ] || [ ${3} ]; then
         echo "ERROR: Wrong operation...."
         echo "Usage: Git-Verbose <On|Off> [Category]"
         echo "  Categories: curl, trace, pack, packet, perf"
@@ -275,47 +258,40 @@ git-verbose()
         return 1
     fi
 
-    if [ -z "${2}" ]
-    then
+    if [ -z "${2}" ]; then
         category="all"
     else
         category="${2}"
     fi
 
     case $1 in
-    On|on)
-        if [[ "${category}" == "curl" || "${category}" == "all" ]]
-        then
+    On | on)
+        if [[ "${category}" == "curl" || "${category}" == "all" ]]; then
             export GIT_CURL_VERBOSE=1
             export GIT_TRACE_CURL=1
         fi
 
-        if [[ "${category}" == "trace" || "${category}" == "all" ]]
-        then
+        if [[ "${category}" == "trace" || "${category}" == "all" ]]; then
             export GIT_TRACE=1
         fi
 
-        if [[ "${category}" == "pack" || "${category}" == "all" ]]
-        then
+        if [[ "${category}" == "pack" || "${category}" == "all" ]]; then
             export GIT_TRACE_PACK_ACCESS=1
         fi
 
-        if [[ "${category}" == "packet" || "${category}" == "all" ]]
-        then
+        if [[ "${category}" == "packet" || "${category}" == "all" ]]; then
             export GIT_TRACE_PACKET=1
         fi
 
-        if [[ "${category}" == "perf" || "${category}" == "all" ]]
-        then
+        if [[ "${category}" == "perf" || "${category}" == "all" ]]; then
             export GIT_TRACE_PERFORMANCE=1
         fi
 
-        if [[ "${category}" == "setup" || "${category}" == "all" ]]
-        then
+        if [[ "${category}" == "setup" || "${category}" == "all" ]]; then
             export GIT_TRACE_SETUP=1
         fi
         ;;
-    Off|off)
+    Off | off)
         export GIT_CURL_VERBOSE=0
         export GIT_TRACE_CURL=0
         export GIT_TRACE=0
@@ -333,50 +309,41 @@ git-verbose()
     esac
 }
 
-get-git-commits-by-author()
-{
-    if [ -z "${1}" ] || [ ${3} ]
-    then
+git-commits-by-author() {
+    if [ -z "${1}" ] || [ ${3} ]; then
         echo "ERROR: Wrong operation...."
-        echo "Usage: get-git-commits-by-author <Author> [all]"
+        echo "Usage: git-commits-by-author <Author> [all]"
         echo
         return 1
     fi
 
-    if [ -z ${2} ]
-    then
+    if [ -z ${2} ]; then
         git log --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cd)%Creset' --abbrev-commit --date=iso --author "${1}"
     else
         git log --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cd)%Creset' --abbrev-commit --date=iso --all --author "${1}"
     fi
 }
 
-git_rename_author()
-{
+git_rename_author() {
     git filter-branch --env-filter "export GIT_COMMITTER_NAME='Dmitry Ivanov';export GIT_COMMITTER_EMAIL='d.k.ivanov@live.com';export GIT_AUTHOR_NAME='Dmitry Ivanov';export GIT_AUTHOR_EMAIL='d.k.ivanov@live.com'" --tag-name-filter cat -- --branches --tags
 }
 
-git_push_force()
-{
+git_push_force() {
     git push --force --tags origin 'refs/heads/*'
 }
 
-git_remove_file_from_history()
-{
+git_remove_file_from_history() {
     git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all
 }
 
-git_archive_repo()
-{
-    if [ -z "$1" ] || [ $2 ]
-    then
+git_archive_repo() {
+    if [ -z "$1" ] || [ $2 ]; then
         echo "You should enter repo URI."
         echo "Usage: git_archive_repo <repo_url>"
         echo
     else
-    scheme=$(python3 -c "from urllib.parse import urlparse; uri='${1}'; result = urlparse(uri); print(result.scheme)")
-        if [[ ${scheme} = "https" ]]
-        then
+        scheme=$(python3 -c "from urllib.parse import urlparse; uri='${1}'; result = urlparse(uri); print(result.scheme)")
+        if [[ ${scheme} = "https" ]]; then
             target=$(python3 -c "from urllib.parse import urlparse; import os.path; uri='${1}'; result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]))")
         else
             target=$(python3 -c "from urllib.parse import urlparse; import os.path; uri='${1}'; result = urlparse(uri); path = os.path.splitext(result.path.split(':', 1)[-1]); print(os.path.basename(path[0]))")
@@ -385,4 +352,39 @@ git_archive_repo()
         tar --remove-files -cjf "${target}.tar.bz2" "${target}/"
     fi
     return 0
+}
+
+git-insertions() {
+    if [ -z "${1}" ]; then
+        date_from="1970-01-01"
+    else
+        date_from="${1}"
+    fi
+
+    if [ -z "${2}" ]; then
+        date_to="$(date +'%Y-%m-%d')"
+    else
+        date_to="${2}"
+    fi
+    git log --after="${date_from}" --before="${date_to}" --reverse --stat | grep -Eo "[0-9]{1,} insertions?" | grep -Eo "[0-9]{1,}" | awk "BEGIN { sum=0 } { sum += \$1 } END { print sum }"
+}
+
+git-insertions-recurse() {
+    if [ -z "${1}" ]; then
+        date_from="1970-01-01"
+    else
+        date_from="${1}"
+    fi
+
+    if [ -z "${2}" ]; then
+        date_to="$(date +'%Y-%m-%d')"
+    else
+        date_to="${2}"
+    fi
+    for dir in $(ls); do
+        echo -ne "${dir}: \t"
+        cd "${dir}"
+        git-insertions ${date_from} ${date_to}
+        cd ..
+    done
 }
