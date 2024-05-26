@@ -47,7 +47,7 @@ ${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\c
 # CMake Generators
 ${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
-${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config" -A x64               -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config"    -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
 ${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 ${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config"    -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
@@ -90,9 +90,14 @@ ${function:cmake2015x64} = { Set-VC-Vars-All x64; cgen-release-15; cmake --build
 
 # CMake Build Aliases
 ${function:cbuild}   = { cmake --build @args }
-${function:cbuilddb} = { cmake --build --config Debug          @args build/x64-Debug          }
-${function:cbuildrl} = { cmake --build --config Release        @args build/x64-Release        }
-${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args build/x64-RelWithDebInfo }
+
+${function:cbuilddb} = { cmake --build --config Debug          @args build }
+${function:cbuildrl} = { cmake --build --config Release        @args build }
+${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args build }
+
+# ${function:cbuilddb} = { cmake --build --config Debug          @args build/x64-Debug          }
+# ${function:cbuildrl} = { cmake --build --config Release        @args build/x64-Release        }
+# ${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args build/x64-RelWithDebInfo }
 
 # CTest
 ${function:cc-ctest}            = { ctest --test-dir build @args    }
