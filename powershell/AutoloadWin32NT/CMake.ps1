@@ -89,15 +89,15 @@ ${function:cmake2015x86} = { Set-VC-Vars-All x86; cgen-release-15; cmake --build
 ${function:cmake2015x64} = { Set-VC-Vars-All x64; cgen-release-15; cmake --build build/x64-Release --config "Release" }
 
 # CMake Build Aliases
-${function:cbuild}   = { cmake --build @args }
+${function:cbuild}   = { cmake --build build @args }
 
-${function:cbuilddb} = { cmake --build --config Debug          @args build }
-${function:cbuildrl} = { cmake --build --config Release        @args build }
-${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args build }
+${function:cbuilddb} = { cmake --build build --config Debug          @args }
+${function:cbuildrl} = { cmake --build build --config Release        @args }
+${function:cbuildrd} = { cmake --build build --config RelWithDebInfo @args }
 
-# ${function:cbuilddb} = { cmake --build --config Debug          @args build/x64-Debug          }
-# ${function:cbuildrl} = { cmake --build --config Release        @args build/x64-Release        }
-# ${function:cbuildrd} = { cmake --build --config RelWithDebInfo @args build/x64-RelWithDebInfo }
+# ${function:cbuilddb} = { cmake --build build/x64-Debug          --config Debug          @args }
+# ${function:cbuildrl} = { cmake --build build/x64-Release        --config Release        @args }
+# ${function:cbuildrd} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
 
 # CTest
 ${function:cc-ctest}            = { ctest --test-dir build @args    }
