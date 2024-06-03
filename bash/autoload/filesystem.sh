@@ -86,7 +86,7 @@ case ${OS_DISTRIBUTION} in
         ;;
 
     "Ubuntu" )
-        if [ ! "${WSL_DISTRO_NAME}" != "Ubuntu"   ]
+        if [[ -n "${WSL_DISTRO_NAME}" ]]
         then
             alias  wsdsc='cd ~/ws/my/workstations/wsl'
             alias wsconf='cd ~/ws/my/workstations/wsl'
