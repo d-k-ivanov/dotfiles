@@ -52,14 +52,14 @@ if ([System.Environment]::OSVersion.Platform -eq "Win32NT" )
 {
     Get-ChildItem "$(Join-Path $PSScriptRoot "AutoloadWin32NT")\*.ps1"   | ForEach-Object { . $_ }
     $PrivatePSAutoladFolder = $(Join-Path $Env:USERPROFILE ".ps1_autoload")
-    $PrivatePSAutoladFolderW = $(Join-Path $Env:USERPROFILE "OneDrive - STG-Business\bin\ps_autoload")
+    $PrivatePSAutoladFolderW = $(Join-Path $Env:USERPROFILE "OneDrive - ${Env:WORK_ONEDRIVE_SUFFIX}\bin\ps_autoload")
 }
 
 if ([System.Environment]::OSVersion.Platform -eq "Unix" )
 {
     Get-ChildItem "$(Join-Path $PSScriptRoot "AutoloadUnix")\*.ps1"   | ForEach-Object { . $_ }
     $PrivatePSAutoladFolder = $(Join-Path $Env:HOME "OneDrive\bin\ps1_autoload")
-    $PrivatePSAutoladFolderW = $(Join-Path $Env:HOME "OneDrive - STG-Business\bin\ps_autoload")
+    $PrivatePSAutoladFolderW = $(Join-Path $Env:HOME "OneDrive - ${Env:WORK_ONEDRIVE_SUFFIX}\bin\ps_autoload")
 }
 
 Get-ChildItem "$(Join-Path $PSScriptRoot "Completion")\*.ps1" | ForEach-Object { . $_ }
