@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+alias wget-cc="wget --user '${CC_NEXUS_USER}' --password '${CC_NEXUS_PASSWORD}' "
+alias curl-cc="curl -L -u '${CC_NEXUS_USER}:${CC_NEXUS_PASSWORD}' "
+
 export CC_VCPKG_DEV=${HOME}/v
 export CC_VCPKG_ROOT=${HOME}/vcpkg
 

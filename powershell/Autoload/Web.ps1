@@ -15,9 +15,6 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-${function:wget-cc} = { wget --user ${Env:CC_NEXUS_USER} --password ${Env:CC_NEXUS_PASSWORD} @args }
-${function:curl-cc} = { curl -L -u "${Env:CC_NEXUS_USER}:${Env:CC_NEXUS_PASSWORD}" @args }
-
 # Weather
 ${function:wet}     = { curl http://wttr.in/@args }
 ${function:wet2}    = { curl http://v2.wttr.in/@args }

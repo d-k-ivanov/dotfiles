@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-alias wget-cc="wget --user '${CC_NEXUS_USER}' --password '${CC_NEXUS_PASSWORD}' "
-alias curl-cc="curl -L -u '${CC_NEXUS_USER}:${CC_NEXUS_PASSWORD}' "
-
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib.parse; print(urllib.parse.quote(str(sys.argv[1])));"'
 

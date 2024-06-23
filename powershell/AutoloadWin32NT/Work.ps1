@@ -15,6 +15,9 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+${function:wget-cc} = { wget --user ${Env:CC_NEXUS_USER} --password ${Env:CC_NEXUS_PASSWORD} @args }
+${function:curl-cc} = { curl -L -u "${Env:CC_NEXUS_USER}:${Env:CC_NEXUS_PASSWORD}" @args }
+
 function Set-CCVCPKG
 {
     ${local:vcpkg_root_path} = "c:\vcpkg"
