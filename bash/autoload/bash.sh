@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 # No duplicates in history.
-# export HISTCONTROL=ignoredups
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoredups
+# export HISTCONTROL=ignoreboth
 # Big history
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
-export HISTTIMEFORMAT='%s '
+# export HISTTIMEFORMAT='%s '
+unset HISTTIMEFORMAT
 PROMPT_COMMAND="history -a"
 
 platform=`uname`
