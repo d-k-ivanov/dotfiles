@@ -243,8 +243,9 @@ alias ginfo='ssh gitolite@git info' # Gitolite list repos
 # Accounts
 alias git-home="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com'"
 
-# EPAM
+# Straumann
 alias git-cc="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com'"
+alias git-cca="git config --local user.name 'Clinical Apps Automation'; git config --local user.email 'dmitry.ivanov@clearcorrect.com'"
 
 # IRQ
 alias git-irq="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'divanov@irq.ru'"
