@@ -79,6 +79,7 @@ ${function:gdo} = { git diff --cached @args }
 ${function:gco} = { if ($args) { git commit -m @args } else { git commit -v } } # "git commit only"
 ${function:ga} = { git add @args }
 ${function:gca} = { git add --all; gco @args } # "git commit all"
+${function:gcm} = { git commit -m "${args}" } # "git commit message"
 ${function:gcn} = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): ${args}" }
 ${function:gcnd} = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): $(now) ${args}" }
 ${function:gcv} = { git commit -v @args }
