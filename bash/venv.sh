@@ -116,7 +116,7 @@ autoenv_check_authz_and_run()
         autoenv_source "${_envfile}"
         return 0
     fi
-    
+
     if [ -z "${MC_SID}" ]
     then # Make sure mc is not running
         echo "autoenv:"

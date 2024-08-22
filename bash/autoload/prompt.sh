@@ -4,7 +4,8 @@ function __git_prompt
 {
     # preserve exit status
     local exit=$?
-    local PROMPT="`cat ~/.bash/var.prompt`"
+    local PROMPT
+    PROMPT="$(cat ~/.bash/var.prompt)"
 
     # Colors:
     local  K="\033[0;30m"   # black
@@ -26,7 +27,7 @@ function __git_prompt
     local BW="\033[1;37m"   # bolded white
     local ZZ="\033[0m"      # Reset
 
-    if [ ${PROMPT} == "COMPLEX" ]
+    if [ "${PROMPT}" == "COMPLEX" ]
     then
         # Classic Git-Prompt
         # GIT_PS1_SHOWDIRTYSTATE=1
@@ -34,11 +35,12 @@ function __git_prompt
         # GIT_PS1_SHOWUNTRACKEDFILES=1
         # GIT_PS1_SHOWSTASHSTATE=1
         # GIT_PS1_SHOWCOLORHINTS=1
-        # [ `git config user.pair` ] && GIT_PS1_PAIR="`git config user.pair`@"
+        # [ $(git config user.pair) ] && GIT_PS1_PAIR="$(git config user.pair)@"
         # __git_ps1 "${BY}[${BC}$GIT_PS1_PAIR%s${BY}]${ZZ}"
 
         # Git Prompt from Git-Posh
-        local gitstring=$(__posh_git_echo)
+        local gitstring
+        gitstring=$(__posh_git_echo)
         echo -en "$gitstring"
     else
         # Classic Git-Prompt
@@ -48,7 +50,7 @@ function __git_prompt
         # GIT_PS1_SHOWSTASHSTATE=1
         # GIT_PS1_SHOWCOLORHINTS=1
 
-        [ `git config user.pair` ] && GIT_PS1_PAIR="`git config user.pair`@"
+        [ "$(git config user.pair)" ] && GIT_PS1_PAIR="$(git config user.pair)@"
         # __git_ps1 "${BY}[${BC}$GIT_PS1_PAIR%s${BY}]${ZZ}"
         __git_ps1 "${BC}$GIT_PS1_PAIR%s${ZZ}" | sed 's/ \([+*%]\{1,\}\)$/\1/'
     fi
@@ -60,15 +62,16 @@ function __prompt_rvm
 {
     # preserve exit status
     local exit=$?
-    local PROMPT="`cat ~/.bash/var.prompt`"
-    if [ `command -v rvm-prompt` ]
+    local PROMPT
+    PROMPT="$(cat ~/.bash/var.prompt)"
+    if [ "$(command -v rvm-prompt)" ]
     then
         rbv=$(rvm-prompt)
     fi
     [[ -z ${rbv} ]] && exit
     rbv=${rbv#ruby-}
     [[ $rbv == *"@"* ]] || rbv="${rbv}@default"
-    if [ ${PROMPT} == "COMPLEX" ]
+    if [ "${PROMPT}" == "COMPLEX" ]
     then
         echo "[ Ruby: $rbv ]"
     else
@@ -81,9 +84,9 @@ function __prompt_time
 {
     # preserve exit status
     local exit=$?
-    if [ ! -z ${timer_output} ]
+    if [ -n "${timer_output}" ]
     then
-        printf ${timer_output}
+        printf '%s' "${timer_output}"
     fi
     return $exit
 }
@@ -110,13 +113,17 @@ bash_prompt()
     local BW="\[\033[1;37m\]"   # bolded white
     local ZZ="\[\033[0m\]"      # Reset
 
-    local ENVRM="`cat ~/.bash/var.env`"
-    local PROMPT="`cat ~/.bash/var.prompt`"
+    local ENVRM
+    ENVRM="$(cat ~/.bash/var.env)"
+
+    local PROMPT
+    PROMPT="$(cat ~/.bash/var.prompt)"
 
     # Environment:
     if [ -n "$SSH_CLIENT" ]
     then
-        local SSHIP=$(echo $SSH_CLIENT | awk '{print $1}')
+        local SSHIP
+        SSHIP=$(echo "$SSH_CLIENT" | awk '{print $1}')
         local SSHPRPT="SSH from $SSHIP"
     else
         local SSHPRPT=""
@@ -124,17 +131,17 @@ bash_prompt()
 
     case $PROMPT in
         COMPLEX)
-            if [ $ENVRM == "PRODUCTION" ]
+            if [ "$ENVRM" == "PRODUCTION" ]
             then
-                # PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] [${BR}\w${R}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${BK}\t \u@\H λ${ZZ} "
-                PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] ${BR}\w${R} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${BK}\t \u@\H λ${ZZ} "
+                # PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] [${BR}\w${R}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
+                PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] ${BR}\w${R} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ} "
             else
-                # PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] [${BC}\w${G}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${BK}\t \u@\H λ${ZZ} "
-                PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] ${BC}\w${G} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${BK}\t \u@\H λ${ZZ} "
+                # PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] [${BC}\w${G}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
+                PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] ${BC}\w${G} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
             fi
             ;;
         SIMPLE)
-            if [ $ENVRM == "PRODUCTION" ]
+            if [ "$ENVRM" == "PRODUCTION" ]
             then
                 PS1="${R}[${BY}\${?}${R}] \u@\h${BY}:${R}\W \$(__git_prompt) ${M}\$(__prompt_rvm) ${BK}λ ${ZZ}"
             else
