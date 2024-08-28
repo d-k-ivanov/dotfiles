@@ -74,6 +74,13 @@ function Set-Java
     $env:PATH = "${env:JAVA_HOME}\bin;${env:PATH}"
 }
 
+function Use-Java
+{
+    $ChoosenJavaVersion = Select-From-List $(Get-JavaList) "Java path"
+    $env:JAVA_HOME = ${ChoosenJavaVersion}
+    $env:PATH = "${env:JAVA_HOME}\bin;${env:PATH}"
+}
+
 function ormco_gen_aligners_reports
 {
     [CmdletBinding()]
