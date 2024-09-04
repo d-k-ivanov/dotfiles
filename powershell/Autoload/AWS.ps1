@@ -20,9 +20,9 @@ function aws_set_env_vars()
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $AccessKey,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $SecretKey,
         [string] $Region = 'us-east-1'
 
@@ -59,7 +59,7 @@ function aws_unset_env_vars()
 # Get all instances state
 function aws_print_all_instances()
 {
-    $REGIONS=$(aws ec2 describe-regions --region eu-central-1 --output text --query Regions[*].[RegionName])
+    $REGIONS = $(aws ec2 describe-regions --region eu-central-1 --output text --query Regions[*].[RegionName])
     foreach ($REGION in $REGIONS)
     {
         Write-Host "Instances in '$REGION'.." -ForegroundColor Green
@@ -74,7 +74,7 @@ function aws_print_all_instances()
 
 function awless_print_all_instances()
 {
-    $REGIONS=$(aws ec2 describe-regions --region eu-central-1 --output text --query Regions[*].[RegionName])
+    $REGIONS = $(aws ec2 describe-regions --region eu-central-1 --output text --query Regions[*].[RegionName])
     foreach ($REGION in $REGIONS)
     {
         awless list instances -r $REGION
@@ -84,7 +84,7 @@ function awless_print_all_instances()
 # Get all instances public and private IPs
 function aws_print_all_ip()
 {
-    $REGIONS=$(aws ec2 describe-regions --region eu-central-1 --output text --query Regions[*].[RegionName])
+    $REGIONS = $(aws ec2 describe-regions --region eu-central-1 --output text --query Regions[*].[RegionName])
     foreach ($REGION in $REGIONS)
     {
         Write-Host "Instances in '$REGION'.." -ForegroundColor Green
@@ -98,14 +98,35 @@ function aws_print_all_ip()
     }
 }
 
+function aws_print_intance_type_availability()
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $InstanceType
+    )
+    $REGIONS = $(aws ec2 describe-regions --output text --query Regions[*].[RegionName])
+    foreach ($REGION in $REGIONS)
+    {
+        Write-Host "Availabitly of '${InstanceType}' instances in '$REGION'.." -ForegroundColor Green
+        $region_info = $(aws ec2 describe-instance-type-offerings --region $REGION --location-type "availability-zone" --filters "Name=instance-type,Values=${InstanceType}" | ConvertFrom-Json)
+        foreach ($instanceOffering in $region_info.InstanceTypeOfferings)
+        {
+            Write-Host "`t$($instanceOffering.Location)" -ForegroundColor Yellow -NoNewline
+        }
+        Write-Host ""
+    }
+}
+
 function aws_set_mfa_session()
 {
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $MFADevice,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $MFAToken,
         [string] $Duration = 3600,
         [string] $Region = 'eu-west-1'
@@ -126,9 +147,9 @@ function aws_assume_role()
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $RoleARN,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $SessionName,
         [string] $Region = 'eu-west-1'
     )
@@ -145,11 +166,11 @@ function aws_set_mfa_session_for_profile()
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $MFADevice,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $MFAToken,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $Profile,
         [string] $Duration = 3600,
         [string] $Region = 'eu-west-1'
@@ -172,5 +193,5 @@ function aws_set_mfa_session_for_profile()
 
 ${function:aws-profiles} = { aws configure list-profiles @args }
 
-${function:cdk}  = { npx aws-cdk@1.x @args }
+${function:cdk} = { npx aws-cdk@1.x @args }
 ${function:cdk2} = { npx aws-cdk@2.x @args }
