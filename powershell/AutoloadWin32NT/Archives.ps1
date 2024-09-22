@@ -47,7 +47,7 @@ function Unzip
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [string]$File,
         [ValidateNotNullOrEmpty()]
         [string]$Destination = (Get-Location).Path
@@ -58,11 +58,11 @@ function Unzip
 
     if (
             ($PSVersionTable.PSVersion.Major -ge 3) -and
-            (
+        (
                 (Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full"   -ErrorAction SilentlyContinue).Version -like "4.*" -or
                 (Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Client" -ErrorAction SilentlyContinue).Version -like "4.*"
-            )
         )
+    )
     {
         try
         {
@@ -92,6 +92,8 @@ function Unzip
 if (Get-Command putty.exe -ErrorAction SilentlyContinue | Test-Path)
 {
     ## Export to Desktop
-    ${function:Export-Putty-Config}     = { reg export HKCU\Software\SimonTatham ([Environment]::GetFolderPath("Desktop") + "\putty.reg") }
-    ${function:Export-Putty-Sessions}   = { reg export HKCU\Software\SimonTatham\PuTTY\Sessions ([Environment]::GetFolderPath("Desktop") + "\putty-sessions.reg") }
+    ${function:Export-Putty-Config} = { reg export HKCU\Software\SimonTatham ([Environment]::GetFolderPath("Desktop") + "\putty.reg") }
+    ${function:Export-Putty-Sessions} = { reg export HKCU\Software\SimonTatham\PuTTY\Sessions ([Environment]::GetFolderPath("Desktop") + "\putty-sessions.reg") }
 }
+
+${function:zip-nested-folders} = { Get-ChildItem . -Directory | % { $v = $_.Name; Compress-Archive -Path "$v" -DestinationPath "$v.zip" } }
