@@ -635,3 +635,20 @@ if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
         git push --force origin DEV/Copyright
     }
 }
+
+function git_filter_folder
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $Folder
+    )
+    # Clone single branch:
+    # git clone --single-branch --branch <branch> <repo> <dst_folder>
+    # Remove remote
+    # git remote rm origin
+    # Add new remote:
+    # git remote add origin <new_repo>
+    git filter-branch --subdirectory-filter $Folder -- -- all
+}
