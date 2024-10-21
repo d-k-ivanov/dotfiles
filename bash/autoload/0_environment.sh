@@ -20,6 +20,8 @@ export EDITOR='vim'
 #export TERM='xterm-256color'
 
 export GPG_TTY=$(tty)
+export PYENV="$HOME/.pyenv"
+export PYENV_HOME="$HOME/.pyenv"
 export PYENV_ROOT="$HOME/.pyenv"
 
 # Do not prompt using Windows native with WSL
