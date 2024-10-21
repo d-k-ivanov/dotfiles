@@ -197,7 +197,7 @@ function Clear-Py
     # Set-Env
 }
 
-function PyEnv-Enable
+function pyenv-enable
 {
     Clear-Py
     $PyEnvLocation = "${env:USERPROFILE}\.pyenv\pyenv-win"
@@ -206,7 +206,7 @@ function PyEnv-Enable
     # Set-Env
 }
 
-function PyEnv-Disable
+function pyenv-disable
 {
     [Environment]::SetEnvironmentVariable("PYENV", $null, "User")
     if ($env:PYENV)
