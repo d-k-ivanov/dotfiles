@@ -23,7 +23,8 @@ case $platform in
         [[ -d $HOME/Qt/Tools/QtCreator/bin ]]       && export PATH=$PATH:$HOME/Qt/Tools/QtCreator/bin
         [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
         # Python
-        [[ -d $PYENV_ROOT ]]                        && export PATH="$PATH:$PYENV_ROOT/bin"
+        [[ -d $PYENV_ROOT/bin ]]                    && export PATH="$PATH:$PYENV_ROOT/bin"
+        [[ -d $PYENV_ROOT/shims ]]                  && export PATH="$PATH:$PYENV_ROOT/shims"
         # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
         # Ruby
         [[ -s "$HOME/.rvm/scripts/rvm" ]]           && source "$HOME/.rvm/scripts/rvm"
