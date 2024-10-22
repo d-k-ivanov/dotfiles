@@ -122,6 +122,7 @@ function Initialize-Paths-User
         "C:\PROGRA~1\SmartGit\bin"
         "C:\PROGRA~1\SmartSynchronize\bin"
         "C:\PROGRA~1\Sublime Text"
+        "C:\PROGRA~1\Vagrant\bin"
         "C:\PROGRA~1\WinMerge"
         "C:\PROGRA~2\Android\android-sdk\platform-tools"
         "C:\PROGRA~2\GitExtensions"
