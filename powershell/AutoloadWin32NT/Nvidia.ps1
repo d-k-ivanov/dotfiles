@@ -203,7 +203,7 @@ function Get-DevIL
 function Set-DevIL
 {
     $Selected = Select-From-List $(Get-DevIL) 'Developers Image Library (DevIL)'
-    [Environment]::SetEnvironmentVariable("DEVIL_PATH",     "${Selected}",                   "Machine")
+    [Environment]::SetEnvironmentVariable("DEVIL_PATH",     "${Selected}",                 "Machine")
     [Environment]::SetEnvironmentVariable("IL_INCLUDE_DIR", "${Selected}\include",         "Machine")
     [Environment]::SetEnvironmentVariable("IL_LIBRARIES",   "${Selected}\lib\x64\Release", "Machine")
     [Environment]::SetEnvironmentVariable("ILU_LIBRARIES",  "${Selected}\lib\x64\Release", "Machine")
@@ -213,4 +213,65 @@ function Set-DevIL
     Set-Item -Path Env:IL_LIBRARIES   -Value "${Selected}\lib\x64\Release"
     Set-Item -Path Env:ILU_LIBRARIES  -Value "${Selected}\lib\x64\Release"
     Set-Item -Path Env:ILUT_LIBRARIES -Value "${Selected}\lib\x64\Release"
+}
+
+function Get-CuDNN
+{
+    $Locations = @(
+        'C:\Nvidia\cudnn'
+        'D:\Nvidia\cudnn'
+    )
+
+    $LIBs = @()
+    foreach ($SubFolder in $Locations)
+    {
+        if (Test-Path $SubFolder)
+        {
+            $((Get-ChildItem $SubFolder -Directory).FullName | ForEach-Object { $LIBs += $_ })
+        }
+    }
+
+    $LIBsValidated = @()
+    foreach ($LIB in $LIBs)
+    {
+        if (Test-Path "${LIB}\include\cudnn.h")
+        {
+            $LIBsValidated  += $LIB
+        }
+    }
+
+    return $LIBsValidated
+}
+
+function Set-CuDNN
+{
+    $Selected = Select-From-List $(Get-CuDNN) 'CUDA Deep Neural Network library (CuDNN)'
+    [Environment]::SetEnvironmentVariable("CUDNN",             "${Selected}",         "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_PATH",        "${Selected}",         "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_ROOT_DIR",    "${Selected}",         "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_DLL_DIR",     "${Selected}\bin",     "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_INCLUDE_DIR", "${Selected}\include", "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_LIBRARY",     "${Selected}\lib\x64", "Machine")
+    Set-Item -Path Env:CUDNN             -Value "${Selected}"
+    Set-Item -Path Env:CUDNN_PATH        -Value "${Selected}"
+    Set-Item -Path Env:CUDNN_ROOT_DIR    -Value "${Selected}"
+    Set-Item -Path Env:CUDNN_DLL_DIR     -Value "${Selected}\bin"
+    Set-Item -Path Env:CUDNN_INCLUDE_DIR -Value "${Selected}\include"
+    Set-Item -Path Env:CUDNN_LIBRARY     -Value "${Selected}\lib\x64"
+}
+
+function UnSet-CuDNN
+{
+    [Environment]::SetEnvironmentVariable("CUDNN",             $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_PATH",        $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_ROOT_DIR",    $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_DLL_DIR",     $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_INCLUDE_DIR", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_LIBRARY",     $null, "Machine")
+    Remove-Item Env:CUDNN
+    Remove-Item Env:CUDNN_PATH
+    Remove-Item Env:CUDNN_ROOT_DIR
+    Remove-Item Env:CUDNN_DLL_DIR
+    Remove-Item Env:CUDNN_INCLUDE_DIR
+    Remove-Item Env:CUDNN_LIBRARY
 }
