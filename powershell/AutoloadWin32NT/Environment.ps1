@@ -412,6 +412,11 @@ function Set-Env
         $system_path += ";$env:VULKAN_SDK\Bin"
     }
 
+    if ($env:CUDNN_PATH)
+    {
+        $system_path += ";$env:CUDNN_PATH\bin"
+    }
+
     $system_path += ";$env:PathsSys"
     [Environment]::SetEnvironmentVariable("PATH", "$system_path", "Machine")
     [Environment]::SetEnvironmentVariable("PathsApp", $null, "Machine")
