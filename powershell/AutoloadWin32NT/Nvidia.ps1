@@ -219,6 +219,7 @@ function Get-CuDNN
 {
     $Locations = @(
         'C:\Nvidia\cudnn'
+        'C:\Program Files\NVIDIA\CUDNN'
         'D:\Nvidia\cudnn'
     )
 
