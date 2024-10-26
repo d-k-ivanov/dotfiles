@@ -15,6 +15,8 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+$Env:MSSdk = 1
+$Env:DISTUTILS_USE_SDK = 1
 # TODO: Refactor my CPP tempates before usage
 # $Env:CMAKE_GENERATOR = 'Ninja Multi-Config'
 # $Env:CMAKE_DEFAULT_BUILD_TYPE = 'Release'
