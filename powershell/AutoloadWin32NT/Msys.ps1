@@ -20,7 +20,7 @@ function Use-Msys2
     [CmdletBinding()]
     param
     (
-        [string] $toolchain = 'clang64'
+        [string] $toolchain = 'mingw64'
     )
     $msys_path = $(Get-Command msys2.exe -ErrorAction SilentlyContinue | Split-Path)
 
