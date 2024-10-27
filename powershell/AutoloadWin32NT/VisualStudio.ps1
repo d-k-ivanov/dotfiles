@@ -44,14 +44,59 @@ foreach ($InstallPath in $InstallPaths)
     $DevShell = (Join-Path "$InstallPath" 'Common7\Tools\Microsoft.VisualStudio.DevShell.dll')
     if (Test-Path "$DevShell")
     {
-        Import-Module "$DevShell"
-        ${function:vsdevenv}    = { $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
-        ${function:vsdevenv32}  = { $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
-        ${function:vsdevenv64}  = { $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
-        ${function:dev}         = { $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
-        ${function:dev32}       = { $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
-        ${function:dev64}       = { $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:vsdevenv}    = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:vsdevenv32}  = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:vsdevenv64}  = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev}         = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev32}       = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:dev64}       = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
         $ENV:VSDevEnv = "True"
+        break
+    }
+}
+
+$InstallPaths2019 = @(
+    'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview'
+)
+
+foreach ($InstallPath2019 in $InstallPaths2019)
+{
+    $DevShell2019 = (Join-Path "$InstallPath2019" 'Common7\Tools\Microsoft.VisualStudio.DevShell.dll')
+    if (Test-Path "$DevShell2019")
+    {
+        ${function:vsdevenv_2019}    = { Import-Module "$DevShell2019"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2019" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:vsdevenv32_2019}  = { Import-Module "$DevShell2019"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2019" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:vsdevenv64_2019}  = { Import-Module "$DevShell2019"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2019" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev_2019}         = { Import-Module "$DevShell2019"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2019" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev32_2019}       = { Import-Module "$DevShell2019"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2019" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:dev64_2019}       = { Import-Module "$DevShell2019"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2019" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        break
+    }
+}
+
+$InstallPaths2017 = @(
+    'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2017\Preview'
+)
+
+foreach ($InstallPath2017 in $InstallPaths2017)
+{
+    $DevShell2017 = (Join-Path "$InstallPath2017" 'Common7\Tools\Microsoft.VisualStudio.DevShell.dll')
+    if (Test-Path "$DevShell2017")
+    {
+        ${function:vsdevenv_2017}    = { Import-Module "$DevShell2017"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2017" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:vsdevenv32_2017}  = { Import-Module "$DevShell2017"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2017" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:vsdevenv64_2017}  = { Import-Module "$DevShell2017"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2017" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev_2017}         = { Import-Module "$DevShell2017"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2017" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev32_2017}       = { Import-Module "$DevShell2017"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2017" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:dev64_2017}       = { Import-Module "$DevShell2017"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2017" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
         break
     }
 }
