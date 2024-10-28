@@ -22,8 +22,10 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
     ${function:vd}      = { deactivate }
     ${function:vr}      = { rmrf venv }
     ${function:vpi}     = { python -m pip install  }
+    ${function:vpip}    = { python -m pip install --upgrade pip }
     ${function:vgen}    = { python -m pip freeze > .\requirements.txt }
-    ${function:vins}    = { python -m pip install -r .\requirements.txt }
+    ${function:vins}    = { vpip; if(Test-Path requirements.txt){ vinsr }; if(Test-Path requirements-dev.txt){ vinsd } }
+    ${function:vinsr}   = { python -m pip install -r .\requirements.txt }
     ${function:vinsd}   = { python -m pip install -r .\requirements-dev.txt }
 
     # Basic environment
