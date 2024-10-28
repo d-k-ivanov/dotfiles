@@ -7,8 +7,9 @@ alias va='source ./venv/bin/activate'
 alias vd='deactivate'
 alias vr='rm -rf ./venv'
 alias vpi='python -m pip install'
-alias vins='python -m pip install -r requirements.txt'
 alias vgen='python -m pip freeze > requirements.txt'
+alias vins='python -m pip install -r requirements.txt'
+alias vinsd='python -m pip install -r requirements-dev.txt'
 
 # Basic environment
 alias pip-update='python -m pip install --upgrade pip'
