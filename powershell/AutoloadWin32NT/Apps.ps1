@@ -40,6 +40,4 @@ elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code I
 }
 
 ${function:ic} = { icode . }
-${function:ww} = { icode ${env:MY_ONEDRIVE}\Workspace }
-
-${function:wwws} = { icode ${env:WORKSPACE}\my\workspace }
+${function:ww} = { icode ${env:WORKSPACE}\my\workspace }

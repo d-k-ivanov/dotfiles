@@ -77,7 +77,6 @@ alias   wsdf='cd ~/ws/my/dotfiles'
 alias  wsdfp='cd ~/ws/my/dotfiles-private'
 alias   wsws='cd ~/ws/my/workspace'
 alias wsmisc='cd ~/ws/misc'
-# alias   wsws='cd ~/OneDrive/Workspace'
 
 case ${OS_DISTRIBUTION} in
     "Archlinux" )
