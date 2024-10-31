@@ -118,10 +118,11 @@ ${function:gplp} = { git pull --rebase; git push @args } # Can't pull because yo
 # Push
 # ${function:gp}        = { git push @args }  # Comment if you use Get-Property and use gpp insted
 ${function:gpp} = { git push @args }
-${function:gppg} = { git push github @args }
+${function:gppa} = { git add .; gcnd; gpp }
 ${function:gppf} = { git push --force @args }
-${function:gppu} = { git push -u @args }
+${function:gppg} = { git push github @args }
 ${function:gppt} = { git push --tags @args }
+${function:gppu} = { git push -u @args }
 
 # Checkout
 ${function:gck} = { git checkout @args }
