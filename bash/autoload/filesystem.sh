@@ -83,18 +83,12 @@ case ${OS_DISTRIBUTION} in
         alias  wsdsc='cd ~/ws/my/workstations/arch'
         alias wsconf='cd ~/ws/my/workstations/arch'
         ;;
-
     "Ubuntu" )
-        if [[ -n "${WSL_DISTRO_NAME}" ]]
-        then
-            alias  wsdsc='cd ~/ws/my/workstations/wsl'
-            alias wsconf='cd ~/ws/my/workstations/wsl'
-        else
+        # The conditions to check if it's WSL
+        # if [[ -n "${WSL_DISTRO_NAME}" ]]; then echo "WSL" ; else echo "Non-WSL"; fi;
             alias  wsdsc='cd ~/ws/my/workstations/ubuntu'
             alias wsconf='cd ~/ws/my/workstations/ubuntu'
-        fi
         ;;
-
     * )
         alias  wsdsc='cd ~/ws/my/workstations'
         alias wsconf='cd ~/ws/my/workstations'

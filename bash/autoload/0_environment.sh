@@ -27,7 +27,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 # Do not prompt using Windows native with WSL
 export DONT_PROMPT_WSL_INSTALL='true'
 
-# Finout linux distro
+# Find Linux distro
 if [ -f /etc/os-release ]
 then
     . /etc/os-release
