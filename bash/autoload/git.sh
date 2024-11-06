@@ -234,10 +234,12 @@ alias grmto='git push --delete origin'
 
 # Update
 alias gsu='git submodule update --recursive --remote'
-alias ugr='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git pull; cd ..; done'                        # Update all repos in current directory
-alias ugrmn='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git checkout main; git pull; cd ..; done'   # Check out to main and update all repos in current directory
-alias ugrms='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git checkout master; git pull; cd ..; done' # Check out to master and update all repos in current directory
-alias ugrs='root=${PWD}; for dir in `ls`; do cd "${root}/${dir}" && ugr; done'                           # Update all repos within all sub directories from curent
+
+# Update all repos in current directory
+alias ugr='for dir in `ls`; do echo "${dir}"; cd "${dir}"; git pull origin $(git symbolic-ref --short HEAD); cd ..; done'
+
+# Update all repos within all sub directories from curent
+alias ugrs='root=${PWD}; for dir in `ls`; do cd "${root}/${dir}" && ugr; done'
 
 # Misc
 alias gex='mono GitExtensions.exe browse'

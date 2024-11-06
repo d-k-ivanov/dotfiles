@@ -234,7 +234,7 @@ function ugr
         }
         else
         {
-            git pull
+            git pull origin $(git symbolic-ref --short HEAD)
         }
     }
 
@@ -260,21 +260,11 @@ function ugrf
         }
         else
         {
-            git fetch
+            git fetch origin $(git symbolic-ref --short HEAD)
         }
     }
 
     Set-Location $dir
-}
-
-function ugrmn
-{
-    ugr origin main
-}
-
-function ugrms
-{
-    ugr origin master
 }
 
 function ugrs
