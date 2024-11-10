@@ -46,6 +46,7 @@ ${function:ccdev81} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicL
 ${function:ccdev82} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\24f18b41e" -Force}
 ${function:ccdev83} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\eae99b5f7" -Force}
 ${function:ccdev84} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\c49020aab" -Force}
+${function:ccdev90} = { New-Item -Path "${Env:CC_VCPKG_DEV}" -ItemType SymbolicLink -Value "${Env:CC_VCPKG_ROOT}\d19eb9c5d" -Force}
 
 ${function:ccdevX} = { New-Item -Path ${Env:CC_VCPKG_DEV} -ItemType SymbolicLink -Value ${Env:CC_VCPKG_ROOT}\$args -Force}
 

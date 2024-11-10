@@ -23,7 +23,7 @@ alias ccdev81="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/dcc8b01f3         
 alias ccdev82="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/24f18b41e                                ${CC_VCPKG_DEV}"
 alias ccdev83="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/eae99b5f7                                ${CC_VCPKG_DEV}"
 alias ccdev84="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/c49020aab                                ${CC_VCPKG_DEV}"
-
+alias ccdev90="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/d19eb9c5d                                ${CC_VCPKG_DEV}"
 
 # === Legacy  === #
 alias ccdev24="rm -f ${CC_VCPKG_DEV}; ln -sf ${CC_VCPKG_ROOT}/db5bd8485aea62500c09491a959a0fe7cc254e85 ${HOME}/vcpkg-export-latest"
