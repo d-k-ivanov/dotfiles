@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # No duplicates in history.
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignorespace:erasedups
 # export HISTCONTROL=ignoreboth
 # Big history
 export HISTSIZE=1000000
