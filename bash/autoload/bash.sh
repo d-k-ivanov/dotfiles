@@ -17,6 +17,11 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 # shopt -s globstar
 
+# history -n has to be there before history -w to read from .bash_history the commands saved from any other terminal,
+# history -w has to be there to save the new history to the file after bash has checked if the command was a duplicate
+# history -a must not be placed there instead of history -w because it will add to the file any new command, regardless of whether it was checked as a duplicate.
+# history -c is also needed because it prevents trashing the history buffer after each command,
+# history -r is needed to restore the history buffer from the file, thus finally making the history shared across terminal sessions.
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 platform=$(uname)
