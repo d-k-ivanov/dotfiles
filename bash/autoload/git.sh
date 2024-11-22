@@ -165,8 +165,8 @@ alias gdo="git diff --cached"
 # for gget (git clone and cd), see functions.sh.
 alias ga="git add"
 alias gc="git commit -v"
-alias gcn="git commit -m \"$(basename $(pwd))\""
-alias gcnd="git commit -m \"$(basename $(pwd)): $(date +%Y-%m-%d-%H-%M)\""
+alias gcn='git commit -m "$(basename $(pwd))"'
+alias gcnd='git commit -m "$(basename $(pwd)): $(date +%Y-%m-%d-%H-%M)"'
 alias gcof="git commit --no-verify -m"
 alias gcaf="git add --all && gcof"
 alias gam="git commit --amend"
