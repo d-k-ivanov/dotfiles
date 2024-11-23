@@ -9,9 +9,10 @@ alias vr='rm -rf ./venv'
 alias vpi='python -m pip install'
 alias vpip='python -m pip install --upgrade pip'
 alias vgen='python -m pip freeze > requirements.txt'
-alias vinsr='python -m pip install -r requirements.txt'
-alias vinsd='python -m pip install -r requirements-dev.txt'
-alias vins='vpip && vinsr && vinsd'
+alias vinsr='[[ -f requirements.txt ]] && python -m pip install -r requirements.txt || echo -n'
+alias vinsd='[[ -f requirements-dev.txt ]] && python -m pip install -r requirements-dev.txt || echo -n'
+alias vinsm='[[ -f requirements-misc.txt ]] && python -m pip install -r requirements-misc.txt || echo -n'
+alias vins='vpip && vinsr && vinsd && vinsm'
 
 # Basic environment
 alias pip-update='python -m pip install --upgrade pip'
@@ -26,6 +27,14 @@ py_venv()
     python -m pip install --upgrade ipython
 }
 alias pip_update='py_venv'
+
+pyclean()
+{
+    temp_file=$(mktemp)
+    python -m pip freeze > "${temp_file}"
+    python -m pip uninstall -y -r "${temp_file}"
+    rm -f "${temp_file}"
+}
 
 if [[ -f "$PYENV_ROOT/bin/pyenv" ]]; then
     command pyenv rehash 2>/dev/null
