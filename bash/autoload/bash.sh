@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 
 # No duplicates in history.
-export HISTCONTROL=ignoredups:erasedups
 # export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
+# export HISTCONTROL=ignoredups:erasedups
 # Big history
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
+# Ignore some commands
+export HISTIGNORE='exit:history:l:l[1als]:lla:g:g[sdp]:g+(w):gpp:gppa:wsdf:wsdfp:wsconf:wscc+:icod *:+(;):+(.)'
 # export HISTTIMEFORMAT='%s '
 unset HISTTIMEFORMAT
 
 # Append to the history file, don't overwrite it
-shopt -s histappend
+shopt -u histappend
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
