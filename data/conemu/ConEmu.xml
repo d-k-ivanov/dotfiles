@@ -511,11 +511,11 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000004"/>
 				</key>
-				<key name="Task4" modified="2024-11-25 15:36:06" build="230724">
+				<key name="Task4" modified="2024-11-25 15:39:32" build="230724">
 					<value name="Name" type="string" data="{WSL::Ubuntu24.04}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='ubuntu2404.exe run sudo login -cur_console:h0:p:n:m:"/mnt":t:Ubuntu24'/>
+					<value name="Cmd1" type="string" data='ubuntu2404.exe -cur_console:h0:p:n:m:"/mnt":t:Ubuntu24'/>
 					<value name="Cmd2" type="string" data="%CMDER_ROOT%\vendor\git-for-windows\git-bash.exe"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
