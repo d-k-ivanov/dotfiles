@@ -13,18 +13,22 @@ export HISTIGNORE='exit:history:l:l[1als]:lla:g:g[sdp]:g+(w):gp[lp]:gppa:wsdf:ws
 unset HISTTIMEFORMAT
 
 # Append to the history file, don't overwrite it
+# shopt -s histappend
 shopt -u histappend
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 # shopt -s globstar
+# Write a multi line command in a single line
+shopt -s cmdhist
 
 # history -n has to be there before history -w to read from .bash_history the commands saved from any other terminal,
 # history -w has to be there to save the new history to the file after bash has checked if the command was a duplicate
 # history -a must not be placed there instead of history -w because it will add to the file any new command, regardless of whether it was checked as a duplicate.
 # history -c is also needed because it prevents trashing the history buffer after each command,
 # history -r is needed to restore the history buffer from the file, thus finally making the history shared across terminal sessions.
+# PROMPT_COMMAND="history -a"
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 platform=$(uname)
