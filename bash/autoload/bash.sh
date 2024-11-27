@@ -2,7 +2,8 @@
 
 # No duplicates in history.
 # export HISTCONTROL=ignoreboth
-export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=ignorespace:erasedups
+# export HISTCONTROL=ignoreboth:erasedups
 # export HISTCONTROL=ignoredups:erasedups
 # Big history
 export HISTSIZE=1000000
@@ -14,13 +15,16 @@ export HISTIGNORE='&:ls:[bf]g:exit:pwd:clear:mount:umount:history:l:l[1als]:lla:
 unset HISTTIMEFORMAT
 
 # Append to the history file, don't overwrite it
-# shopt -s histappend
-shopt -u histappend
+shopt -s histappend
+# shopt -u histappend
+
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 # shopt -s globstar
+
 # Write a multi line command in a single line
 shopt -s cmdhist
 
@@ -29,8 +33,16 @@ shopt -s cmdhist
 # history -a must not be placed there instead of history -w because it will add to the file any new command, regardless of whether it was checked as a duplicate.
 # history -c is also needed because it prevents trashing the history buffer after each command,
 # history -r is needed to restore the history buffer from the file, thus finally making the history shared across terminal sessions.
+
+# Merge history from all terminals
+function bashhistorymerge {
+    history -n; history -w; history -c; history -r;
+}
+trap bashhistorymerge EXIT
+
 # PROMPT_COMMAND="history -a"
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND" # Merge history from all terminals
 
 platform=$(uname)
 if [ ! "${platform}" != "Darwin" ]; then
