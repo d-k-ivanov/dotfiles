@@ -149,8 +149,6 @@ function Initialize-Paths-User
         "C:\tools\cobertura"
         "C:\tools\CppDepend"
         "C:\tools\dart-sdk\bin"
-        # "C:\tools\dokan1"
-        # "C:\tools\dokan2"
         "C:\tools\doublecmd"
         "C:\tools\emsdk"
         "C:\tools\espressif"
