@@ -23,30 +23,25 @@ alias gpg_search_ubuntu='gpg --keyserver keyserver.ubuntu.com --search-key'
 alias gpg_search_sks='gpg --keyserver pool.sks-keyservers.net --search-key'
 alias gpg_search_mit='gpg --keyserver pgp.mit.edu --search-key'
 
-decryptfrom-base64()
-{
-    echo "${1}"| base64 -d | gpg -d
+decryptfrom-base64() {
+    echo "${1}" | base64 -d | gpg -d
 }
 
 # Straight into console-in-screen.
 # Assumes there is only one screen running.
 #alias prodc="ssh srv -t screen -RD"
 
-create_rsa_key()
-{
+create_rsa_key() {
     # Input:
-    if [ -z "$1" ]
-    then
+    if [ -z "$1" ]; then
         echo "Usage: create_rsa_key <key_alias>"
         exit 1
     fi
     ssh-keygen -t rsa -m pem -b 4096 -C "${1}" -f "${1}"
 }
 
-convert_openssh_to_rsa()
-{
-    if [ -z "$1" ]
-    then
+convert_openssh_to_rsa() {
+    if [ -z "$1" ]; then
         Usage: convert_openssh_to_rsa key_path [old_password] [new_password]
         exit 1
     fi
@@ -54,10 +49,8 @@ convert_openssh_to_rsa()
     ssh-keygen -p -P "${2:=''}" -N "${3:=''}" -m pem -f "$FullPath"
 }
 
-convert_pfx_to_crt_and_key()
-{
-    if [ -z "$1" ]
-    then
+convert_pfx_to_crt_and_key() {
+    if [ -z "$1" ]; then
         Usage: convert_pfx_to_crt_and_key key_path
         exit 1
     fi
