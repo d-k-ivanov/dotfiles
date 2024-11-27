@@ -106,15 +106,15 @@ ${function:gclean3} = { while ((git diff-index HEAD --)) { git reset --hard HEAD
 
 # Pull
 ${function:gpl} = { git pull origin $(git rev-parse --abbrev-ref HEAD) }
-${function:gplmn} = { git pull origin main }
-${function:gplms} = { git pull origin master }
-${function:gpln} = { git pull --no-rebase origin $(git rev-parse --abbrev-ref HEAD) }
 ${function:gpl_gh} = { git pull github $(git rev-parse --abbrev-ref HEAD) }
-${function:gplmn_gh} = { git pull github main }
-${function:gplms_gh} = { git pull github master }
-${function:gpls} = { git stash; git pull @args; git stash pop }
 ${function:gplm} = { git pull; git submodule update }
+${function:gplmn} = { git pull origin main }
+${function:gplmn_gh} = { git pull github main }
+${function:gplms} = { git pull origin master }
+${function:gplms_gh} = { git pull github master }
+${function:gpln} = { git pull --no-rebase origin $(git rev-parse --abbrev-ref HEAD) }
 ${function:gplpr} = { git pull --rebase; git push @args } # Can't pull because you forgot to track? Run this.
+${function:gpls} = { git stash; git pull @args; git stash pop }
 
 # Push
 # ${function:gp}        = { git push @args }  # Comment if you use Get-Property and use gpp insted

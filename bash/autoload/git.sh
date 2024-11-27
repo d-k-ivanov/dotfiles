@@ -188,9 +188,15 @@ alias gclean3="git reset --hard && git clean -d -f"
 
 # Pull
 alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
-alias gpls='git stash && git pull && git stash pop'
+alias gpl_gh='git pull github $(git rev-parse --abbrev-ref HEAD)'
 alias gplm='git pull && git submodule update'
+alias gplmn='git pull origin main'
+alias gplmn_gh='git pull github main'
+alias gplms='git pull origin master'
+alias gplms_gh='git pull github master'
+alias gpln='git pull --no-rebase origin $(git rev-parse --abbrev-ref HEAD)'
 alias gplp='git pull --rebase && git push'
+alias gpls='git stash && git pull && git stash pop'
 
 # Push
 alias gpp="git push"
