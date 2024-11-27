@@ -34,15 +34,19 @@ shopt -s cmdhist
 # history -c is also needed because it prevents trashing the history buffer after each command,
 # history -r is needed to restore the history buffer from the file, thus finally making the history shared across terminal sessions.
 
-# Merge history from all terminals
-function bashhistorymerge {
-    history -n; history -w; history -c; history -r;
-}
-trap bashhistorymerge EXIT
-
+# Approach 1
 # PROMPT_COMMAND="history -a"
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-# PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND" # Merge history from all terminals
+
+# Approach 2: merge and reload history from all terminals
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+# Approach 3
+# Merge history from all terminals
+# function bashhistorymerge {
+#     history -n; history -w; history -c; history -r;
+# }
+# trap bashhistorymerge EXIT
+# PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 platform=$(uname)
 if [ ! "${platform}" != "Darwin" ]; then
