@@ -58,24 +58,6 @@ ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                        
 ${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg                             }
 ${function:wsws}    = { Set-Location ${env:WORKSPACE}\my\workspace                      }
 
-# ClearCorrect Shortcuts
-${function:wsc}     = { Set-Location ${Env:WORKSPACE}\clearcorrect                      }
-${function:wscl}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical             }
-${function:wscc}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev      }
-${function:wscc1}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev1     }
-${function:wscc2}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev2     }
-${function:wscc3}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev3     }
-${function:wscc4}   = { Set-Location ${Env:WORKSPACE}\clearcorrect\clinical\cc-dev4     }
-${function:wsccv}   = { Set-Location ${Env:WORKSPACE}\vcpkg-cc                          }
-${function:wsce}    = { Set-Location ${Env:WORKSPACE}\clearcorrect\exporters            }
-
-# IRQ Shortcuts
-${function:wsi}     = { Set-Location ${Env:WORKSPACE}\irq                               }
-${function:wsic}    = { Set-Location ${Env:WORKSPACE}\irq\common                        }
-${function:wsid}    = { Set-Location ${Env:WORKSPACE}\irq\devops                        }
-${function:wsim}    = { Set-Location ${Env:WORKSPACE}\irq\ml                            }
-${function:wsimm}   = { Set-Location ${Env:WORKSPACE}\irq\ml\irqml                      }
-
 # Create a new directory and enter it
 function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; Set-Location $path}
 Set-Alias mkd New-DirectoryAndSet

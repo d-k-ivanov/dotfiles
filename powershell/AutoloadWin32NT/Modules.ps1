@@ -62,7 +62,6 @@ $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "C:\a"         # De
 $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "C:\boost"     # Boost libs
 $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\boost"          # Boost libs
 $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\UnrealEngine"   # Unreal Engine
-# $GitPromptSettings.RepositoriesInWhichToDisableFileStatus += "${Env:WORKSPACE}\clearcorrect\all_projects\cc-dev"   # Heavy work project
 
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"

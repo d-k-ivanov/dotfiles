@@ -647,7 +647,6 @@ ${function:vs64}                = { Set-VC-Vars-All x64; devenv @args }
 ${function:vs32}                = { Set-VC-Vars-All x86; devenv @args }
 ${function:vssafe}              = { vs /SafeMode @args }
 
-
 ## CS aliases moved to CMake.ps1
 ${function:vss}                 = { cs22;  vs . }
 ${function:vssn}                = { csn;   vs . }
@@ -665,14 +664,3 @@ ${function:vsspr22}             = { cspr22; vs . }
 ${function:cl_build}            = { cl /EHsc @args }
 ${function:cl_link}             = { cl /EHsc @args /link }
 ${function:cl_preprocess}       = { cl /P @args }
-
-# Work aliases
-${function:vscc}                = { vs .\build\cc-dev.sln }
-
-# Work Obsolete
-# ${function:build_aligner_x32}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=Win32 /verbosity:normal }
-# ${function:build_aligner_x64}           = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Release      /p:Platform=x64   /verbosity:normal }
-# ${function:build_aligner_x32_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=Win32 /verbosity:normal }
-# ${function:build_aligner_x64_debug}     = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=Debug        /p:Platform=x64   /verbosity:normal }
-# ${function:build_aligner_x32_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=Win32 /verbosity:normal }
-# ${function:build_aligner_x64_no_pch}    = { dev; msbuild Source\Apps\Aligner\Solution\Aligner.sln /m:4 /p:Configuration=ReleaseNoPCH /p:Platform=x64   /verbosity:normal }

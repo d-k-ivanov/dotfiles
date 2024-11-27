@@ -80,25 +80,3 @@ function Use-Java
     $env:JAVA_HOME = ${ChoosenJavaVersion}
     $env:PATH = "${env:JAVA_HOME}\bin;${env:PATH}"
 }
-
-function ormco_gen_aligners_reports
-{
-    [CmdletBinding()]
-    param
-    (
-        # [Parameter(Mandatory = $True)]
-        # [string]$PathToJar,
-        [Parameter(Mandatory = $True)]
-        [string]$ReportName,
-        [string]$ReportSuffix
-    )
-    mvn clean install
-    $cmd  = "cmd /c '"
-    $cmd += "java -cp ./target/aligners-reports.jar "
-    $cmd += "-Dloader.main=com.ormco.aligners.reports.RunSQLReport "
-    $cmd += "org.springframework.boot.loader.PropertiesLauncher "
-    $cmd += "--report=${ReportName} "
-    $cmd += "--output=C:\Temp\${ReportName}${ReportSuffix}.xlsx"
-    $cmd += "'"
-    Invoke-Expression "${cmd}"
-}

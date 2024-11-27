@@ -99,25 +99,6 @@ alias  wsaw='cd ~/.config/awesome'
 alias   wst='cd ~/ws/tmp'
 alias   wsv='cd ~/.vcpkg'
 
-# Straumann Shortcuts
-alias     wsc='cd ~/ws/clearcorrect'
-alias    wscl='cd ~/ws/clearcorrect/clinical'
-alias    wscc='cd ~/ws/clearcorrect/clinical/cc-dev'
-alias   wscc1='cd ~/ws/clearcorrect/clinical/cc-dev1'
-alias   wscc2='cd ~/ws/clearcorrect/clinical/cc-dev2'
-alias   wscc3='cd ~/ws/clearcorrect/clinical/cc-dev3'
-alias   wscc4='cd ~/ws/clearcorrect/clinical/cc-dev4'
-alias   wsccv='cd ~/ws/vcpkg'
-alias    wscd='cd ~/ws/clearcorrect/devops'
-alias    wsce='cd ~/ws/clearcorrect/exporters'
-
-# IRQ Shortcuts
-alias   wsi='cd ~/ws/irq'
-alias  wsic='cd ~/ws/irq/common'
-alias  wsid='cd ~/ws/irq/devops'
-alias  wsrm='cd ~/ws/irq/ml'
-alias wsimm='cd ~/ws/irq/ml/irqml'
-
 alias      crlf_fix='find ./ -type f -exec dos2unix {} \;'
 alias   fix_dir_755='find ./ -type d -print -exec chmod 755 {} \;'
 alias   fix_dir_750='find ./ -type d -print -exec chmod 750 {} \;'

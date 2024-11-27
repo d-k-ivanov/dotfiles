@@ -177,15 +177,6 @@ ${function:gittest-gh} = { ssh -T git@github.com }
 ${function:gittest-gl} = { ssh -T git@gitlab.com }
 ${function:gittest-bb} = { ssh -T git@bitbucket.org }
 
-# Accounts
-${function:git-home} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com' }
-
-# Straumann
-${function:git-cc} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com' }
-${function:git-cca} = { git config --local user.name 'Clinical Apps Automation'; git config --local user.email 'dmitry.ivanov@clearcorrect.com' }
-
-# IRQ
-${function:git-irq} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'divanov@irq.ru' }
 
 function gprune
 {

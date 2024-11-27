@@ -251,16 +251,6 @@ alias ugrs='root=${PWD}; for dir in `ls`; do cd "${root}/${dir}" && ugr; done'
 alias gex='mono GitExtensions.exe browse'
 alias ginfo='ssh gitolite@git info' # Gitolite list repos
 
-# Accounts
-alias git-home="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com'"
-
-# Straumann
-alias git-cc="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com'"
-alias git-cca="git config --local user.name 'Clinical Apps Automation'; git config --local user.email 'dmitry.ivanov@clearcorrect.com'"
-
-# IRQ
-alias git-irq="git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'divanov@irq.ru'"
-
 git-verbose() {
     if [ -z "${1}" ] || [ ${3} ]; then
         echo "ERROR: Wrong operation...."
