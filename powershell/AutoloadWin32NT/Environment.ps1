@@ -46,7 +46,6 @@ $PSReadLineOptions = @{
     # WordDelimiters = '()<>;&|"'
 
     MaximumHistoryCount = 32767
-    HistoryNoDuplicates = $true
     HistorySearchCursorMovesToEnd = $true
     ShowToolTips = $false
 }
@@ -57,6 +56,8 @@ If($PSVersionTable.PSVersion.Major -ge '7' -And $PSVersionTable.PSVersion.Minor 
     Set-PSReadLineOption -PredictionSource None
     # Set-PSReadLineOption -PredictionViewStyle = "ListView"
 }
+
+Set-PSReadLineOption -HistoryNoDuplicates:$true
 
 ### KEYS:
 Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit

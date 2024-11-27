@@ -108,12 +108,13 @@ ${function:gclean3} = { while ((git diff-index HEAD --)) { git reset --hard HEAD
 ${function:gpl} = { git pull origin $(git rev-parse --abbrev-ref HEAD) }
 ${function:gplmn} = { git pull origin main }
 ${function:gplms} = { git pull origin master }
+${function:gpln} = { git pull --no-rebase origin $(git rev-parse --abbrev-ref HEAD) }
 ${function:gpl_gh} = { git pull github $(git rev-parse --abbrev-ref HEAD) }
 ${function:gplmn_gh} = { git pull github main }
 ${function:gplms_gh} = { git pull github master }
 ${function:gpls} = { git stash; git pull @args; git stash pop }
 ${function:gplm} = { git pull; git submodule update }
-${function:gplp} = { git pull --rebase; git push @args } # Can't pull because you forgot to track? Run this.
+${function:gplpr} = { git pull --rebase; git push @args } # Can't pull because you forgot to track? Run this.
 
 # Push
 # ${function:gp}        = { git push @args }  # Comment if you use Get-Property and use gpp insted
@@ -133,9 +134,9 @@ ${function:gckms} = { git checkout master @args }
 
 # Remove Branches
 ${function:gbr} = { git branch -d @args }
-${function:gbr_filter} = { git branch | grep @args | %{ gbr $_.trim() } }
+${function:gbr_filter} = { git branch | grep @args | % { gbr $_.trim() } }
 ${function:gbrf} = { git branch -D @args }
-${function:gbrf_filter} = { git branch | grep @args | %{ gbrf -D $_.trim() } }
+${function:gbrf_filter} = { git branch | grep @args | % { gbrf -D $_.trim() } }
 ${function:gbrr} = { git push origin --delete @args }
 ${function:gbrrm} = { git branch -D @args; git push origin --delete @args }
 ${function:gbrr_gh} = { git push github --delete @args }
@@ -180,7 +181,7 @@ ${function:gittest-bb} = { ssh -T git@bitbucket.org }
 ${function:git-home} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'd.k.ivanov@live.com' }
 
 # Straumann
-${function:git-cc}  = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com' }
+${function:git-cc} = { git config --local user.name 'Dmitry Ivanov'; git config --local user.email 'dmitry.ivanov@straumann.com' }
 ${function:git-cca} = { git config --local user.name 'Clinical Apps Automation'; git config --local user.email 'dmitry.ivanov@clearcorrect.com' }
 
 # IRQ
