@@ -103,6 +103,8 @@ function Initialize-Paths-User
         "${env:USERPROFILE}\AppData\Roaming\local\bin"
         "${env:USERPROFILE}\AppData\Roaming\npm"
         "${env:USERPROFILE}\AppData\Roaming\Pub\Cache\bin"
+        "${env:NVM_HOME}"
+        "${env:NVM_SYMLINK}"
         "C:\usr\bin"
         "C:\boost\dist\bin"
         "C:\Coq\bin"
