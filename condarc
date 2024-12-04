@@ -1,3 +1,14 @@
+# #### MAMBA #####################################################################################
+# WARNING: Mamba can theoretically be added to any install, but is no longer recommended.
+# Be aware that this is generally incompatible with Anaconda, but can work fine with Miniconda.
+# ## Prioritize 'conda-forge' channel
+# ###     conda config --add channels conda-forge
+# ## Update existing packages to use 'conda-forge' channel
+# ###     conda update -n base --all
+# ## Install 'mamba'
+# ###     conda install -n base mamba
+# ################################################################################################
+
 # Channel locations.
 # Use "defaults" to automatically include all default channels.
 # Non-url channels will be interpreted as Anaconda.org usernames
