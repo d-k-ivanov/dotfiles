@@ -79,7 +79,7 @@ ln -sf "$DOTFILES_DIR/tmux.conf"            "$HOME/.tmux.conf"
 ln -sf "$DOTFILES_DIR/tmux"                 "$HOME/.tmux"
 ln -sf "$DOTFILES_DIR/vim"                  "$HOME/.vim"
 ln -sf "$DOTFILES_DIR/vimrc"                "$HOME/.vimrc"
-ln -sf "$DOTFILES_DIR/xbindkeysrc"          "$HOME/.xbindkeysrc"
+# ln -sf "$DOTFILES_DIR/xbindkeysrc"          "$HOME/.xbindkeysrc"
 
 if [ -f /proc/version_signature ]
 then
@@ -102,7 +102,7 @@ case $platform in
         rm -rf "$HOME/.config/alacritty"         2> /dev/null
 
         ln -sf "$DOTFILES_DIR/.gitconfig-nix"    "$HOME/.gitconfig"
-        ln -sf "$DOTFILES_DIR/Xresources"        "$HOME/.Xresources"
+        # ln -sf "$DOTFILES_DIR/Xresources"        "$HOME/.Xresources"
         ln -sf "$DOTFILES_DIR/config/alacritty"  "$HOME/.config/alacritty"
         echo ". $DOTFILES_DIR/powershell/profile_loader.ps1" > "$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1"
         ;;
