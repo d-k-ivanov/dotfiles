@@ -2,21 +2,21 @@
 
 # No duplicates in history.
 # export HISTCONTROL=ignoreboth
-export HISTCONTROL=ignorespace:erasedups
-# export HISTCONTROL=ignoreboth:erasedups
+# export HISTCONTROL=ignorespace:erasedups
+export HISTCONTROL=ignoreboth:erasedups
 # export HISTCONTROL=ignoredups:erasedups
 # Big history
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 # Ignore some commands
-export HISTIGNORE='&:ls:[bf]g:exit:pwd:clear:mount:umount:history:l:l[1als]:lla:g:g[sdp]:g+(w):gp[lp]:gppa:mm[mu]:wsdf:wsdfp:wsconf:wscc+:icod *:git stas*:tm:tma:+(;):+(.): *:[ \t]*'
+export HISTIGNORE='&:exit:pwd:clear:mount:umount:history:g+(w):wscc+:icod *:git stas*:?:??:???:????:?????:??????:+(;):+(.): *:[ \t]*'
 
 # export HISTTIMEFORMAT='%s '
 unset HISTTIMEFORMAT
 
 # Append to the history file, don't overwrite it
-shopt -s histappend
-# shopt -u histappend
+# shopt -s histappend
+shopt -u histappend
 
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -35,10 +35,10 @@ shopt -s cmdhist
 # history -r is needed to restore the history buffer from the file, thus finally making the history shared across terminal sessions.
 
 # Approach 1
-# PROMPT_COMMAND="history -a"
+PROMPT_COMMAND="history -a"
 
 # Approach 2: merge and reload history from all terminals
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # Approach 3
 # Merge history from all terminals
