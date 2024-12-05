@@ -9,7 +9,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 # Ignore some commands
-export HISTIGNORE='&:exit:pwd:clear:mount:umount:history:g+(w):wscc+:icod *:git stas*:?:??:???:????:?????:??????:+(;):+(.): *:[ \t]*'
+export HISTIGNORE='&:exit:pwd:clear:mount.:umount*:history*:reload:g+(w):wscc+:icod *:git stas*:?:??:???:????:?????:??????:+(;):+(.): *:[ \t]*'
 
 # export HISTTIMEFORMAT='%s '
 unset HISTTIMEFORMAT
