@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
 
-# alias clion='sh /opt/clion-*/bin/clion.sh'
-# alias idea='sh /opt/idea-*/bin/idea.sh'
 # alias gvim='nvim-qt'
 # alias  vim='nvim'
 
-if command -v intellij-idea-ultimate >/dev/null
-then
-    alias idea='intellij-idea-ultimate'
-elif command -v intellij-idea-community >/dev/null
-then
-    alias idea='intellij-idea-community'
-fi
+idea() {
+  local dir
+  dir="${*:-./}"
+  nohup /opt/intellij-idea-ultimate/bin/idea "$dir" >/dev/null 2>&1 &
+  disown
+}
 
-# alias cide='clion .'
-# alias  ide='idea  .'
+clion() {
+  local dir
+  dir="${*:-./}"
+  nohup /opt/clion/bin/clion "$dir" >/dev/null 2>&1 &
+  disown
+}
 
 if command -v code-insiders >/dev/null
 then
