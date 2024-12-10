@@ -13,8 +13,8 @@ export HISTFILESIZE=1000000
 ignore_string='&:?:??:???:????:+(;):+(.): *:[ \t]*'
 ignore_string+=':exit:pwd:clear:mount.:umount*:history*:reload:g+(w):wscc+:icod *:git stash*'
 ignore_string+=':cd -:cd ..:cd ~:cd /'
-ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*'
-ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*'
+ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*:*access_key*'
+ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*:*ACCESS_KEY*'
 export HISTIGNORE="${ignore_string}"
 
 # export HISTTIMEFORMAT='%s '
