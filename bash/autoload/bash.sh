@@ -8,8 +8,14 @@ export HISTCONTROL=ignoreboth:erasedups
 # Big history
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
-# Ignore some commands
-export HISTIGNORE='&:exit:pwd:clear:mount.:umount*:history*:reload:g+(w):wscc+:icod *:git stas*:?:??:???:????:+(;):+(.): *:[ \t]*'
+
+# Dont save these commands in history
+ignore_string='&:?:??:???:????:+(;):+(.): *:[ \t]*'
+ignore_string+=':exit:pwd:clear:mount.:umount*:history*:reload:g+(w):wscc+:icod *:git stash*'
+ignore_string+=':cd -:cd ..:cd ~:cd /'
+ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*'
+ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*'
+export HISTIGNORE="${ignore_string}"
 
 # export HISTTIMEFORMAT='%s '
 unset HISTTIMEFORMAT
