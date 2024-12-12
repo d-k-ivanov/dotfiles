@@ -115,7 +115,7 @@ alias fix_077='fix_dir_700 && fix_files_600'
 alias fs="stat -c \"%s bytes\""
 
 alias df='df -h' # disk free, in Gigabytes, not bytes
-alias du='du -h -c' # calculate disk usage for a folder
+alias duc='du -h -c' # calculate disk usage for a folder
 
 alias mls="mount|column -t"
 

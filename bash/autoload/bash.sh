@@ -8,10 +8,11 @@ export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 
 # Dont save these commands in history
-ignore_string='[ \t]*' # Ignore all commands with leading spaces or tabs
-# ignore_string+='&:?:??:???:????:+(;):+(.):'
-# ignore_string+=':exit:pwd:clear:mount.:umount*:history*:reload:g+(w):wscc+:icod *:git stash*'
-# ignore_string+=':cd -:cd ..:cd ~:cd /'
+ignore_string='&:?:??:+(;):+(.):[ \t]*'
+ignore_string+=':exit:pwd:clear:history*:reload:icod *:icode .: clion .:idea .'
+ignore_string+=':g+(w):gw+(^):gg+(w):ggw+(^):g?:g??:g???'
+ignore_string+=':ws:wsm::wsdf:wsdfp:wsws'
+ignore_string+=':cd -:cd ..:cd ~:cd /'
 ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*:*access_key*'
 ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*:*ACCESS_KEY*'
 export HISTIGNORE="${ignore_string}"
