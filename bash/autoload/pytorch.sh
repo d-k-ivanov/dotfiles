@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install_libtorch() {
+install-libtorch() {
     declare -a torch_versions=(
         "2.5.1"
     )
@@ -23,4 +23,24 @@ install_libtorch() {
     sudo unzip libtorch-cxx11-abi-shared-with-deps-${selected_torch}+${selected_platform}.zip
     sudo mv libtorch /opt/libtorch-${selected_torch}+${selected_platform}
     sudo rm libtorch-cxx11-abi-shared-with-deps-${selected_torch}+${selected_platform}.zip
+}
+
+set-libtorch() {
+    declare -a libtorch_locations=($(ls -dl /opt/libtorch-* | awk '{print $9}'))
+    select_from_list "Installed LibTorch:" selected "${libtorch_locations[@]}"
+    echo "Using LibTorch: ${selected}..."
+    export LIBTORCH="${selected}"
+    export LIBTORCH_DIR="${selected}"
+    export LD_LIBRARY_PATH_ORIG="${LD_LIBRARY_PATH}"
+    export LD_LIBRARY_PATH="${selected}/lib:${LD_LIBRARY_PATH}"
+}
+
+clear-libtorch() {
+    unset LIBTORCH
+    unset LIBTORCH_DIR
+    if [ -n "${LD_LIBRARY_PATH_ORIG}" ]; then
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH_ORIG}"
+    else
+        unset LD_LIBRARY_PATH
+    fi
 }
