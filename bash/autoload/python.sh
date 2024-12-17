@@ -20,34 +20,31 @@ alias ipython-install='python -m pip install ipython'
 
 alias srv='python -m http.server 8000'
 
-py_venv()
-{
+py_venv() {
     python -m pip install --upgrade pip
     python -m pip install --upgrade virtualenv
     python -m pip install --upgrade ipython
 }
 alias pip_update='py_venv'
 
-pyclean()
-{
+pyclean() {
     temp_file=$(mktemp)
-    python -m pip freeze > "${temp_file}"
+    python -m pip freeze >"${temp_file}"
     python -m pip uninstall -y -r "${temp_file}"
     rm -f "${temp_file}"
 }
 
 if [[ -f "$PYENV_ROOT/bin/pyenv" ]]; then
     command pyenv rehash 2>/dev/null
-    pyenv()
-    {
+    pyenv() {
         local command
         command="${1:-}"
         if [ "$#" -gt 0 ]; then
-          shift
+            shift
         fi
 
         case "$command" in
-        rehash|shell)
+        rehash | shell)
             eval "$(pyenv "sh-$command" "$@")"
             ;;
         *)
@@ -61,7 +58,7 @@ fi
 # command -v pyenv >/dev/null && eval "$(pyenv virtualenv-init -)"
 
 if [[ -f "${HOME}/miniconda3/bin/conda" ]]; then
-    __conda_setup="$(${HOME}/miniconda3/bin/conda 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$(${HOME}/miniconda3/bin/conda 'shell.bash' 'hook' 2>/dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
