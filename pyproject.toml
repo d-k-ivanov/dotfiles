@@ -1,0 +1,11 @@
+[project]
+name = "Dotfiles"
+version = "1.0.0"
+authors = [{ name = "Dmitry Ivanov"}]
+description = "Dotfiles"
+
+[tool.flake8]
+max-line-length = 230
+
+[tool.black]
+line-length = 230

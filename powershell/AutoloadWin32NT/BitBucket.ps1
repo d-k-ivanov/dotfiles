@@ -15,7 +15,7 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-${function:git-ssh-bb}  = { (Get-Content .gitmodules).replace('https://bitbucket.org/', 'git@bitbucket.org:') | Set-Content .gitmodules }
+${function:git-ssh-bb} = { (Get-Content .gitmodules).replace('https://bitbucket.org/', 'git@bitbucket.org:') | Set-Content .gitmodules }
 ${function:git-ssh-bbr} = { (Get-Content .gitmodules).replace('git@bitbucket.org:', 'https://bitbucket.org/') | Set-Content .gitmodules }
 
 function Set-BitbucketOAuthCreds
@@ -23,9 +23,9 @@ function Set-BitbucketOAuthCreds
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Client_id,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Secret
     )
     [string] $SecretFile = (Join-Path $env:USERPROFILE '.bitbucket.secrets')
@@ -35,7 +35,7 @@ function Set-BitbucketOAuthCreds
 
 function Get-BitbucketOAuthToken
 {
-    [string] $SecretFile   = (Join-Path $env:USERPROFILE '.bitbucket.secrets')
+    [string] $SecretFile = (Join-Path $env:USERPROFILE '.bitbucket.secrets')
 
     if (-Not (Test-Path -Path $SecretFile))
     {
@@ -46,19 +46,19 @@ function Get-BitbucketOAuthToken
     }
 
     # $UriAuth    = 'https://bitbucket.org/site/oauth2/authorize'
-    $UriToken   = 'https://bitbucket.org/site/oauth2/access_token'
-    $Client_id  = $(Get-Content $SecretFile -First 1)
-    $Secret     = $(Get-Content $SecretFile -First 2)[-1]
+    $UriToken = 'https://bitbucket.org/site/oauth2/access_token'
+    $Client_id = $(Get-Content $SecretFile -First 1)
+    $Secret = $(Get-Content $SecretFile -First 2)[-1]
 
-    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Client_id,$Secret)))
+    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Client_id, $Secret)))
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $OAuthToken = Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Uri $UriToken -Method Post -Body @{grant_type='client_credentials'}
+    $OAuthToken = Invoke-RestMethod -Headers @{Authorization = ("Basic {0}" -f $base64AuthInfo) } -Uri $UriToken -Method Post -Body @{grant_type = 'client_credentials' }
     return $OAuthToken
 }
 
 function Get-BitbucketOAuthTokenCurl
 {
-    [string] $SecretFile   = (Join-Path $env:USERPROFILE '.bitbucket.secrets')
+    [string] $SecretFile = (Join-Path $env:USERPROFILE '.bitbucket.secrets')
 
     if (-Not (Test-Path -Path $SecretFile))
     {
@@ -67,11 +67,11 @@ function Get-BitbucketOAuthTokenCurl
     }
 
     # $UriAuth    = 'https://bitbucket.org/site/oauth2/authorize'
-    $UriToken   = 'https://bitbucket.org/site/oauth2/access_token'
-    $Client_id  = $(Get-Content $SecretFile -First 1)
-    $Secret     = $(Get-Content $SecretFile -First 2)[-1]
+    $UriToken = 'https://bitbucket.org/site/oauth2/access_token'
+    $Client_id = $(Get-Content $SecretFile -First 1)
+    $Secret = $(Get-Content $SecretFile -First 2)[-1]
 
-    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Client_id,$Secret)))
+    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Client_id, $Secret)))
     $Response = (curl -k -X POST -H "Authorization: Basic ${base64AuthInfo})" $UriToken -d "grant_type=client_credentials" -s) | ConvertFrom-Json
     return $Response.access_token
 }
@@ -82,14 +82,14 @@ function Invoke-BitbucketAPIUri
     param
     (
         [string] $Uri,
-        [string] $Method        = 'GET',
+        [string] $Method = 'GET',
         [switch] $ShowRequestUri
     )
 
     $Token = Get-BitbucketOAuthToken
     $Headers = @{
-        'Authorization'=("Bearer {0}" -f $Token.access_token)
-        'Content-Type'=('application/json')
+        'Authorization' = ("Bearer {0}" -f $Token.access_token)
+        'Content-Type'  = ('application/json')
 
     };
 
@@ -109,8 +109,8 @@ function Invoke-BitbucketAPIUri-Curl
     param
     (
         [string] $Uri,
-        [string] $Method            = 'GET',
-        [string[]] $CurlArgs        = @('-s'),
+        [string] $Method = 'GET',
+        [string[]] $CurlArgs = @('-s'),
         [switch] $VerboseOutput,
         [switch] $ShowRequestUri
     )
@@ -138,14 +138,14 @@ function Invoke-BitbucketAPI-Simple
     param
     (
         [string] $Request,
-        [string] $APIVersion        = '2.0',
-        [string] $Method            = 'GET'
+        [string] $APIVersion = '2.0',
+        [string] $Method = 'GET'
     )
 
     $Token = Get-BitbucketOAuthToken
     $Headers = @{
-        'Authorization'=("Bearer {0}" -f $Token.access_token)
-        'Content-Type'=('application/json')
+        'Authorization' = ("Bearer {0}" -f $Token.access_token)
+        'Content-Type'  = ('application/json')
 
     };
 
@@ -162,9 +162,9 @@ function Invoke-BitbucketAPI-Simple-Curl
     param
     (
         [string] $Request,
-        [string] $APIVersion        = '2.0',
-        [string] $Method            = 'GET',
-        [string[]] $CurlArgs        = @('-s'),
+        [string] $APIVersion = '2.0',
+        [string] $Method = 'GET',
+        [string[]] $CurlArgs = @('-s'),
         [switch] $VerboseOutput
     )
 
@@ -184,10 +184,10 @@ function Invoke-BitbucketAPI
     param
     (
         [string]$RequestPath,
-        [string]$Type           = '',
-        [string]$UriSuffix      = 'repositories',
-        [string]$APIVersion     = '2.0',
-        [string]$Method         = 'GET'
+        [string]$Type = '',
+        [string]$UriSuffix = 'repositories',
+        [string]$APIVersion = '2.0',
+        [string]$Method = 'GET'
     )
 
     $Uri = "https://api.bitbucket.org/$APIVersion/$UriSuffix$Type$RequestPath"
@@ -203,11 +203,11 @@ function Invoke-BitbucketAPI-Curl
     param
     (
         [string] $RequestPath,
-        [string] $Type              = '',
-        [string] $UriSuffix         = 'repositories',
-        [string] $APIVersion        = '2.0',
-        [string] $Method            = 'GET',
-        [string[]] $CurlArgs        = @('-s'),
+        [string] $Type = '',
+        [string] $UriSuffix = 'repositories',
+        [string] $APIVersion = '2.0',
+        [string] $Method = 'GET',
+        [string[]] $CurlArgs = @('-s'),
         [switch] $VerboseOutput
     )
 
@@ -301,7 +301,7 @@ function Get-BitbucketUser
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$AccountID
     )
     $Response = Invoke-BitbucketAPI -Type "/$AccountID" -UriSuffix 'users'
@@ -313,7 +313,7 @@ function Get-BitbucketUser-Curl
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$AccountID
     )
     $Response = Invoke-BitbucketAPI-Curl -Type "/$AccountID" -UriSuffix 'users'
@@ -325,7 +325,7 @@ function Get-BitbucketTeamMembers
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Team
     )
 
@@ -351,7 +351,7 @@ function Get-BitbucketTeamMembers-Curl
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Team
     )
 
@@ -377,7 +377,7 @@ function Show-BitbucketTeamMembers
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Team
     )
 
@@ -395,7 +395,7 @@ function Show-BitbucketTeamMembers
 
 
     $Response = Get-BitbucketTeamMembers "${Team}"
-    return $Response.values | Format-Table -Property display_name,has_2fa_enabled,nickname,account_id,account_status,uuid -AutoSize
+    return $Response.values | Format-Table -Property display_name, has_2fa_enabled, nickname, account_id, account_status, uuid -AutoSize
 }
 
 function Show-BitbucketTeamMembers-Curl
@@ -403,7 +403,7 @@ function Show-BitbucketTeamMembers-Curl
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Team
     )
 
@@ -448,7 +448,7 @@ if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
             foreach ($repo in $repoList.values)
             {
                 $count += 1
-                Write-Host "$count.`t" -NoNewLine
+                Write-Host "$count.`t" -NoNewline
                 Write-Host "$($repo.full_name)" -ForegroundColor Cyan
             }
         } while ($repoList.next -And ($repoList = Invoke-BitbucketAPIUri "$($repoList.next)"))
@@ -462,7 +462,7 @@ if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
             foreach ($repo in $repoList.values)
             {
                 $response = Invoke-BitbucketAPIUri "https://api.bitbucket.org/2.0/repositories/$($repo.full_name)"
-                git clone --recurse-submodules $(($response.links.clone | Where-Object {$_.name -eq 'https'}).href)
+                git clone --recurse-submodules $(($response.links.clone | Where-Object { $_.name -eq 'https' }).href)
             }
         } while ($repoList.next -And ($repoList = Invoke-BitbucketAPIUri "$($repoList.next)"))
     }
@@ -475,7 +475,7 @@ if (Get-Command git -ErrorAction SilentlyContinue | Test-Path)
             foreach ($repo in $repoList.values)
             {
                 $response = Invoke-BitbucketAPIUri "https://api.bitbucket.org/2.0/repositories/$($repo.full_name)"
-                git clone --recurse-submodules $(($response.links.clone | Where-Object {$_.name -eq 'ssh'}).href)
+                git clone --recurse-submodules $(($response.links.clone | Where-Object { $_.name -eq 'ssh' }).href)
             }
         } while ($repoList.next -And ($repoList = Invoke-BitbucketAPIUri "$($repoList.next)"))
     }
