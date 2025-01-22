@@ -20,9 +20,9 @@ function Set-GithubOAuthCreds
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Username,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Token
     )
     [string] $SecretFile = (Join-Path $env:USERPROFILE '.github.secrets')
@@ -32,7 +32,7 @@ function Set-GithubOAuthCreds
 
 function Get-GithubBasicCreds
 {
-    [string] $SecretFile   = (Join-Path $env:USERPROFILE '.github.secrets')
+    [string] $SecretFile = (Join-Path $env:USERPROFILE '.github.secrets')
 
     if (-Not (Test-Path -Path $SecretFile))
     {
@@ -42,10 +42,10 @@ function Get-GithubBasicCreds
         return
     }
 
-    $Username   = $(Get-Content $SecretFile -First 1)
-    $Token      = $(Get-Content $SecretFile -First 2)[-1]
+    $Username = $(Get-Content $SecretFile -First 1)
+    $Token = $(Get-Content $SecretFile -First 2)[-1]
 
-    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Username,$Token)))
+    $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Username, $Token)))
     return $base64AuthInfo
 }
 
@@ -54,7 +54,7 @@ function GithubRepos
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $GithubName,
         [string] $Protocol = 'SSH',
         [switch] $Organization,
@@ -65,14 +65,16 @@ function GithubRepos
     if (-Not (Get-Command git -ErrorAction SilentlyContinue | Test-Path))
     {
         Write-Host `
-                "Error: Git not found. Please install Git for Windows and add it to PATH. Exiting..." `
-                -ForegroundColor Red
-            return
+            "Error: Git not found. Please install Git for Windows and add it to PATH. Exiting..." `
+            -ForegroundColor Red
+        return
     }
 
     $BasicCreds = Get-GithubBasicCreds
     $Headers = @{
-        'Authorization'=("Basic {0}" -f $BasicCreds)
+        'Accept' = 'application/vnd.github+json'
+        'Authorization' = ("Basic {0}" -f $BasicCreds)
+        'X-GitHub-Api-Version' = '2022-11-28'
     };
 
     if ($Organization)
@@ -98,7 +100,7 @@ function GithubRepos
 
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $HasNext = $true
-    $NextUrl   = "${BaseApiUri}?sort=pushed&per_page=100"
+    $NextUrl = "${BaseApiUri}?sort=pushed&per_page=100"
     # for ($i = 1; $i -lt 2; $i++)
     while ($HasNext)
     {
@@ -117,7 +119,7 @@ function GithubRepos
 
         if ($RequestAnswer.RelationLink["next"])
         {
-            $NextUrl   = $RequestAnswer.RelationLink["next"]
+            $NextUrl = $RequestAnswer.RelationLink["next"]
         }
         else
         {
@@ -131,10 +133,10 @@ function GithubRepos
 
             switch ($Protocol)
             {
-                "GIT"   { Invoke-Expression ($BaseCommand + $repo.git_url)   }
+                "GIT" { Invoke-Expression ($BaseCommand + $repo.git_url) }
                 "HTTPS" { Invoke-Expression ($BaseCommand + $repo.clone_url) }
-                "SSH"   { Invoke-Expression ($BaseCommand + $repo.ssh_url)   }
-                "SVN"   { Invoke-Expression ($BaseCommand + $repo.svn_url)   }
+                "SSH" { Invoke-Expression ($BaseCommand + $repo.ssh_url) }
+                "SVN" { Invoke-Expression ($BaseCommand + $repo.svn_url) }
             }
         }
     }
@@ -146,7 +148,7 @@ function Rename-GitHub-Origin
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [string]$NewName
     )
     Write-Output "Renaming repo to $NewName"
@@ -157,7 +159,7 @@ function Rename-GitHub-Origin
         $oldRemote = git config --get remote.origin.url
         Write-Host "Old remote:"
         git remote -v
-        $repo = Split-Path $oldRemote -leaf
+        $repo = Split-Path $oldRemote -Leaf
         $newRemote = "git@github.com:${NewName}/${repo}"
         git remote rm origin
         git remote add origin ${newRemote}

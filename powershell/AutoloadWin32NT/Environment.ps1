@@ -116,6 +116,7 @@ function Initialize-Paths-User
         "C:\PROGRA~1\Conan\conan"
         "C:\PROGRA~1\ConEmu\ConEmu"
         "C:\PROGRA~1\ConEmu\ConEmu\wsl"
+        "C:\PROGRA~1\GitHub CLI"
         "C:\PROGRA~1\gnuplot\bin"
         "C:\PROGRA~1\Gource\cmd"
         "C:\PROGRA~1\IMAGEM~1.1-Q"
