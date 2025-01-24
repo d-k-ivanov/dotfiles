@@ -22,6 +22,7 @@ function Get-VCPKGList
 {
     $Directories = @(
         "${env:WORKSPACE}\vcpkg"
+        "${env:WORKSPACE}\vcpkg-cc"
         "${env:WORKSPACE}\vcpkg-gh"
         "c:\v"
         "d:\v"
