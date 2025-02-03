@@ -24,6 +24,7 @@ function Get-VCPKGList
         "${env:WORKSPACE}\vcpkg"
         "${env:WORKSPACE}\vcpkg-cc"
         "${env:WORKSPACE}\vcpkg-gh"
+        "c:\j\v"
         "c:\v"
         "d:\v"
     )
