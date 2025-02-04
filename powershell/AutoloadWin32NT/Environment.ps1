@@ -180,10 +180,6 @@ function Initialize-Paths-User
     )
 
     $final_path = "${env:USERPROFILE}\.bin"
-    if ($Env:VCPKG_ROOT)
-    {
-        $final_path += ";$Env:VCPKG_ROOT"
-    }
 
     foreach ($path in $paths)
     {
@@ -350,15 +346,20 @@ function Set-Env
     Reset-Environment
 
     $system_path = "C:\tools\bin"
+
     if ($Env:CONTAINER_ENGINE_PATH)
     {
         $system_path += ";$Env:CONTAINER_ENGINE_PATH"
     }
 
-    if ($Env:PYTHON_PATH)
+    if ($env:CUDNN_PATH)
     {
-        $system_path += ";$Env:PYTHON_PATH\Scripts"
-        $system_path += ";$Env:PYTHON_PATH"
+        $system_path += ";$env:CUDNN_PATH\bin"
+    }
+
+    if ($env:JAVA_HOME)
+    {
+        $system_path += ";$env:JAVA_HOME\bin"
     }
 
     if ($env:PYENV)
@@ -367,9 +368,15 @@ function Set-Env
         $system_path += ";$env:PYENV\shims"
     }
 
-    if ($env:RUBY_PATH)
+    if ($Env:PYTHON_PATH)
     {
-        $system_path += ";$env:RUBY_PATH"
+        $system_path += ";$Env:PYTHON_PATH\Scripts"
+        $system_path += ";$Env:PYTHON_PATH"
+    }
+
+    if ($env:QTDIR)
+    {
+        $system_path += ";$env:QTDIR\bin"
     }
 
     if ($env:RPROJECT_PATH)
@@ -377,9 +384,14 @@ function Set-Env
         $system_path += ";$env:RPROJECT_PATH"
     }
 
-    if ($env:JAVA_HOME)
+    if ($env:RUBY_PATH)
     {
-        $system_path += ";$env:JAVA_HOME\bin"
+        $system_path += ";$env:RUBY_PATH"
+    }
+
+    if ($env:SquishBinDir)
+    {
+        $system_path += ";$env:SquishBinDir"
     }
 
     if ($env:VC_IDE)
@@ -391,14 +403,9 @@ function Set-Env
     #     $system_path += ";$env:VC_PATH"
     # }
 
-    if ($env:QTDIR)
+    if ($Env:VCPKG_ROOT)
     {
-        $system_path += ";$env:QTDIR\bin"
-    }
-
-    if ($env:SquishBinDir)
-    {
-        $system_path += ";$env:SquishBinDir"
+        $final_path += ";$Env:VCPKG_ROOT"
     }
 
     if ($env:VISUALGDB_DIR)
@@ -409,11 +416,6 @@ function Set-Env
     if ($env:VULKAN_SDK)
     {
         $system_path += ";$env:VULKAN_SDK\Bin"
-    }
-
-    if ($env:CUDNN_PATH)
-    {
-        $system_path += ";$env:CUDNN_PATH\bin"
     }
 
     $system_path += ";$env:PathsSys"
