@@ -403,9 +403,9 @@ function Set-Env
     #     $system_path += ";$env:VC_PATH"
     # }
 
-    if ($Env:VCPKG_ROOT)
+    if ($env:VCPKG_ROOT)
     {
-        $final_path += ";$Env:VCPKG_ROOT"
+        $system_path += ";$env:VCPKG_ROOT"
     }
 
     if ($env:VISUALGDB_DIR)
