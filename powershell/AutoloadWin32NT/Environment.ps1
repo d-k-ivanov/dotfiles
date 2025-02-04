@@ -180,9 +180,9 @@ function Initialize-Paths-User
     )
 
     $final_path = "${env:USERPROFILE}\.bin"
-    if ($Env:MY_VCPKG_ROOT)
+    if ($Env:VCPKG_ROOT)
     {
-        $final_path += ";$Env:MY_VCPKG_ROOT"
+        $final_path += ";$Env:VCPKG_ROOT"
     }
 
     foreach ($path in $paths)

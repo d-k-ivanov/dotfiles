@@ -65,8 +65,8 @@ function Get-VCPKGList
 function Set-VCPKG
 {
     $Selected = Select-From-List $(Get-VCPKGList) 'available VCPKG locations'
-    [Environment]::SetEnvironmentVariable("MY_VCPKG_ROOT", ${Selected}, "Machine")
-    Set-Item -Path Env:MY_VCPKG_ROOT -Value ${Selected}
+    [Environment]::SetEnvironmentVariable("VCPKG_ROOT", ${Selected}, "Machine")
+    Set-Item -Path Env:VCPKG_ROOT -Value ${Selected}
     Set-Item -Path Env:PATH -Value "${Selected};${Env:PATH}"
 }
 
@@ -78,10 +78,10 @@ function Use-VCPKG
 
 function Unset-VCPKG
 {
-    [Environment]::SetEnvironmentVariable("MY_VCPKG_ROOT", $null, "Machine")
-    if ($env:MY_VCPKG_ROOT)
+    [Environment]::SetEnvironmentVariable("VCPKG_ROOT", $null, "Machine")
+    if ($env:VCPKG_ROOT)
     {
-        Remove-Item Env:MY_VCPKG_ROOT
+        Remove-Item Env:VCPKG_ROOT
     }
 }
 
@@ -99,7 +99,7 @@ function vcpkg-cmake
 {
     # $vcpkgPath = (Get-Item (Get-Command vcpkg.exe -ErrorAction SilentlyContinue).Path).Directory.FullName
     # $vcpkNixPath = ($vcpkgPath -replace "\\","/").ToLower().Trim("/")
-    $vcpkNixPath = ($env:MY_VCPKG_ROOT -replace "\\", "/").ToLower().Trim("/")
+    $vcpkNixPath = ($env:VCPKG_ROOT -replace "\\", "/").ToLower().Trim("/")
     Write-Output "-DCMAKE_TOOLCHAIN_FILE=${vcpkNixPath}/scripts/buildsystems/vcpkg.cmake"
 }
 
