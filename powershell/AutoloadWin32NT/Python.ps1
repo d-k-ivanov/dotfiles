@@ -205,6 +205,8 @@ function pyenv-enable
     Clear-Py
     $PyEnvLocation = "${env:USERPROFILE}\.pyenv\pyenv-win"
     [Environment]::SetEnvironmentVariable("PYENV", $PyEnvLocation, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_HOME", $PyEnvLocation, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_ROOT", $PyEnvLocation, "User")
     Set-Item -Path Env:PYENV -Value "$PyEnvLocation"
     # Set-Env
 }
@@ -212,9 +214,13 @@ function pyenv-enable
 function pyenv-disable
 {
     [Environment]::SetEnvironmentVariable("PYENV", $null, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_HOME", $null, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_ROOT", $null, "User")
     if ($env:PYENV)
     {
         Remove-Item Env:PYENV
+        Remove-Item Env:PYENV_HOME
+        Remove-Item Env:PYENV_ROOT
     }
     # Set-Env
 }

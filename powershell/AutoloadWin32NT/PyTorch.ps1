@@ -65,7 +65,7 @@ function Set-LibTorch
     Set-Item -Path Env:LIBTORCH_DIR -Value "$selected"
 }
 
-function Clear-Py
+function Clear-LibTorch
 {
     [Environment]::SetEnvironmentVariable("LIBTORCH", $null, "Machine")
     if ($env:LIBTORCH)
