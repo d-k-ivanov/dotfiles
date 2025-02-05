@@ -17,7 +17,6 @@ If (Test-Path "${Env:USERPROFILE}\.git.d"                   ) { [System.IO.Direc
 If (Test-Path "${Env:USERPROFILE}\.tmux"                    ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.tmux"                 , $true) }
 If (Test-Path "${Env:USERPROFILE}\.vim"                     ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.vim"                  , $true) }
 If (Test-Path "${Env:LOCALAPPDATA}\nvim"                    ) { [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\nvim"                 , $true) }
-If (Test-Path "${Env:APPDATA}\NuGet"                        ) { [System.IO.Directory]::Delete("${Env:APPDATA}\NuGet"                     , $true) }
 If (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User"   ) { [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true) }
 If (Test-Path "${Env:USERPROFILE}\.bash_profile"            ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bash_profile"  -Confirm:$false }
 If (Test-Path "${Env:USERPROFILE}\.bashrc"                  ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bashrc"        -Confirm:$false }
@@ -40,7 +39,6 @@ C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.git.d"                
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.tmux"                     "${PSScriptRoot}\tmux"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.vim"                      "${PSScriptRoot}\vim"
 C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\nvim"                     "${PSScriptRoot}\nvim"
-C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\NuGet"                         "${PSScriptRoot}\NuGet"
 C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User"    "${PSScriptRoot}\sublime"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bash_profile"             "${PSScriptRoot}\bash_profile"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bashrc"                   "${PSScriptRoot}\bashrc"
