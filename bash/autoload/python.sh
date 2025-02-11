@@ -34,6 +34,16 @@ pyclean() {
     rm -f "${temp_file}"
 }
 
+pyenv_enable() {
+    [[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+}
+
+pyenv_disable() {
+    [[ -d $PYENV_ROOT/shims ]] && export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/shims" | tr "\n" ":")
+    [[ -d $PYENV_ROOT/bin ]] && export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/bin" | tr "\n" ":")
+}
+
 if [[ -f "$PYENV_ROOT/bin/pyenv" ]]; then
     command pyenv rehash 2>/dev/null
     pyenv() {
