@@ -49,9 +49,14 @@ ${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64         
 ${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config"    -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
+# CMake Generator: MSVC Specific versions
+${function:cgen-22-1442}    = { cmake -G "Visual Studio 17 2022" -A x64  -T version=14.42 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+
+# CMake Generator: Find Vcpkg
 ${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 ${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config"    -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 
+# CMake Generators: Build Types
 ${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
@@ -70,8 +75,10 @@ ${function:cgen-reldebug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B buil
 ${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 ${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 
+
+
 # CMake Generators Aliases
-Set-Alias cgen   cgen-22
+Set-Alias cgen   cgen-22-1442
 Set-Alias cgenv  cgen-22-v
 Set-Alias cgencl cgen-22-cl
 Set-Alias cgend  cgen-debug-22
