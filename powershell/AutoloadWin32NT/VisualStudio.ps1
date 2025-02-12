@@ -50,6 +50,10 @@ foreach ($InstallPath in $InstallPaths)
         ${function:dev}         = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
         ${function:dev32}       = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
         ${function:dev64}       = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+
+        # Defined compilers
+        # ${function:dev1442}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 -vcvars_ver=14.42 @args }
+
         $ENV:VSDevEnv = "True"
         break
     }
