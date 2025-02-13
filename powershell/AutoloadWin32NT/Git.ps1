@@ -176,7 +176,7 @@ ${function:gitinfo} = { ssh gitolite@git info @args }   # Gitolite list repos
 ${function:gittest-gh} = { ssh -T git@github.com }
 ${function:gittest-gl} = { ssh -T git@gitlab.com }
 ${function:gittest-bb} = { ssh -T git@bitbucket.org }
-
+${function:gpatch} = { git diff --cached --binary > ${args} }
 
 function gprune
 {
