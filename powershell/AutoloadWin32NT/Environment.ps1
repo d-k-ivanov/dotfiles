@@ -146,6 +146,7 @@ function Initialize-Paths-User
         "C:\tools\BCURRAN3"
         "C:\tools\bin"
         "C:\tools\binaryen\bin"
+        "C:\tools\blackduck"
         "C:\tools\cobertura"
         "C:\tools\CppDepend"
         "C:\tools\dart-sdk\bin"
