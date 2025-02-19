@@ -1,10 +1,12 @@
 # Settings apply across all Linux distros running on WSL 2
 [wsl2]
 # How many logical processors to assign to the WSL 2 VM.
+# processors=1
 # processors=16
 
 # Limits VM memory, this can be set as whole numbers using GB or MB
-# memory=32GB
+# memory=2GB
+memory=32GB
 
 # Sets amount of swap storage space to 8GB, default is 25% of available RAM
 swap=32GB
