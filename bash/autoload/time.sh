@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+now() {
+    date +'%Y-%m-%d-%H-%M'
+}
+
 # Tesing: format_time_diff_from_ns $(date +%s%N; sleep N)
 format_time_diff_from_ns()
 {
