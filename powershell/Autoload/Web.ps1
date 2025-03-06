@@ -16,10 +16,10 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # Weather
-${function:wet}     = { curl http://wttr.in/@args }
-${function:wet2}    = { curl http://v2.wttr.in/@args }
-${function:wetM}    = { wet Moscow }
-${function:wetM2}   = { wet2 Moscow }
+${function:wet}     = { curl http://wttr.in/$args }
+${function:wet2}    = { curl http://v2.wttr.in/$args }
+${function:wetM}    = { wet Malaga }
+${function:wetM2}   = { wet2 Malaga }
 
 if (Get-Command curl -ErrorAction SilentlyContinue | Test-Path)
 {

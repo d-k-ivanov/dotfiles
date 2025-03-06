@@ -25,9 +25,10 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
     ${function:vpi}     = { python -m pip install }
     ${function:vpip}    = { python -m pip install --upgrade pip }
     ${function:vgen}    = { python -m pip freeze > .\requirements.txt }
-    ${function:vins}    = { vpip; if(Test-Path requirements.txt){ vinsr }; if(Test-Path requirements-dev.txt){ vinsd } }
-    ${function:vinsr}   = { python -m pip install -r .\requirements.txt }
-    ${function:vinsd}   = { python -m pip install -r .\requirements-dev.txt }
+    ${function:vinsr}   = { if(Test-Path requirements.txt){ python -m pip install -r .\requirements.txt } }
+    ${function:vinsd}   = { if(Test-Path requirements-dev.txt){ python -m pip install -r .\requirements-dev.txt} }
+    ${function:vinsm}   = { if(Test-Path requirements-misc.txt){ python -m pip install -r .\requirements-misc.txt} }
+    ${function:vins}    = { if(Test-Path $args[0]){ vpip; python -m pip install -r $args[0] } else { vpip; vinsr; vinsd; vinsm } }
 
     # Basic environment
     ${function:pip-update}      = { python -m pip install --upgrade pip }

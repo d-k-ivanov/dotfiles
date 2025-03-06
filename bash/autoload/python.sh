@@ -12,7 +12,19 @@ alias vgen='python -m pip freeze > requirements.txt'
 alias vinsr='[[ -f requirements.txt ]] && python -m pip install -r requirements.txt || echo -n'
 alias vinsd='[[ -f requirements-dev.txt ]] && python -m pip install -r requirements-dev.txt || echo -n'
 alias vinsm='[[ -f requirements-misc.txt ]] && python -m pip install -r requirements-misc.txt || echo -n'
-alias vins='vpip && vinsr && vinsd && vinsm'
+
+# alias vins='vpip && vinsr && vinsd && vinsm'
+vins() {
+    if [[ -f ${1} ]]; then
+        vpip
+        python -m pip install -r ${1}
+    else
+        vpip
+        vinsr
+        vinsd
+        vinsm
+    fi
+}
 
 # Basic environment
 alias pip-update='python -m pip install --upgrade pip'
