@@ -24,7 +24,7 @@ $Env:EDITOR = "${Env:VISUAL}"
 $Env:GIT_EDITOR = $Env:EDITOR
 
 # Language
-$Env:LANG   = "en_US"
+$Env:LANG = "en_US"
 # $Env:LC_ALL = "C.UTF-8"
 $Env:LC_ALL = "C"
 
@@ -38,20 +38,20 @@ $Env:OLDPWD = Get-Location
 # PS Readline:
 $PSReadLineOptions = @{
     # EditMode = "Vi"
-    EditMode = "Emacs"
+    EditMode                      = "Emacs"
 
     # Defaiult word delimiters
-    WordDelimiters = ';:,.[]{}()/\|^&*-=+`"–—―'
+    WordDelimiters                = ';:,.[]{}()/\|^&*-=+`"–—―'
     # Bash 4.0 word delimiters
     # WordDelimiters = '()<>;&|"'
 
-    MaximumHistoryCount = 32767
+    MaximumHistoryCount           = 32767
     HistorySearchCursorMovesToEnd = $true
-    ShowToolTips = $false
+    ShowToolTips                  = $false
 }
 Set-PSReadLineOption @PSReadLineOptions
 
-If($PSVersionTable.PSVersion.Major -ge '7' -And $PSVersionTable.PSVersion.Minor -ge '2')
+If ($PSVersionTable.PSVersion.Major -ge '7' -And $PSVersionTable.PSVersion.Minor -ge '2')
 {
     Set-PSReadLineOption -PredictionSource None
     # Set-PSReadLineOption -PredictionViewStyle = "ListView"
@@ -68,7 +68,7 @@ Set-PSReadLineKeyHandler -Key Tab -Function Complete
 #  1..50000 | % {Set-Variable -Name MaximumHistoryCount -Value $_ }
 Set-Variable -Name MaximumHistoryCount -Value 32767
 
-${function:env} = {Get-ChildItem Env:}
+${function:env} = { Get-ChildItem Env: }
 ${function:List-Env} = { Get-ChildItem Env: }
 ${function:List-Paths} = { $Env:Path.Split(';') }
 
@@ -338,7 +338,7 @@ function Set-Env
 {
     # Save current variables
     [Environment]::SetEnvironmentVariable("PATH_PRE_SYS", "$([Environment]::GetEnvironmentVariable("PATH", "Machine"))", "Machine")
-    [Environment]::SetEnvironmentVariable("PATH_PRE_USR", "$([Environment]::GetEnvironmentVariable("PATH", "User"))",    "Machine")
+    [Environment]::SetEnvironmentVariable("PATH_PRE_USR", "$([Environment]::GetEnvironmentVariable("PATH", "User"))", "Machine")
 
     # PATHs
     Initialize-Paths-System
@@ -492,18 +492,18 @@ function Set-Environment([String] $variable, [String] $value)
 function Reset-Environment
 {
     $locations = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
-                 'HKCU:\Environment'
+    'HKCU:\Environment'
 
     $locations | ForEach-Object {
         $k = Get-Item $_
         $k.GetValueNames() | ForEach-Object {
-            $name  = $_
+            $name = $_
             $value = $k.GetValue($_)
             Set-Item -Path Env:\$name -Value $value
         }
     }
 
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
 function Edit-Hosts
