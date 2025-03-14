@@ -1,5 +1,5 @@
 ! Defaults --------------------------------------------------------------------
-Xft.dpi:                    128
+Xft.dpi:                    64
 Xft.autohint:               0
 Xft.lcdfilter:              lcddefault
 Xft.hintstyle:              hintfull
@@ -9,7 +9,7 @@ Xft.rgba:                   rgb
 Xcursor.theme:              Vanilla-DMZ-AA
 !Xcursor.theme:             ComixCursors-Slim-White
 Xcursor.theme_core:         True
-Xcursor.size:               32
+Xcursor.size:               24
 
 ! XTerm -----------------------------------------------------------------------
 ! General settings
