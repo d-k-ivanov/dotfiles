@@ -28,7 +28,7 @@ if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
     ${function:vinsr}   = { if(Test-Path requirements.txt){ python -m pip install -r .\requirements.txt } }
     ${function:vinsd}   = { if(Test-Path requirements-dev.txt){ python -m pip install -r .\requirements-dev.txt} }
     ${function:vinsm}   = { if(Test-Path requirements-misc.txt){ python -m pip install -r .\requirements-misc.txt} }
-    ${function:vins}    = { if(Test-Path $args[0]){ vpip; python -m pip install -r $args[0] } else { vpip; vinsr; vinsd; vinsm } }
+    ${function:vins}    = { if(Test-Path $args[0] -ErrorAction SilentlyContinue){ vpip; python -m pip install -r $args[0] } else { vpip; vinsr; vinsd; vinsm } }
 
     # Basic environment
     ${function:pip-update}      = { python -m pip install --upgrade pip }
