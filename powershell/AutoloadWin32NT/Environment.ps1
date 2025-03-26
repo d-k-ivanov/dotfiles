@@ -178,6 +178,7 @@ function Initialize-Paths-User
         "C:\tools\wsl\kali"
         "C:\tools\wsl\ubuntu"
         # "C:\tools\wsltty\bin"
+        "C:\tools\zig"
     )
 
     $final_path = "${env:USERPROFILE}\.bin"
