@@ -38,8 +38,9 @@ else
 endif
 
 " Set Colors
-"colorscheme gruvbox
-colorscheme nord
+" colorscheme gruvbox
+colorscheme material
+" colorscheme nord
 " colorscheme papercolor
 " colorscheme pyte
 " colorscheme summerfruit256
