@@ -34,6 +34,12 @@ function CheckGit($Path)
     }
 }
 
+function unset-prompt-vars()
+{
+     Remove-Item Env:PromptUserName
+     Remove-Item Env:PromptCompName
+}
+
 # ==========================================================================================
 # Prompt Hooks
 # ==========================================================================================
@@ -114,9 +120,17 @@ function CheckGit($Path)
     Microsoft.PowerShell.Utility\Write-Host "" ${Env:CONDA_PROMPT_MODIFIER} -NoNewline -ForegroundColor DarkYellow
 
     $now      = Get-date -Format "HH:mm:ss"
-    # $username = $(Split-Path (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object UserName).UserName -Leaf)
-    $username = Split-Path $Env:USERPROFILE -Leaf
-    $compname = (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object DNSHostName).DNSHostName
+    if($Env:PromptUserName)
+    {
+        $username = $Env:PromptUserName
+        $compname = $Env:PromptCompName
+    }
+    else
+    {
+        # $username = $(Split-Path (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object UserName).UserName -Leaf)
+        $username = Split-Path $Env:USERPROFILE -Leaf
+        $compname = (Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object DNSHostName).DNSHostName
+    }
     Microsoft.PowerShell.Utility\Write-Host "`n${now} ${username}@${compname} λ " -NoNewLine -ForegroundColor DarkGray
 
     $global:LASTEXITCODE = $realLASTEXITCODE
