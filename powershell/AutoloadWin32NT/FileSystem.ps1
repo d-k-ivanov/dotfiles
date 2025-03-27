@@ -58,6 +58,9 @@ ${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                        
 ${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg                             }
 ${function:wsws}    = { Set-Location ${env:WORKSPACE}\my\workspace                      }
 
+${function:case-sensitive-enable}  = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
+${function:case-sensitive-disable} = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
+
 # Create a new directory and enter it
 function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; Set-Location $path}
 Set-Alias mkd New-DirectoryAndSet
