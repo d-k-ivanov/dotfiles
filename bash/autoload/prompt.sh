@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+function unset-prompt-vars
+{
+    unset PromptUserName
+    unset PromptCompName
+}
+
 function __git_prompt
 {
     # preserve exit status
@@ -113,6 +119,9 @@ bash_prompt()
     local BW="\[\033[1;37m\]"   # bolded white
     local ZZ="\[\033[0m\]"      # Reset
 
+    local username='\u'
+    local hostname='\H'
+
     local ENVRM
     ENVRM="$(cat ~/.bash/var.env)"
 
@@ -129,23 +138,29 @@ bash_prompt()
         local SSHPRPT=""
     fi
 
+    if [[ -v PromptUserName ]] && [[ -v PromptCompName ]]
+    then
+        username="${PromptUserName}"
+        hostname="${PromptCompName}"
+    fi
+
     case $PROMPT in
         COMPLEX)
             if [ "$ENVRM" == "PRODUCTION" ]
             then
                 # PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] [${BR}\w${R}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
-                PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] ${BR}\w${R} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${GR}\t \u@\H λ ${ZZ} "
+                PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] ${BR}\w${R} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${GR}\t ${username}@${hostname} λ ${ZZ} "
             else
                 # PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] [${BC}\w${G}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
-                PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] ${BC}\w${G} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${GR}\t \u@\H λ ${ZZ}"
+                PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] ${BC}\w${G} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${GR}\t ${username}@${hostname} λ ${ZZ}"
             fi
             ;;
         SIMPLE)
             if [ "$ENVRM" == "PRODUCTION" ]
             then
-                PS1="${R}[${BY}\${?}${R}] \u@\h${BY}:${R}\W \$(__git_prompt) ${M}\$(__prompt_rvm) ${BK}λ ${ZZ}"
+                PS1="${R}[${BY}\${?}${R}] ${username}@${hostname}${BY}:${R}\W \$(__git_prompt) ${M}\$(__prompt_rvm) ${BK}λ ${ZZ}"
             else
-                PS1="${G}[${BY}\${?}${G}] \u@\h${BY}:${G}\W \$(__git_prompt) ${M}\$(__prompt_rvm) ${BK}λ ${ZZ}"
+                PS1="${G}[${BY}\${?}${G}] ${username}@${hostname}${BY}:${G}\W \$(__git_prompt) ${M}\$(__prompt_rvm) ${BK}λ ${ZZ}"
             fi
             ;;
     esac

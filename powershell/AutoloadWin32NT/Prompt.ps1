@@ -120,7 +120,7 @@ function unset-prompt-vars()
     Microsoft.PowerShell.Utility\Write-Host "" ${Env:CONDA_PROMPT_MODIFIER} -NoNewline -ForegroundColor DarkYellow
 
     $now      = Get-date -Format "HH:mm:ss"
-    if($Env:PromptUserName)
+    if($Env:PromptUserName -and $Env:PromptCompName)
     {
         $username = $Env:PromptUserName
         $compname = $Env:PromptCompName
