@@ -56,7 +56,7 @@ function List-WSLDistros()
     wsl --list -v
 }
 
-function anyconnect-wsl-fix()
+function wsl-fix-anyconnect()
 {
     Get-NetAdapter | Where-Object {$_.InterfaceDescription -Match "Cisco AnyConnect"} | Set-NetIPInterface -InterfaceMetric 4000
     Get-NetIPInterface -InterfaceAlias "vEthernet (WSL)" | Set-NetIPInterface -InterfaceMetric 1
@@ -69,3 +69,10 @@ function anyconnect-wsl-fix()
 # Disable-NetAdapterBinding -Name ".............." -ComponentID ms_tcpip6 -PassThru
 # Disable-NetAdapterBinding -Name ".............." -ComponentID ms_tcpip6 -PassThru
 # Disable-NetAdapterBinding -Name ".............." -ComponentID ms_tcpip6 -PassThru
+
+function wsl-shrink-vhdx()
+{
+    wsl --shutdown
+    wsl --manage Ubuntu-24.04 --set-sparse false
+    Optimize-VHD -Path "${$Env:LOCALAPPDATA}\Packages\CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx" -Mode Full
+}

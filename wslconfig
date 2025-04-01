@@ -40,5 +40,5 @@ localhostforwarding = true
 # vmIdleTimeout = 60000
 
 # Enable experimental features
-[experimental]
-sparseVhd=true
+# [experimental]
+# sparseVhd=false
