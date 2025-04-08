@@ -160,7 +160,7 @@ function Initialize-Paths-User
         "C:\tools\ghc-9.6.1\bin"
         "C:\tools\gnuplot\bin"
         "C:\tools\MagicaVoxel"
-        "C:\tools\miniconda3\condabin"
+        "C:\tools\miniforge3\condabin"
         "C:\tools\msys64"
         "C:\tools\neovim\Neovim\bin"
         "C:\tools\ProccessHacker"
