@@ -1,22 +1,8 @@
-# #### MAMBA #####################################################################################
-# WARNING: Mamba can theoretically be added to any install, but is no longer recommended.
-# Be aware that this is generally incompatible with Anaconda, but can work fine with Miniconda.
-# ## Prioritize 'conda-forge' channel
-# ###     conda config --add channels conda-forge
-# ## Update existing packages to use 'conda-forge' channel
-# ###     conda update -n base --all
-# ## Install 'mamba'
-# ###     conda install -n base mamba
-# ################################################################################################
-
-# Channel locations.
-# Use "defaults" to automatically include all default channels.
-# Non-url channels will be interpreted as Anaconda.org usernames
-# (this can be changed by modifying the channel_alias key; see below).
-# The default is just 'defaults'.
+# Add only free channels
+# 'defaults' channel is not free
 channels:
-  - defaults
   - conda-forge
+  - bioconda
 
 # Don't keep base environment active
 auto_activate_base: false
@@ -26,5 +12,5 @@ auto_activate_base: false
 # higher priority channel.
 channel_priority: strict
 
-# conda install -n base conda-libmamba-solver
+# mamba install -n base conda-libmamba-solver
 solver: libmamba
