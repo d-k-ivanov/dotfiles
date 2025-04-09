@@ -122,6 +122,7 @@ function Get-PyList
         'C:\tools\python3_x86'
         'C:\tools\python2'
         'C:\tools\python2_x86'
+        'C:\tools\miniforge3'
         'C:\tools\miniconda3'
         'C:\tools\miniconda2'
         'C:\tools\python-embed-x64'
