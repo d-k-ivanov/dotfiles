@@ -1,1 +1,0 @@
-icode $PSScriptRoot/wslocal.code-workspace
