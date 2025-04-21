@@ -7,6 +7,7 @@ case $platform in
         export PATH=.
         # Local
         [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
+        [[ -d $HOME/.bin/linux ]]                   && export PATH=$PATH:$HOME/.bin/linux
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
         [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
         # Android
@@ -57,6 +58,7 @@ case $platform in
         export PATH=.
         # Local
         [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
+        [[ -d $HOME/.bin/mac ]]                     && export PATH=$PATH:$HOME/.bin/mac
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
         [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
         # Python
@@ -96,7 +98,7 @@ case $platform in
         [[ -d /usr/sbin ]]                          && export PATH=$PATH:/usr/sbin
         ;;
     MSYS_NT-10.0 )
-        [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin:$PATH
+        [[ -d $HOME/.bin ]]                         && export PATH=$HOME/.bin:$HOME/.bin/win:$PATH
         ;;
 esac
 
