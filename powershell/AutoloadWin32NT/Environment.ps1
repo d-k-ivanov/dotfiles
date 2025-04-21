@@ -181,8 +181,7 @@ function Initialize-Paths-User
         "C:\tools\zig"
     )
 
-    $final_path = "${env:USERPROFILE}\.bin"
-    $final_path += "${env:USERPROFILE}\.bin\win"
+    $final_path = "${env:USERPROFILE}\.bin;${env:USERPROFILE}\.bin\win"
 
     foreach ($path in $paths)
     {
