@@ -155,3 +155,12 @@ function vcpkg-batch-install
     }
 }
 
+function vcpkg-patch-info
+{
+    Write-Host "`n`tStage the changes:" -ForegroundColor Yellow
+    Write-Host "`tgit add . or git add <path-to-file>`n" -ForegroundColor Green
+
+    Write-Host "`tCreate a git patch" -ForegroundColor Yellow
+    $Package = Split-Path -leaf -path $(Get-Location)
+    Write-Host "`tgit diff --cached --binary > ${Env:VCPKG_ROOT}\overlay\ports\${Package}\000N-patch-name.diff`n"  -ForegroundColor Green
+}
