@@ -8,13 +8,14 @@ export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 
 # Dont save these commands in history
-ignore_string='&:?:??:+(;):+(.):[ \t]*'
-ignore_string+=':exit:pwd:clear:history*:reload:icod *:icode .: clion .:idea .'
+ignore_string='&:?:??:+(;):+(.)'
+ignore_string+=':exit:pwd:clear:history*:reload:icod *:icode .:clion .:idea .'
 ignore_string+=':g+(w):gw+(^):gg+(w):ggw+(^):g?:g??:g???'
 ignore_string+=':ws:wsm::wsdf:wsdfb:wsdfp:wsws'
 ignore_string+=':cd -:cd ..:cd ~:cd /'
 ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*:*access_key*'
 ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*:*ACCESS_KEY*'
+ignore_string+=$':[ \t]*' # Character sequences of the form $’string’ are treated as a special kind of single quotes.
 export HISTIGNORE="${ignore_string}"
 
 # export HISTTIMEFORMAT='%s '
