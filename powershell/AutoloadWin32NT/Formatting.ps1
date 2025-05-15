@@ -6,6 +6,15 @@ Formatting scripts.
 Formatting scripts.
 #>
 
+# Check invocation
+if ($MyInvocation.InvocationName -ne '.')
+{
+    Write-Host `
+        "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
+        -ForegroundColor Red
+    Exit
+}
+
 if (Get-Command clang-format -ErrorAction SilentlyContinue | Test-Path)
 {
     ${function:clang_format_cmd} = { cmd /c 'for /r %t in (*.cpp *.cxx *.h *.hpp) do clang-format -i -style=file %t' }
