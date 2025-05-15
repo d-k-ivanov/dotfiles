@@ -169,3 +169,35 @@ wsl-rebind-mounts()
 # rm aliases
 alias rmf='rm -f '
 alias rmrf='rm -rf '
+
+print-random-files-from-folder()
+{
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: print-random-files-from-folder <number_of_files> <path_pattern>"
+        return 1
+    fi
+
+    number_of_files=${1}
+    path_pattern=${2}
+
+    shuf -zn${number_of_files} -e ${path_pattern} | xargs -0 -I {} echo {}
+}
+
+copy-random-files-from-folder()
+{
+    if [ "$#" -ne 3 ]; then
+        echo "Usage: copy-random-files-from-folder <number_of_files> <path_pattern> <target>"
+        return 1
+    fi
+
+    number_of_files=${1}
+    path_pattern=${2}
+    target=${3}
+
+    if [ ! -d "${target}" ]; then
+        echo "Target directory does not exist: ${target}"
+        return 1
+    fi
+
+    shuf -zn${number_of_files} -e ${path_pattern} | xargs -0 cp -vt ${target}/
+}
