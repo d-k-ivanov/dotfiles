@@ -19,3 +19,9 @@ alias cbuild-r="cmake --build build --config Release "
 alias cbuild-rd="cmake --build build --config RelWithDebInfo "
 
 alias cbuild=cbuild-rd
+
+alias cgenbuld-d="cgen-nj-d && cbuild-d"
+alias cgenbuld-r="cgen-nj-r && cbuild-r"
+alias cgenbuld-rd="cgen-nj-rd && cbuild-rd"
+
+alias cgenbuld=cgenbuld-rd
