@@ -25,3 +25,4 @@ alias cgenbuld-r="cgen-nj-r .   && cbuild-r"
 alias cgenbuld-rd="cgen-nj-rd . && cbuild-rd"
 
 alias cgenbuld=cgenbuld-rd
+alias cgb=cgenbuld-rd
