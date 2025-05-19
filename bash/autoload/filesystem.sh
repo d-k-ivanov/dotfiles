@@ -199,5 +199,5 @@ copy-random-files-from-folder()
         return 1
     fi
 
-    shuf -zn${number_of_files} -e ${path_pattern} | xargs -0 cp -vt ${target}/
+    shuf -zn${number_of_files} -e ${path_pattern} | xargs -0 -I {} cp -r $PWD/{} ${target}/
 }
