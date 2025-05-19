@@ -75,10 +75,8 @@ ${function:cgen-reldebug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B buil
 ${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 ${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 
-
-
 # CMake Generators Aliases
-Set-Alias cgen   cgen-22-1442
+Set-Alias cgen   cgen-22
 Set-Alias cgenv  cgen-22-v
 Set-Alias cgencl cgen-22-cl
 Set-Alias cgend  cgen-debug-22
@@ -105,6 +103,9 @@ ${function:cbuildrd} = { cmake --build build --config RelWithDebInfo @args }
 # ${function:cbuilddb} = { cmake --build build/x64-Debug          --config Debug          @args }
 # ${function:cbuildrl} = { cmake --build build/x64-Release        --config Release        @args }
 # ${function:cbuildrd} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
+
+${function:cgenbuld} = { cgen-22; cbuildrd }
+Set-Alias cgb cgenbuld
 
 # CTest
 ${function:cc-ctest}            = { ctest --test-dir build @args    }
