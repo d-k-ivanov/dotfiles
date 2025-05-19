@@ -209,5 +209,10 @@ pring-all-extensions-in-current-folder()
 
 remove-all-files-with-extention-in-current-folder()
 {
+    if [ -z "$1" ]; then
+        echo "Usage: remove-all-files-with-extention-in-current-folder <extension>"
+        return 1
+    fi
+
     find . -type f -iname "*.${1}" -delete
 }
