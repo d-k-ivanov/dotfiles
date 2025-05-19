@@ -201,3 +201,13 @@ copy-random-files-from-folder()
 
     shuf -zn${number_of_files} -e ${path_pattern} | xargs -0 -I {} cp -r $PWD/{} ${target}/
 }
+
+pring-all-extensions-in-current-folder()
+{
+    find . -type f | sed -rn 's|.*/[^/]+\.([^/.]+)$|\1|p' | sort -u
+}
+
+remove-all-files-with-extention-in-current-folder()
+{
+    find . -type f -iname "*.${1}" -delete
+}
