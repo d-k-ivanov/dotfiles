@@ -148,11 +148,11 @@ bash_prompt()
         COMPLEX)
             if [ "$ENVRM" == "PRODUCTION" ]
             then
-                # PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] [${BR}\w${R}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
-                PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] ${BR}\w${R} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \n${GR}\t ${username}@${hostname} λ ${ZZ} "
+                # PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] [${BR}\w${R}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \012${BK}\t \u@\H λ ${ZZ}"
+                PS1="${R}[${BY}\${?}${R}] [\$(__prompt_time)${R}] ${BR}\w${R} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BR}$SSHPRPT \012${GR}\t ${username}@${hostname} λ ${ZZ} "
             else
-                # PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] [${BC}\w${G}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${BK}\t \u@\H λ ${ZZ}"
-                PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] ${BC}\w${G} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \n${GR}\t ${username}@${hostname} λ ${ZZ}"
+                # PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] [${BC}\w${G}] \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \012{BK}\t \u@\H λ ${ZZ}"
+                PS1="${G}[${BY}\${?}${G}] [\$(__prompt_time)${G}] ${BC}\w${G} \$(__git_prompt) ${M}\$(__prompt_rvm) ${BB}$SSHPRPT \012${GR}\t ${username}@${hostname} λ ${ZZ}"
             fi
             ;;
         SIMPLE)
