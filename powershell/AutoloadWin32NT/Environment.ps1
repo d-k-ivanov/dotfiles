@@ -98,6 +98,7 @@ function Initialize-Paths-User
         "${env:USERPROFILE}\AppData\Local\Pandoc"
         "${env:USERPROFILE}\AppData\Local\Programs\Fiddler"
         "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code Insiders\bin"
+        "${env:USERPROFILE}\AppData\Local\Programs\Ollama"
         "${env:USERPROFILE}\AppData\Local\Yarn\bin"
         "${env:USERPROFILE}\AppData\Roaming\cabal\bin"
         "${env:USERPROFILE}\AppData\Roaming\local\bin"
