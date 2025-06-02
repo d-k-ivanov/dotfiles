@@ -63,7 +63,9 @@ function aivenv_init
     & $( Join-Path "${ai_venv_path}" 'Scripts\activate.ps1' )
 
     python -m pip install --upgrade pip
+
     python -m pip install --upgrade anthropic
+    python -m pip install --upgrade black
     python -m pip install --upgrade google-genai
     python -m pip install --upgrade httpx==0.27.2
     python -m pip install --upgrade ollama
