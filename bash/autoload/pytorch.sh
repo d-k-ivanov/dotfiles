@@ -2,7 +2,10 @@
 
 install-libtorch() {
     declare -a torch_versions=(
+        "2.5.0"
         "2.5.1"
+        "2.6.0"
+        "2.7.1"
     )
     select_from_list "PyTorch version:" selected_torch "${torch_versions[@]}"
 
@@ -11,6 +14,11 @@ install-libtorch() {
         "cu118"
         "cu121"
         "cu124"
+        "cu126"
+        "cu128"
+        "rocm6.1"
+        "rocm6.2"
+        "rocm6.3"
     )
     select_from_list "Computing platform" selected_platform "${compute_platforms[@]}"
 

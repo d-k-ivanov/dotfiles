@@ -18,7 +18,10 @@ if ($MyInvocation.InvocationName -ne '.')
 function Install-LibTorch
 {
     $torch_versions = @(
-        "2.5.1"
+        "2.5.0",
+        "2.5.1",
+        "2.6.0",
+        "2.7.1"
     )
 
     $selectedTorch = Select-From-List $torch_versions 'PyTorch version'
@@ -28,6 +31,7 @@ function Install-LibTorch
       "cu118"
       "cu121"
       "cu124"
+      "cu128"
     )
 
     $selectedPlatform = Select-From-List $compute_platforms 'Computing platform'
@@ -57,7 +61,6 @@ function Install-LibTorch
 
 function Set-LibTorch
 {
-    $opt_path = 'C:\opt'
     $selected = Select-From-List $((Get-ChildItem "C:\opt"-Filter "*libtorch*" -Directory).FullName) 'LibTorch'
     [Environment]::SetEnvironmentVariable("LIBTORCH", $selected, "Machine")
     [Environment]::SetEnvironmentVariable("LIBTORCH_DIR", $selected, "Machine")
