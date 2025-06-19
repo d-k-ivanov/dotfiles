@@ -7,8 +7,14 @@ for file in ${HOME}/.bash/autoload/*; do
     source ${file}
 done
 
-if [[ -d ~/.bash_private ]]; then
+if [[ -d ${HOME}/.bash_private/autoload ]]; then
     for file in ${HOME}/.bash_private/autoload/*; do
+        source ${file}
+    done
+fi
+
+if [[ -d ${HOME}/.bash_local/autoload ]]; then
+    for file in ${HOME}/.bash_local/autoload/*; do
         source ${file}
     done
 fi

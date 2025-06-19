@@ -41,6 +41,15 @@ set-libtorch() {
     export LIBTORCH_DIR="${selected}"
     export LD_LIBRARY_PATH_ORIG="${LD_LIBRARY_PATH}"
     export LD_LIBRARY_PATH="${selected}/lib:${LD_LIBRARY_PATH}"
+
+    # Save exported variable to the autoload file: ${HOME}/.bash_local/autoload/pytorch.sh (create it if it does not exist)
+    if [ ! -d "${HOME}/.bash_local/autoload" ]; then
+        mkdir -p "${HOME}/.bash_local/autoload"
+    fi
+    echo "export LIBTORCH=\"${LIBTORCH}\"" >"${HOME}/.bash_local/autoload/pytorch.sh"
+    echo "export LIBTORCH_DIR=\"${LIBTORCH_DIR}\"" >>"${HOME}/.bash_local/autoload/pytorch.sh"
+    echo "export LD_LIBRARY_PATH_ORIG=\"${LD_LIBRARY_PATH_ORIG}\"" >>"${HOME}/.bash_local/autoload/pytorch.sh"
+    echo "export LD_LIBRARY_PATH=\"${LD_LIBRARY_PATH}\"" >>"${HOME}/.bash_local/autoload/pytorch.sh"
 }
 
 clear-libtorch() {
