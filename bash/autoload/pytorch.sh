@@ -60,4 +60,9 @@ clear-libtorch() {
     else
         unset LD_LIBRARY_PATH
     fi
+
+    # Remove the autoload file: ${HOME}/.bash_local/autoload/pytorch.sh
+    if [ -f "${HOME}/.bash_local/autoload/pytorch.sh" ]; then
+        rm "${HOME}/.bash_local/autoload/pytorch.sh"
+    fi
 }
