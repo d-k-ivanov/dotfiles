@@ -255,6 +255,105 @@ function Get-BitbucketPRComments
     return $Response
 }
 
+function Get-BitbucketPRParticipants
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$Workspace,
+        [Parameter(Mandatory = $false)]
+        [string]$Repository,
+        [Parameter(Mandatory = $false)]
+        [int]$PrID
+    )
+    $Participants = (Invoke-BitbucketAPI -RequestPath "/${Workspace}/${Repository}/pullrequests/${PrID}").participants
+    return $Participants
+}
+
+# Response examples:
+# type            : participant
+# user            : @{display_name=FirstName1 LastName1; links=; type=user; uuid={11111111-1111-1111-1111-111111111111}; account_id=11111111-1111-1111-1111-111111111111; nickname=FirstName1 LastName1}
+# role            : REVIEWER
+# approved        : True
+# state           : approved
+# participated_on : 01/01/1970 00:00:00
+#
+# type            : participant
+# user            : @{display_name=FirstName2 LastName2; links=; type=user; uuid={22222222-2222-2222-2222-222222222222}; account_id=22222222-2222-2222-2222-222222222222; nickname=FirstName2 LastName2}
+# role            : REVIEWER
+# approved        : False
+# state           :
+# participated_on :
+#
+# Collect display_name and approved state of each participant.s
+function Get-BitbucketPRParticipantsApprovers
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]$Workspace,
+        [Parameter(Mandatory = $false)]
+        [string]$Repository,
+        [Parameter(Mandatory = $false)]
+        [int]$PrStartID,
+        [Parameter(Mandatory = $false)]
+        [int]$PrEndID
+
+    )
+
+    # {
+    #     "uuid": {
+    #         "display_name": "Display Name",
+    #         "apprved_prs": 1
+    #     }
+    #     "11111111-1111-1111-1111-111111111111": {
+    #         "display_name": "FirstName1 LastName1",
+    #         "apprved_prs": 1
+    #     },
+    #     "22222222-2222-2222-2222-222222222222": {
+    #         "display_name": "FirstName2 LastName2",
+    #         "apprved_prs": 0
+    #     }
+    # }
+    $developers = @{}
+
+    for ($PrID = $PrStartID; $PrID -le $PrEndID; $PrID++)
+    {
+        $participants += Get-BitbucketPRParticipants -Workspace $Workspace -Repository $Repository -PrID $PrID
+        foreach ($participant in $participants)
+        {
+            # Write-Host $participant.user.display_name -ForegroundColor Cyan
+            # Write-Host $participant.user.uuid -ForegroundColor Cyan
+            # Write-Host $participant.role -ForegroundColor Yellow
+            # Write-Host $participant.approved -ForegrosundColor Green
+            if ($participant.role -eq 'REVIEWER')
+            {
+                if (-not $developers.ContainsKey($participant.user.uuid))
+                {
+                    $developers[$participant.user.uuid] = @{
+                        display_name = $participant.user.display_name
+                        approved_prs = 0
+                    }
+                }
+
+                if ($participant.approved)
+                {
+                    $developers[$participant.user.uuid].approved_prs++
+                }
+            }
+        }
+    }
+
+    $developers.GetEnumerator() | ForEach-Object {
+        [PSCustomObject]@{
+            display_name = $_.Value.display_name
+            approved_prs = $_.Value.approved_prs
+        }
+    } | Sort-Object -Property approved_prs -Descending | Format-Table -AutoSize
+}
+
 function Get-BitbucketPRDiff
 {
     [CmdletBinding()]
