@@ -321,7 +321,7 @@ function Get-BitbucketPRParticipantsApprovers
 
     for ($PrID = $PrStartID; $PrID -le $PrEndID; $PrID++)
     {
-        $participants += Get-BitbucketPRParticipants -Workspace $Workspace -Repository $Repository -PrID $PrID
+        $participants = Get-BitbucketPRParticipants -Workspace $Workspace -Repository $Repository -PrID $PrID
         foreach ($participant in $participants)
         {
             # Write-Host $participant.user.display_name -ForegroundColor Cyan
