@@ -10,6 +10,7 @@ case $platform in
         [[ -d $HOME/.bin/linux ]]                   && export PATH=$PATH:$HOME/.bin/linux
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
         [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
+        [[ -d $WORKSPACE/vcpkg ]]                       && export PATH=$PATH:$WORKSPACE/vcpkg
         # Android
         [[ -d "$HOME/Android/Sdk/platform-tools" ]] && export PATH=$PATH:$HOME/Android/Sdk/platform-tools
         # CLion
