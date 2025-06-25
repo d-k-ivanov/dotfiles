@@ -64,6 +64,7 @@ rm -rf "$HOME/.vim"                         2> /dev/null
 rm -rf "$HOME/.vimrc"                       2> /dev/null
 rm -rf "$HOME/.xbindkeysrc"                 2> /dev/null
 
+ln -sf "$DOTFILES_DIR/.gitignore-global"    "$HOME/.gitignore-global"
 ln -sf "$DOTFILES_DIR/.gitmessage"          "$HOME/.gitmessage"
 ln -sf "$DOTFILES_DIR/bash_profile"         "$HOME/.bash_profile"
 ln -sf "$DOTFILES_DIR/bash_profile"         "$HOME/.profile"
