@@ -48,7 +48,6 @@ mkdir -p "$HOME/.config"
 rm -rf "$HOME/.bash_profile"                2> /dev/null
 rm -rf "$HOME/.bash"                        2> /dev/null
 rm -rf "$HOME/.bashrc"                      2> /dev/null
-rm -rf "$HOME/.bin"                         2> /dev/null
 rm -rf "$HOME/.condarc"                     2> /dev/null
 rm -rf "$HOME/.config/nvim"                 2> /dev/null
 rm -rf "$HOME/.gdbinit"                     2> /dev/null
@@ -92,7 +91,6 @@ then
         sudo ln -sf "$DOTFILES_DIR/data/wsl.conf" "/etc/wsl.conf"
     fi
 fi
-ln -sf "$DOTFILES_DIR/bin"              "$HOME/.bin"
 
 platform=`uname`
 case $platform in
