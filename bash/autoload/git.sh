@@ -166,7 +166,9 @@ alias gdo="git diff --cached"
 alias ga="git add"
 alias gc="git commit -v"
 alias gcn='git commit -m "$(basename $(pwd))"'
+alias gcns='git commit -S -m "$(basename $(pwd))"'
 alias gcnd='git commit -m "$(basename $(pwd)): $(date +%Y-%m-%d-%H-%M)"'
+alias gcnds='git commit -S -m "$(basename $(pwd)): $(date +%Y-%m-%d-%H-%M)"'
 alias gcof="git commit --no-verify -m"
 alias gcaf="git add --all && gcof"
 alias gam="git commit --amend"
@@ -201,6 +203,7 @@ alias gpls='git stash && git pull && git stash pop'
 # Push
 alias gpp="git push"
 alias gppa="git add . && gcnd && gpp "
+alias gppas="git add . && gcnds && gpp "
 alias gppg="git push github"
 alias gppt="git push --tags"
 alias gppu="git push -u"

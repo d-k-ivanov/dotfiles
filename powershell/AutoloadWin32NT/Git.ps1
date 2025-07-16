@@ -12,7 +12,7 @@ if ($MyInvocation.InvocationName -ne '.')
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
 
@@ -81,7 +81,9 @@ ${function:ga} = { git add @args }
 ${function:gca} = { git add --all; gco @args } # "git commit all"
 ${function:gcm} = { git commit -m "${args}" } # "git commit message"
 ${function:gcn} = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): ${args}" }
+${function:gcns} = { git commit -S -m "$(Split-Path -Path $(Get-Location) -Leaf): ${args}" }
 ${function:gcnd} = { git commit -m "$(Split-Path -Path $(Get-Location) -Leaf): $(now) ${args}" }
+${function:gcnds} = { git commit -S -m "$(Split-Path -Path $(Get-Location) -Leaf): $(now) ${args}" }
 ${function:gcv} = { git commit -v @args }
 ${function:gcof} = { git commit --no-verify -m @args }
 ${function:gcaf} = { (git add --all) -and (gcof @args) }
@@ -120,6 +122,7 @@ ${function:gpls} = { git stash; git pull @args; git stash pop }
 # ${function:gp}        = { git push @args }  # Comment if you use Get-Property and use gpp insted
 ${function:gpp} = { git push @args }
 ${function:gppa} = { git add .; gcnd; gpp }
+${function:gppas} = { git add .; gcnds; gpp }
 ${function:gppf} = { git push --force @args }
 ${function:gppg} = { git push github @args }
 ${function:gppt} = { git push --tags @args }
@@ -155,7 +158,7 @@ ${function:gbms} = { git fetch origin master; git rebase origin/master @args }
 ${function:gCH} = { git rebase -i --root @args }
 
 # Code-Review
-${function:git-review} = { if ($args[0] -and -Not $args[1]) { git push origin HEAD:refs/for/@args[0] } else { Write-Host "Wrong command!`nUsage: git-review <branch_name>" } }
+${function:git-review} = { if ($args[0] -and -not $args[1]) { git push origin HEAD:refs/for/@args[0] } else { Write-Host "Wrong command!`nUsage: git-review <branch_name>" } }
 ${function:grw} = { git-review }
 
 # Tags
@@ -219,7 +222,7 @@ function ugr
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
         Set-Location $_.FullName
-        If ($Options -match '\S')
+        if ($Options -match '\S')
         {
             git pull $Options
 
@@ -245,7 +248,7 @@ function ugrf
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
         Set-Location $_.FullName
-        If ($Options -match '\S')
+        if ($Options -match '\S')
         {
             git fetch $Options
 
@@ -285,7 +288,7 @@ function ugrfs
 
 function get_repo_with_target
 {
-    if (-Not $args[0])
+    if (-not $args[0])
     {
         Write-Host "You should enter repo URI."
         Write-Host ( "Usage: {0} <repo_url>" -f $MyInvocation.MyCommand )
@@ -309,7 +312,7 @@ ${function:grt} = { get_repo_with_target @args }
 
 function git_archive_repo
 {
-    if (-Not $args[0])
+    if (-not $args[0])
     {
         Write-Host "You should enter repo URI."
         Write-Host ( "Usage: {0} <repo_url>" -f $MyInvocation.MyCommand )
@@ -376,36 +379,36 @@ function Set-GitVerbosity
     )
     switch ($Button)
     {
-        ({ $PSItem -eq 'On' -Or $PSItem -eq 'on' })
+        ({ $PSItem -eq 'On' -or $PSItem -eq 'on' })
         {
-            if (($Category -eq 'curl') -Or ($Category -eq 'all'))
+            if (($Category -eq 'curl') -or ($Category -eq 'all'))
             {
                 Set-Item -Path Env:GIT_CURL_VERBOSE -Value 1
                 Set-Item -Path Env:GIT_TRACE_CURL   -Value 1
             }
-            if (($Category -eq 'trace') -Or ($Category -eq 'all'))
+            if (($Category -eq 'trace') -or ($Category -eq 'all'))
             {
                 Set-Item -Path Env:GIT_TRACE -Value 1
             }
-            if (($Category -eq 'pack') -Or ($Category -eq 'all'))
+            if (($Category -eq 'pack') -or ($Category -eq 'all'))
             {
                 Set-Item -Path Env:GIT_TRACE_PACK_ACCESS -Value 1
             }
-            if (($Category -eq 'packet') -Or ($Category -eq 'all'))
+            if (($Category -eq 'packet') -or ($Category -eq 'all'))
             {
                 Set-Item -Path Env:GIT_TRACE_PACKET -Value 1
             }
-            if (($Category -eq 'perf') -Or ($Category -eq 'all'))
+            if (($Category -eq 'perf') -or ($Category -eq 'all'))
             {
                 Set-Item -Path Env:GIT_TRACE_PERFORMANCE -Value 1
             }
-            if (($Category -eq 'setup') -Or ($Category -eq 'all'))
+            if (($Category -eq 'setup') -or ($Category -eq 'all'))
             {
                 Set-Item -Path Env:GIT_TRACE_SETUP -Value 1
             }
             break
         }
-        ({ $PSItem -eq 'Off' -Or $PSItem -eq 'off' })
+        ({ $PSItem -eq 'Off' -or $PSItem -eq 'off' })
         {
             Set-Item -Path Env:GIT_CURL_VERBOSE       -Value 0
             Set-Item -Path Env:GIT_TRACE_CURL         -Value 0
@@ -555,7 +558,7 @@ function Remove-GitSubmodule
         [string] $SubmoduleName
     )
 
-    if (-Not (Test-Path '.\\.gitmodules'))
+    if (-not (Test-Path '.\\.gitmodules'))
     {
         Write-Host `
             "Error: Wrong directory. You should be in the root of git repo to use this function. Exiting..." `
