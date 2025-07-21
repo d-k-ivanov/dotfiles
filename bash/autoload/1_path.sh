@@ -54,6 +54,11 @@ case $platform in
         [[ -d /sbin ]]                              && export PATH=$PATH:/sbin
         [[ -d /usr/sbin ]]                          && export PATH=$PATH:/usr/sbin
         [[ -d /usr/local/sbin ]]                    && export PATH=$PATH:/usr/local/sbin
+
+        ## Perl binaries
+        [[ -d /usr/bin/site_perl ]]                 && export PATH=$PATH:/usr/bin/site_perl
+        [[ -d /usr/bin/vendor_perl ]]               && export PATH=$PATH:/usr/bin/vendor
+        [[ -d /usr/bin/core_perl ]]                 && export PATH=$PATH:/usr/bin/core_perl
         ;;
     Darwin )
         export PATH=.
