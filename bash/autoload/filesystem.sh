@@ -80,11 +80,11 @@ alias   wsws='cd ~/ws/my/workspace'
 alias wsmisc='cd ~/ws/misc'
 
 case ${OS_DISTRIBUTION} in
-    "Archlinux" )
+    "Archlinux" | "CachyOS Linux" | "EndeavourOS" | "Manjaro Linux" )
         alias  wsdsc='cd ~/ws/my/workstations/arch'
         alias wsconf='cd ~/ws/my/workstations/arch'
         ;;
-    "Ubuntu" )
+    "Ubuntu" | "Debian GNU/Linux" | "Linux Mint" | "Pop!_OS" | "KDE Neon" | "Zorin OS" )
         # The conditions to check if it's WSL
         # if [[ -n "${WSL_DISTRO_NAME}" ]]; then echo "WSL" ; else echo "Non-WSL"; fi;
             alias  wsdsc='cd ~/ws/my/workstations/ubuntu'
