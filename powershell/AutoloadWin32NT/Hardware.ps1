@@ -25,6 +25,15 @@ ${function:Set-Power-Balanced}  = { powercfg.exe /SETACTIVE SCHEME_BALANCED }
 ${function:Set-Power-Min}       = { powercfg.exe /SETACTIVE SCHEME_MAX }
 ${function:Add-Power-ULT}       = { powercfg.exe -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 }
 
+function Get-MouseHorizontalScrollDirection
+{
+    Write-Host "`nSelect the Mouse's Device ID:`n"
+    $Selected = Select-From-List $((Get-PnpDevice -Class Mouse -PresentOnly -Status OK).InstanceId) 'Mouse Device ID'
+
+    $currentMode = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Enum\${Selected}\Device Parameters").FlipFlopHScroll
+    Write-Host "`nFlipFlopHScroll for the Mouse ${Selected} is set to ${currentMode}`n"
+}
+
 function Set-MouseHorizontalScrollDirection
 {
     Write-Host "`nSelect the Mouse's Device ID:`n"
@@ -37,6 +46,16 @@ function Set-MouseHorizontalScrollDirection
     $currentMode = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Enum\${Selected}\Device Parameters").FlipFlopHScroll
     Write-Host "`nFlipFlopHScroll for the Mouse ${Selected} is set to ${currentMode}`n"
 }
+
+function Get-MouseVerticallScrollDirection
+{
+    Write-Host "`nSelect the Mouse's Device ID:`n"
+    $Selected = Select-From-List $((Get-PnpDevice -Class Mouse -PresentOnly -Status OK).InstanceId) 'Mouse Device ID'
+
+    $currentMode = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Enum\${Selected}\Device Parameters").FlipFlopWheel
+    Write-Host "`nFlipFlopWheel for the Mouse ${Selected} is set to ${currentMode}`n"
+}
+
 
 function Set-MouseVerticallScrollDirection
 {
