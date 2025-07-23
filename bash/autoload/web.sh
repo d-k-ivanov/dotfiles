@@ -19,3 +19,8 @@ alias weather_v2="curl http://v2.wttr.in/"
 alias w-mad-v2="curl http://v2.wttr.in/Madrid"
 alias w-mal-v2="curl http://v2.wttr.in/Malaga"
 alias w-mos-v2="curl http://v2.wttr.in/Moscow"
+
+chrome() {
+  nohup google-chrome >/dev/null 2>&1 &
+  disown
+}
