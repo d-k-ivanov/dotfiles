@@ -41,6 +41,6 @@ function Disable-AutomaticallyDetectProxySettings
     $conSet = $(Get-ItemProperty $regKeyPath).DefaultConnectionSettings
     if ($($conSet[$flagIndex] -band $autoProxyFlag) -ne $autoProxyFlag)
     {
-    	Write-Host "'Automatically detect proxy settings' is disabled."
+        Write-Host "'Automatically detect proxy settings' is disabled."
     }
 }
