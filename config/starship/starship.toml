@@ -24,7 +24,9 @@ $java\
 $nodejs\
 $rust\
 \
-\n$time\
+$line_break\
+\
+$time\
 $username$hostname\
 $character\
 """
@@ -284,6 +286,9 @@ format = "[\\[](color10)[$symbol$context( \\($namespace\\))]($style)[\\]](color1
 style = "bold color9"
 symbol = "\ue81d " # 
 user_aliases = {}
+
+[line_break]
+disabled = false
 
 [nodejs]
 detect_extensions = ["js","mjs","cjs","ts","mts","cts"]
