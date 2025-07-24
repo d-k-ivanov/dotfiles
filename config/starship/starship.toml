@@ -19,9 +19,10 @@ $kubernetes\
 $helm\
 $terraform\
 $docker_context\
+$vagrant\
 \
 $python\
-$cpp\
+$c\
 $cmake\
 $java\
 $nodejs\
@@ -131,8 +132,9 @@ style = "bold color8"
 symbol = "\ue794 " # 
 version_format = "${raw}"
 
-[cpp]
-commands = [["msvc_ver.bat"], ["c++", "--version"], ["g++", "--version"], ["clang++", "--version"]]
+[c]
+# commands = [["msvc_ver.bat"], ["c++", "--version"], ["g++", "--version"], ["clang++", "--version"]]
+commands = [["msvc_ver.bat"], ["cc","--version"  ], ["gcc", "--version"], ["clang","--version"]]
 detect_extensions = ["cpp", "cc", "c", "cxx", "c++", "h", "hpp", "hh", "hxx", "h++", "tcc", "sln"]
 detect_files = [".clang-format", "CMakeLists.txt", "conanfile.txt", "premake5.lua", "vcpkg.json"]
 detect_folders = []
@@ -231,8 +233,8 @@ only_nonzero_diffs = true
 [git_status]
 ahead = "⇡"
 behind = "⇣"
-conflicted = "="
-deleted = "✘"
+conflicted = "\uefcb" # 
+deleted = "\uf467" # 
 disabled = false
 diverged = "⇕"
 format = "( [$all_status$ahead_behind]($style))[\\]](color10)"
@@ -240,10 +242,12 @@ ignore_submodules = false
 modified = "!"
 renamed = "»"
 staged = "+"
-stashed = "\\$"
+# stashed = "\\$"
+stashed = "\uf51d" # 
 style = "bold color5"
 typechanged = ""
-untracked = "?"
+# untracked = "?"
+untracked = "\uf4c3" # 
 up_to_date = ""
 use_git_executable = false
 
@@ -286,7 +290,7 @@ detect_files = []
 detect_folders = []
 disabled = false
 format = "[\\[](color10)[$symbol$context( \\($namespace\\))]($style)[\\]](color10)"
-style = "bold color9"
+style = "bold color5"
 symbol = "\ue81d " # 
 user_aliases = {}
 
@@ -395,7 +399,7 @@ detect_extensions = ["tf","tfplan","tfstate"]
 detect_files = []
 detect_folders = ["aws", "aws/.terraform", ".terraform"]
 disabled = false
-format = "[\\[](color10)[$symbol$workspace]($style)[\\]](color10) "
+format = "[\\[](color10)[$symbol$version]($style)[\\]](color10)"
 style = "bold #A067DA"
 symbol = "\ue69a " # 
 version_format = "${raw}"
@@ -418,3 +422,13 @@ format = "[$user@]($style)"
 show_always = true
 style_root = "bold color3"
 style_user = "bold color3"
+
+[vagrant]
+detect_extensions = []
+detect_files = ["Vagrantfile"]
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+style = "bold color7"
+symbol = "\ue8d0 " # 
+version_format = "v${raw}"
