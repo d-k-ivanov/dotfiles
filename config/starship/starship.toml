@@ -18,8 +18,8 @@ $terraform\
 $docker_context\
 \
 $python\
-$c\
 $cpp\
+$cmake\
 $java\
 $nodejs\
 $rust\
@@ -116,7 +116,16 @@ vimcmd_replace_symbol = "[λ](color15)"
 vimcmd_symbol = "[λ](color14)"
 vimcmd_visual_symbol = "[λ](color13)"
 
-# ["cl", "--version"],
+[cmake]
+detect_extensions = []
+detect_files = ["CMakeLists.txt", "CMakeCache.txt"]
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+style = "bold color8"
+symbol = "\ue794 " # 
+version_format = "${raw}"
+
 [cpp]
 commands = [["msvc_ver.bat"], ["c++", "--version"], ["g++", "--version"], ["clang++", "--version"]]
 detect_extensions = ["cpp", "cc", "c", "cxx", "c++", "h", "hpp", "hh", "hxx", "h++", "tcc", "sln"]
