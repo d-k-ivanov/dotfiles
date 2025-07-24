@@ -8,8 +8,11 @@ add_newline = false
 
 format = """
 $os\
+$status\
 $cmd_duration\
-$directory$git_branch$git_commit$git_state$git_metrics$git_status\
+$memory_usage\
+$directory\
+$git_branch$git_commit$git_state$git_metrics$git_status\
 \
 $aws\
 $kubernetes\
@@ -290,6 +293,13 @@ user_aliases = {}
 [line_break]
 disabled = false
 
+[memory_usage]
+disabled = false
+format = "[\\[](color10)[$symbol${ram}]($style)[\\]](color10) "
+threshold = -1
+symbol = "\uf2db " # 
+style = 'bold color13'
+
 [nodejs]
 detect_extensions = ["js","mjs","cjs","ts","mts","cts"]
 detect_files = ["package.json",".node-version",".nvmrc","!bunfig.toml","!bun.lock","!bun.lockb"]
@@ -363,6 +373,22 @@ format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
 style = "bold color11"
 symbol = "\ue68b " # 
 version_format = "${raw}"
+
+[status]
+disabled = false
+format = "[\\[](color10)[$symbol$status]($style)[\\]](color10) "
+map_symbol = false
+not_executable_symbol = "\uf120 " # 
+not_found_symbol = "\uf120 " # 
+pipestatus = true
+pipestatus_format = "\\[$pipestatus\\] => [$symbol$common_meaning$signal_name$maybe_int]($style) "
+pipestatus_separator = "|"
+recognize_signal_code = true
+sigint_symbol = "\uf120 " # 
+signal_symbol = "\uf120 " # 
+style = "bold color13"
+success_symbol = "\uf120 " # 
+symbol = "\uf120 " # 
 
 [terraform]
 detect_extensions = ["tf","tfplan","tfstate"]
