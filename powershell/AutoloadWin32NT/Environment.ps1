@@ -33,7 +33,7 @@ $Env:PWD = Get-Location
 $Env:OLDPWD = Get-Location
 
 # Virtual Env Fix (if prompt in ReadOnly mode)
-# $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
+# $Env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 
 # PS Readline:
 $PSReadLineOptions = @{
@@ -139,7 +139,7 @@ function Initialize-Paths-User
         "C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin"
         "C:\ProgramData\chocolatey\lib\wmiexplorer\tools"
         "C:\Qt\Tools\QtCreator\bin"
-        "C:\Strawberry\c\bin"
+        # "C:\Strawberry\c\bin"
         "C:\Strawberry\perl\bin"
         # "C:\Strawberry\perl\site\bin"
         "C:\tools\acli"
@@ -321,11 +321,11 @@ function Initialize-Paths-System
         "C:\PROGRA~2\Windows Kits\8.1\WINDOW~1"
         "C:\PROGRA~2\WinFsp\bin"
         "C:\PROGRA~2\Yarn\bin"
-        "$env:SystemRoot"
-        "$env:SystemRoot\system32"
-        "$env:SystemRoot\System32\Wbem"
-        "$env:SYSTEMROOT\System32\WindowsPowerShell\v1.0"
-        "$env:SYSTEMROOT\System32\OpenSSH"
+        "$Env:SystemRoot"
+        "$Env:SystemRoot\system32"
+        "$Env:SystemRoot\System32\Wbem"
+        "$Env:SYSTEMROOT\System32\WindowsPowerShell\v1.0"
+        "$Env:SYSTEMROOT\System32\OpenSSH"
     )
 
     $final_path = "C:\ProgramData\chocolatey\bin"
@@ -360,20 +360,20 @@ function Set-Env
         $system_path += ";$Env:CONTAINER_ENGINE_PATH"
     }
 
-    if ($env:CUDNN_PATH)
+    if ($Env:CUDNN_PATH)
     {
-        $system_path += ";$env:CUDNN_PATH\bin"
+        $system_path += ";$Env:CUDNN_PATH\bin"
     }
 
-    if ($env:JAVA_HOME)
+    if ($Env:JAVA_HOME)
     {
-        $system_path += ";$env:JAVA_HOME\bin"
+        $system_path += ";$Env:JAVA_HOME\bin"
     }
 
-    if ($env:PYENV)
+    if ($Env:PYENV)
     {
-        $system_path += ";$env:PYENV\bin"
-        $system_path += ";$env:PYENV\shims"
+        $system_path += ";$Env:PYENV\bin"
+        $system_path += ";$Env:PYENV\shims"
     }
 
     if ($Env:PYTHON_PATH)
@@ -382,53 +382,53 @@ function Set-Env
         $system_path += ";$Env:PYTHON_PATH"
     }
 
-    if ($env:QTDIR)
+    if ($Env:QTDIR)
     {
-        $system_path += ";$env:QTDIR\bin"
+        $system_path += ";$Env:QTDIR\bin"
     }
 
-    if ($env:RPROJECT_PATH)
+    if ($Env:RPROJECT_PATH)
     {
-        $system_path += ";$env:RPROJECT_PATH"
+        $system_path += ";$Env:RPROJECT_PATH"
     }
 
-    if ($env:RUBY_PATH)
+    if ($Env:RUBY_PATH)
     {
-        $system_path += ";$env:RUBY_PATH"
+        $system_path += ";$Env:RUBY_PATH"
     }
 
-    if ($env:SquishBinDir)
+    if ($Env:SquishBinDir)
     {
-        $system_path += ";$env:SquishBinDir"
+        $system_path += ";$Env:SquishBinDir"
     }
 
-    if ($env:VC_IDE)
+    if ($Env:VC_IDE)
     {
-        $system_path += ";$env:VC_IDE"
+        $system_path += ";$Env:VC_IDE"
     }
 
-    # if ($env:VC_PATH) {
-    #     $system_path += ";$env:VC_PATH"
+    # if ($Env:VC_PATH) {
+    #     $system_path += ";$Env:VC_PATH"
     # }
 
-    if ($env:VCPKG_ROOT)
+    if ($Env:VCPKG_ROOT)
     {
-        $system_path += ";$env:VCPKG_ROOT"
+        $system_path += ";$Env:VCPKG_ROOT"
     }
 
-    if ($env:VISUALGDB_DIR)
+    if ($Env:VISUALGDB_DIR)
     {
-        $system_path += ";$env:VISUALGDB_DIR"
+        $system_path += ";$Env:VISUALGDB_DIR"
     }
 
-    if ($env:VULKAN_SDK)
+    if ($Env:VULKAN_SDK)
     {
-        $system_path += ";$env:VULKAN_SDK\Bin"
+        $system_path += ";$Env:VULKAN_SDK\Bin"
     }
 
-    $system_path += ";$env:PathsSys"
+    $system_path += ";$Env:PathsSys"
     [Environment]::SetEnvironmentVariable("PATH", "$system_path", "Machine")
-    [Environment]::SetEnvironmentVariable("PathsApp", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("PathsApp", [NullString]::Value, "Machine")
 
     # LANG
     [Environment]::SetEnvironmentVariable("LANG", "en_US", "Machine")
@@ -492,7 +492,7 @@ function Set-Environment([String] $variable, [String] $value)
     Set-ItemProperty -Path "HKCU:\Environment" -Name $variable -Value $value
     # Manually setting Registry entry. SetEnvironmentVariable is too slow because of blocking HWND_BROADCAST
     #[System.Environment]::SetEnvironmentVariable("$variable", "$value","User")
-    Invoke-Expression "`$env:${variable} = `"$value`""
+    Invoke-Expression "`$Env:${variable} = `"$value`""
 }
 
 # Reload the $env object from the registry
@@ -510,28 +510,28 @@ function Reset-Environment
         }
     }
 
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    $Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
 function Edit-Hosts
 {
     Invoke-Expression "sudo $(
-        if ($null -ne $env:EDITOR)
+        if ($null -ne $Env:EDITOR)
         {
-            $env:EDITOR
+            $Env:EDITOR
         }
         else
         {
             'notepad'
-        }) $env:windir\system32\drivers\etc\hosts"
+        }) $Env:windir\system32\drivers\etc\hosts"
 }
 
 function Edit-Profile
 {
     Invoke-Expression "$(
-        if ($null -ne $env:EDITOR)
+        if ($null -ne $Env:EDITOR)
         {
-            $env:EDITOR
+            $Env:EDITOR
         }
         else
         {

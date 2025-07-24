@@ -125,7 +125,7 @@ function Set-VCToolsArchx64
         Set-Item -Path Env:PreferredToolArchitecture -Value "x86"
         [Environment]::SetEnvironmentVariable("PreferredToolArchitecture", "x86", "Machine")
         Remove-Item -Path Env:PreferredToolArchitecture
-        [Environment]::SetEnvironmentVariable("PreferredToolArchitecture", $null, "Machine")
+        [Environment]::SetEnvironmentVariable("PreferredToolArchitecture", [NullString]::Value, "Machine")
         Write-Host "Preferred Tool Architecture for MSBuild is set to x86" -ForegroundColor Yellow
     }
     else
@@ -374,8 +374,8 @@ function Set-VSINSTALLDIRS
 
 function Clear-VSINSTALLDIRS
 {
-    [Environment]::SetEnvironmentVariable("VSINSTALLDIR", $null, "Machine")
-    [Environment]::SetEnvironmentVariable("VCINSTALLDIR", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("VSINSTALLDIR", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("VCINSTALLDIR", [NullString]::Value, "Machine")
     if ($env:VSINSTALLDIR)
     {
         Remove-Item Env:VSINSTALLDIR
@@ -457,8 +457,8 @@ function Set-VC-IDE
 
 function Clear-VC
 {
-    [Environment]::SetEnvironmentVariable("VC_IDE", $null, "Machine")
-    [Environment]::SetEnvironmentVariable("VC_PATH", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("VC_IDE",  [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("VC_PATH", [NullString]::Value, "Machine")
     if ($env:VC_PATH)
     {
         Remove-Item Env:VC_IDE

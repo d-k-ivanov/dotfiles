@@ -78,7 +78,7 @@ function Use-VCPKG
 
 function Unset-VCPKG
 {
-    [Environment]::SetEnvironmentVariable("VCPKG_ROOT", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("VCPKG_ROOT", [NullString]::Value, "Machine")
     if ($env:VCPKG_ROOT)
     {
         Remove-Item Env:VCPKG_ROOT

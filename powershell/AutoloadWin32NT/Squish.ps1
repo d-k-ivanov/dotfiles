@@ -55,7 +55,7 @@ function Set-Squish
 
 function Clear-Squish
 {
-    [Environment]::SetEnvironmentVariable("SQUISH_PATH", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("SQUISH_PATH", [NullString]::Value, "Machine")
     if ($env:SQUISH_PATH)
     {
         Remove-Item Env:SQUISH_PATH

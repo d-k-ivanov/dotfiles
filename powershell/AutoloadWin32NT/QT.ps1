@@ -137,8 +137,8 @@ function Use-QT
 
 function Clear-QT
 {
-    [Environment]::SetEnvironmentVariable("QTDIR", $null, "Machine")
-    [Environment]::SetEnvironmentVariable("QMAKESPEC", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("QTDIR", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("QMAKESPEC", [NullString]::Value, "Machine")
 
     if ($env:QTDIR)
     {

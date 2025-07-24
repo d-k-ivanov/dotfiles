@@ -12,65 +12,62 @@ if ($MyInvocation.InvocationName -ne '.')
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
-if (Get-Command python -ErrorAction SilentlyContinue | Test-Path)
+# ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv -p $python venv }
+${function:vc} = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv venv }
+${function:va} = { .\venv\Scripts\activate }
+${function:vd} = { deactivate }
+${function:vr} = { rmrf venv }
+${function:vpi} = { python -m pip install }
+${function:vpip} = { python -m pip install --upgrade pip }
+${function:vgen} = { python -m pip freeze > .\requirements.txt }
+${function:vinsr} = { if (Test-Path requirements.txt) { python -m pip install -r .\requirements.txt } }
+${function:vinsd} = { if (Test-Path requirements-dev.txt) { python -m pip install -r .\requirements-dev.txt } }
+${function:vinsm} = { if (Test-Path requirements-misc.txt) { python -m pip install -r .\requirements-misc.txt } }
+${function:vins} = { if (Test-Path $args[0] -ErrorAction SilentlyContinue) { vpip; python -m pip install -r $args[0] } else { vpip; vinsr; vinsd; vinsm } }
+
+# Basic environment
+${function:pip-update} = { python -m pip install --upgrade pip }
+${function:ipython-install} = { python -m pip install ipython }
+
+function py_init_environmnet
 {
-    # ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv -p $python venv }
-    ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv venv }
-    ${function:va}      = { .\venv\Scripts\activate }
-    ${function:vd}      = { deactivate }
-    ${function:vr}      = { rmrf venv }
-    ${function:vpi}     = { python -m pip install }
-    ${function:vpip}    = { python -m pip install --upgrade pip }
-    ${function:vgen}    = { python -m pip freeze > .\requirements.txt }
-    ${function:vinsr}   = { if(Test-Path requirements.txt){ python -m pip install -r .\requirements.txt } }
-    ${function:vinsd}   = { if(Test-Path requirements-dev.txt){ python -m pip install -r .\requirements-dev.txt} }
-    ${function:vinsm}   = { if(Test-Path requirements-misc.txt){ python -m pip install -r .\requirements-misc.txt} }
-    ${function:vins}    = { if(Test-Path $args[0] -ErrorAction SilentlyContinue){ vpip; python -m pip install -r $args[0] } else { vpip; vinsr; vinsd; vinsm } }
+    python -m pip install --upgrade pip
+    python -m pip install --upgrade flake8
+    python -m pip install --upgrade ipython
+    python -m pip install --upgrade pytest
+    python -m pip install --upgrade cfn-lint
+}
 
-    # Basic environment
-    ${function:pip-update}      = { python -m pip install --upgrade pip }
-    ${function:ipython-install} = { python -m pip install ipython }
-
-    function py_init_environmnet
+function pyclean
+{
+    [CmdletBinding()]
+    param
+    (
+        [switch] $InstallBaseModules
+    )
+    [string] $SessionID = [System.Guid]::NewGuid()
+    $TempFreezeFile = (Join-Path "${Env:Temp}" "${SessionID}")
+    python -m pip freeze > "${TempFreezeFile}"
+    python -m pip uninstall -y -r "${TempFreezeFile}"
+    Remove-Item -Force "${TempFreezeFile}"
+    # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
+    python -m pip install --upgrade pip
+    if ($InstallBaseModules)
     {
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade flake8
-        python -m pip install --upgrade ipython
-        python -m pip install --upgrade pytest
-        python -m pip install --upgrade cfn-lint
-    }
-
-    function pyclean
-    {
-        [CmdletBinding()]
-        param
-        (
-            [switch] $InstallBaseModules
-        )
-        [string] $SessionID = [System.Guid]::NewGuid()
-        $TempFreezeFile  = (Join-Path "${Env:Temp}" "${SessionID}")
-        python -m pip freeze > "${TempFreezeFile}"
-        python -m pip uninstall -y -r "${TempFreezeFile}"
-        Remove-Item -Force "${TempFreezeFile}"
-        # python -m pip freeze | %{ $_.split('==')[0] } | %{ python -m pip install --upgrade $_ }
-        python -m pip install --upgrade pip
-        if($InstallBaseModules)
-        {
-            py_init_environmnet
-        }
-    }
-
-    ${function:srv}  = { python -m http.server @args }
-    if (Get-Command serv.ps1 -ErrorAction SilentlyContinue | Test-Path)
-    {
-        ${function:serv}  = { serv.ps1 @args }
+        py_init_environmnet
     }
 }
 
-function Get-PyList
+${function:srv} = { python -m http.server @args }
+if (Get-Command serv.ps1 -ErrorAction SilentlyContinue | Test-Path)
+{
+    ${function:serv} = { serv.ps1 @args }
+}
+
+function get-serpents
 {
     $serpents = @(
         'C:\Python313'
@@ -94,30 +91,30 @@ function Get-PyList
         'C:\Python27-32'
         'C:\Python26-32'
         'C:\Python25-32'
-        "$env:LOCALAPPDATA\Programs\Python\Python313"
-        "$env:LOCALAPPDATA\Programs\Python\Python312"
-        "$env:LOCALAPPDATA\Programs\Python\Python311"
-        "$env:LOCALAPPDATA\Programs\Python\Python310"
-        "$env:LOCALAPPDATA\Programs\Python\Python39"
-        "$env:LOCALAPPDATA\Programs\Python\Python38"
-        "$env:LOCALAPPDATA\Programs\Python\Python37"
-        "$env:LOCALAPPDATA\Programs\Python\Python36"
-        "$env:LOCALAPPDATA\Programs\Python\Python35"
-        "$env:LOCALAPPDATA\Programs\Python\Python27"
-        "$env:LOCALAPPDATA\Programs\Python\Python26"
-        "$env:LOCALAPPDATA\Programs\Python\Python25"
-        "$env:LOCALAPPDATA\Programs\Python\Python313-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python312-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python311-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python310-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python39-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python38-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python37-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python36-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python35-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python27-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python26-32"
-        "$env:LOCALAPPDATA\Programs\Python\Python25-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python313"
+        "$Env:LOCALAPPDATA\Programs\Python\Python312"
+        "$Env:LOCALAPPDATA\Programs\Python\Python311"
+        "$Env:LOCALAPPDATA\Programs\Python\Python310"
+        "$Env:LOCALAPPDATA\Programs\Python\Python39"
+        "$Env:LOCALAPPDATA\Programs\Python\Python38"
+        "$Env:LOCALAPPDATA\Programs\Python\Python37"
+        "$Env:LOCALAPPDATA\Programs\Python\Python36"
+        "$Env:LOCALAPPDATA\Programs\Python\Python35"
+        "$Env:LOCALAPPDATA\Programs\Python\Python27"
+        "$Env:LOCALAPPDATA\Programs\Python\Python26"
+        "$Env:LOCALAPPDATA\Programs\Python\Python25"
+        "$Env:LOCALAPPDATA\Programs\Python\Python313-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python312-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python311-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python310-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python39-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python38-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python37-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python36-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python35-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python27-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python26-32"
+        "$Env:LOCALAPPDATA\Programs\Python\Python25-32"
         'C:\tools\python3'
         'C:\tools\python3_x86'
         'C:\tools\python2'
@@ -143,9 +140,9 @@ function Get-PyList
     return $serpents
 }
 
-function List-Py
+function list-py
 {
-    $serpents = Get-PyList
+    $serpents = get-serpents
 
     Write-Host "List of Python interpretators on this PC:"
     foreach ($snake in $serpents)
@@ -158,9 +155,10 @@ function List-Py
     }
 }
 
-function Set-Py
+function set-py
 {
-    $serpents = Get-PyList
+    clear-py
+    $serpents = get-serpents
     $ValidatedSerpents = @()
     $Versions = @()
     foreach ($snake in $serpents)
@@ -176,54 +174,130 @@ function Set-Py
     [Environment]::SetEnvironmentVariable("PYTHON_PATH", $ChoosenVersion, "Machine")
     Set-Item -Path Env:PYTHON_PATH -Value "$ChoosenVersion"
 
-    # [Environment]::SetEnvironmentVariable("PYTHONPATH", "${ChoosenVersion}\Lib\;${ChoosenVersion}\DLLs\", "Machine")
-    # Set-Item -Path Env:PYTHONPATH -Value "${ChoosenVersion}\Lib\;${ChoosenVersion}\DLLs\"
+    $Env:PATH = "${Env:PYTHON_PATH}\Scripts;${Env:PYTHON_PATH};$Env:PATH"
+
     # Set-Env
 }
 
-function Set-Py-Double
+function enable-py
+{
+    $serpents = get-serpents
+    $ValidatedSerpents = @()
+    $Versions = @()
+    foreach ($snake in $serpents)
+    {
+        $snakeBin = (Join-Path $snake "python.exe")
+        if (Test-Path $snakeBin)
+        {
+            $ValidatedSerpents += $snake
+            $Versions += "$($( & $snakeBin --version 2>&1) -replace '\D+(\d+...)','$1')"
+        }
+    }
+    $ChoosenVersion = Select-From-List $ValidatedSerpents "Python Version" $Versions
+    Set-Item -Path Env:PYTHON_PATH -Value "$ChoosenVersion"
+
+    $Env:PATH = "${Env:PYTHON_PATH}\Scripts;${Env:PYTHON_PATH};$Env:PATH"
+}
+
+function set-py-double
 {
     Set-Item -Path Env:PATH -Value "C:\tools\python2;C:\tools\python3;${Env:PATH}"
 }
 
-function Clear-Py
+function clear-py
 {
-    [Environment]::SetEnvironmentVariable("PYTHON_PATH", $null, "Machine")
-    if ($env:PYTHON_PATH)
+    [Environment]::SetEnvironmentVariable("PYTHON_PATH", [NullString]::Value, "User")
+    [Environment]::SetEnvironmentVariable("PYTHON_PATH", [NullString]::Value, "Machine")
+    if ($Env:PYTHON_PATH)
     {
+        $path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
+        $path = $path -replace [regex]::Escape("${Env:PYTHON_PATH}\Scripts;"), ''
+        $path = $path -replace [regex]::Escape("${Env:PYTHON_PATH};"), ''
+        [System.Environment]::SetEnvironmentVariable('PATH', $path, 'Machine')
+
+        $path = [System.Environment]::GetEnvironmentVariable('PATH', 'User')
+        $path = $path -replace [regex]::Escape("${Env:PYTHON_PATH}\Scripts;"), ''
+        $path = $path -replace [regex]::Escape("${Env:PYTHON_PATH};"), ''
+        [System.Environment]::SetEnvironmentVariable('PATH', $path, 'User')
+
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYTHON_PATH}\Scripts;"), ''
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYTHON_PATH};"), ''
+
         Remove-Item Env:PYTHON_PATH
     }
 
-    [Environment]::SetEnvironmentVariable("PYTHONPATH", $null, "Machine")
-    if ($env:PYTHONPATH)
+    [Environment]::SetEnvironmentVariable("PYENV", [NullString]::Value, "User")
+    [Environment]::SetEnvironmentVariable("PYENV", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("PYENV_HOME", [NullString]::Value, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_HOME", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("PYENV_ROOT", [NullString]::Value, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_ROOT", [NullString]::Value, "Machine")
+
+    if ($Env:PYENV)
     {
-        Remove-Item Env:PYTHONPATH
+        $path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
+        $path = $path -replace [regex]::Escape("${Env:PYENV}\bin;"), ''
+        $path = $path -replace [regex]::Escape("${Env:PYENV}\shims;"), ''
+        [System.Environment]::SetEnvironmentVariable('PATH', $path, 'Machine')
+
+        $path = [System.Environment]::GetEnvironmentVariable('PATH', 'User')
+        $path = $path -replace [regex]::Escape("${Env:PYENV}\bin;"), ''
+        $path = $path -replace [regex]::Escape("${Env:PYENV}\shims;"), ''
+        [System.Environment]::SetEnvironmentVariable('PATH', $path, 'User')
+
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYENV}\bin;"), ''
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYENV}\shims;"), ''
+
+        Remove-Item Env:PYENV
+        Remove-Item Env:PYENV_HOME
+        Remove-Item Env:PYENV_ROOT
     }
+}
+
+function set-pyenv
+{
+    clear-py
+    $PyEnvLocation = "${Env:USERPROFILE}\.pyenv\pyenv-win"
+
+    [Environment]::SetEnvironmentVariable("PYENV", $PyEnvLocation, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_HOME", $PyEnvLocation, "User")
+    [Environment]::SetEnvironmentVariable("PYENV_ROOT", $PyEnvLocation, "User")
+
+    Set-Item -Path Env:PYENV -Value "$PyEnvLocation"
+    Set-Item -Path Env:PYENV_HOME -Value "$PyEnvLocation"
+    Set-Item -Path Env:PYENV_ROOT -Value "$PyEnvLocation"
+
+    $Env:PATH = "${Env:PYENV}\bin;${Env:PYENV}\shims;$Env:PATH"
     # Set-Env
 }
 
 function pyenv-enable
 {
-    Clear-Py
-    $PyEnvLocation = "${env:USERPROFILE}\.pyenv\pyenv-win"
-    [Environment]::SetEnvironmentVariable("PYENV", $PyEnvLocation, "User")
-    [Environment]::SetEnvironmentVariable("PYENV_HOME", $PyEnvLocation, "User")
-    [Environment]::SetEnvironmentVariable("PYENV_ROOT", $PyEnvLocation, "User")
+    $PyEnvLocation = "${Env:USERPROFILE}\.pyenv\pyenv-win"
+
     Set-Item -Path Env:PYENV -Value "$PyEnvLocation"
-    # Set-Env
+    Set-Item -Path Env:PYENV_HOME -Value "$PyEnvLocation"
+    Set-Item -Path Env:PYENV_ROOT -Value "$PyEnvLocation"
+
+    # PATH
+    $Env:PATH = "${Env:PYENV}\bin;${Env:PYENV}\shims;$Env:PATH"
 }
 
 function pyenv-disable
 {
-    [Environment]::SetEnvironmentVariable("PYENV", $null, "User")
-    [Environment]::SetEnvironmentVariable("PYENV_HOME", $null, "User")
-    [Environment]::SetEnvironmentVariable("PYENV_ROOT", $null, "User")
-    if ($env:PYENV)
+
+    if ($Env:PYENV)
     {
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYENV}\bin;"), ''
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYENV}\shims;"), ''
         Remove-Item Env:PYENV
+    }
+    if ($Env:PYENV_HOME)
+    {
         Remove-Item Env:PYENV_HOME
+    }
+    if ($Env:PYENV_ROOT)
+    {
         Remove-Item Env:PYENV_ROOT
     }
-    # Set-Env
 }
-

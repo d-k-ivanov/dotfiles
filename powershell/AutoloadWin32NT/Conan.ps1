@@ -65,9 +65,9 @@ function conan_set_vars
 
 function conan_clean_vars
 {
-    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME",        $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT",  $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CONAN_TRACE_FILE",       $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME",        [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT",  [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CONAN_TRACE_FILE",       [NullString]::Value, "Machine")
     if ($env:CONAN_USER_HOME)
     {
         Remove-Item Env:CONAN_USER_HOME

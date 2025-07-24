@@ -48,32 +48,32 @@ function Set-FastBuildEnv
 
 function Unset-FastBuildEnv
 {
-    # [Environment]::SetEnvironmentVariable("FASTBUILD_TEMP_PATH", $null, "Machine")
+    # [Environment]::SetEnvironmentVariable("FASTBUILD_TEMP_PATH", [NullString]::Value, "Machine")
     if ($Env:FASTBUILD_TEMP_PATH)
     {
         Remove-Item -Path Env:FASTBUILD_TEMP_PATH
     }
 
     # \\172.16.37.111\workers or local path
-    # [Environment]::SetEnvironmentVariable("FASTBUILD_BROKERAGE_PATH", $null, "Machine")
+    # [Environment]::SetEnvironmentVariable("FASTBUILD_BROKERAGE_PATH", [NullString]::Value, "Machine")
     # if ($Env:FASTBUILD_BROKERAGE_PATH)
     # {
     #     Remove-Item -Path Env:FASTBUILD_BROKERAGE_PATH
     # }
 
-    [Environment]::SetEnvironmentVariable("FASTBUILD_WORKERS", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("FASTBUILD_WORKERS", [NullString]::Value, "Machine")
     if ($Env:FASTBUILD_WORKERS)
     {
         Remove-Item -Path Env:FASTBUILD_WORKERS
     }
 
-    # [Environment]::SetEnvironmentVariable("FASTBUILD_CACHE_PATH_MOUNT_POINT", $null, "Machine")
+    # [Environment]::SetEnvironmentVariable("FASTBUILD_CACHE_PATH_MOUNT_POINT", [NullString]::Value, "Machine")
     # if ($Env:FASTBUILD_CACHE_PATH_MOUNT_POINT)
     # {
     #     Remove-Item -Path Env:FASTBUILD_CACHE_PATH_MOUNT_POINT
     # }
 
-    # [Environment]::SetEnvironmentVariable("FASTBUILD_CACHE_MODE", $null, "Machine")
+    # [Environment]::SetEnvironmentVariable("FASTBUILD_CACHE_MODE", [NullString]::Value, "Machine")
     # if ($Env:FASTBUILD_CACHE_MODE)
     # {
     #     Remove-Item -Path Env:FASTBUILD_CACHE_MODE

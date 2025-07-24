@@ -79,7 +79,7 @@ function Set-Ruby
 
 function Clear-Ruby
 {
-    [Environment]::SetEnvironmentVariable("RUBY_PATH", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("RUBY_PATH", [NullString]::Value, "Machine")
     if ($env:RUBY_PATH)
     {
         Remove-Item Env:RUBY_PATH

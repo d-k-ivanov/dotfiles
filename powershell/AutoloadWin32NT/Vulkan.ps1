@@ -84,8 +84,8 @@ function Get-VulkanSDK
 
 function Clear-VulkanSDK
 {
-    [Environment]::SetEnvironmentVariable("VK_SDK_PATH", $null, "Machine")
-    [Environment]::SetEnvironmentVariable("VULKAN_SDK", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("VK_SDK_PATH", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("VULKAN_SDK",  [NullString]::Value, "Machine")
     if ($Env:VK_SDK_PATH) { Remove-Item Env:VK_SDK_PATH }
     if ($Env:VULKAN_SDK)  { Remove-Item Env:VULKAN_SDK  }
 }

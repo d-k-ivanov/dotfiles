@@ -1,0 +1,380 @@
+# Get editor completions based on the config schema
+"$schema" = "https://starship.rs/config-schema.json"
+
+command_timeout = 5000
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+format = """
+$os\
+$cmd_duration\
+$directory$git_branch$git_commit$git_state$git_metrics$git_status\
+\
+$aws\
+$kubernetes\
+$helm\
+$terraform\
+$docker_context\
+\
+$python\
+$c\
+$cpp\
+$java\
+$nodejs\
+$rust\
+\
+\n$time\
+$username$hostname\
+$character\
+"""
+
+### Fonts
+# SauceCodePro Nerd Font Propo
+# Hack Nerd Font Propo
+# CaskaydiaCove Nerd Font Mono
+###
+
+### Nord Color Palette
+## Polar Night ### Snow Storm ### Frost      ### Aurora  ##
+# #2e3440     # #d8dee9    # #8fbcbb    # #bf616a #
+# #3b4252     # #e5e9f0    # #88c0d0    # #d08770 #
+# #434c5e     # #eceff4    # #81a1c1    # #ebcb8b #
+# #4c566a     # #eceff4    # #5e81ac    # #a3be8c #
+# #4c566a     # #eceff4    # #5e81ac    # #b48ead #
+
+palette = "nord"
+
+[palettes.nord]
+color0 = "#2e3440" # Polar Night
+color1 = "#3b4252" # Polar Night
+color2 = "#434c5e" # Polar Night
+color3 = "#4c566a" # Polar Night
+color4 = "#d8dee9" # Snow Storm
+color5 = "#e5e9f0" # Snow Storm
+color6 = "#eceff4" # Snow Storm
+color7 = "#8fbcbb" # Frost
+color8 = "#88c0d0" # Frost
+color9 = "#81a1c1" # Frost
+color10 = "#5e81ac" # Frost
+color11 = "#bf616a" # Aurora
+color12 = "#d08770" # Aurora
+color13 = "#ebcb8b" # Aurora
+color14 = "#a3be8c" # Aurora
+color15 = "#b48ead" # Aurora
+
+[aws]
+disabled = false
+expiration_symbol = "\uf4f4" # 
+force_display = true
+format = "[\\[](color10)[$symbol($profile)( \\($region\\))( \\[$duration\\])]($style)[\\]](color10)"
+style = "bold color13"
+symbol = "\uf0ef " # 
+
+# [aws.profile_aliases]
+# ap-southeast-2 = "ase2"
+# eu-central-1 = "euc1"
+# us-east-1 = "ue1"
+
+# [aws.region_aliases]
+# ap-northeast-1 = "apn1" # Asia Pacific (Tokyo)
+# ap-northeast-2 = "apn2" # Asia Pacific (Seoul)
+# ap-northeast-3 = "apn3" # Asia Pacific (Osaka)
+# ap-south-1 = "aps1" # Asia Pacific (Mumbai)
+# ap-southeast-1 = "ase1" # Asia Pacific (Singapore)
+# ap-southeast-2 = "ase2" # Asia Pacific (Sydney)
+# ca-central-1 = "cac1" # Canada (Central)
+# cn-north-1 = "cnn1" # China (Beijing)
+# cn-northwest-1 = "cnw1" # China (Ningxia)
+# eu-central-1 = "euc1" # Europe (Frankfurt)
+# eu-north-1 = "eun1" # Europe (Stockholm)
+# eu-west-1 = "euw1" # Europe (Ireland)
+# eu-west-2 = "euw2" # Europe (London)
+# eu-west-3 = "euw3" # Europe (Paris)
+# sa-east-1 = "sae1" # South America (São Paulo)
+# us-east-1 = "use1" # US East (N. Virginia)
+# us-east-2 = "use2" # US East (Ohio)
+# us-west-1 = "usw1" # US West (N. California)
+# us-west-2 = "usw2" # US West (Oregon)
+
+[cmd_duration]
+disabled = false
+format = "[\\[](color10)[\ue641 $duration]($style)[\\]](color10) " # 
+min_time = 0
+min_time_to_notify = 45000
+show_milliseconds = true
+show_notifications = false
+style = "bold color14"
+
+[character]
+disabled = false
+error_symbol = "[λ](color11)"
+format = "$symbol "
+success_symbol = "[λ](color14)"
+vimcmd_replace_one_symbol = "[λ](color15)"
+vimcmd_replace_symbol = "[λ](color15)"
+vimcmd_symbol = "[λ](color14)"
+vimcmd_visual_symbol = "[λ](color13)"
+
+# ["cl", "--version"],
+[cpp]
+commands = [["msvc_ver.bat"], ["c++", "--version"], ["g++", "--version"], ["clang++", "--version"]]
+detect_extensions = ["cpp", "cc", "c", "cxx", "c++", "h", "hpp", "hh", "hxx", "h++", "tcc", "sln"]
+detect_files = [".clang-format", "CMakeLists.txt", "conanfile.txt", "premake5.lua", "vcpkg.json"]
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[$symbol($version(-$name))]($style)[\\]](color10)"
+style = "bold color14"
+symbol = "\ue646 "
+version_format = "${raw}"
+
+[directory]
+# before_repo_root_style = null
+disabled = false
+fish_style_pwd_dir_length = 0
+format = "[$path]($style)[$read_only]($read_only_style) "
+# home_symbol = "~"
+home_symbol = "~"
+read_only = "\uf023" # 
+read_only_style = "bold color11"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+# repo_root_style = null
+style = "bold color7"
+substitutions = {}
+truncate_to_repo = false
+truncation_length = 0
+truncation_symbol = "…/"
+use_logical_path = true
+use_os_path_sep = true
+
+# Here is how you can shorten some long paths by text replacement.
+# Keep in mind that the order matters.
+# For example:
+#   "Important Documents" = "  " will not be replaced because "Documents" was already substituted before.
+#   So either put "Important Documents" before "Documents" or use the substituted version:
+#   "Important  " = "  "
+# [directory.substitutions]
+# "Documents" = "\ue651 " # 
+# "OneDrive" = "\uf10c "  # 
+# "Dropbox" = "\ue707 "   # 
+# "Downloads" = "\uf019 " # 
+# "Music" = "\uf001 "     # 
+# "Pictures" = "\uf03e "  # 
+
+[docker_context]
+detect_extensions = []
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = true
+format = "[\\[](color10)[$symbol$context]($style)[\\]](color10)"
+only_with_files = true
+style = "bold color10"
+symbol = "\uf21f " # 
+
+[git_branch]
+always_show_remote = false
+disabled = false
+format = "[\\[](color10)[$symbol$branch(:$remote_branch)]($style)"
+ignore_branches = []
+only_attached = true
+style = "bold color15"
+symbol = "\ue0a0 " # 
+# symbol = "\ueafc " # 
+# symbol = "\uefa0 " # 
+truncation_length = 9223372036854775807
+truncation_symbol = "…"
+
+[git_commit]
+commit_hash_length = 9
+disabled = false
+format = "[\\[](color10)[\ueafc $hash$tag]($style)" # 
+only_detached = true
+style = "bold color15"
+tag_disabled = false
+tag_max_candidates = 0
+tag_symbol = " \uf02b " # 
+
+[git_state]
+am = "AM"
+am_or_rebase = "AM/REBASE"
+bisect = "BISECTING"
+cherry_pick = "CHERRY-PICKING"
+disabled = false
+format = " \uea64 \\([$state( $progress_current/$progress_total)]($style)\\)" # 
+merge = "MERGING"
+rebase = "REBASING"
+revert = "REVERTING"
+style = "bold color13"
+
+[git_metrics]
+added_style = "bold color14"
+deleted_style = "bold color11"
+disabled = false
+format = "( ≡ [+$added]($added_style) )([-$deleted]($deleted_style))"
+ignore_submodules = false
+only_nonzero_diffs = true
+
+[git_status]
+ahead = "⇡"
+behind = "⇣"
+conflicted = "="
+deleted = "✘"
+disabled = false
+diverged = "⇕"
+format = "( [$all_status$ahead_behind]($style))[\\]](color10)"
+ignore_submodules = false
+modified = "!"
+renamed = "»"
+staged = "+"
+stashed = "\\$"
+style = "bold color5"
+typechanged = ""
+untracked = "?"
+up_to_date = ""
+use_git_executable = false
+
+[helm]
+detect_extensions = []
+detect_files = ["helmfile.yaml","Chart.yaml"]
+detect_folders = ["k8s"]
+disabled = false
+format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+style = "bold color9"
+symbol = "\uf21a " # 
+version_format = "${raw}"
+
+[hostname]
+aliases = {}
+detect_env_vars = []
+disabled = false
+format = "[$hostname$ssh_symbol]($style) "
+ssh_only = false
+ssh_symbol = " \ueb39" # 
+style = "bold color3"
+trim_at = "."
+
+[java]
+detect_extensions = ["java", "class", "jar", "gradle", "clj", "cljc"]
+detect_files = ["pom.xml", "build.gradle.kts", "build.sbt", ".java-version", "deps.edn", "project.clj", "build.boot", ".sdkmanrc"]
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+style = "bold color11"
+symbol = "\uec15 " # 
+version_format = "${raw}"
+
+[kubernetes]
+context_aliases = {}
+contexts = []
+detect_env_vars = []
+detect_extensions = []
+detect_files = []
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[$symbol$context( \\($namespace\\))]($style)[\\]](color10)"
+style = "bold color9"
+symbol = "\ue81d " # 
+user_aliases = {}
+
+[nodejs]
+detect_extensions = ["js","mjs","cjs","ts","mts","cts"]
+detect_files = ["package.json",".node-version",".nvmrc","!bunfig.toml","!bun.lock","!bun.lockb"]
+detect_folders = ["node_modules"]
+disabled = false
+format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+not_capable_style = "bold red"
+style = "bold color14"
+symbol = "\ued0d " # 
+version_format = "${raw}"
+
+[os]
+disabled = false
+format = "[\\[](color10)[$symbol]($style)[\\]](color10) "
+style = "bold color4"
+
+[os.symbols]
+AIX = "\uf17c" # 
+AlmaLinux = "\uf31d" # 
+Alpine = "\uf300" # 
+Amazon = "\uf0ef" # 
+Android = "\uf17b" # 
+Arch = "\uf303" # 
+Artix = "\uf31f" # 
+CachyOS = "\uf303" # 
+CentOS = "\uef3d" # 
+Debian = "\uf306" # 
+EndeavourOS = "\uf303" # 
+Fedora = "\uef46" # 
+FreeBSD = "\uf28f" # 
+Garuda = "\uf303" # 
+Gentoo = "\uf30d" # 
+Kali = "\uf327" # 
+Linux = "\uf17c" # 
+Macos = "\uf179" # 
+Manjaro = "\uf312" # 
+NixOS = "\uf313" # 
+OpenBSD = "\uf328" # 
+openSUSE = "\uef6d" # 
+Pop = "\uf32a" # 
+Raspbian = "\uef5c" # 
+Redhat = "\uef5d" # 
+RedHatEnterprise = "\uef5d" # 
+RockyLinux = "\ue891" # 
+SUSE = "\uef6d" # 
+Ubuntu = "\uef72" # 
+Unknown = "\ue8cc" # 
+Void = "\uf32e" # 
+Windows = "\uf17a" # 
+
+[python]
+detect_env_vars = ["VIRTUAL_ENV"]
+detect_extensions = ["py", "ipynb"]
+detect_files = ["requirements.txt", ".python-version", "pyproject.toml", "Pipfile", "tox.ini", "setup.py", "__init__.py"]
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[${symbol}${pyenv_prefix}( ${version})( \\($virtualenv\\))]($style)[\\]](color10)"
+pyenv_prefix = ""
+pyenv_version_name = true
+python_binary = [["python"],["python2"],["python3"]]
+style = "bold color13"
+symbol = "\ue73c" # 
+version_format = "${raw}"
+
+[rust]
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+detect_folders = []
+disabled = false
+format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+style = "bold color11"
+symbol = "\ue68b " # 
+version_format = "${raw}"
+
+[terraform]
+detect_extensions = ["tf","tfplan","tfstate"]
+detect_files = []
+detect_folders = ["aws", "aws/.terraform", ".terraform"]
+disabled = false
+format = "[\\[](color10)[$symbol$workspace]($style)[\\]](color10) "
+style = "bold #A067DA"
+symbol = "\ue69a " # 
+version_format = "${raw}"
+
+[time]
+disabled = false
+format = "[$time]($style) "
+style = "bold color3"
+time_format = "%H:%M:%S"
+time_range = "-"
+use_12hr = false
+utc_time_offset = "local"
+
+[username]
+# aliases = { "Administrator" = "administrator" }
+aliases = {}
+detect_env_vars = []
+disabled = false
+format = "[$user@]($style)"
+show_always = true
+style_root = "bold color3"
+style_user = "bold color3"

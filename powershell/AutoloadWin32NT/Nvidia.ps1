@@ -23,7 +23,7 @@ function NsightLegacyDebugger-On
 
 function NsightLegacyDebugger-Off
 {
-    [Environment]::SetEnvironmentVariable("CUDBG_USE_LEGACY_DEBUGGER", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDBG_USE_LEGACY_DEBUGGER", [NullString]::Value, "Machine")
     if ($Env:CUDBG_USE_LEGACY_DEBUGGER)
     {
         Remove-Item Env:CUDBG_USE_LEGACY_DEBUGGER
@@ -38,7 +38,7 @@ function NsightCUDADebugger-On
 
 function NsightCUDADebugger-Off
 {
-    [Environment]::SetEnvironmentVariable("NSIGHT_CUDA_DEBUGGER", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("NSIGHT_CUDA_DEBUGGER", [NullString]::Value, "Machine")
     if ($Env:NSIGHT_CUDA_DEBUGGER)
     {
         Remove-Item Env:CUDBG_USE_LEGACY_DEBUGGER
@@ -54,7 +54,7 @@ function NsightDebuggerPreemption-On
 
 function NsightDebuggerPreemption-Off
 {
-    [Environment]::SetEnvironmentVariable("CUDA_DEBUGGER_SOFTWARE_PREEMPTION", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDA_DEBUGGER_SOFTWARE_PREEMPTION", [NullString]::Value, "Machine")
     if ($Env:CUDA_DEBUGGER_SOFTWARE_PREEMPTION)
     {
         Remove-Item Env:CUDBG_USE_LEGACY_DEBUGGER
@@ -263,12 +263,12 @@ function Set-CuDNN
 
 function UnSet-CuDNN
 {
-    [Environment]::SetEnvironmentVariable("CUDNN",             $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CUDNN_PATH",        $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CUDNN_ROOT_DIR",    $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CUDNN_DLL_DIR",     $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CUDNN_INCLUDE_DIR", $null, "Machine")
-    [Environment]::SetEnvironmentVariable("CUDNN_LIBRARY",     $null, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN",             [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_PATH",        [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_ROOT_DIR",    [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_DLL_DIR",     [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_INCLUDE_DIR", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CUDNN_LIBRARY",     [NullString]::Value, "Machine")
     Remove-Item Env:CUDNN
     Remove-Item Env:CUDNN_PATH
     Remove-Item Env:CUDNN_ROOT_DIR

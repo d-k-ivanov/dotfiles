@@ -94,7 +94,7 @@ function Set-RProject
 
 function Clear-RProject
 {
-    [Environment]::SetEnvironmentVariable("RPROJECT_PATH", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("RPROJECT_PATH", [NullString]::Value, "Machine")
     if ($env:RPROJECT_PATH)
     {
         Remove-Item Env:RPROJECT_PATH

@@ -70,13 +70,13 @@ function Set-LibTorch
 
 function Clear-LibTorch
 {
-    [Environment]::SetEnvironmentVariable("LIBTORCH", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("LIBTORCH", [NullString]::Value, "Machine")
     if ($env:LIBTORCH)
     {
         Remove-Item Env:LIBTORCH
     }
 
-    [Environment]::SetEnvironmentVariable("LIBTORCH_DIR", $null, "Machine")
+    [Environment]::SetEnvironmentVariable("LIBTORCH_DIR", [NullString]::Value, "Machine")
     if ($env:LIBTORCH_DIR)
     {
         Remove-Item Env:LIBTORCH_DIR
