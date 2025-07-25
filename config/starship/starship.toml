@@ -429,4 +429,4 @@ disabled = false
 format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
 style = "bold color7"
 symbol = "\ue8d0 " # 
-version_format = "v${raw}"
+version_format = "${raw}"
