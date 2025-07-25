@@ -16,15 +16,15 @@ function kdocker_exec()
 
 # Dev Environment
 # ==================================================================================================
-alias     kdev='kubectl --context dev'
-alias   kdevcn='kubectl --context devcn'
-alias   kdeveu='kubectl --context deveu'
-alias   kdevus='kubectl --context devus'
+# alias     kdev='kubectl --context dev'
+# alias   kdevcn='kubectl --context devcn'
+# alias   kdeveu='kubectl --context deveu'
+# alias   kdevus='kubectl --context devus'
 
-alias     hdev='helm --kube-context dev'
-alias   hdevcn='helm --kube-context devcn'
-alias   hdeveu='helm --kube-context deveu'
-alias   hdevus='helm --kube-context devus'
+# alias     hdev='helm --kube-context dev'
+# alias   hdevcn='helm --kube-context devcn'
+# alias   hdeveu='helm --kube-context deveu'
+# alias   hdevus='helm --kube-context devus'
 
 alias     kdev_proxy='kdev   proxy --port=10001'
 alias   kdevcn_proxy='kdevcn proxy --port=10001'
@@ -58,15 +58,15 @@ function kdevcn_exec()
 
 # DevOps Environment
 # ==================================================================================================
-alias   kdevops='kubectl --context devops'
-alias kdevopscn='kubectl --context devopscn'
-alias kdevopseu='kubectl --context devopseu'
-alias kdevopsus='kubectl --context devopsus'
+# alias   kdevops='kubectl --context devops'
+# alias kdevopscn='kubectl --context devopscn'
+# alias kdevopseu='kubectl --context devopseu'
+# alias kdevopsus='kubectl --context devopsus'
 
-alias   hdevops='helm --kube-context devops'
-alias hdevopscn='helm --kube-context devopscn'
-alias hdevopseu='helm --kube-context devopseu'
-alias hdevopsus='helm --kube-context devopsus'
+# alias   hdevops='helm --kube-context devops'
+# alias hdevopscn='helm --kube-context devopscn'
+# alias hdevopseu='helm --kube-context devopseu'
+# alias hdevopsus='helm --kube-context devopsus'
 
 alias   kdevops_proxy='kdevops   proxy --port=10001'
 alias kdevopscn_proxy='kdevopscn proxy --port=10001'
@@ -95,15 +95,15 @@ function kdevops_exec()
 
 # Stage Environment
 # ==================================================================================================
-alias   kstage='kubectl --context stage'
-alias kstagecn='kubectl --context stagecn'
-alias kstageeu='kubectl --context stageeu'
-alias kstageus='kubectl --context stageus'
+# alias   kstage='kubectl --context stage'
+# alias kstagecn='kubectl --context stagecn'
+# alias kstageeu='kubectl --context stageeu'
+# alias kstageus='kubectl --context stageus'
 
-alias   hstage='helm --kube-context stage'
-alias hstagecn='helm --kube-context stagecn'
-alias hstageeu='helm --kube-context stageeu'
-alias hstageus='helm --kube-context stageus'
+# alias   hstage='helm --kube-context stage'
+# alias hstagecn='helm --kube-context stagecn'
+# alias hstageeu='helm --kube-context stageeu'
+# alias hstageus='helm --kube-context stageus'
 
 alias   kstage_proxy='kstage   proxy --port=10001'
 alias kstagecn_proxy='kstagecn proxy --port=10001'
@@ -137,15 +137,15 @@ function kstagecn_exec()
 
 # Prod Environment
 # ==================================================================================================
-alias   kprod='kubectl --context prod'
-alias kprodcn='kubectl --context prodcn'
-alias kprodeu='kubectl --context prodeu'
-alias kprodus='kubectl --context produs'
+# alias   kprod='kubectl --context prod'
+# alias kprodcn='kubectl --context prodcn'
+# alias kprodeu='kubectl --context prodeu'
+# alias kprodus='kubectl --context produs'
 
-alias   hprod='helm --kube-context prod'
-alias hprodcn='helm --kube-context prodcn'
-alias hprodeu='helm --kube-context prodeu'
-alias hprodus='helm --kube-context produs'
+# alias   hprod='helm --kube-context prod'
+# alias hprodcn='helm --kube-context prodcn'
+# alias hprodeu='helm --kube-context prodeu'
+# alias hprodus='helm --kube-context produs'
 
 alias   kprod_proxy='kprod   proxy --port=10001'
 alias kprodcn_proxy='kprodcn proxy --port=10001'
