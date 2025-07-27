@@ -24,7 +24,7 @@ filter __kubectl_escapeStringWithSpecialChars {
     $_ -replace '\s|#|@|\$|;|,|''|\{|\}|\(|\)|"|`|\||<|>|&','`$&'
 }
 
-[scriptblock]$__kubectlCompleterBlock = {
+[scriptblock]${__kubectlCompleterBlock} = {
     param(
             $WordToComplete,
             $CommandAst,
@@ -99,7 +99,7 @@ filter __kubectl_escapeStringWithSpecialChars {
 
     __kubectl_debug "Calling $RequestComp"
     # First disable ActiveHelp which is not supported for Powershell
-    $env:KUBECTL_ACTIVE_HELP=0
+    ${env:KUBECTL_ACTIVE_HELP}=0
 
     #call the command store the output in $out and redirect stderr and stdout to null
     # $Out is an array contains each line per element
@@ -256,5 +256,5 @@ filter __kubectl_escapeStringWithSpecialChars {
     }
 }
 
-Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock $__kubectlCompleterBlock
+Register-ArgumentCompleter -CommandName 'kubectl' -ScriptBlock ${__kubectlCompleterBlock}
 

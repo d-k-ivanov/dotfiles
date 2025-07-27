@@ -10,7 +10,7 @@ filter __eksctl_escapeStringWithSpecialChars {
     $_ -replace '\s|#|@|\$|;|,|''|\{|\}|\(|\)|"|`|\||<|>|&','`$&'
 }
 
-[scriptblock]$__eksctlCompleterBlock = {
+[scriptblock]${__eksctlCompleterBlock} = {
     param(
             $WordToComplete,
             $CommandAst,
@@ -85,7 +85,7 @@ filter __eksctl_escapeStringWithSpecialChars {
 
     __eksctl_debug "Calling $RequestComp"
     # First disable ActiveHelp which is not supported for Powershell
-    $env:EKSCTL_ACTIVE_HELP=0
+    ${env:EKSCTL_ACTIVE_HELP}=0
 
     #call the command store the output in $out and redirect stderr and stdout to null
     # $Out is an array contains each line per element
@@ -125,7 +125,10 @@ filter __eksctl_escapeStringWithSpecialChars {
         if (-Not $Description) {
             $Description = " "
         }
-        @{Name="$Name";Description="$Description"}
+        New-Object -TypeName PSCustomObject -Property @{
+            Name = "$Name"
+            Description = "$Description"
+        }
     }
 
 
@@ -203,7 +206,12 @@ filter __eksctl_escapeStringWithSpecialChars {
                     __eksctl_debug "Only one completion left"
 
                     # insert space after value
-                    [System.Management.Automation.CompletionResult]::new($($comp.Name | __eksctl_escapeStringWithSpecialChars) + $Space, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                    $CompletionText = $($comp.Name | __eksctl_escapeStringWithSpecialChars) + $Space
+                    if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                        [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                    } else {
+                        $CompletionText
+                    }
 
                 } else {
                     # Add the proper number of spaces to align the descriptions
@@ -218,7 +226,12 @@ filter __eksctl_escapeStringWithSpecialChars {
                         $Description = "  ($($comp.Description))"
                     }
 
-                    [System.Management.Automation.CompletionResult]::new("$($comp.Name)$Description", "$($comp.Name)$Description", 'ParameterValue', "$($comp.Description)")
+                    $CompletionText = "$($comp.Name)$Description"
+                    if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                        [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)$Description", 'ParameterValue', "$($comp.Description)")
+                    } else {
+                        $CompletionText
+                    }
                 }
              }
 
@@ -227,7 +240,13 @@ filter __eksctl_escapeStringWithSpecialChars {
                 # insert space after value
                 # MenuComplete will automatically show the ToolTip of
                 # the highlighted value at the bottom of the suggestions.
-                [System.Management.Automation.CompletionResult]::new($($comp.Name | __eksctl_escapeStringWithSpecialChars) + $Space, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+
+                $CompletionText = $($comp.Name | __eksctl_escapeStringWithSpecialChars) + $Space
+                if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                    [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                } else {
+                    $CompletionText
+                }
             }
 
             # TabCompleteNext and in case we get something unknown
@@ -235,11 +254,17 @@ filter __eksctl_escapeStringWithSpecialChars {
                 # Like MenuComplete but we don't want to add a space here because
                 # the user need to press space anyway to get the completion.
                 # Description will not be shown because that's not possible with TabCompleteNext
-                [System.Management.Automation.CompletionResult]::new($($comp.Name | __eksctl_escapeStringWithSpecialChars), "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+
+                $CompletionText = $($comp.Name | __eksctl_escapeStringWithSpecialChars)
+                if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                    [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                } else {
+                    $CompletionText
+                }
             }
         }
 
     }
 }
 
-Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock $__eksctlCompleterBlock
+Register-ArgumentCompleter -CommandName 'eksctl' -ScriptBlock ${__eksctlCompleterBlock}
