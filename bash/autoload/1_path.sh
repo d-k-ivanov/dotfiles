@@ -30,18 +30,19 @@ case $platform in
         # [[ -d "$HOME/.rvm/rubies/ruby-2.6.1" ]]     && rvm use 2.6.1
         # Rust
         [[ -d "$HOME/.cargo/bin" ]]                 && export PATH=$PATH:$HOME/.cargo/bin
-        # Ubuntu games
-        [[ -d /usr/games ]]                         && export PATH=$PATH:/usr/games
-        [[ -d /usr/local/games ]]                   && export PATH=$PATH:/usr/local/games
-        # Snap
-        [[ -d /snap/bin ]]                          && export PATH=$PATH:/snap/bin
-        [[ -d /var/lib/snapd/snap/bin ]]            && export PATH=$PATH:/var/lib/snapd/snap/bin
         # VCPKG
         [[ -f $VCPKG_ROOT/vcpkg ]]                  && export PATH=$PATH:$VCPKG_ROOT
         # Yarn
         [[ -d "$HOME/.yarn/bin" ]]                  && export PATH=$PATH:$HOME/.yarn/bin
 
         # General paths
+        ## Games
+        [[ -d /usr/games ]]                         && export PATH=$PATH:/usr/games
+        [[ -d /usr/local/games ]]                   && export PATH=$PATH:/usr/local/games
+        # Snap
+        [[ -d /snap/bin ]]                          && export PATH=$PATH:/snap/bin
+        [[ -d /var/lib/snapd/snap/bin ]]            && export PATH=$PATH:/var/lib/snapd/snap/bin
+
         ## Opt
         [[ -d /opt/bin ]]                           && export PATH=$PATH:/opt/bin
         [[ -d /opt/local/bin ]]                     && export PATH=$PATH:/opt/local/bin
