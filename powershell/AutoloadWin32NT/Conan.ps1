@@ -179,8 +179,7 @@ function cei
     {
         $python = Get-Command python | Select-Object -ExpandProperty Definition
         python -m pip install --upgrade pip
-        python -m pip install --upgrade virtualenv
-        python -m virtualenv -p $python "${conan_env_path}"
+        python -m venv "${conan_env_path}"
         & $(Join-Path "${conan_env_path}" 'Scripts\activate.ps1')
         python -m pip install --upgrade pip
         python -m pip install --upgrade conan

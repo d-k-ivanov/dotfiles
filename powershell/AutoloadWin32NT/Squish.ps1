@@ -19,7 +19,7 @@ if ($env:SQUISH_PATH)
 {
     if (Get-Command "${env:SQUISH_PATH}\..\python\python" -ErrorAction SilentlyContinue | Test-Path)
     {
-        ${function:vc3-squish}  = { & ${env:SQUISH_PATH}\..\python\python -m virtualenv -p ${env:SQUISH_PATH}\..\python\python venv }
+        ${function:vc3-squish}  = { & ${env:SQUISH_PATH}\..\python\python -m venv venv }
     }
 }
 

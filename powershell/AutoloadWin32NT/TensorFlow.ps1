@@ -78,7 +78,7 @@ function TF_Build_Env
     $python_bin = $((Get-Command python -ErrorAction SilentlyContinue).Source)
     if ($python_bin)
     {
-        $cmd = $(Write-Output "$python_bin -m virtualenv -p $python_bin venv")
+        $cmd = $(Write-Output "$python_bin -m venv venv")
         Invoke-Expression $cmd
     }
     else

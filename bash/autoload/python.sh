@@ -34,8 +34,6 @@ alias srv='python -m http.server 8000'
 
 py_venv() {
     python -m pip install --upgrade pip
-    python -m pip install --upgrade virtualenv
-    python -m pip install --upgrade ipython
 }
 alias pip_update='py_venv'
 
@@ -75,9 +73,6 @@ if [[ -f "$PYENV_ROOT/bin/pyenv" ]]; then
         esac
     }
 fi
-
-# command -v pyenv >/dev/null && eval "$(pyenv init -)"
-# command -v pyenv >/dev/null && eval "$(pyenv virtualenv-init -)"
 
 if [[ -f "${HOME}/miniforge3/bin/conda" ]]; then
     __conda_setup="$(${HOME}/miniforge3/bin/conda 'shell.bash' 'hook' 2>/dev/null)"

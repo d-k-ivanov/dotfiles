@@ -31,12 +31,6 @@ function jpinstall
         break
     }
 
-    if (-Not (Get-Command virtualenv -ErrorAction SilentlyContinue | Test-Path))
-    {
-        python -m pip install --upgrade pip
-        python -m pip install virtualenv
-    }
-
     $jenvDir = Join-Path $env:USERPROFILE .jpenv
     if ($ReInstall -And (Test-Path $jenvDir))
     {
@@ -47,7 +41,7 @@ function jpinstall
     {
         $python = Get-Command python | Select-Object -ExpandProperty Definition
         python -m pip install --upgrade pip
-        python -m virtualenv -p $python $jenvDir
+        python -m venv $jenvDir
     }
 
     # Set-Location $jenvDir

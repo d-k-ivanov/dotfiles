@@ -15,12 +15,6 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-# Weather
-${function:wet}     = { curl http://wttr.in/$args }
-${function:wet2}    = { curl http://v2.wttr.in/$args }
-${function:wetM}    = { wet Malaga }
-${function:wetM2}   = { wet2 Malaga }
-
 if (Get-Command curl -ErrorAction SilentlyContinue | Test-Path)
 {
     # Gzip-enabled `curl`
@@ -32,6 +26,12 @@ else
     # Gzip-enabled `curl`
     ${function:gurl} = { Invoke-WebRequest -TransferEncoding GZip @args }
 }
+
+# Weather
+${function:wet}     = { curl http://wttr.in/$args }
+${function:wet2}    = { curl http://v2.wttr.in/$args }
+${function:wetM}    = { wet Malaga }
+${function:wetM2}   = { wet2 Malaga }
 
 # Download a file into a temporary folder
 function curlex($url)

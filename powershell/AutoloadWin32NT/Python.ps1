@@ -15,8 +15,8 @@ if ($MyInvocation.InvocationName -ne '.')
     exit
 }
 
-# ${function:vc}      = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv -p $python venv }
-${function:vc} = { ($python = Get-Command python | Select-Object -ExpandProperty Definition); python -m venv venv }
+${function:vc} = { python -m venv venv }
+${function:vc3} = { python -m venv venv }
 ${function:va} = { .\venv\Scripts\activate }
 ${function:vd} = { deactivate }
 ${function:vr} = { rmrf venv }
@@ -35,10 +35,6 @@ ${function:ipython-install} = { python -m pip install ipython }
 function py_init_environmnet
 {
     python -m pip install --upgrade pip
-    python -m pip install --upgrade flake8
-    python -m pip install --upgrade ipython
-    python -m pip install --upgrade pytest
-    python -m pip install --upgrade cfn-lint
 }
 
 function pyclean
