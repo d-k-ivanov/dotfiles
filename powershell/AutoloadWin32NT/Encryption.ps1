@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-Security (SSH, SSL, GPG etc.) scripts.
+Encryption scripts.
 
 .DESCRIPTION
-Security (SSH, SSL, GPG etc.) scripts.
+Encryption scripts.
 #>
 
 # Check invocation
