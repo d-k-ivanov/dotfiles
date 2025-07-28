@@ -9,8 +9,6 @@ case $platform in
         [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
         [[ -d $HOME/.bin/linux ]]                   && export PATH=$PATH:$HOME/.bin/linux
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
-        [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
-        [[ -d $WORKSPACE/vcpkg ]]                       && export PATH=$PATH:$WORKSPACE/vcpkg
         # Android
         [[ -d "$HOME/Android/Sdk/platform-tools" ]] && export PATH=$PATH:$HOME/Android/Sdk/platform-tools
         # CLion
@@ -38,6 +36,8 @@ case $platform in
         # Snap
         [[ -d /snap/bin ]]                          && export PATH=$PATH:/snap/bin
         [[ -d /var/lib/snapd/snap/bin ]]            && export PATH=$PATH:/var/lib/snapd/snap/bin
+        # VCPKG
+        [[ -f $VCPKG_ROOT/vcpkg ]]                  && export PATH=$PATH:$VCPKG_ROOT
         # Yarn
         [[ -d "$HOME/.yarn/bin" ]]                  && export PATH=$PATH:$HOME/.yarn/bin
 
@@ -66,20 +66,8 @@ case $platform in
         [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
         [[ -d $HOME/.bin/mac ]]                     && export PATH=$PATH:$HOME/.bin/mac
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
-        [[ -d $HOME/.vcpkg ]]                       && export PATH=$PATH:$HOME/.vcpkg
-        # Python
-        [[ -d $PYENV_ROOT ]]                        && export PATH="$PATH:$PYENV_ROOT/bin"
+        # Python (autovenv)
         # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
-        [[ -d /usr/local/opt/python3/bin ]]         && export PATH=$PATH:/usr/local/opt/python3/bin
-        [[ -d $HOME/Library/Python/3.6/bin ]]       && export PATH=$PATH:Library/Python/3.6/bin
-        [[ -d $HOME/Library/Python/3.7/bin ]]       && export PATH=$PATH:Library/Python/3.7/bin
-        [[ -d $HOME/Library/Python/3.8/bin ]]       && export PATH=$PATH:Library/Python/3.8/bin
-        [[ -d $HOME/Library/Python/3.9/bin ]]       && export PATH=$PATH:Library/Python/3.9/bin
-        [[ -d $HOME/Library/Python/3.10/bin ]]      && export PATH=$PATH:Library/Python/3.10/bin
-        [[ -d $HOME/Library/Python/3.11/bin ]]      && export PATH=$PATH:Library/Python/3.11/bin
-        [[ -d $HOME/Library/Python/3.12/bin ]]      && export PATH=$PATH:Library/Python/3.12/bin
-        [[ -d /usr/local/opt/python2/bin ]]         && export PATH=$PATH:/usr/local/opt/python2/bin
-        [[ -d $HOME/Library/Python/2.7/bin ]]       && export PATH=$PATH:Library/Python/2.7/bin
         # Ruby
         [[ -s "$HOME/.rvm/scripts/rvm" ]]           && source "$HOME/.rvm/scripts/rvm"
         # VS Code

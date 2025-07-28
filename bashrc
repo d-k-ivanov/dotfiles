@@ -3,20 +3,22 @@
 # Test for interactiveness
 [[ $- == *i* ]] || return
 
-for file in ${HOME}/.bash/autoload/*; do
-    source ${file}
-done
+if [[ -n "$(ls -A ${HOME}/.bash_local/autoload 2>/dev/null)" ]]; then
+    for file in ${HOME}/.bash_local/autoload/*; do
+        source ${file}
+    done
+fi
 
-if [[ -d ${HOME}/.bash_private/autoload ]]; then
+if [[ -n "$(ls -A ${HOME}/.bash_private/autoload 2>/dev/null)" ]]; then
     for file in ${HOME}/.bash_private/autoload/*; do
         source ${file}
     done
 fi
 
-if [[ -d ${HOME}/.bash_local/autoload ]]; then
-    for file in ${HOME}/.bash_local/autoload/*; do
-        source ${file}
-    done
+if [[ -n "$(ls -A ${HOME}/.bash/autoload 2>/dev/null)" ]]; then
+    for file in ${HOME}/.bash/autoload/*; do
+    source ${file}
+done
 fi
 
 source ${HOME}/.bash/bash-preexec.sh

@@ -250,7 +250,7 @@ function clear-py
     }
 }
 
-function set-pyenv
+function pyenv-set
 {
     clear-py
     $PyEnvLocation = "${Env:USERPROFILE}\.pyenv\pyenv-win"

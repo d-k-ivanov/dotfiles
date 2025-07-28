@@ -13,6 +13,74 @@ alias   vcpkg-install-osx='vcpkg install           --triplet x64-osx'
 alias  vcpkg-remove-osx-r='vcpkg remove  --recurse --triplet x64-osx'
 alias vcpkg-install-osx-r='vcpkg install --recurse --triplet x64-osx'
 
+vcpkg-possible-paths() {
+    local -a paths=(
+        "$HOME/.vcpkg"
+        "$WORKSPACE/vcpkg"
+        "/opt/vcpkg"
+    )
+
+    local -a existing_paths=()
+    for path in "${paths[@]}"; do
+        if [[ -x "${path}/vcpkg" ]]; then
+            existing_paths+=("$path")
+        fi
+    done
+
+    printf '%s\n' "${existing_paths[@]}"
+}
+
+vcpkg-set() {
+    if [ ! -d "${HOME}/.bash_local/autoload" ]; then
+        mkdir -p "${HOME}/.bash_local/autoload"
+    fi
+
+    local vcpkg_paths
+    readarray -t vcpkg_paths < <(vcpkg-possible-paths)
+
+    select_from_list "VCPKG Path:" selected "${vcpkg_paths[@]}"
+    echo "Using VCPKG: ${selected}..."
+
+    echo "export VCPKG_ROOT=\"${selected}\"" >"${HOME}/.bash_local/autoload/vcpkg.sh"
+    export VCPKG_ROOT="${selected}"
+    export PATH="${VCPKG_ROOT}:${PATH}"
+
+}
+
+vcpkg-unset() {
+    if [ -f "${HOME}/.bash_local/autoload/vcpkg.sh" ]; then
+        rm "${HOME}/.bash_local/autoload/vcpkg.sh"
+    fi
+
+    if [[ -n "$VCPKG_ROOT" ]]; then
+        export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$VCPKG_ROOT" | tr "\n" ":")
+        unset VCPKG_ROOT
+    fi
+}
+
+vcpkg-enable() {
+    local -a vcpkg_paths
+    readarray -t vcpkg_paths < <(vcpkg-possible-paths)
+
+    select_from_list "VCPKG Path:" selected "${vcpkg_paths[@]}"
+    echo "Using VCPKG: ${selected}..."
+
+    export VCPKG_ROOT="${selected}"
+    export PATH="${VCPKG_ROOT}:${PATH}"
+}
+
+vcpkg-disable() {
+    if [[ -z "$VCPKG_ROOT" ]]; then
+        print_error "VCPKG_ROOT is not set, cannot disable VCPKG"
+        return 1
+    fi
+
+    if [[ -n "$VCPKG_ROOT" ]]; then
+        export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$VCPKG_ROOT" | tr "\n" ":")
+        unset VCPKG_ROOT
+    fi
+}
+
 vcpkg-cmake()
 {
     vcpkgPath=$(dirname $(which vcpkg))

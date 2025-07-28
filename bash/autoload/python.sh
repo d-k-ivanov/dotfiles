@@ -44,14 +44,30 @@ pyclean() {
     rm -f "${temp_file}"
 }
 
-pyenv_enable() {
+pyenv-set() {
+    if [ ! -d "${HOME}/.bash_local/autoload" ]; then
+        mkdir -p "${HOME}/.bash_local/autoload"
+    fi
+    echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\"" >>"${HOME}/.bash_local/autoload/pyenv.sh"
+    echo "export PATH=\"${PYENV_ROOT}/shims:\$PATH\"" >>"${HOME}/.bash_local/autoload/pyenv.sh"
+}
+
+pyenv-unset() {
+    if [ -f "${HOME}/.bash_local/autoload/pyenv.sh" ]; then
+        rm "${HOME}/.bash_local/autoload/pyenv.sh"
+    fi
+    export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/bin" | tr "\n" ":")
+    export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/shims" | tr "\n" ":")
+}
+
+pyenv-enable() {
     [[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
     [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 }
 
-pyenv_disable() {
-    [[ -d $PYENV_ROOT/shims ]] && export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/shims" | tr "\n" ":")
-    [[ -d $PYENV_ROOT/bin ]] && export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/bin" | tr "\n" ":")
+pyenv-disable() {
+    export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/shims" | tr "\n" ":")
+    export PATH=$(echo $PATH | tr ":" "\n" | grep -v "$PYENV_ROOT/bin" | tr "\n" ":")
 }
 
 if [[ -f "$PYENV_ROOT/bin/pyenv" ]]; then
