@@ -220,3 +220,10 @@ remove-all-files-with-extention-in-current-folder()
 
     find . -type f -iname "*.${1}" -delete
 }
+
+doublecmd() {
+  local dir
+  dir="${*:-./}"
+  nohup doublecmd "$dir" >/dev/null 2>&1 &
+  disown
+}
