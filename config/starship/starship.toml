@@ -225,7 +225,7 @@ style = "bold color13"
 added_style = "bold color14"
 deleted_style = "bold color11"
 disabled = false
-format = "[\\[](color10)([+$added]($added_style))( [-$deleted]($deleted_style))"
+format = "([\\[](color10)[+$added]($added_style))( [-$deleted]($deleted_style))"
 ignore_submodules = false
 only_nonzero_diffs = true
 
@@ -237,7 +237,7 @@ conflicted = "[ ≠$count](bold color11)"
 deleted = "[ ×$count](bold color11)"
 disabled = false
 diverged = "[ ⇕](bold color11)"
-format = "([$all_status$ahead_behind]($style))[\\]](color10)"
+format = "([$all_status$ahead_behind]($style)[\\]](color10))"
 ignore_submodules = false
 modified = "[ !$count](bold color13)"
 renamed = "[ ↪$count](bold color13)" #
