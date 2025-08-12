@@ -27,6 +27,11 @@ decryptfrom-base64() {
     echo "${1}" | base64 -d | gpg -d
 }
 
+function ssh-rsa-pub-fingerprints() {
+    local dir="${1:-~/.ssh/}"
+    find "$dir" -type f -name '*.pub' -exec bash -c 'printf "%-50s %s\n" "$(basename "$1")" "$(ssh-keygen -E md5 -lf "$1" | awk "{print \$2}")"' _ {} \;
+}
+
 # Straight into console-in-screen.
 # Assumes there is only one screen running.
 #alias prodc="ssh srv -t screen -RD"
