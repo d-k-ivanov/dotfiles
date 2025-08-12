@@ -12,7 +12,7 @@ if ($MyInvocation.InvocationName -ne '.')
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyBaseCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
 function Set-GithubOAuthCreds
@@ -34,7 +34,7 @@ function Get-GithubBasicCreds
 {
     [string] $SecretFile = (Join-Path $env:USERPROFILE '.github.secrets')
 
-    if (-Not (Test-Path -Path $SecretFile))
+    if (-not (Test-Path -Path $SecretFile))
     {
         Write-Host `
             "ERROR: Secretfile $SecretFile wasn't found. Run 'Set-GitHubOAuthCreds' for initialization. Exiting..." `
@@ -47,6 +47,110 @@ function Get-GithubBasicCreds
 
     $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $Username, $Token)))
     return $base64AuthInfo
+}
+
+function Get-GithubRateLimits
+{
+    [CmdletBinding()]
+    param ()
+
+    $BasicCreds = Get-GithubBasicCreds
+    $Headers = @{
+        'Accept'               = 'application/vnd.github+json'
+        'Authorization'        = ("Basic {0}" -f $BasicCreds)
+        'X-GitHub-Api-Version' = '2022-11-28'
+    };
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    try
+    {
+        $RequestAnswer = Invoke-WebRequest -Headers $Headers -Uri "https://api.github.com/rate_limit"
+    }
+    catch
+    {
+        Write-Host `
+            "Error: Github user or organization not found. Exiting..." `
+            -ForegroundColor Red
+        return
+    }
+    if ($RequestAnswer.StatusCode -ne 200)
+    {
+        Write-Host `
+            "Error: Github API request failed with status code $($RequestAnswer.StatusCode). Exiting..." `
+            -ForegroundColor Red
+        return
+    }
+
+    $RateLimit = $RequestAnswer | ConvertFrom-Json
+    $CurrentTime = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+
+    $LimitData = @()
+
+    foreach ($resource in $RateLimit.resources.PSObject.Properties)
+    {
+        $limit = $resource.Value
+        $resetTime = [DateTimeOffset]::FromUnixTimeSeconds($limit.reset).ToLocalTime()
+        $timeUntilReset = [math]::Max(0, ($limit.reset - $CurrentTime) / 60)
+        $usagePercent = [math]::Round(($limit.used / $limit.limit) * 100, 1)
+
+        $LimitData += [PSCustomObject]@{
+            Resource              = $resource.Name
+            Limit                 = $limit.limit
+            Used                  = $limit.used
+            Remaining             = $limit.remaining
+            'Usage %'             = $usagePercent
+            'Reset Time'          = $resetTime.ToString("yyyy-MM-dd HH:mm:ss")
+            'Minutes Until Reset' = [math]::Round($timeUntilReset, 1)
+        }
+    }
+
+    # Add overall rate limit
+    $resetTime = [DateTimeOffset]::FromUnixTimeSeconds($RateLimit.rate.reset).ToLocalTime()
+    $timeUntilReset = [math]::Max(0, ($RateLimit.rate.reset - $CurrentTime) / 60)
+    $usagePercent = [math]::Round(($RateLimit.rate.used / $RateLimit.rate.limit) * 100, 1)
+
+    $LimitData += [PSCustomObject]@{
+        Resource              = "OVERALL RATE"
+        Limit                 = $RateLimit.rate.limit
+        Used                  = $RateLimit.rate.used
+        Remaining             = $RateLimit.rate.remaining
+        'Usage %'             = $usagePercent
+        'Reset Time'          = $resetTime.ToString("yyyy-MM-dd HH:mm:ss")
+        'Minutes Until Reset' = [math]::Round($timeUntilReset, 1)
+    }
+
+    Write-Host "`nGitHub API Rate Limits:" -ForegroundColor Cyan
+    Write-Host ("=" * 100) -ForegroundColor Cyan
+
+    $LimitData | Format-Table -AutoSize | Out-String | Write-Host
+
+    # Highlight concerning limits
+    Write-Host "`nLimits requiring attention:" -ForegroundColor Yellow
+    foreach ($item in $LimitData)
+    {
+        $color = "White"
+        $message = ""
+
+        if ($item.'Usage %' -ge 90)
+        {
+            $color = "Red"
+            $message = "CRITICAL: $($item.Resource) is $($item.'Usage %')% used!"
+        }
+        elseif ($item.'Usage %' -ge 75)
+        {
+            $color = "Yellow"
+            $message = "WARNING: $($item.Resource) is $($item.'Usage %')% used"
+        }
+        elseif ($item.Remaining -eq 0)
+        {
+            $color = "Red"
+            $message = "EXHAUSTED: $($item.Resource) has no remaining requests"
+        }
+
+        if ($message)
+        {
+            Write-Host $message -ForegroundColor $color
+        }
+    }
 }
 
 function GithubRepos
@@ -62,7 +166,7 @@ function GithubRepos
         [switch] $Clone
     )
 
-    if (-Not (Get-Command git -ErrorAction SilentlyContinue | Test-Path))
+    if (-not (Get-Command git -ErrorAction SilentlyContinue | Test-Path))
     {
         Write-Host `
             "Error: Git not found. Please install Git for Windows and add it to PATH. Exiting..." `
@@ -72,8 +176,8 @@ function GithubRepos
 
     $BasicCreds = Get-GithubBasicCreds
     $Headers = @{
-        'Accept' = 'application/vnd.github+json'
-        'Authorization' = ("Basic {0}" -f $BasicCreds)
+        'Accept'               = 'application/vnd.github+json'
+        'Authorization'        = ("Basic {0}" -f $BasicCreds)
         'X-GitHub-Api-Version' = '2022-11-28'
     };
 
@@ -129,7 +233,7 @@ function GithubRepos
         $Repos = $RequestAnswer | ConvertFrom-Json
         foreach ($repo in $Repos)
         {
-            if ((-Not $All) -And $repo.fork) { continue }
+            if ((-not $All) -and $repo.fork) { continue }
 
             switch ($Protocol)
             {
