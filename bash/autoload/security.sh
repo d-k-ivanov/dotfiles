@@ -27,9 +27,19 @@ decryptfrom-base64() {
     echo "${1}" | base64 -d | gpg -d
 }
 
-function ssh-rsa-pub-fingerprints() {
+function ssh-md5-fingerprints() {
     local dir="${1:-~/.ssh/}"
-    find "$dir" -type f -name '*.pub' -exec bash -c 'printf "%-50s %s\n" "$(basename "$1")" "$(ssh-keygen -E md5 -lf "$1" | awk "{print \$2}")"' _ {} \;
+    find $dir -type f -name '*.pub' -exec bash -c 'printf "%-50s %s\n" "$(basename "$1")" "$(ssh-keygen -E md5 -lf "$1" | awk "{print \$2}")"' _ {} \;
+}
+
+function ssh-aws-fingerprints-pub() {
+    local dir="${1:-~/.ssh/}"
+    find $dir -type f -name '*.pub' -exec bash -c 'printf "%-50s %s\n" "$(basename "$1")" "$(ssh-keygen -f "$1" -e -m PKCS8 | openssl pkey -pubin -outform DER | openssl md5 -c | awk "{print \$2}")"' _ {} \;
+}
+
+function ssh-aws-fingerprints-pem() {
+    local dir="${1:-~/.ssh/}"
+    find $dir -type f -name '*.pem' -exec bash -c 'printf "%-50s %s\n" "$(basename "$1")" "$(openssl pkcs8 -in "$1" -nocrypt -topk8 -outform DER | openssl sha1 -c | awk "{print \$2}")"' _ {} \;
 }
 
 # Straight into console-in-screen.
