@@ -88,7 +88,7 @@ function Get-GithubRateLimits
     foreach ($resource in $RateLimit.resources.PSObject.Properties)
     {
         $limit = $resource.Value
-        $resetTime = [DateTimeOffset]::FromUnixTimeSeconds($limit.reset).ToLocalTime()
+        $resetTime = [DateTimeOffset]::FromUnixTimeSeconds($limit.reset)
         $timeUntilReset = [math]::Max(0, ($limit.reset - $CurrentTime) / 60)
         $usagePercent = [math]::Round(($limit.used / $limit.limit) * 100, 1)
 
@@ -98,13 +98,13 @@ function Get-GithubRateLimits
             Used                  = $limit.used
             Remaining             = $limit.remaining
             'Usage %'             = $usagePercent
-            'Reset Time'          = $resetTime.ToString("yyyy-MM-dd HH:mm:ss")
+            'Reset Time'          = $resetTime.ToString("yyyy-MM-dd HH:mm:ss UTC")
             'Minutes Until Reset' = [math]::Round($timeUntilReset, 1)
         }
     }
 
     # Add overall rate limit
-    $resetTime = [DateTimeOffset]::FromUnixTimeSeconds($RateLimit.rate.reset).ToLocalTime()
+    $resetTime = [DateTimeOffset]::FromUnixTimeSeconds($RateLimit.rate.reset)
     $timeUntilReset = [math]::Max(0, ($RateLimit.rate.reset - $CurrentTime) / 60)
     $usagePercent = [math]::Round(($RateLimit.rate.used / $RateLimit.rate.limit) * 100, 1)
 
@@ -114,7 +114,7 @@ function Get-GithubRateLimits
         Used                  = $RateLimit.rate.used
         Remaining             = $RateLimit.rate.remaining
         'Usage %'             = $usagePercent
-        'Reset Time'          = $resetTime.ToString("yyyy-MM-dd HH:mm:ss")
+        'Reset Time'          = $resetTime.ToString("yyyy-MM-dd HH:mm:ss UTC")
         'Minutes Until Reset' = [math]::Round($timeUntilReset, 1)
     }
 
