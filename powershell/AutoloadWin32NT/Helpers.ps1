@@ -238,18 +238,28 @@ function Select-From-List
 
     do
     {
+        # Calculate max widths for proper alignment
+        $maxIndexWidth = ([string]$List.Count).Length
+        $maxVersionWidth = 0
+        if ($Versions) {
+            $maxVersionWidth = ($Versions | Measure-Object -Property Length -Maximum).Maximum
+        }
+
         $x = 0
         foreach ($item in $List)
         {
             $x = $x + 1
-            $OutString  = ""
-            $OutString += "`t[$x] "
+            $indexStr = "[$x]".PadRight($maxIndexWidth + 2)
+
             if ($Versions)
             {
-                $OutString += $Versions[$x - 1] + "`t"
-
+                $versionStr = $Versions[$x - 1].PadRight($maxVersionWidth)
+                $OutString = "`t$indexStr $versionStr `t$item"
             }
-            $OutString += $item
+            else
+            {
+                $OutString = "`t$indexStr $item"
+            }
             Write-Host $OutString
         }
 

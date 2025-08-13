@@ -19,7 +19,6 @@ function java-list-paths
 {
     $javaBases = @(
         'C:\Program Files\Amazon Corretto'
-        'C:\Program Files\Android\jdk\jdk-8.0.302.8-hotspot\'
         'C:\Program Files\Eclipse Adoptium\'
         'C:\Program Files\Java\'
         'C:\Program Files\Microsoft\'
@@ -103,16 +102,22 @@ function java-set
         if (Test-Path $javaBin)
         {
             $validatedPaths += $cup
-            $validatedVersions += $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
+            $javaVersion = $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
+            $javaDistribution = Split-Path (Split-Path $cup -Parent) -Leaf
+            if ($javaDistribution -eq "Java")
+            {
+                $javaDistribution = "Oracle Java"
+            }
+            $validatedVersions += "${javaDistribution} ${javaVersion}"
         }
     }
 
-    ${local:ChoosenJavaVersion} = Select-From-List $validatedPaths "Java Version" $validatedVersions
+    ${local:choosenJavaVersion} = Select-From-List $validatedPaths "Java Version" $validatedVersions
 
-    [Environment]::SetEnvironmentVariable("JAVA_HOME", ${ChoosenJavaVersion}, "Machine")
-    $env:JAVA_HOME = ${ChoosenJavaVersion}
+    [Environment]::SetEnvironmentVariable("JAVA_HOME", ${choosenJavaVersion}, "Machine")
+    $env:JAVA_HOME = ${choosenJavaVersion}
 
-    ${local:javaBinPath} = Join-Path ${ChoosenJavaVersion} "bin"
+    ${local:javaBinPath} = Join-Path ${choosenJavaVersion} "bin"
     $env:PATH = "${javaBinPath};${env:PATH}"
 }
 
@@ -141,13 +146,19 @@ function java-enable
         if (Test-Path $javaBin)
         {
             $validatedPaths += $cup
-            $validatedVersions += $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
+            $javaVersion = $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
+            $javaDistribution = Split-Path (Split-Path $cup -Parent) -Leaf
+            if ($javaDistribution -eq "Java")
+            {
+                $javaDistribution = "Oracle Java"
+            }
+            $validatedVersions += "${javaDistribution} ${javaVersion}"
         }
     }
 
-    ${local:ChoosenJavaVersion} = Select-From-List $validatedPaths "Java Version" $validatedVersions
+    ${local:choosenJavaVersion} = Select-From-List $validatedPaths "Java Version" $validatedVersions
 
-    $env:JAVA_HOME = ${ChoosenJavaVersion}
-    ${local:javaBinPath} = Join-Path ${ChoosenJavaVersion} "bin"
+    $env:JAVA_HOME = ${choosenJavaVersion}
+    ${local:javaBinPath} = Join-Path ${choosenJavaVersion} "bin"
     $env:PATH = "${javaBinPath};${env:PATH}"
 }
