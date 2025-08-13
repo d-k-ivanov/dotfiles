@@ -123,16 +123,3 @@ ${function:cc-ctest-d-filter}  = { ctest --test-dir build/x64-Debug -R @args }
 ${function:cc-ctest-rd}        = { ctest --test-dir build/x64-RelWithDebInfo @args    }
 ${function:cc-ctest-rd-show}   = { ctest --test-dir build/x64-RelWithDebInfo -N       }
 ${function:cc-ctest-rd-filter} = { ctest --test-dir build/x64-RelWithDebInfo -R @args }
-
-function ccc
-{
-    [CmdletBinding()]
-    param([switch] $Shared)
-
-    New-Item build -ItemType Directory -ErrorAction SilentlyContinue
-    Set-Location build
-    dev
-    if ($Shared) { conan_install -Shared } else { conan_install }
-    cmake_gen
-    cmake_build
-}

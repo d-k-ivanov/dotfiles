@@ -67,6 +67,7 @@ function Verify-Elevated
 function Verify-PowershellShortcut
 {
     [CmdletBinding()]
+    [OutputType([System.Boolean])]
     param
     (
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
@@ -88,6 +89,7 @@ function Verify-PowershellShortcut
 function Verify-BashShortcut
 {
     [CmdletBinding()]
+    [OutputType([System.Boolean])]
     param
     (
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
@@ -202,26 +204,6 @@ function Reset-AllBashShortcuts
         "$ENV:USERPROFILE\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar",`
         "$ENV:USERPROFILE\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"`
     ) | ForEach-Object { Reset-BashShortcut $_ }
-}
-
-function Convert-ConsoleColor
-{
-    [CmdletBinding()]
-    param
-    (
-        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
-        [string]$rgb
-    )
-
-    if ($rgb -notmatch '^#[\da-f]{6}$')
-    {
-        write-Error "Invalid color '$rgb' should be in RGB hex format, e.g. #000000"
-        return
-    }
-    $num = [Convert]::ToInt32($rgb.substring(1,6), 16)
-    $bytes = [BitConverter]::GetBytes($num)
-    [Array]::Reverse($bytes, 0, 3)
-    return [BitConverter]::ToInt32($bytes, 0)
 }
 
 function Select-From-List
