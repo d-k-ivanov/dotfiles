@@ -281,7 +281,6 @@ function pyenv-enable
 
 function pyenv-disable
 {
-
     if ($Env:PYENV)
     {
         $Env:PATH = $Env:PATH -replace [regex]::Escape("${Env:PYENV}\bin;"), ''

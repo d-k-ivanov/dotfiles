@@ -73,9 +73,9 @@ color15 = "#b48ead" # Aurora
 disabled = false
 expiration_symbol = "\uf4f4" # 
 force_display = true
-format = "[\\[](color10)[$symbol($profile)( \\($region\\))( \\[$duration\\])]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $profile)( \\($region\\))( \\[$duration\\])]($style)[\\]](color10)"
 style = "bold color13"
-symbol = "\uf0ef " # 
+symbol = "\uf0ef" # 
 
 # [aws.profile_aliases]
 # ap-southeast-2 = "ase2"
@@ -127,9 +127,9 @@ detect_extensions = []
 detect_files = ["CMakeLists.txt", "CMakeCache.txt"]
 detect_folders = []
 disabled = false
-format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 style = "bold color8"
-symbol = "\ue794 " # 
+symbol = "\ue794" # 
 version_format = "${raw}"
 
 [c]
@@ -139,9 +139,9 @@ detect_extensions = ["cpp", "cc", "c", "cxx", "c++", "h", "hpp", "hh", "hxx", "h
 detect_files = [".clang-format", "CMakeLists.txt", "conanfile.txt", "premake5.lua", "vcpkg.json"]
 detect_folders = []
 disabled = false
-format = "[\\[](color10)[$symbol($version(-$name))]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version(-$name))]($style)[\\]](color10)"
 style = "bold color14"
-symbol = "\ue646 "
+symbol = "\ue646"
 version_format = "${raw}"
 
 [directory]
@@ -181,19 +181,19 @@ detect_extensions = []
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
 disabled = true
-format = "[\\[](color10)[$symbol$context]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $context)]($style)[\\]](color10)"
 only_with_files = true
 style = "bold color10"
-symbol = "\uf21f " # 
+symbol = "\uf21f" # 
 
 [git_branch]
 always_show_remote = false
 disabled = false
-format = "[\\[](color10)[$symbol$branch(:$remote_branch)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol $branch(:$remote_branch)]($style)[\\]](color10)"
 ignore_branches = []
 only_attached = true
 style = "bold color15"
-symbol = "\ue0a0 " # 
+symbol = "\ue0a0" # 
 # symbol = "\ueafc " # 
 # symbol = "\uefa0 " # 
 truncation_length = 9223372036854775807
@@ -207,7 +207,7 @@ only_detached = true
 style = "bold color15"
 tag_disabled = false
 tag_max_candidates = 0
-tag_symbol = " \uf02b " # 
+tag_symbol = " \uf02b" # 
 
 [git_state]
 am = "AM"
@@ -254,9 +254,9 @@ detect_extensions = []
 detect_files = ["helmfile.yaml","Chart.yaml"]
 detect_folders = ["k8s"]
 disabled = false
-format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 style = "bold color9"
-symbol = "\uf21a " # 
+symbol = "\uf21a" # 
 version_format = "${raw}"
 
 [hostname]
@@ -274,9 +274,9 @@ detect_extensions = ["java", "class", "jar", "gradle", "clj", "cljc"]
 detect_files = ["pom.xml", "build.gradle.kts", "build.sbt", ".java-version", "deps.edn", "project.clj", "build.boot", ".sdkmanrc"]
 detect_folders = []
 disabled = false
-format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 style = "bold color11"
-symbol = "\uec15 " # 
+symbol = "\uec15" # 
 version_format = "${raw}"
 
 [kubernetes]
@@ -287,9 +287,9 @@ detect_extensions = []
 detect_files = []
 detect_folders = []
 disabled = false
-format = "[\\[](color10)[$symbol$context( \\($namespace\\))]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol $context( \\($namespace\\))]($style)[\\]](color10)"
 style = "bold color5"
-symbol = "\ue81d " # 
+symbol = "\ue81d" # 
 user_aliases = {}
 
 [line_break]
@@ -297,9 +297,9 @@ disabled = false
 
 [memory_usage]
 disabled = false
-format = "[\\[](color10)[$symbol${ram}]($style)[\\]](color10) "
+format = "[\\[](color10)[$symbol ${ram}]($style)[\\]](color10) "
 threshold = -1
-symbol = "\uf2db " # 
+symbol = "\uf2db" # 
 style = 'bold color13'
 
 [nodejs]
@@ -307,10 +307,10 @@ detect_extensions = ["js","mjs","cjs","ts","mts","cts"]
 detect_files = ["package.json",".node-version",".nvmrc","!bunfig.toml","!bun.lock","!bun.lockb"]
 detect_folders = ["node_modules"]
 disabled = false
-format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 not_capable_style = "bold red"
 style = "bold color14"
-symbol = "\ued0d " # 
+symbol = "\ued0d" # 
 version_format = "${raw}"
 
 [os]
@@ -371,9 +371,9 @@ detect_extensions = ["rs"]
 detect_files = ["Cargo.toml"]
 detect_folders = []
 disabled = false
-format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 style = "bold color11"
-symbol = "\ue68b " # 
+symbol = "\ue68b" # 
 version_format = "${raw}"
 
 [status]
@@ -397,9 +397,9 @@ detect_extensions = ["tf","tfplan","tfstate"]
 detect_files = []
 detect_folders = ["aws", "aws/.terraform", ".terraform"]
 disabled = false
-format = "[\\[](color10)[$symbol$version]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 style = "bold #A067DA"
-symbol = "\ue69a " # 
+symbol = "\ue69a" # 
 version_format = "${raw}"
 
 [time]
@@ -426,7 +426,7 @@ detect_extensions = []
 detect_files = ["Vagrantfile"]
 detect_folders = []
 disabled = false
-format = "[\\[](color10)[$symbol($version)]($style)[\\]](color10)"
+format = "[\\[](color10)[$symbol( $version)]($style)[\\]](color10)"
 style = "bold color7"
 symbol = "\ue8d0" # 
 version_format = ""

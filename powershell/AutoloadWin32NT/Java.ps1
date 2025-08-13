@@ -12,12 +12,13 @@ if ($MyInvocation.InvocationName -ne '.')
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
-function Get-JavaList
+function java-list-paths
 {
     $javaBases = @(
+        'C:\Program Files\Amazon Corretto'
         'C:\Program Files\Android\jdk\jdk-8.0.302.8-hotspot\'
         'C:\Program Files\Eclipse Adoptium\'
         'C:\Program Files\Java\'
@@ -32,7 +33,7 @@ function Get-JavaList
     {
         if (Test-Path $javaBase)
         {
-            $((Get-ChildItem $javaBase -filter "*j*" -Directory).FullName | ForEach-Object { $javas += $_ })
+            $((Get-ChildItem $javaBase -Filter "*j*" -Directory).FullName | ForEach-Object { $javas += $_ })
         }
     }
 
@@ -41,16 +42,16 @@ function Get-JavaList
     {
         if (Test-Path $java)
         {
-            $javasValidated  += $java
+            $javasValidated += $java
         }
     }
 
     return $javasValidated
 }
 
-function Find-Java
+function java-list
 {
-    $coffee_cups = Get-JavaList
+    ${local:coffee_cups} = java-list-paths
 
     Write-Host "List of Java Kits on this PC:"
     foreach ($cup in $coffee_cups)
@@ -59,24 +60,94 @@ function Find-Java
 
         if (Test-Path $javaBin)
         {
-            $javaVersion = $($(& "${javaBin}"-version 2>&1 | Select-Object -first 1) -replace '\D+(\d+.\d+.\d+)\D.*','$1')
+            $javaVersion = $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
             Write-Host "- [${javaVersion}]`t-> $cup"
         }
     }
 }
 
-
-function Set-Java
+function java-unset
 {
-    $ChoosenJavaVersion = Select-From-List $(Get-JavaList) "Java path"
-    [Environment]::SetEnvironmentVariable("JAVA_HOME", ${ChoosenJavaVersion}, "Machine")
-    $env:JAVA_HOME = ${ChoosenJavaVersion}
-    $env:PATH = "${env:JAVA_HOME}\bin;${env:PATH}"
+    [Environment]::SetEnvironmentVariable("JAVA_HOME", [NullString]::Value, "User")
+    [Environment]::SetEnvironmentVariable("JAVA_HOME", [NullString]::Value, "Machine")
+
+    if ($Env:JAVA_HOME)
+    {
+        ${local:javaBinPath} = Join-Path $Env:JAVA_HOME "bin"
+
+        $path = [System.Environment]::GetEnvironmentVariable('PATH', 'Machine')
+        $path = $path -replace [regex]::Escape("${javaBinPath};"), ''
+        [System.Environment]::SetEnvironmentVariable('PATH', $path, 'Machine')
+
+        $path = [System.Environment]::GetEnvironmentVariable('PATH', 'User')
+        $path = $path -replace [regex]::Escape("${javaBinPath};"), ''
+        [System.Environment]::SetEnvironmentVariable('PATH', $path, 'User')
+
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${javaBinPath};"), ''
+
+        Remove-Item Env:JAVA_HOME
+    }
 }
 
-function Use-Java
+function java-set
 {
-    $ChoosenJavaVersion = Select-From-List $(Get-JavaList) "Java path"
+    java-unset
+    ${local:coffee_cups} = java-list-paths
+    ${local:validatedPaths} = @()
+    ${local:validatedVersions} = @()
+
+    foreach ($cup in $coffee_cups)
+    {
+        $javaBin = (Join-Path $cup "bin/java.exe")
+
+        if (Test-Path $javaBin)
+        {
+            $validatedPaths += $cup
+            $validatedVersions += $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
+        }
+    }
+
+    ${local:ChoosenJavaVersion} = Select-From-List $validatedPaths "Java Version" $validatedVersions
+
+    [Environment]::SetEnvironmentVariable("JAVA_HOME", ${ChoosenJavaVersion}, "Machine")
     $env:JAVA_HOME = ${ChoosenJavaVersion}
-    $env:PATH = "${env:JAVA_HOME}\bin;${env:PATH}"
+
+    ${local:javaBinPath} = Join-Path ${ChoosenJavaVersion} "bin"
+    $env:PATH = "${javaBinPath};${env:PATH}"
+}
+
+
+function java-disable
+{
+    if ($Env:JAVA_HOME)
+    {
+        ${local:javaBinPath} = Join-Path $Env:JAVA_HOME "bin"
+        $Env:PATH = $Env:PATH -replace [regex]::Escape("${javaBinPath};"), ''
+        Remove-Item Env:JAVA_HOME
+    }
+}
+
+function java-enable
+{
+    java-disable
+    ${local:coffee_cups} = java-list-paths
+    ${local:validatedPaths} = @()
+    ${local:validatedVersions} = @()
+
+    foreach ($cup in $coffee_cups)
+    {
+        $javaBin = (Join-Path $cup "bin/java.exe")
+
+        if (Test-Path $javaBin)
+        {
+            $validatedPaths += $cup
+            $validatedVersions += $($(& "${javaBin}"-version 2>&1 | Select-Object -First 1) -replace '\D+(\d+.\d+.\d+)\D.*', '$1')
+        }
+    }
+
+    ${local:ChoosenJavaVersion} = Select-From-List $validatedPaths "Java Version" $validatedVersions
+
+    $env:JAVA_HOME = ${ChoosenJavaVersion}
+    ${local:javaBinPath} = Join-Path ${ChoosenJavaVersion} "bin"
+    $env:PATH = "${javaBinPath};${env:PATH}"
 }
