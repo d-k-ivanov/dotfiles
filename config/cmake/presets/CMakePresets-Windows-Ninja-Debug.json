@@ -21,6 +21,7 @@
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
         "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
