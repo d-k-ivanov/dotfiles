@@ -16,10 +16,16 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # CMake Presets
-${function:cmake-presets-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-Ninja.json          ${PWD}\CMakePresets.json }
-${function:cmake-presets-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-MSVC-22.json        ${PWD}\CMakePresets.json }
-${function:cmake-presets-rnj} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-RelDebug-Ninja.json ${PWD}\CMakePresets.json }
-${function:cmake-presets-r22} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakePresets-RelDebug-MSVC.json  ${PWD}\CMakePresets.json }
+${function:cmake-presets-22}   = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22.json          ${PWD}\CMakePresets.json }
+${function:cmake-presets-22d}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22-Debug.json    ${PWD}\CMakePresets.json }
+${function:cmake-presets-22r}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22-Release.json  ${PWD}\CMakePresets.json }
+${function:cmake-presets-22rd} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22-RelDebug.json ${PWD}\CMakePresets.json }
+
+${function:cmake-presets-nj}   = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-Ninja.json            ${PWD}\CMakePresets.json }
+${function:cmake-presets-nj2}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-Ninja-v2.json         ${PWD}\CMakePresets.json }
+${function:cmake-presets-njd}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-Ninja-Debug.json      ${PWD}\CMakePresets.json }
+${function:cmake-presets-njr}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-Ninja-Release.json    ${PWD}\CMakePresets.json }
+${function:cmake-presets-njrd} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-Ninja-RelDebug.json   ${PWD}\CMakePresets.json }
 
 # CMake Presets Aliases
 # Set-Alias csp    cmake-presets-nj
@@ -29,12 +35,16 @@ ${function:cmake-presets-r22} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cm
 # Set-Alias cspr22 cmake-presets-r22
 
 # CMake Settings
-${function:cmake-settings-22}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022.json         ${PWD}\CMakeSettings.json }
-${function:cmake-settings-nj}  = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja.json        ${PWD}\CMakeSettings.json }
-${function:cmake-settings-22e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2022-envs.json    ${PWD}\CMakeSettings.json }
-${function:cmake-settings-19e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2019-envs.json    ${PWD}\CMakeSettings.json }
-${function:cmake-settings-17e} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-2017-envs.json    ${PWD}\CMakeSettings.json }
-${function:cmake-settings-nje} = { Copy-Item ${Env:WORKSPACE}\my\dotfiles\data\cmake\CMakeSettings-Ninja-envs.json   ${PWD}\CMakeSettings.json }
+${function:cmake-settings-19}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2019.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-22}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2022.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-nj}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-Ninja.json ${PWD}\CMakeSettings.json }
+
+${function:cmake-settings-envs-17} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2017-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-envs-19} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2019-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-envs-22} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-envs-nj} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-Ninja-envs.json ${PWD}\CMakeSettings.json }
+
+# CMake Settings: with Environments
 
 # CMake Settings Aliases
 # Set-Alias cs    cmake-settings-22
@@ -50,7 +60,7 @@ ${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T Clang
 ${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config"    -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
 # CMake Generator: MSVC Specific versions
-${function:cgen-22-1442}    = { cmake -G "Visual Studio 17 2022" -A x64  -T version=14.42 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-22-1442}    = { cmake -G "Visual Studio 17 2022" -A x64 -T version=14.42 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
 # CMake Generator: Find Vcpkg
 ${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }

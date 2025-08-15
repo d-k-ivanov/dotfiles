@@ -49,6 +49,7 @@ rm -rf "$HOME/.bash_profile"                2> /dev/null
 rm -rf "$HOME/.bash"                        2> /dev/null
 rm -rf "$HOME/.bashrc"                      2> /dev/null
 rm -rf "$HOME/.condarc"                     2> /dev/null
+rm -rf "$HOME/.config/cmake"                2> /dev/null
 rm -rf "$HOME/.config/k9s"                  2> /dev/null
 rm -rf "$HOME/.config/nvim"                 2> /dev/null
 rm -rf "$HOME/.config/starship"             2> /dev/null
@@ -72,13 +73,14 @@ ln -sf "$DOTFILES_DIR/bash_profile"         "$HOME/.profile"
 ln -sf "$DOTFILES_DIR/bash"                 "$HOME/.bash"
 ln -sf "$DOTFILES_DIR/bashrc"               "$HOME/.bashrc"
 ln -sf "$DOTFILES_DIR/condarc"              "$HOME/.condarc"
+ln -sf "$DOTFILES_DIR/config/cmake"         "$HOME/.config/cmake"
+ln -sf "$DOTFILES_DIR/config/k9s"           "$HOME/.config/k9s"
+ln -sf "$DOTFILES_DIR/config/nvim"          "$HOME/.config/nvim"
+ln -sf "$DOTFILES_DIR/config/starship"      "$HOME/.config/starship"
 ln -sf "$DOTFILES_DIR/gdbinit"              "$HOME/.gdbinit"
 ln -sf "$DOTFILES_DIR/gemrc"                "$HOME/.gemrc"
 ln -sf "$DOTFILES_DIR/git.d"                "$HOME/.git.d"
 ln -sf "$DOTFILES_DIR/inputrc"              "$HOME/.inputrc"
-ln -sf "$DOTFILES_DIR/config/k9s"           "$HOME/.config/k9s"
-ln -sf "$DOTFILES_DIR/config/nvim"          "$HOME/.config/nvim"
-ln -sf "$DOTFILES_DIR/config/starship"      "$HOME/.config/starship"
 ln -sf "$DOTFILES_DIR/tmux.conf"            "$HOME/.tmux.conf"
 ln -sf "$DOTFILES_DIR/tmux"                 "$HOME/.tmux"
 ln -sf "$DOTFILES_DIR/vim"                  "$HOME/.vim"

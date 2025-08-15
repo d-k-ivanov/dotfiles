@@ -19,13 +19,13 @@ clion() {
 
 if command -v code-insiders >/dev/null
 then
-    alias icode="code-insiders"
+    alias e="code-insiders"
 else
-    alias icode="code"
+    alias e="code"
 fi
 
-alias ic="icode ."
-alias ww="icode ~/ws/my/workspace"
+alias ee="e ."
+alias ww="e ~/ws/my/workspace"
 
 # alias vss='clion .'
-alias vssp="cp -rf ${WORKSPACE}/my/dotfiles/data/cmake/CMakePresets-Linux-GCC.json ./CMakePresets.json && icode ."
+alias vssp="cp -rf ${WORKSPACE}/my/dotfiles/data/cmake/CMakePresets-Linux-GCC.json ./CMakePresets.json && ee "

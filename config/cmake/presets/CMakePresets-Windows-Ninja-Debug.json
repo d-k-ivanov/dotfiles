@@ -1,0 +1,57 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "Windows-x64-Debug",
+      "displayName": "Debug (x64)",
+      "description": "Debug on Windows (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-Debug",
+      "installDir": "${sourceDir}/install/x64-Debug",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-msvc-x64"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Windows-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Windows-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Windows-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Windows-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ]
+}

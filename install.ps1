@@ -8,15 +8,13 @@ $dotfilesScriptsDir = Join-Path $dotfilesProfileDir "Scripts"
 "DEVELOPMENT" | Out-File ( Join-Path $PSScriptRoot "bash/var.env"    )
 "COMPLEX"     | Out-File ( Join-Path $PSScriptRoot "bash/var.prompt" )
 
-# Cleanup profile
+# Cleanup user profile
 if (Test-Path "${Env:USERPROFILE}\.bash"                    ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.bash"                 , $true) }
 if (Test-Path "${Env:USERPROFILE}\.conan_my"                ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan_my"             , $true) }
 if (Test-Path "${Env:USERPROFILE}\.conan2_my"               ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.conan2_my"            , $true) }
 if (Test-Path "${Env:USERPROFILE}\.git.d"                   ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.git.d"                , $true) }
 if (Test-Path "${Env:USERPROFILE}\.tmux"                    ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.tmux"                 , $true) }
 if (Test-Path "${Env:USERPROFILE}\.vim"                     ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.vim"                  , $true) }
-if (Test-Path "${Env:LOCALAPPDATA}\nvim"                    ) { [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\nvim"                 , $true) }
-if (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User"   ) { [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true) }
 if (Test-Path "${Env:USERPROFILE}\.bash_profile"            ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bash_profile"  -Confirm:$false }
 if (Test-Path "${Env:USERPROFILE}\.bashrc"                  ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.bashrc"        -Confirm:$false }
 if (Test-Path "${Env:USERPROFILE}\.condarc"                 ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.condarc"       -Confirm:$false }
@@ -27,17 +25,23 @@ if (Test-Path "${Env:USERPROFILE}\.profile"                 ) { Remove-Item -For
 if (Test-Path "${Env:USERPROFILE}\.tmux.conf"               ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.tmux.conf"     -Confirm:$false }
 if (Test-Path "${Env:USERPROFILE}\.vimrc"                   ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.vimrc"         -Confirm:$false }
 if (Test-Path "${Env:USERPROFILE}\.wslconfig"               ) { Remove-Item -Force -Recurse   "${Env:USERPROFILE}\.wslconfig"     -Confirm:$false }
+
+# Cleanup application data
+if (Test-Path "${Env:APPDATA}\Sublime Text\Packages\User"   ) { [System.IO.Directory]::Delete("${Env:APPDATA}\Sublime Text\Packages\User", $true) }
 if (Test-Path "${Env:APPDATA}\Greenshot\greenshot-fixed.ini") { Remove-Item -Force -Recurse   "${Env:APPDATA}\Greenshot\greenshot-fixed.ini" -Confirm:$false }
 
-# Making Symlinks
+# Cleanup local application data
+if (Test-Path "${Env:LOCALAPPDATA}\k9s"                     ) { [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\k9s"                  , $true) }
+if (Test-Path "${Env:LOCALAPPDATA}\nvim"                    ) { [System.IO.Directory]::Delete("${Env:LOCALAPPDATA}\nvim"                 , $true) }
+
+
+# Making Symlinks: user profile
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.bash"                     "${PSScriptRoot}\bash"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan_my"                 "${PSScriptRoot}\conan"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.conan2_my"                "${PSScriptRoot}\conan2"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.git.d"                    "${PSScriptRoot}\git.d"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.tmux"                     "${PSScriptRoot}\tmux"
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.vim"                      "${PSScriptRoot}\vim"
-C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\nvim"                     "${PSScriptRoot}\config\nvim"
-C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User"    "${PSScriptRoot}\sublime"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bash_profile"             "${PSScriptRoot}\bash_profile"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.bashrc"                   "${PSScriptRoot}\bashrc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.condarc"                  "${PSScriptRoot}\condarc"
@@ -49,7 +53,14 @@ C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.profile"              
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.tmux.conf"                "${PSScriptRoot}\tmux.conf"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.vimrc"                    "${PSScriptRoot}\vimrc"
 C:\Windows\System32\cmd /c mklink    "${Env:USERPROFILE}\.wslconfig"                "${PSScriptRoot}\wslconfig"
+
+# Making Symlinks: application data
+C:\Windows\System32\cmd /c mklink /d "${Env:APPDATA}\Sublime Text\Packages\User"    "${PSScriptRoot}\sublime"
 C:\Windows\System32\cmd /c mklink    "${Env:APPDATA}\Greenshot\greenshot-fixed.ini" "${PSScriptRoot}\data\Greenshot\greenshot-fixed.ini"
+
+# Making Symlinks: local application data
+C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\k9s"                      "${PSScriptRoot}\config\k9s"
+C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\nvim"                     "${PSScriptRoot}\config\nvim"
 
 if (-Not (Test-Path "${env:USERPROFILE}\.config"))
 {
@@ -59,6 +70,10 @@ if (-Not (Test-Path "${env:USERPROFILE}\.config"))
 # Starship configuration "${env:USERPROFILE}\.config\starship\starship.toml"
 if (Test-Path "${Env:USERPROFILE}\.config\starship" ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.config\starship" , $true) }
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.config\starship" "${PSScriptRoot}\config\starship"
+
+# Cmake Presets
+if (Test-Path "${Env:USERPROFILE}\.config\cmake" ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.config\cmake" , $true) }
+C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.config\cmake" "${PSScriptRoot}\config\cmake"
 
 # Set dot source string to default PS profile for Current User
 if (Test-Path $profile) { Remove-Item -Force -Confirm:$false $profile }

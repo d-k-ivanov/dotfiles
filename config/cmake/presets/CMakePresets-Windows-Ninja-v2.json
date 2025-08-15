@@ -157,10 +157,6 @@
       "configurePreset": "x64-Release-Clang"
     },
     {
-      "name": "x64-Release-Clang",
-      "configurePreset": "x64-Release-Clang"
-    },
-    {
       "name": "x64-RelWithDebInfo-Clang",
       "configurePreset": "x64-RelWithDebInfo-Clang"
     }

@@ -27,17 +27,19 @@ function Get-InstalledApps
 
 if (Test-Path "C:\Program Files\Microsoft VS Code\bin")
 {
-    ${function:icode} = { code.cmd @args }
+    ${function:e} = { code.cmd @args }
     ${function:vscode} = { code.cmd @args }
 }
 elseif (Test-Path "C:\Program Files\Microsoft VS Code Insiders\bin")
 {
-    ${function:icode} = { code-insiders.cmd @args }
+    ${function:e} = { code-insiders.cmd @args }
 }
 elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code Insiders\bin")
 {
-    ${function:icode} = { code-insiders.cmd @args }
+    ${function:e} = { code-insiders.cmd @args }
 }
 
-${function:ic} = { icode . }
-${function:ww} = { icode ${env:WORKSPACE}\my\workspace }
+${function:ee} = { e . }
+${function:ww} = { e ${env:WORKSPACE}\my\workspace }
+
+${function:vssp} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-MSVC-22C.json ${PWD}\CMakePresets.json; e . }

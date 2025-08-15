@@ -1,0 +1,57 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "Windows-x64-Release",
+      "displayName": "Release (x64)",
+      "description": "Release on Windows (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-Release",
+      "installDir": "${sourceDir}/install/x64-Release",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "ENABLE_TESTING": "TRUE"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-msvc-x64"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Windows-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Windows-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Windows-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Windows-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ]
+}

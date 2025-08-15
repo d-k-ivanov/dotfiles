@@ -1,0 +1,138 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "description": "Debug on Linux (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-Debug",
+      "installDir": "${sourceDir}/install/x64-Debug",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_TESTING": "TRUE"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "description": "RelWithDebInfo on Linux (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-RelWithDebInfo",
+      "installDir": "${sourceDir}/install/x64-RelWithDebInfo",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_TESTING": "TRUE"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "description": "Release on Linux (64-bit)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/x64-Release",
+      "installDir": "${sourceDir}/install/x64-Release",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_TESTING": "TRUE"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Linux-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Linux-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Linux-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Linux-x64-Debug",
+      "displayName": "Debug (x64)",
+      "configurePreset": "Linux-x64-Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-RelWithDebInfo",
+      "displayName": "RelWithDebInfo (x64)",
+      "configurePreset": "Linux-x64-RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "Linux-x64-Release",
+      "displayName": "Release (x64)",
+      "configurePreset": "Linux-x64-Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ]
+}

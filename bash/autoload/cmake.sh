@@ -1,27 +1,66 @@
 #!/usr/bin/env bash
 
-alias csp="cp -rf ${WORKSPACE}/my/dotfiles/data/cmake/CMakePresets-Linux-GCC.json ./CMakePresets.json"
+cmake-presets-nj() {
+    cp -rf "${HOME}/config/cmake/presets/CMakePresets-Linux-Ninja.json" $(pwd)/CMakePresets.json
+}
 
-alias cgen-nj="cmake -G Ninja -B build -S "
-alias cgen-nj-d="cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -S "
-alias cgen-nj-r="cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -S "
-alias cgen-nj-rd="cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -S "
+cmake-presets-nj-gcc() {
+    cp -rf "${HOME}/config/cmake/presets/CMakePresets-Linux-Ninja-GCC.json" $(pwd)/CMakePresets.json
+}
 
-alias cgen-nj-multi="cmake -G \"Ninja Multi-Config\" -B build -S "
-alias cgen-nj-multi-d="cmake -G \"Ninja Multi-Config\" -B build -DCMAKE_BUILD_TYPE=Debug -S "
-alias cgen-nj-multi-r="cmake -G \"Ninja Multi-Config\" -B build -DCMAKE_BUILD_TYPE=Release -S "
-alias cgen-nj-multi-rd="cmake -G \"Ninja Multi-Config\" -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -S "
+cmake-presets-nj-clang() {
+    cp -rf "${HOME}/config/cmake/presets/CMakePresets-Linux-Ninja-Clang.json" $(pwd)/CMakePresets.json
+}
+
+cgen-nj() {
+    cmake -G Ninja -B build -S $@
+}
+
+cgen-nj-multi() {
+    cmake -G "Ninja Multi-Config" -B build -S $@
+}
+
+cgen-nj-db() {
+    cmake -G Ninja -B build/x64-Debug -DCMAKE_BUILD_TYPE=Debug -S $@
+}
+
+cgen-nj-rl() {
+    cmake -G Ninja -B build/x64-Release -DCMAKE_BUILD_TYPE=Release -S $@
+}
+
+cgen-nj-rd() {
+    cmake -G Ninja -B build/x64-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
+}
+
+cgen-nj-multi-db() {
+    cmake -G "Ninja Multi-Config" -B build/x64-Debug -DCMAKE_BUILD_TYPE=Debug -S $@
+}
+
+cgen-nj-multi-rl() {
+    cmake -G "Ninja Multi-Config" -B build/x64-Release -DCMAKE_BUILD_TYPE=Release -S $@
+}
+
+cgen-nj-multi-rd() {
+    cmake -G "Ninja Multi-Config" -B build/x64-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
+}
+
+cbuild-db() {
+    cmake --build build/x64-Debug --config Debug $@
+}
+
+cbuild-rl() {
+    cmake --build build/x64-Release --config Release $@
+}
+
+cbuild-rd() {
+    cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo $@
+}
 
 alias cgen=cgen-nj-rd
-
-alias cbuild-d="cmake --build build --config Debug "
-alias cbuild-r="cmake --build build --config Release "
-alias cbuild-rd="cmake --build build --config RelWithDebInfo "
-
 alias cbuild=cbuild-rd
 
-alias cgenbuld-d="cgen-nj-d .   && cbuild-d"
-alias cgenbuld-r="cgen-nj-r .   && cbuild-r"
+alias cgenbuld-db="cgen-nj-db . && cbuild-db"
+alias cgenbuld-rl="cgen-nj-rl . && cbuild-rl"
 alias cgenbuld-rd="cgen-nj-rd . && cbuild-rd"
 
 alias cgenbuld=cgenbuld-rd
