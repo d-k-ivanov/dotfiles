@@ -45,7 +45,9 @@
       "name": "MSVC",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "cl.exe"
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD"
       },
       "toolset": {
         "value": "host=x64",
@@ -56,7 +58,9 @@
       "name": "Clang",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "clang-cl.exe"
+        "CMAKE_CXX_COMPILER": "clang-cl.exe",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD"
       },
       "toolset": {
         "value": "host=x64",
@@ -67,7 +71,9 @@
       "name": "GNUC",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "g++.exe"
+        "CMAKE_CXX_COMPILER": "g++.exe",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD"
       },
       "toolset": {
         "value": "host=x64",

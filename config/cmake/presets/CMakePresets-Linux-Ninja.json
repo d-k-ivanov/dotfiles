@@ -19,6 +19,8 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       }
     },
@@ -40,6 +42,8 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       }
     },
@@ -61,6 +65,8 @@
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       }
     }

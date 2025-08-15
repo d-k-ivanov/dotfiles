@@ -21,6 +21,8 @@
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -49,6 +51,8 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -77,6 +81,8 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -105,6 +111,8 @@
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -141,6 +149,8 @@
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
@@ -177,6 +187,8 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_POLICY_DEFAULT_CMP0153": "OLD",
+        "CMAKE_POLICY_DEFAULT_CMP0167": "OLD",
         "ENABLE_TESTING": "TRUE"
       },
       "vendor": {
