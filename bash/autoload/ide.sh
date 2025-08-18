@@ -19,10 +19,11 @@ clion() {
 
 if command -v code-insiders >/dev/null
 then
-    alias e="code-insiders"
+    alias e="code-insiders "
 else
-    alias e="code"
+    alias e="code "
 fi
+alias icode="e "
 
 alias ee="e ."
 alias ww="e ~/ws/my/workspace"

@@ -38,6 +38,7 @@ elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code I
 {
     ${function:e} = { code-insiders.cmd @args }
 }
+Set-Alias icode e
 
 ${function:ee} = { e . }
 ${function:ww} = { e ${env:WORKSPACE}\my\workspace }
