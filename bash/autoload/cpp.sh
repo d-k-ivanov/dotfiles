@@ -6,13 +6,13 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # export CMAKE_GENERATOR="Ninja Multi-Config"
 # export CMAKE_DEFAULT_BUILD_TYPE=Release
 
-funcion use-gcc()
+function use-gcc()
 {
     export CC=gcc
     export CXX=g++
 }
 
-funcion use-gcc-13()
+function use-gcc-13()
 {
     export CC=gcc-13
     export CXX=g++-13
@@ -90,7 +90,7 @@ function use-clang-18()
     export CXX=clang++-18
 }
 
-clang_format_all()
+function clang_format_all()
 {
     find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
 }
@@ -99,17 +99,17 @@ alias cppck="cppcheck -j8 --enable=all --force "
 alias cppcki="cppck --inline-suppr "
 alias cppckif="cppcki --suppressions-list=cppcheck-suppressions.txt "
 
-cppckxml()
+function cppckxml()
 {
     cppck --xml --xml-version=2 $@ 2>cppcheck.xml
 }
 
-cppckixml()
+function cppckixml()
 {
     cppcki --xml --xml-version=2 $@ 2>cppcheck.xml
 }
 
-cppckifxml()
+function cppckifxml()
 {
     cppckif --xml --xml-version=2 $@ 2>cppcheck.xml
 }
