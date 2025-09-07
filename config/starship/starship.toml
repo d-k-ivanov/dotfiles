@@ -353,14 +353,15 @@ Void = "\uf32e" # 
 Windows = "\uf17a" # 
 
 [python]
-detect_env_vars = ["VIRTUAL_ENV"]
+# detect_env_vars = ["VIRTUAL_ENV"]
+detect_env_vars = ["VIRTUAL_ENV", "PYENV"]
 detect_extensions = ["py", "ipynb"]
 detect_files = ["requirements.txt", ".python-version", "pyproject.toml", "Pipfile", "tox.ini", "setup.py", "__init__.py"]
 detect_folders = []
 disabled = false
 format = "[\\[](color10)[${symbol}${pyenv_prefix}( ${version})( \\($virtualenv\\))]($style)[\\]](color10)"
 pyenv_prefix = ""
-pyenv_version_name = false
+pyenv_version_name = true
 python_binary = [["python"],["python2"],["python3"]]
 style = "bold color13"
 symbol = "\ue73c" # 
