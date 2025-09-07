@@ -299,16 +299,16 @@ function get_repo_with_target
         $scheme = python -c "from urllib.parse import urlparse; uri='$($args[0])'; result = urlparse(uri); print(result.scheme)"
         if ($scheme -eq "https")
         {
-            $target = python -c "from urllib.parse import urlparse; import os.path; uri='$($args[0])'; result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.basename(path[0]) + '-' + os.path.dirname(path[0]))"
+            $target = python -c "from urllib.parse import urlparse; import os.path; uri='$($args[0])'; result = urlparse(uri); path = os.path.splitext(result.path.strip('/')); print(os.path.dirname(path[0]) + '-' + os.path.basename(path[0]))"
         }
         else
         {
-            $target = python -c "from urllib.parse import urlparse; import os.path; uri='$($args[0])'; result = urlparse(uri); path = os.path.splitext(result.path.split(':', 1)[-1]); print(os.path.basename(path[0]) + '-' + os.path.dirname(path[0]))"
+            $target = python -c "from urllib.parse import urlparse; import os.path; uri='$($args[0])'; result = urlparse(uri); path = os.path.splitext(result.path.split(':', 1)[-1]); print(os.path.dirname(path[0]) + '-' + os.path.basename(path[0]))"
         }
         git clone --recurse-submodules "$($args[0])" "$target"
     }
 }
-${function:grt} = { get_repo_with_target @args }
+${function:gcrt} = { get_repo_with_target @args }
 
 function git_archive_repo
 {
