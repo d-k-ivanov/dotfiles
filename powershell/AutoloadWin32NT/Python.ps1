@@ -18,8 +18,14 @@ if ($MyInvocation.InvocationName -ne '.')
 ${function:vc} = { python -m venv venv }
 ${function:vc3} = { python -m venv venv }
 ${function:va} = { .\venv\Scripts\activate }
-${function:vd} = { deactivate }
 ${function:vr} = { rmrf venv }
+
+${function:vcd} = { python -m venv .venv }
+${function:vc3d} = { python -m venv .venv }
+${function:vad} = { .\.venv\Scripts\activate }
+${function:vrd} = { rmrf .venv }
+
+${function:vd} = { deactivate }
 ${function:vpi} = { python -m pip install }
 ${function:vpip} = { python -m pip install --upgrade pip }
 ${function:vgen} = { python -m pip freeze > .\requirements.txt }

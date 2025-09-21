@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
 alias vc='python -m venv venv'
-alias vc3='python3 -m venv venv'
 alias vc2='python2 -m virtualenv -p $(which python2) venv'
+alias vc3='python3 -m venv venv'
 alias va='source ./venv/bin/activate'
-alias vd='deactivate'
 alias vr='rm -rf ./venv'
+
+alias vcd='python -m venv .venv'
+alias vc2d='python2 -m virtualenv -p $(which python2) .venv'
+alias vc3d='python3 -m venv .venv'
+alias vad='source ./.venv/bin/activate'
+alias vrd='rm -rf ./.venv'
+
+alias vd='deactivate'
 alias vpi='python -m pip install'
 alias vpip='python -m pip install --upgrade pip'
 alias vgen='python -m pip freeze > requirements.txt'
