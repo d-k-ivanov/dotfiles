@@ -221,7 +221,7 @@ function ugr
     $dir = Get-Location
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
-        Set-Location $_.FullName
+        cd $_.FullName
         if ($Options -match '\S')
         {
             git pull $Options
@@ -233,7 +233,7 @@ function ugr
         }
     }
 
-    Set-Location $dir
+    cd $dir
 }
 
 function ugrf
@@ -247,7 +247,7 @@ function ugrf
     $dir = Get-Location
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
-        Set-Location $_.FullName
+        cd $_.FullName
         if ($Options -match '\S')
         {
             git fetch $Options
@@ -259,7 +259,7 @@ function ugrf
         }
     }
 
-    Set-Location $dir
+    cd $dir
 }
 
 function ugrs
@@ -270,8 +270,8 @@ function ugrs
         [string]$Options = ""
     )
     $dir = Get-Location
-    Get-ChildItem @args -Directory | ForEach-Object { Set-Location $_.FullName; ugr $Options }
-    Set-Location $dir
+    Get-ChildItem @args -Directory | ForEach-Object { cd $_.FullName; ugr $Options }
+    cd $dir
 }
 
 function ugrfs
@@ -282,8 +282,8 @@ function ugrfs
         [string]$Options = ""
     )
     $dir = Get-Location
-    Get-ChildItem @args -Directory | ForEach-Object { Set-Location $_.FullName; ugrf $Options }
-    Set-Location $dir
+    Get-ChildItem @args -Directory | ForEach-Object { cd $_.FullName; ugrf $Options }
+    cd $dir
 }
 
 function get_repo_with_target
@@ -360,14 +360,14 @@ function Move-GitRepo
 
     Invoke-Expression "git clone --mirror $From $SessionID"
     $RepoDir = (Join-Path $env:Temp $SessionID)
-    Set-Location $RepoDir
+    cd $RepoDir
     Invoke-Expression "git push --mirror $To"
-    Set-Location $env:Temp
+    cd $env:Temp
     Remove-Item -Force -ErrorAction SilentlyContinue "$TempDir"
 }
 
 # TMP Get Chef cookbook
-# ${function:get_cbk} = { if (Test-Path "${Env:WORKSPACE}/Chef/cookbooks"){ Set-Location "${Env:WORKSPACE}/Chef/cookbooks"; git clone "gitolite@git.domain.com:chef/cookbooks/$($args[0].ToString()).git"; Set-Location "$($args[0].ToString())" } }
+# ${function:get_cbk} = { if (Test-Path "${Env:WORKSPACE}/Chef/cookbooks"){ cd "${Env:WORKSPACE}/Chef/cookbooks"; git clone "gitolite@git.domain.com:chef/cookbooks/$($args[0].ToString()).git"; cd "$($args[0].ToString())" } }
 
 function Set-GitVerbosity
 {

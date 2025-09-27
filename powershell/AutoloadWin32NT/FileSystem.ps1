@@ -29,41 +29,43 @@ ${function:cd} = {
         Set-Location @args
     }
     $env:PWD = Get-Location
+    # Set window title to current folder name
+    $host.UI.RawUI.WindowTitle = (Split-Path -Leaf -Path ${Env:PWD})
 }
 
 # Easier Navigation: .., ..., ...., ....., and ~
-${function:~} = { Set-Location ~ }
+${function:~} = { cd ~ }
 # PoSh won't allow ${function:..} because of an invalid path error, so...
-${function:Set-ParentLocation} = { Set-Location .. }; Set-Alias ".." Set-ParentLocation
-${function:...}     = { Set-Location ..\..             }
-${function:....}    = { Set-Location ..\..\..          }
-${function:.....}   = { Set-Location ..\..\..\..       }
-${function:......}  = { Set-Location ..\..\..\..\..    }
-${function:.......} = { Set-Location ..\..\..\..\..\.. }
+${function:Set-ParentLocation} = { cd .. }; Set-Alias ".." Set-ParentLocation
+${function:...}     = { cd ..\..             }
+${function:....}    = { cd ..\..\..          }
+${function:.....}   = { cd ..\..\..\..       }
+${function:......}  = { cd ..\..\..\..\..    }
+${function:.......} = { cd ..\..\..\..\..\.. }
 
 # Navigation Shortcuts
-${function:drop}    = { Set-Location ${env:MY_DROPBOX}                                  }
-${function:desk}    = { Set-Location ~\Desktop                                          }
-${function:docs}    = { Set-Location ~\Documents                                        }
-${function:down}    = { Set-Location ~\Downloads                                        }
-${function:ws}      = { Set-Location ${Env:WORKSPACE}                                   }
-${function:wsm}     = { Set-Location ${Env:WORKSPACE}\my                                }
-${function:wsdf}    = { Set-Location ${Env:WORKSPACE}\my\dotfiles                       }
-${function:wsdfb}   = { Set-Location ${Env:WORKSPACE}\my\dotfiles-bin                   }
-${function:wsdfp}   = { Set-Location ${Env:WORKSPACE}\my\dotfiles-private               }
-${function:wsdsc}   = { Set-Location ${Env:WORKSPACE}\my\workstations\windows           }
-${function:wsconf}  = { Set-Location ${Env:WORKSPACE}\my\workstations\windows           }
-${function:wsmisc}  = { Set-Location ${Env:WORKSPACE}\misc                              }
-${function:wst}     = { Set-Location ${Env:WORKSPACE}\tmp                               }
-${function:wsue}    = { Set-Location ${Env:WORKSPACE}\ue                                }
-${function:wsv}     = { Set-Location ${Env:WORKSPACE}\vcpkg                             }
-${function:wsws}    = { Set-Location ${env:WORKSPACE}\my\workspace                      }
+${function:drop}    = { cd ${env:MY_DROPBOX}                                  }
+${function:desk}    = { cd ~\Desktop                                          }
+${function:docs}    = { cd ~\Documents                                        }
+${function:down}    = { cd ~\Downloads                                        }
+${function:ws}      = { cd ${Env:WORKSPACE}                                   }
+${function:wsm}     = { cd ${Env:WORKSPACE}\my                                }
+${function:wsdf}    = { cd ${Env:WORKSPACE}\my\dotfiles                       }
+${function:wsdfb}   = { cd ${Env:WORKSPACE}\my\dotfiles-bin                   }
+${function:wsdfp}   = { cd ${Env:WORKSPACE}\my\dotfiles-private               }
+${function:wsdsc}   = { cd ${Env:WORKSPACE}\my\workstations\windows           }
+${function:wsconf}  = { cd ${Env:WORKSPACE}\my\workstations\windows           }
+${function:wsmisc}  = { cd ${Env:WORKSPACE}\misc                              }
+${function:wst}     = { cd ${Env:WORKSPACE}\tmp                               }
+${function:wsue}    = { cd ${Env:WORKSPACE}\ue                                }
+${function:wsv}     = { cd ${Env:WORKSPACE}\vcpkg                             }
+${function:wsws}    = { cd ${env:WORKSPACE}\my\workspace                      }
 
 ${function:case-sensitive-enable}  = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
 ${function:case-sensitive-disable} = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
 
 # Create a new directory and enter it
-function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; Set-Location $path}
+function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; cd $path}
 Set-Alias mkd New-DirectoryAndSet
 
 function Get-DuList

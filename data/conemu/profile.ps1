@@ -15,11 +15,11 @@ if (! $ENV:CMDER_ROOT )
 {
     if ( $ENV:ConEmuDir )
     {
-        $ENV:CMDER_ROOT = resolve-path( $ENV:ConEmuDir + "\..\.." )
+        $ENV:CMDER_ROOT = Resolve-Path( $ENV:ConEmuDir + "\..\.." )
     }
     else
     {
-        $ENV:CMDER_ROOT = resolve-path( $PSScriptRoot + "\.." )
+        $ENV:CMDER_ROOT = Resolve-Path( $PSScriptRoot + "\.." )
     }
 }
 
@@ -34,7 +34,7 @@ function checkGit($Path)
         Write-VcsStatus
         return
     }
-    $SplitPath = split-path $path
+    $SplitPath = Split-Path $path
     if ($SplitPath)
     {
         checkGit($SplitPath)
@@ -46,12 +46,12 @@ function checkGit($Path)
 # cmder.exe setting this variable due to a commandline argument or a "cmder here"
 if ( $ENV:CMDER_START )
 {
-    Set-Location -Path "$ENV:CMDER_START"
+    cd -Path "$ENV:CMDER_START"
 }
 
 if (Get-Module PSReadline -ErrorAction "SilentlyContinue")
 {
-    Set-PSReadlineOption -ExtraPromptLineCount 1
+    Set-PSReadLineOption -ExtraPromptLineCount 1
 }
 
 # Enhance Path
@@ -67,7 +67,7 @@ $env:Path = "$Env:CMDER_ROOT\bin;$env:Path;$Env:CMDER_ROOT"
 [ScriptBlock]$PostPrompt = {}
 [ScriptBlock]$CmderPrompt = {
     $Host.UI.RawUI.ForegroundColor = "White"
-    Microsoft.PowerShell.Utility\Write-Host $pwd.ProviderPath -NoNewLine -ForegroundColor Green
+    Microsoft.PowerShell.Utility\Write-Host $pwd.ProviderPath -NoNewline -ForegroundColor Green
     checkGit($pwd.ProviderPath)
 }
 
@@ -78,11 +78,11 @@ Custom prompt functions are loaded in as constants to get the same behaviour
 #>
 [ScriptBlock]$Prompt = {
     $realLASTEXITCODE = $LASTEXITCODE
-    Microsoft.PowerShell.Utility\Write-Host "[$realLASTEXITCODE] " -NoNewLine -ForegroundColor "Yellow"
+    Microsoft.PowerShell.Utility\Write-Host "[$realLASTEXITCODE] " -NoNewline -ForegroundColor "Yellow"
     $host.UI.RawUI.WindowTitle = Microsoft.PowerShell.Management\Split-Path $pwd.ProviderPath -Leaf
     PrePrompt | Microsoft.PowerShell.Utility\Write-Host -NoNewline
     CmderPrompt
-    Microsoft.PowerShell.Utility\Write-Host "`nλ " -NoNewLine -ForegroundColor "DarkGray"
+    Microsoft.PowerShell.Utility\Write-Host "`nλ " -NoNewline -ForegroundColor "DarkGray"
     PostPrompt | Microsoft.PowerShell.Utility\Write-Host -NoNewline
     $global:LASTEXITCODE = $realLASTEXITCODE
     return " "

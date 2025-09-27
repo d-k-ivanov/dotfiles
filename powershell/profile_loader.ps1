@@ -1,6 +1,9 @@
 #!/usr/bin/env powershell
 # Set-PSDebug -Trace 0
 
+# Set console title to current directory
+$host.UI.RawUI.WindowTitle = (Split-Path -Leaf -Path (Get-Location).Path)
+
 $dotfilesProfileDir = Join-Path $PSScriptRoot "powershell"
 $dotfilesModulesDir = Join-Path $PSScriptRoot "Modules"
 $dotfilesScriptsDir = Join-Path $PSScriptRoot "Scripts"

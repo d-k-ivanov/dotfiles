@@ -196,7 +196,7 @@ function ceg
 {
     if ( Test-Path "${conan_env_path}" )
     {
-        Set-Location "${conan_env_path}"
+        cd "${conan_env_path}"
     }
 }
 Set-Alias cenv_go ceg

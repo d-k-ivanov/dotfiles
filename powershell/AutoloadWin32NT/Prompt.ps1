@@ -15,6 +15,11 @@ if ($MyInvocation.InvocationName -ne '.')
     exit
 }
 
+if (Get-Module PSReadline -ErrorAction "SilentlyContinue")
+{
+    Set-PSReadLineOption -ExtraPromptLineCount 1
+}
+
 if (Get-Command starship -ErrorAction SilentlyContinue | Test-Path)
 {
     if (Test-Path "${env:USERPROFILE}\.config\starship\starship.toml")
@@ -25,11 +30,6 @@ if (Get-Command starship -ErrorAction SilentlyContinue | Test-Path)
 }
 else
 {
-    if (Get-Module PSReadline -ErrorAction "SilentlyContinue")
-    {
-        Set-PSReadLineOption -ExtraPromptLineCount 1
-    }
-
     function CheckGit($Path)
     {
         if (Test-Path -Path (Join-Path $Path '.git'))
@@ -150,6 +150,4 @@ else
     Set-Item -Path function:\GitPrompt      -Value $GitPrompt
     Set-Item -Path function:\ExecutionTime  -Value $ExecutionTime
     Set-Item -Path function:\Prompt         -Value $Prompt
-
 }
-

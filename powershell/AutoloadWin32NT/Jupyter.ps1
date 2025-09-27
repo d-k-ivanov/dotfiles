@@ -44,7 +44,7 @@ function jpinstall
         python -m venv $jenvDir
     }
 
-    # Set-Location $jenvDir
+    # cd $jenvDir
     & $jenvDir\Scripts\activate.ps1
     python -m pip install --upgrade pip
     python -m pip install --upgrade autopep8
@@ -95,7 +95,7 @@ function jpactivate
         jpinstall
     }
 
-    # Set-Location $jenvDir
+    # cd $jenvDir
     & $jenvDir\Scripts\activate.ps1
 }
 Set-Alias jj jpactivate

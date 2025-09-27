@@ -259,7 +259,7 @@ function Rename-GitHub-Origin
     $dir = Get-Location
     Get-ChildItem $dir -Directory | ForEach-Object {
         Write-Host $_.FullName
-        Set-Location $_.FullName
+        cd $_.FullName
         $oldRemote = git config --get remote.origin.url
         Write-Host "Old remote:"
         git remote -v
@@ -272,5 +272,5 @@ function Rename-GitHub-Origin
         git remote -v
         Write-Host "------------------------------------------------------------"
     }
-    Set-Location $dir
+    cd $dir
 }
