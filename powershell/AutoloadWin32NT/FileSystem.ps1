@@ -30,6 +30,7 @@ ${function:cd} = {
     }
     $env:PWD = Get-Location
     # Set window title to current folder name
+    # $host.UI.RawUI.WindowTitle = (Get-Location).Path
     $host.UI.RawUI.WindowTitle = (Split-Path -Leaf -Path ${Env:PWD})
 }
 
