@@ -242,6 +242,51 @@ alias ugrs='root=${PWD}; for dir in `ls`; do cd "${root}/${dir}" && ugr; done'
 alias gex='mono GitExtensions.exe browse'
 alias ginfo='ssh gitolite@git info' # Gitolite list repos
 
+git-fetch-all-branches() {
+    git branch -r | grep -v '\->' | while read remote; do
+        # Remove ANSI escape sequences and whitespace
+        remote=$(echo "$remote" | sed 's/\x1B\[[0-9;]*[a-zA-Z]//g' | xargs)
+        branchName=$(echo "$remote" | sed 's/^origin\///')
+
+        # Check if local branch already exists
+        if ! git branch --list "$branchName" | grep -q "$branchName"; then
+            git branch --track "$branchName" "$remote"
+        else
+            # Set upstream for existing branch if not already set
+            if ! git rev-parse --abbrev-ref "$branchName@{upstream}" >/dev/null 2>&1; then
+                git branch --set-upstream-to="$remote" "$branchName"
+            fi
+        fi
+    done
+    git fetch --all
+}
+
+git-fetch-all-branches-recursively() {
+    local path="${1:-.}"
+    local depth="${2:-0}"
+    local current_dir=$(pwd)
+
+    if [ "$depth" -eq 0 ]; then
+        # If depth is 0, search all subdirectories
+        find "$path" -type d -name ".git" | while read -r git_dir; do
+            repo_dir=$(dirname "$git_dir")
+            echo "# $repo_dir"
+            cd "$repo_dir"
+            git-fetch-all-branches
+        done
+    else
+        # If depth is specified, limit the search depth
+        find "$path" -maxdepth "$depth" -type d -name ".git" | while read -r git_dir; do
+            repo_dir=$(dirname "$git_dir")
+            echo "# $repo_dir"
+            cd "$repo_dir"
+            git-fetch-all-branches
+        done
+    fi
+
+    cd "$current_dir"
+}
+
 git-verbose() {
     if [ -z "${1}" ] || [ ${3} ]; then
         echo "ERROR: Wrong operation...."

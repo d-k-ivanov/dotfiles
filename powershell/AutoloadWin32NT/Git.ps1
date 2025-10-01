@@ -310,6 +310,48 @@ function get_repo_with_target
 }
 ${function:gcrt} = { get_repo_with_target @args }
 
+function git-fetch-all-branches
+{
+    git branch -r |
+    Where-Object { $_ -notmatch '\->' } | ForEach-Object {
+        $remote = $_.Trim() -replace '\x1B\[[0-9;]*[a-zA-Z]', ''
+        $branchName = $remote -replace '^origin/', ''
+
+        # Check if local branch already exists
+        $existingBranch = git branch --list $branchName
+        if (-not $existingBranch) {
+            git branch --track $branchName $remote
+        } else {
+            # Set upstream for existing branch if not already set
+            $upstreamInfo = git rev-parse --abbrev-ref $branchName@{upstream} 2>$null
+            if (-not $upstreamInfo) {
+                git branch --set-upstream-to=$remote $branchName
+            }
+        }
+    }
+    git fetch --all
+}
+
+function git-fetch-all-branches-recursively
+{
+    param
+    (
+        [string] $Path = ".",
+        [string] $Depth = "0"
+    )
+    $dir = Get-Location
+    Get-ChildItem -Path $Path -Depth $Depth -Directory | ForEach-Object {
+        if (Test-Path -Path $(Join-Path $_.FullName ".git"))
+        {
+            Write-Output "# $($_.FullName)"
+            # Get-Item $_.FullName/.. | Split-Path -Leaf | Write-Output
+            cd $_.FullName
+            git-fetch-all-branches
+        }
+    }
+    cd $dir
+}
+
 function git_archive_repo
 {
     if (-not $args[0])
