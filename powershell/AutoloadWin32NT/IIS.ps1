@@ -24,10 +24,10 @@ function Start-IISExpress
         [String] $path = (Get-Location).Path,
         [Int32]  $port = 3000
     )
-    if ((Test-Path "${env:ProgramFiles}\IIS Express\iisexpress.exe") -or (Test-Path "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"))
+    if ((Test-Path "${Env:ProgramFiles}\IIS Express\iisexpress.exe") -or (Test-Path "${Env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"))
     {
-        $iisExpress = Resolve-Path "${env:ProgramFiles}\IIS Express\iisexpress.exe" -ErrorAction SilentlyContinue
-        if (-Not $iisExpress) { $iisExpress = Get-Item "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe" }
+        $iisExpress = Resolve-Path "${Env:ProgramFiles}\IIS Express\iisexpress.exe" -ErrorAction SilentlyContinue
+        if (-Not $iisExpress) { $iisExpress = Get-Item "${Env:ProgramFiles(x86)}\IIS Express\iisexpress.exe" }
         & $iisExpress @("/path:${path}") /port:$port
     }
     else

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-if command -v starship >/dev/null 2>&1; then
+if [[ -n "$VSCODE_INJECTION" ]] || [[ "$TERM_PROGRAM" == "vscode" ]] || [[ -n "$VSCODE_PID" ]]; then
+    export IS_IN_VSCODE=1
+fi
+
+if [ -z "$IS_IN_VSCODE" ] && command -v starship >/dev/null 2>&1; then
     if [ -f "$HOME/.config/starship/starship.toml" ]; then
         export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
     fi

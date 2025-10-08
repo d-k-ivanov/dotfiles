@@ -20,11 +20,15 @@ if (Get-Module PSReadline -ErrorAction "SilentlyContinue")
     Set-PSReadLineOption -ExtraPromptLineCount 1
 }
 
-if (Get-Command starship -ErrorAction SilentlyContinue | Test-Path)
+if ($Env:VSCODE_INJECTION -or $Env:TERM_PROGRAM -eq "vscode" -or $Env:VSCODE_PID) {
+    $Env:IS_IN_VSCODE = "1"
+}
+
+if (-Not $Env:IS_IN_VSCODE -And (Get-Command starship -ErrorAction SilentlyContinue | Test-Path))
 {
-    if (Test-Path "${env:USERPROFILE}\.config\starship\starship.toml")
+    if (Test-Path "${Env:USERPROFILE}\.config\starship\starship.toml")
     {
-        $Env:STARSHIP_CONFIG = "${env:USERPROFILE}\.config\starship\starship.toml"
+        $Env:STARSHIP_CONFIG = "${Env:USERPROFILE}\.config\starship\starship.toml"
     }
     Invoke-Expression (& 'starship' init powershell --print-full-init | Out-String)
 }

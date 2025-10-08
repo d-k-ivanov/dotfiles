@@ -85,7 +85,7 @@ filter __eksctl_escapeStringWithSpecialChars {
 
     __eksctl_debug "Calling $RequestComp"
     # First disable ActiveHelp which is not supported for Powershell
-    ${env:EKSCTL_ACTIVE_HELP}=0
+    ${Env:EKSCTL_ACTIVE_HELP}=0
 
     #call the command store the output in $out and redirect stderr and stdout to null
     # $Out is an array contains each line per element

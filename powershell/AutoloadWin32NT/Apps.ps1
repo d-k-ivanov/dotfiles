@@ -34,7 +34,7 @@ elseif (Test-Path "C:\Program Files\Microsoft VS Code Insiders\bin")
 {
     ${function:e} = { code-insiders.cmd @args }
 }
-elseif (Test-Path "${env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code Insiders\bin")
+elseif (Test-Path "${Env:USERPROFILE}\AppData\Local\Programs\Microsoft VS Code Insiders\bin")
 {
     ${function:e} = { code-insiders.cmd @args }
 }
@@ -42,6 +42,6 @@ Set-Alias icode e
 
 ${function:ee} = { e . }
 ${function:eed} = { e ${Env:MY_ONEDRIVE}\Desktop }
-${function:ww} = { e ${env:WORKSPACE}\my\workspace }
+${function:ww} = { e ${Env:WORKSPACE}\my\workspace }
 
 ${function:vssp} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-MSVC-22C.json ${PWD}\CMakePresets.json; e . }

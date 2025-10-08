@@ -20,7 +20,7 @@ function Set-DropboxLocation
     $StorageLocations = @(
         "C:\Dropbox"
         "D:\Dropbox"
-        "${env:USERPROFILE}\Dropbox"
+        "${Env:USERPROFILE}\Dropbox"
     )
 
     $StorageLocationsValidated = @()
@@ -42,7 +42,7 @@ function Set-OneDriveLocation
     $StorageLocations = @(
         "C:\OneDrive"
         "D:\OneDrive"
-        "${env:USERPROFILE}\OneDrive"
+        "${Env:USERPROFILE}\OneDrive"
     )
 
     $StorageLocationsValidated = @()

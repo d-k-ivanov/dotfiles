@@ -45,7 +45,7 @@ ${function:......}  = { cd ..\..\..\..\..    }
 ${function:.......} = { cd ..\..\..\..\..\.. }
 
 # Navigation Shortcuts
-${function:drop}    = { cd ${env:MY_DROPBOX}                                  }
+${function:drop}    = { cd ${Env:MY_DROPBOX}                                  }
 ${function:desk}    = { cd ~\Desktop                                          }
 ${function:docs}    = { cd ~\Documents                                        }
 ${function:down}    = { cd ~\Downloads                                        }
@@ -60,7 +60,7 @@ ${function:wsmisc}  = { cd ${Env:WORKSPACE}\misc                              }
 ${function:wst}     = { cd ${Env:WORKSPACE}\tmp                               }
 ${function:wsue}    = { cd ${Env:WORKSPACE}\ue                                }
 ${function:wsv}     = { cd ${Env:WORKSPACE}\vcpkg                             }
-${function:wsws}    = { cd ${env:WORKSPACE}\my\workspace                      }
+${function:wsws}    = { cd ${Env:WORKSPACE}\my\workspace                      }
 
 ${function:case-sensitive-enable}  = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
 ${function:case-sensitive-disable} = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }

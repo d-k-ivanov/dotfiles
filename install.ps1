@@ -62,12 +62,12 @@ C:\Windows\System32\cmd /c mklink    "${Env:APPDATA}\Greenshot\greenshot-fixed.i
 C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\k9s"                      "${PSScriptRoot}\config\k9s"
 C:\Windows\System32\cmd /c mklink /d "${Env:LOCALAPPDATA}\nvim"                     "${PSScriptRoot}\config\nvim"
 
-if (-Not (Test-Path "${env:USERPROFILE}\.config"))
+if (-Not (Test-Path "${Env:USERPROFILE}\.config"))
 {
-    New-Item -ItemType Directory -Path "${env:USERPROFILE}\.config" | Out-Null
+    New-Item -ItemType Directory -Path "${Env:USERPROFILE}\.config" | Out-Null
 }
 
-# Starship configuration "${env:USERPROFILE}\.config\starship\starship.toml"
+# Starship configuration "${Env:USERPROFILE}\.config\starship\starship.toml"
 if (Test-Path "${Env:USERPROFILE}\.config\starship" ) { [System.IO.Directory]::Delete("${Env:USERPROFILE}\.config\starship" , $true) }
 C:\Windows\System32\cmd /c mklink /d "${Env:USERPROFILE}\.config\starship" "${PSScriptRoot}\config\starship"
 

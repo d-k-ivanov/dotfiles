@@ -21,9 +21,9 @@ $Env:VCPKG_DISABLE_METRICS = 1
 function Get-VCPKGList
 {
     $Directories = @(
-        "${env:WORKSPACE}\vcpkg"
-        "${env:WORKSPACE}\vcpkg-cc"
-        "${env:WORKSPACE}\vcpkg-gh"
+        "${Env:WORKSPACE}\vcpkg"
+        "${Env:WORKSPACE}\vcpkg-cc"
+        "${Env:WORKSPACE}\vcpkg-gh"
         "c:\j\v"
         "c:\v"
         "d:\v"

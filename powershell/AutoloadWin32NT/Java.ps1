@@ -364,7 +364,7 @@ function java-set
     $env:JAVA_HOME = ${choosenJavaVersion}
 
     ${local:javaBinPath} = Join-Path ${choosenJavaVersion} "bin"
-    $env:PATH = "${javaBinPath};${env:PATH}"
+    $env:PATH = "${javaBinPath};${Env:PATH}"
 }
 
 
@@ -385,5 +385,5 @@ function java-enable
 
     $env:JAVA_HOME = ${choosenJavaVersion}
     ${local:javaBinPath} = Join-Path ${choosenJavaVersion} "bin"
-    $env:PATH = "${javaBinPath};${env:PATH}"
+    $env:PATH = "${javaBinPath};${Env:PATH}"
 }
