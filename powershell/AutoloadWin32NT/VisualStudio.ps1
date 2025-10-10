@@ -52,7 +52,10 @@ foreach ($InstallPath in $InstallPaths)
         ${function:dev64}       = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
 
         # Defined compilers
-        # ${function:dev1442}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments -arch=x64 -vcvars_ver=14.42 @args }
+        # ${function:devXXXX}   = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=$targetArch -host_arch=$hostArch -winsdk=$WindowsTargetPlatformVersion -vcvars_ver=$VcVersion -app_platform=$WindowsTarget" @args }
+        ${function:dev1440}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.40"  @args }
+        ${function:dev1442}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.42"  @args }
+        ${function:dev1444}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.44"  @args }
 
         $ENV:VSDevEnv = "True"
         break
