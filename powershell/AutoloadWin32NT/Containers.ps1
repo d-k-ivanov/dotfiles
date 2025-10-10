@@ -55,6 +55,12 @@ function Set-ContainerEngine
     Set-Item -Path Env:CONTAINER_ENGINE_PATH -Value "$ChoosenVersion"
 }
 
+function Unset-ContainerEngine
+{
+    [Environment]::SetEnvironmentVariable("CONTAINER_ENGINE_PATH", $null, "Machine")
+    Remove-Item -Path Env:CONTAINER_ENGINE_PATH -ErrorAction SilentlyContinue
+}
+
 # Docker
 if (Get-Command docker.exe -ErrorAction SilentlyContinue | Test-Path)
 {
