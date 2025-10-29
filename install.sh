@@ -77,7 +77,6 @@ ln -sf "$DOTFILES_DIR/config/cmake"         "$HOME/.config/cmake"
 ln -sf "$DOTFILES_DIR/config/k9s"           "$HOME/.config/k9s"
 ln -sf "$DOTFILES_DIR/config/nvim"          "$HOME/.config/nvim"
 ln -sf "$DOTFILES_DIR/config/starship"      "$HOME/.config/starship"
-ln -sf "$DOTFILES_DIR/gdbinit"              "$HOME/.gdbinit"
 ln -sf "$DOTFILES_DIR/gemrc"                "$HOME/.gemrc"
 ln -sf "$DOTFILES_DIR/git.d"                "$HOME/.git.d"
 ln -sf "$DOTFILES_DIR/inputrc"              "$HOME/.inputrc"
@@ -86,6 +85,9 @@ ln -sf "$DOTFILES_DIR/tmux"                 "$HOME/.tmux"
 ln -sf "$DOTFILES_DIR/vim"                  "$HOME/.vim"
 ln -sf "$DOTFILES_DIR/vimrc"                "$HOME/.vimrc"
 # ln -sf "$DOTFILES_DIR/xbindkeysrc"          "$HOME/.xbindkeysrc"
+
+# GDB
+ln -sf "$DOTFILES_DIR/gdb-dashboard.gdbinit" "$HOME/.gdbinit"
 
 if [ -f /proc/version_signature ]
 then
