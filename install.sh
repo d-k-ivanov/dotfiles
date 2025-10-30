@@ -87,7 +87,8 @@ ln -sf "$DOTFILES_DIR/vimrc"                "$HOME/.vimrc"
 # ln -sf "$DOTFILES_DIR/xbindkeysrc"          "$HOME/.xbindkeysrc"
 
 # GDB
-ln -sf "$DOTFILES_DIR/gdb-dashboard.gdbinit" "$HOME/.gdbinit"
+# ln -sf "$DOTFILES_DIR/gdb/gdb-dashboard.gdbinit" "$HOME/.gdbinit"
+ln -sf "$DOTFILES_DIR/gdb/gdbinit"                 "$HOME/.gdbinit"
 
 if [ -f /proc/version_signature ]
 then
