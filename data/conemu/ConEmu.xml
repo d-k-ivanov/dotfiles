@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2025-10-31 14:26:58" build="230724">
+		<key name=".Vanilla" modified="2025-11-03 15:46:58" build="230724">
 			<value name="ColorTable00" type="dword" data="00151515"/>
 			<value name="ColorTable01" type="dword" data="004f4737"/>
 			<value name="ColorTable02" type="dword" data="00645a45"/>
@@ -61,7 +61,7 @@
 			<value name="FadeInactiveHigh" type="hex" data="FA"/>
 			<value name="ConVisible" type="hex" data="00"/>
 			<value name="ConInMode" type="dword" data="ffffffff"/>
-			<value name="UseInjects" type="hex" data="00"/>
+			<value name="UseInjects" type="hex" data="01"/>
 			<value name="SetDefaultTerminal" type="hex" data="00"/>
 			<value name="SetDefaultTerminalStartup" type="hex" data="00"/>
 			<value name="DefaultTerminalNoInjects" type="hex" data="00"/>
