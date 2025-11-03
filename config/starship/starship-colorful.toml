@@ -73,7 +73,7 @@ color15 = "#b48ead" # Aurora
 disabled = false
 expiration_symbol = "\uf4f4" # 
 force_display = true
-format = "\\[$symbol( $profile)( \\($region\\))( \\[$duration\\])\\]"
+format = "[\\[](color10)[$symbol( $profile)( \\($region\\))( \\[$duration\\])]($style)[\\]](color10)"
 style = "bold color13"
 symbol = "\uf0ef" # 
 
@@ -105,7 +105,7 @@ symbol = "\uf0ef" # 
 
 [cmd_duration]
 disabled = false
-format = "\\[\ue641 $duration\\] " # 
+format = "[\\[](color10)[\ue641 $duration]($style)[\\]](color10) " # 
 min_time = 0
 min_time_to_notify = 45000
 show_milliseconds = true
