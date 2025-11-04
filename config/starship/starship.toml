@@ -143,7 +143,7 @@ symbol = "\uf0ef" # 
 
 [cmd_duration]
 disabled = false
-format = "[\\[](color10)[\ue641 $duration]($style)[\\]](color10) " # 
+format = "[\\[](color10)[\ue641 $duration]($style)[\\]](color10)" # 
 min_time = 0
 min_time_to_notify = 45000
 show_milliseconds = true
@@ -186,11 +186,11 @@ version_format = "${raw}"
 # before_repo_root_style = null
 disabled = false
 fish_style_pwd_dir_length = 0
-format = "[$path]($style)[$read_only]($read_only_style) "
+format = " [$path]($style)[$read_only]($read_only_style) "
 home_symbol = "~"
 read_only = "\uf023" # 
 read_only_style = "bold color11"
-repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+repo_root_format = " [$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 # repo_root_style = null
 style = "bold color7"
 substitutions = {}
@@ -335,7 +335,7 @@ disabled = false
 
 [memory_usage]
 disabled = false
-format = "[\\[](color10)[$symbol ${ram}]($style)[\\]](color10) "
+format = "[\\[](color10)[$symbol ${ram}]($style)[\\]](color10)"
 threshold = -1
 symbol = "\uf2db" # 
 style = 'bold color13'
@@ -353,7 +353,7 @@ version_format = "${raw}"
 
 [os]
 disabled = false
-format = "[\\[](color10)[$symbol]($style)[\\]](color10) "
+format = "[\\[](color10)[$symbol]($style)[\\]](color10)"
 style = "bold color4"
 
 [os.symbols]
@@ -417,12 +417,12 @@ version_format = "${raw}"
 
 [status]
 disabled = false
-format = "[\\[](color10)[$symbol$status]($style)[\\]](color10) "
+format = "[\\[](color10)[$symbol$status]($style)[\\]](color10)"
 map_symbol = false
 not_executable_symbol = "\uf120 " # 
 not_found_symbol = "\uf120 " # 
 pipestatus = true
-pipestatus_format = "\\[$pipestatus\\] => [$symbol$common_meaning$signal_name$maybe_int]($style) "
+pipestatus_format = "\\[$pipestatus\\] => [$symbol$common_meaning$signal_name$maybe_int]($style)"
 pipestatus_separator = "|"
 recognize_signal_code = true
 sigint_symbol = "\uf120 " # 
