@@ -41,6 +41,47 @@ $character\
 # CaskaydiaCove Nerd Font Mono
 ###
 
+palette = "simple"
+
+# black, red, green, blue, yellow, purple, cyan, white.
+# You can optionally prefix these with bright- to get the bright version (e.g. bright-white).
+[palettes.simple]
+color0 = "bright-black"
+color1 = "bright-black"
+color2 = "bright-black"
+color3 = "bright-black"
+color4 = "white"
+color5 = "white"
+color6 = "white"
+color7 = "bright-cyan"
+color8 = "bright-blue"
+color9 = "blue"
+color10 = "cyan"
+color11 = "red"
+color12 = "cyan"
+color13 = "yellow"
+color14 = "green"
+color15 = "purple"
+
+# https://i.sstatic.net/KTSQa.png
+[palettes.8bit]
+color0 = "236"            # dark gray-blue
+color1 = "237"            # grayish navy
+color2 = "238"            # muted slate gray
+color3 = "239"            # slate gray
+color4 = "254"            # ight gray-blue
+color5 = "255"            # white
+color6 = "255"            # white
+color7 = "152"            # light turquoise
+color8 = "116"            # pale cyan
+color9 = "110"            # light blue-gray
+color10 = "67"            # medium steel blue
+color11 = "131"           # muted red
+color12 = "173"           # soft orange
+color13 = "222"           # light yellow
+color14 = "151"           # desaturated green
+color15 = "182"           # soft lavender
+
 ### Nord Color Palette
 ## Polar Night ### Snow Storm ### Frost      ### Aurora  ##
 # #2e3440     # #d8dee9    # #8fbcbb    # #bf616a #
@@ -48,26 +89,23 @@ $character\
 # #434c5e     # #eceff4    # #81a1c1    # #ebcb8b #
 # #4c566a     # #eceff4    # #5e81ac    # #a3be8c #
 # #4c566a     # #eceff4    # #5e81ac    # #b48ead #
-
-palette = "nord"
-
 [palettes.nord]
-color0 = "#2e3440" # Polar Night
-color1 = "#3b4252" # Polar Night
-color2 = "#434c5e" # Polar Night
-color3 = "#4c566a" # Polar Night
-color4 = "#d8dee9" # Snow Storm
-color5 = "#e5e9f0" # Snow Storm
-color6 = "#eceff4" # Snow Storm
-color7 = "#8fbcbb" # Frost
-color8 = "#88c0d0" # Frost
-color9 = "#81a1c1" # Frost
-color10 = "#5e81ac" # Frost
-color11 = "#bf616a" # Aurora
-color12 = "#d08770" # Aurora
-color13 = "#ebcb8b" # Aurora
-color14 = "#a3be8c" # Aurora
-color15 = "#b48ead" # Aurora
+color0 = "#2e3440"      # Polar Night
+color1 = "#3b4252"      # Polar Night
+color2 = "#434c5e"      # Polar Night
+color3 = "#4c566a"      # Polar Night
+color4 = "#d8dee9"      # Snow Storm
+color5 = "#e5e9f0"      # Snow Storm
+color6 = "#eceff4"      # Snow Storm
+color7 = "#8fbcbb"      # Frost
+color8 = "#88c0d0"      # Frost
+color9 = "#81a1c1"      # Frost
+color10 = "#5e81ac"     # Frost
+color11 = "#bf616a"     # Aurora
+color12 = "#d08770"     # Aurora
+color13 = "#ebcb8b"     # Aurora
+color14 = "#a3be8c"     # Aurora
+color15 = "#b48ead"     # Aurora
 
 [aws]
 disabled = false
