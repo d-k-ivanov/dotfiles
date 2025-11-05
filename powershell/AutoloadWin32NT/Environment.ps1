@@ -259,6 +259,7 @@ function Initialize-Paths-System
         "C:\PROGRA~1\MySQL\MySQL Workbench 8.0 CE"
         "C:\PROGRA~1\NASM"
         "C:\PROGRA~1\nodejs"
+        "C:\PROGRA~1\NVIDIA~1\Nsight Compute 2025.3.1"
         "C:\PROGRA~1\NVIDIA~1\Nsight Compute 2025.3.0"
         "C:\PROGRA~1\NVIDIA~1\Nsight Compute 2025.2.0"
         "C:\PROGRA~1\NVIDIA~1\Nsight Compute 2025.1.1"
