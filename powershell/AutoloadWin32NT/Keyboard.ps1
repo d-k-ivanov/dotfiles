@@ -54,3 +54,4 @@ function StayAwakeByScrollLock
     }
     while ($True)
 }
+Set-Alias s StayAwakeByF13
