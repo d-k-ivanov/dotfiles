@@ -66,6 +66,7 @@ function Get-NVAPIList
     $APILocations = @(
         'C:\NVAPI'
         'C:\Nvidia\NVAPI'
+        'C:\opt\NVAPI'
         'D:\NVAPI'
         'D:\Nvidia\NVAPI'
     )
@@ -103,6 +104,7 @@ function Get-NsightAfterMath
     $APILocations = @(
         'C:\NsightAftermath'
         'C:\Nvidia\NsightAftermath'
+        'C:\opt\NsightAftermath'
         'D:\NsightAftermath'
         'D:\Nvidia\NsightAftermath'
     )
@@ -140,6 +142,7 @@ function Get-OptiX
 {
     $SDKLocations = @(
         'C:\Nvidia'
+        'C:\opt'
         'D:\Nvidia'
         'C:\ProgramData\NVIDIA Corporation'
         'C:\Program Files\NVIDIA Corporation'
@@ -176,6 +179,7 @@ function Get-DevIL
 {
     $Locations = @(
         'C:\Nvidia\DevIL'
+        'C:\opt\DevIL'
         'D:\Nvidia\DevIL'
     )
 
@@ -219,6 +223,7 @@ function Get-CuDNN
 {
     $Locations = @(
         'C:\Nvidia\cudnn'
+        'C:\opt\cudnn'
         'C:\Program Files\NVIDIA\CUDNN'
         'D:\Nvidia\cudnn'
     )
