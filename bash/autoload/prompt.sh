@@ -186,7 +186,6 @@ function undevops {
 
     # Restore original PS0 if using bash 4.4+
     if [[ -n "${BASH_VERSION-}" ]] && [[ "${BASH_VERSINFO[0]}" -gt 4 || ( "${BASH_VERSINFO[0]}" -eq 4 && "${BASH_VERSINFO[1]}" -ge 4 ) ]]; then
-        # Remove our PS0 modification, keeping any original PS0
         PS0="${PS0#*\}}"
     fi
 
