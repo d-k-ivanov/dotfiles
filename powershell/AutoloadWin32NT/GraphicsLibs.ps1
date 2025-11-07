@@ -281,3 +281,39 @@ function UnSet-CuDNN
     Remove-Item Env:CUDNN_INCLUDE_DIR
     Remove-Item Env:CUDNN_LIBRARY
 }
+
+function Get-ANARIList
+{
+    $Locations = @(
+        'C:\Nvidia\ANARI'
+        'C:\opt\ANARI'
+        'D:\Nvidia\ANARI'
+    )
+
+    $LIBs = @()
+    foreach ($SubFolder in $Locations)
+    {
+        if (Test-Path $SubFolder)
+        {
+            $((Get-ChildItem $SubFolder -Directory).FullName | ForEach-Object { $LIBs += $_ })
+        }
+    }
+
+    $LIBsValidated = @()
+    foreach ($LIB in $LIBs)
+    {
+        if (Test-Path "${LIB}\include\anari\anari.h")
+        {
+            $LIBsValidated  += $LIB
+        }
+    }
+
+    return $LIBsValidated
+}
+
+function Set-ANARI
+{
+    $Selected = Select-From-List $(Get-ANARIList) 'ANARI Library'
+    [Environment]::SetEnvironmentVariable("ANARI_LIBRARY", ${Selected}, "Machine")
+    Set-Item -Path Env:ANARI_LIBRARY -Value ${Selected}
+}
