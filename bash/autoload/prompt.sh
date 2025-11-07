@@ -4,16 +4,6 @@ if [[ -n "$VSCODE_INJECTION" ]] || [[ "$TERM_PROGRAM" == "vscode" ]] || [[ -n "$
     export IS_IN_VSCODE=1
 fi
 
-function devops {
-    if command -v starship >/dev/null 2>&1; then
-        if [ -f "$HOME/.config/starship/starship.toml" ]; then
-            export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-        fi
-        eval "$(starship init bash)"
-    fi
-    export DEVOPSPROMPT=1
-}
-
 function unset-prompt-vars {
     unset PromptUserName
     unset PromptCompName
@@ -167,11 +157,84 @@ bash_prompt() {
     esac
 }
 
-if [ -z "$DEVOPSPROMPT" ] && [ -z "$IS_IN_VSCODE" ] && command -v starship >/dev/null 2>&1; then
+function devops {
+    if command -v starship >/dev/null 2>&1; then
+        if [ -f "$HOME/.config/starship/starship.toml" ]; then
+            export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+        fi
+        eval "$(starship init bash --print-full-init)"
+    fi
+    export DEVOPSPROMPT=1
+}
+
+function undevops {
+    # Restore original PROMPT_COMMAND
+    if [[ -n "${STARSHIP_PROMPT_COMMAND-}" ]]; then
+        PROMPT_COMMAND="$STARSHIP_PROMPT_COMMAND"
+        unset STARSHIP_PROMPT_COMMAND
+    else
+        unset PROMPT_COMMAND
+    fi
+
+    # Restore original DEBUG trap
+    if [[ -n "${STARSHIP_DEBUG_TRAP-}" ]]; then
+        trap "$STARSHIP_DEBUG_TRAP" DEBUG
+        unset STARSHIP_DEBUG_TRAP
+    else
+        trap - DEBUG
+    fi
+
+    # Restore original PS0 if using bash 4.4+
+    if [[ -n "${BASH_VERSION-}" ]] && [[ "${BASH_VERSINFO[0]}" -gt 4 || ( "${BASH_VERSINFO[0]}" -eq 4 && "${BASH_VERSINFO[1]}" -ge 4 ) ]]; then
+        # Remove our PS0 modification, keeping any original PS0
+        PS0="${PS0#*\}}"
+    fi
+
+    # Remove from bash-preexec hooks if present
+    if [[ -n "${preexec_functions-}" ]]; then
+        preexec_functions=("${preexec_functions[@]/starship_preexec_all}")
+    fi
+    if [[ -n "${precmd_functions-}" ]]; then
+        precmd_functions=("${precmd_functions[@]/starship_precmd}")
+    fi
+
+    # Remove ble.sh hooks if present
+    if [[ ${BLE_VERSION-} && _ble_version -ge 400 ]]; then
+        blehook --remove PREEXEC!='starship_preexec "$_"'
+        blehook --remove PRECMD!='starship_precmd'
+    fi
+
+    # Unset starship variables
+    unset STARSHIP_START_TIME
+    unset STARSHIP_END_TIME
+    unset STARSHIP_DURATION
+    unset STARSHIP_CMD_STATUS
+    unset STARSHIP_PIPE_STATUS
+    unset STARSHIP_PREEXEC_READY
+    unset STARSHIP_SHELL
+    unset STARSHIP_SESSION_KEY
+
+    # Restore default PS1 and PS2
+    PS1='\s-\v\$ '
+    PS2='> '
+
+    # Undefine starship functions
+    unset -f starship_preexec
+    unset -f starship_precmd
+    unset -f starship_preexec_all
+    unset -f starship_preexec_ps0
+    unset -f _starship_set_return
+
+    unset DEVOPSPROMPT
+    preexec_functions+=(timer_start)
+    precmd_functions+=(timer_stop)
+    bash_prompt
+}
+
+if [ $DEVOPSPROMPT ] && [ -z "$IS_IN_VSCODE" ] && command -v starship >/dev/null 2>&1; then
     devops
 else
     preexec_functions+=(timer_start)
     precmd_functions+=(timer_stop)
     bash_prompt
-    unset bash_prompt
 fi
