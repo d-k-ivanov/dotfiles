@@ -22,10 +22,15 @@ $Env:DISTUTILS_USE_SDK = 1
 # $Env:CMAKE_DEFAULT_BUILD_TYPE = 'Release'
 
 $InstallPaths = @(
+    'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
+    'C:\Program Files\Microsoft Visual Studio\18\Professional'
+    'C:\Program Files\Microsoft Visual Studio\18\Community'
+    'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+    'C:\Program Files\Microsoft Visual Studio\18\Preview'
     'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
     'C:\Program Files\Microsoft Visual Studio\2022\Professional'
     'C:\Program Files\Microsoft Visual Studio\2022\Community'
-    'C:\Program Files\Microsoft Visual Studio\2022\BuildTools'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
     'C:\Program Files\Microsoft Visual Studio\2022\Preview'
     'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
     'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
@@ -58,6 +63,36 @@ foreach ($InstallPath in $InstallPaths)
         ${function:dev1444}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.44"  @args }
 
         $ENV:VSDevEnv = "True"
+        break
+    }
+}
+
+$InstallPaths2022 = @(
+    'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
+    'C:\Program Files\Microsoft Visual Studio\2022\Professional'
+    'C:\Program Files\Microsoft Visual Studio\2022\Community'
+    'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
+    'C:\Program Files\Microsoft Visual Studio\2022\Preview'
+)
+
+foreach ($InstallPath2022 in $InstallPaths2022)
+{
+    $DevShell2022 = (Join-Path "$InstallPath2022" 'Common7\Tools\Microsoft.VisualStudio.DevShell.dll')
+    if (Test-Path "$DevShell2022")
+    {
+        ${function:vsdevenv_2022}    = { Import-Module "$DevShell2022"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2022" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:vsdevenv32_2022}  = { Import-Module "$DevShell2022"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2022" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:vsdevenv64_2022}  = { Import-Module "$DevShell2022"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2022" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev_2022}         = { Import-Module "$DevShell2022"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2022" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+        ${function:dev32_2022}       = { Import-Module "$DevShell2022"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2022" -StartInPath "$curDir" -DevCmdArguments -arch=x86 @args }
+        ${function:dev64_2022}       = { Import-Module "$DevShell2022"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath2022" -StartInPath "$curDir" -DevCmdArguments -arch=x64 @args }
+
+        # Defined compilers
+        # ${function:devXXXX}   = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=$targetArch -host_arch=$hostArch -winsdk=$WindowsTargetPlatformVersion -vcvars_ver=$VcVersion -app_platform=$WindowsTarget" @args }
+        ${function:dev1440_2022}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.40"  @args }
+        ${function:dev1442_2022}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.42"  @args }
+        ${function:dev1444_2022}     = { Import-Module "$DevShell"; $curDir = Get-Location; Enter-VsDevShell -VsInstallPath "$InstallPath" -StartInPath "$curDir" -DevCmdArguments "-arch=x64 -vcvars_ver=14.44"  @args }
+
         break
     }
 }
@@ -150,16 +185,6 @@ function Find-VC
     $VS_BuildTools_2017     = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools'
     $VS_Professional_2017   = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional'
     $VS_Enterprise_2017     = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise'
-    $VS_Preview_2019        = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview'
-    $VS_Community_2019      = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community'
-    $VS_BuildTools_2019     = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools'
-    $VS_Professional_2019   = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
-    $VS_Enterprise_2019     = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
-    $VS_Preview_2022        = 'C:\Program Files\Microsoft Visual Studio\2022\Preview'
-    $VS_Community_2022      = 'C:\Program Files\Microsoft Visual Studio\2022\Community'
-    $VS_BuildTools_2022     = 'C:\Program Files\Microsoft Visual Studio\2022\BuildTools'
-    $VS_Professional_2022   = 'C:\Program Files\Microsoft Visual Studio\2022\Professional'
-    $VS_Enterprise_2022     = 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
 
     # if (Test-Path 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\')
     if (Test-Path "$VS_Community_2017\VC\Tools\MSVC\")
@@ -181,6 +206,12 @@ function Find-VC
     {
         $EnterpriseVersions2017 = $((Get-ChildItem "$VS_Enterprise_2017\VC\Tools\MSVC\").Name)
     }
+
+    $VS_Preview_2019        = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview'
+    $VS_Community_2019      = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community'
+    $VS_BuildTools_2019     = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools'
+    $VS_Professional_2019   = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
+    $VS_Enterprise_2019     = 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
 
     if (Test-Path "$VS_Preview_2019\VC\Tools\MSVC\")
     {
@@ -207,6 +238,12 @@ function Find-VC
         $EnterpriseVersions2019 = $((Get-ChildItem "$VS_Enterprise_2019\VC\Tools\MSVC\").Name)
     }
 
+    $VS_Preview_2022        = 'C:\Program Files\Microsoft Visual Studio\2022\Preview'
+    $VS_Community_2022      = 'C:\Program Files\Microsoft Visual Studio\2022\Community'
+    $VS_BuildTools_2022     = 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
+    $VS_Professional_2022   = 'C:\Program Files\Microsoft Visual Studio\2022\Professional'
+    $VS_Enterprise_2022     = 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
+
     if (Test-Path "$VS_Preview_2022\VC\Tools\MSVC\")
     {
         $PreviewVersions2022 = $((Get-ChildItem "$VS_Preview_2022\VC\Tools\MSVC\").Name)
@@ -232,7 +269,44 @@ function Find-VC
         $EnterpriseVersions2022 = $((Get-ChildItem "$VS_Enterprise_2022\VC\Tools\MSVC\").Name)
     }
 
+    $VS_Preview_2026        = 'C:\Program Files\Microsoft Visual Studio\18\Preview'
+    $VS_Community_2026      = 'C:\Program Files\Microsoft Visual Studio\18\Community'
+    $VS_BuildTools_2026     = 'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+    $VS_Professional_2026   = 'C:\Program Files\Microsoft Visual Studio\18\Professional'
+    $VS_Enterprise_2026     = 'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
+
+    if (Test-Path "$VS_Preview_2026\VC\Tools\MSVC\")
+    {
+        $PreviewVersions2026 = $((Get-ChildItem "$VS_Preview_2026\VC\Tools\MSVC\").Name)
+    }
+
+    if (Test-Path "$VS_Community_2026\VC\Tools\MSVC\")
+    {
+        $CommunityVersions2026 = $((Get-ChildItem "$VS_Community_2026\VC\Tools\MSVC\").Name)
+    }
+
+    if (Test-Path "$VS_BuildTools_2026\VC\Tools\MSVC\")
+    {
+        $BuildToolsVersions2026 = $((Get-ChildItem "$VS_BuildTools_2026\VC\Tools\MSVC\").Name)
+    }
+
+    if (Test-Path "$VS_Professional_2026\VC\Tools\MSVC\")
+    {
+        $ProfessionalVersions2026 = $((Get-ChildItem "$VS_Professional_2026\VC\Tools\MSVC\").Name)
+    }
+
+    if (Test-Path "$VS_Enterprise_2026\VC\Tools\MSVC\")
+    {
+        $EnterpriseVersions2026 = $((Get-ChildItem "$VS_Enterprise_2026\VC\Tools\MSVC\").Name)
+    }
+
+    # ================================================================================
+    # ------------------------------ Output found versions ---------------------------
+    # ================================================================================
     Write-Host "List of VC versions on this PC:"
+    ##########
+    # 2017
+    ##########
     if ($CommunityVersions2017)
     {
         foreach ($v in $CommunityVersions2017) {Write-Host " - $v (VS Community 2017)"}
@@ -253,6 +327,9 @@ function Find-VC
         foreach ($v in $EnterpriseVersions2017) {Write-Host " - $v (VS Enterprise 2017)"}
     }
 
+    ##########
+    # 2019
+    ##########
     if ($PreviewVersions2019)
     {
         foreach ($v in $PreviewVersions2019) {Write-Host " - $v (VS Preview 2019)"}
@@ -278,6 +355,9 @@ function Find-VC
         foreach ($v in $EnterpriseVersions2019) {Write-Host " - $v (VS Enterprise 2019)"}
     }
 
+    ##########
+    # 2022
+    ##########
     if ($PreviewVersions2022)
     {
         foreach ($v in $PreviewVersions2022) {Write-Host " - $v (VS Preview 2022)"}
@@ -302,15 +382,47 @@ function Find-VC
     {
         foreach ($v in $EnterpriseVersions2022) {Write-Host " - $v (VS Enterprise 2022)"}
     }
+    ##########
+    # 2026
+    ##########
+    if ($PreviewVersions2026)
+    {
+        foreach ($v in $PreviewVersions2026) {Write-Host " - $v (VS Preview 2026)"}
+    }
+
+    if ($CommunityVersions2026)
+    {
+        foreach ($v in $CommunityVersions2026) {Write-Host " - $v (VS Community 2026)"}
+    }
+
+    if ($BuildToolsVersions2022)
+    {
+        foreach ($v in $BuildToolsVersions2026) {Write-Host " - $v (VS BuildTools 2026)"}
+    }
+
+    if ($ProfessionalVersions2026)
+    {
+        foreach ($v in $ProfessionalVersions2026) {Write-Host " - $v (VS Professional 2026)"}
+    }
+
+    if ($EnterpriseVersions2026)
+    {
+        foreach ($v in $EnterpriseVersions2026) {Write-Host " - $v (VS Enterprise 2026)"}
+    }
 }
 
 function Set-VC
 {
     $tools = @(
+        'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
+        'C:\Program Files\Microsoft Visual Studio\18\Professional'
+        'C:\Program Files\Microsoft Visual Studio\18\Community'
+        'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+        'C:\Program Files\Microsoft Visual Studio\18\Preview'
         'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
         'C:\Program Files\Microsoft Visual Studio\2022\Professional'
         'C:\Program Files\Microsoft Visual Studio\2022\Community'
-        'C:\Program Files\Microsoft Visual Studio\2022\BuildTools'
+        'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
         'C:\Program Files\Microsoft Visual Studio\2022\Preview'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
@@ -344,10 +456,15 @@ function Set-VC
 function Set-VSINSTALLDIRS
 {
     $tools = @(
+        'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
+        'C:\Program Files\Microsoft Visual Studio\18\Professional'
+        'C:\Program Files\Microsoft Visual Studio\18\Community'
+        'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+        'C:\Program Files\Microsoft Visual Studio\18\Preview'
         'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
         'C:\Program Files\Microsoft Visual Studio\2022\Professional'
         'C:\Program Files\Microsoft Visual Studio\2022\Community'
-        'C:\Program Files\Microsoft Visual Studio\2022\BuildTools'
+        'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
         'C:\Program Files\Microsoft Visual Studio\2022\Preview'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
@@ -392,10 +509,15 @@ function Clear-VSINSTALLDIRS
 function Set-VC-Session
 {
     $tools = @(
+        'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
+        'C:\Program Files\Microsoft Visual Studio\18\Professional'
+        'C:\Program Files\Microsoft Visual Studio\18\Community'
+        'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+        'C:\Program Files\Microsoft Visual Studio\18\Preview'
         'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
         'C:\Program Files\Microsoft Visual Studio\2022\Professional'
         'C:\Program Files\Microsoft Visual Studio\2022\Community'
-        'C:\Program Files\Microsoft Visual Studio\2022\BuildTools'
+        'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
         'C:\Program Files\Microsoft Visual Studio\2022\Preview'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'
@@ -429,6 +551,11 @@ function Set-VC-Session
 function Set-VC-IDE
 {
     $ideList = @(
+        'C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE'
+        'C:\Program Files\Microsoft Visual Studio\18\Professional\Common7\IDE'
+        'C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE'
+        'C:\Program Files\Microsoft Visual Studio\18\BuildTools\Common7\IDE'
+        'C:\Program Files\Microsoft Visual Studio\18\Preview\Common7\IDE'
         'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE'
         'C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE'
         'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE'
@@ -473,15 +600,19 @@ function Clear-VC
 function Get-VS
 {
     $ideList = @(
+        'C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\devenv.exe'
         'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe'
+        'C:\Program Files\Microsoft Visual Studio\18\Professional\Common7\IDE\devenv.exe'
         'C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe'
+        'C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\devenv.exe'
         'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\devenv.exe'
+        'C:\Program Files\Microsoft Visual Studio\18\Preview\Common7\IDE\devenv.exe'
         'C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\Common7\IDE\devenv.exe'
         'C:\Program Files (x86)\Microsoft Visual Studio\2017\Preview\Common7\IDE\devenv.exe'
@@ -564,10 +695,15 @@ function Set-VC-Vars-All
     }
 
     $VC_Distros = @(
+        'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
+        'C:\Program Files\Microsoft Visual Studio\18\Professional'
+        'C:\Program Files\Microsoft Visual Studio\18\Community'
+        'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+        'C:\Program Files\Microsoft Visual Studio\18\Preview'
         'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
         'C:\Program Files\Microsoft Visual Studio\2022\Professional'
         'C:\Program Files\Microsoft Visual Studio\2022\Community'
-        'C:\Program Files\Microsoft Visual Studio\2022\BuildTools'
+        'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools'
         'C:\Program Files\Microsoft Visual Studio\2022\Preview'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise'
         'C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional'

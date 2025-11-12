@@ -16,6 +16,11 @@ if ($MyInvocation.InvocationName -ne '.')
 }
 
 # CMake Presets
+${function:cmake-presets-26}   = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26.json          ${PWD}\CMakePresets.json }
+${function:cmake-presets-26d}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26-Debug.json    ${PWD}\CMakePresets.json }
+${function:cmake-presets-26r}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26-Release.json  ${PWD}\CMakePresets.json }
+${function:cmake-presets-26rd} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26-RelDebug.json ${PWD}\CMakePresets.json }
+
 ${function:cmake-presets-22}   = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22.json          ${PWD}\CMakePresets.json }
 ${function:cmake-presets-22d}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22-Debug.json    ${PWD}\CMakePresets.json }
 ${function:cmake-presets-22r}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-22-Release.json  ${PWD}\CMakePresets.json }
@@ -30,70 +35,85 @@ ${function:cmake-presets-njrd} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\pr
 # CMake Presets Aliases
 # Set-Alias csp    cmake-presets-nj
 # Set-Alias cspnj  cmake-presets-nj
+# Set-Alias csp26  cmake-presets-26
 # Set-Alias csp22  cmake-presets-22
 # Set-Alias csprnj cmake-presets-rnj
+# Set-Alias cspr26 cmake-presets-r26
 # Set-Alias cspr22 cmake-presets-r22
 
 # CMake Settings
 ${function:cmake-settings-19}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2019.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-22}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2022.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-26}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2026.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-nj}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-Ninja.json ${PWD}\CMakeSettings.json }
 
 ${function:cmake-settings-envs-17} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2017-envs.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-envs-19} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2019-envs.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-envs-22} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2022-envs.json  ${PWD}\CMakeSettings.json }
+${function:cmake-settings-envs-26} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-2026-envs.json  ${PWD}\CMakeSettings.json }
 ${function:cmake-settings-envs-nj} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\settings\CMakeSettings-Ninja-envs.json ${PWD}\CMakeSettings.json }
 
 # CMake Settings: with Environments
 
 # CMake Settings Aliases
-# Set-Alias cs    cmake-settings-22
+# Set-Alias cs    cmake-settings-26
 # Set-Alias csn   cmake-settings-nj
+# Set-Alias cs26  cmake-settings-26
 # Set-Alias cs22  cmake-settings-22
+# Set-Alias cs26e cmake-settings-26-envs
 # Set-Alias cs22e cmake-settings-22-envs
 # Set-Alias cs19e cmake-settings-19-envs
 # Set-Alias cs17e cmake-settings-17-envs
 
 # CMake Generators
+${function:cgen-26}         = { cmake -G "Visual Studio 18 2026" -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-26-cl}      = { cmake -G "Visual Studio 18 2026" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config"    -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
 # CMake Generator: MSVC Specific versions
+${function:cgen-26-1444}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.44 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-22-1442}    = { cmake -G "Visual Studio 17 2022" -A x64 -T version=14.42 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
 # CMake Generator: Find Vcpkg
+${function:cgen-26-v}       = { cmake -G "Visual Studio 18 2026" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 ${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 ${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config"    -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 
 # CMake Generators: Build Types
 ${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
+${function:cgen-debug-26} = { cmake -G "Visual Studio 18 2026" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 ${function:cgen-debug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
 
 ${function:cgen-release-nj} = { cmake -G "Ninja"                        -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
+${function:cgen-release-26} = { cmake -G "Visual Studio 18 2026" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
 ${function:cgen-release-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
 ${function:cgen-release-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
 ${function:cgen-release-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
 ${function:cgen-release-15} = { cmake -G "Visual Studio 15 2015" -A x64 -B build/x64-Release -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release }
 
 ${function:cgen-reldebug-nj} = { cmake -G "Ninja"                        -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
+${function:cgen-reldebug-26} = { cmake -G "Visual Studio 18 2026" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 ${function:cgen-reldebug-22} = { cmake -G "Visual Studio 17 2022" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 ${function:cgen-reldebug-19} = { cmake -G "Visual Studio 16 2019" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 ${function:cgen-reldebug-17} = { cmake -G "Visual Studio 15 2017" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 ${function:cgen-reldebug-15} = { cmake -G "Visual Studio 14 2015" -A x64 -B build/x64-RelWithDebInfo -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 
 # CMake Generators Aliases
-Set-Alias cgen   cgen-22
-Set-Alias cgenv  cgen-22-v
-Set-Alias cgencl cgen-22-cl
-Set-Alias cgend  cgen-debug-22
-Set-Alias cgenr  cgen-release-22
-Set-Alias cgenrd cgen-reldebug-22
+Set-Alias cgen   cgen-26
+Set-Alias cgenv  cgen-26-v
+Set-Alias cgencl cgen-26-cl
+Set-Alias cgend  cgen-debug-26
+Set-Alias cgenr  cgen-release-26
+Set-Alias cgenrd cgen-reldebug-26
 
 # CMake Gen&Build Aliases (Release)
+${function:cmake2026x86} = { dev32; cgen-release-26; cmake --build build/x64-Release --config "Release" }
+${function:cmake2026x64} = { dev64; cgen-release-26; cmake --build build/x64-Release --config "Release" }
 ${function:cmake2022x86} = { dev32; cgen-release-22; cmake --build build/x64-Release --config "Release" }
 ${function:cmake2022x64} = { dev64; cgen-release-22; cmake --build build/x64-Release --config "Release" }
 ${function:cmake2019x86} = { dev32; cgen-release-19; cmake --build build/x64-Release --config "Release" }
@@ -114,7 +134,7 @@ ${function:cbuildrd} = { cmake --build build --config RelWithDebInfo @args }
 # ${function:cbuildrl} = { cmake --build build/x64-Release        --config Release        @args }
 # ${function:cbuildrd} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
 
-${function:cgenbuld} = { cgen-22; cbuildrd }
+${function:cgenbuld} = { cgen-26; cbuildrd }
 Set-Alias cgb cgenbuld
 
 # CTest
