@@ -19,6 +19,7 @@ function Get-ContainerEngineList
 {
     $ContainerEngines = @(
         'C:\PROGRA~1\Docker\Docker\resources\bin'
+        'C:\PROGRA~1\Rancher Desktop\resources\resources\win32\bin'
         'C:\PROGRA~1\RedHat\Podman\'
         'C:\tools\docker'
     )
