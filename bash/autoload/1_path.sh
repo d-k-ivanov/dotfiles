@@ -32,6 +32,8 @@ case $platform in
         [[ -d "$HOME/.cargo/bin" ]]                 && export PATH=$PATH:$HOME/.cargo/bin
         # VCPKG
         [[ -f $VCPKG_ROOT/vcpkg ]]                  && export PATH=$PATH:$VCPKG_ROOT
+        # WSL
+        [[ -d "/mnt/c/Program Files/Rancher Desktop/resources/resources/linux/bin" ]] && export PATH="$PATH:/mnt/c/Program Files/Rancher Desktop/resources/resources/linux/bin"
         # Yarn
         [[ -d "$HOME/.yarn/bin" ]]                  && export PATH=$PATH:$HOME/.yarn/bin
 
