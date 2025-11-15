@@ -22,12 +22,9 @@ case $platform in
         # Qt
         [[ -d $HOME/Qt/Tools/QtCreator/bin ]]       && export PATH=$PATH:$HOME/Qt/Tools/QtCreator/bin
         [[ -d /opt/Qt/Tools/QtCreator/bin ]]        && export PATH=$PATH:/opt/Qt/Tools/QtCreator/bin
-        # Python (autovenv)
-        # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
         # Ruby
         [[ -s "$HOME/.rvm/scripts/rvm" ]]           && source "$HOME/.rvm/scripts/rvm"
         [[ -d "$HOME/.rvm/bin" ]]                   && export PATH=$PATH:$HOME/.rvm/bin
-        # [[ -d "$HOME/.rvm/rubies/ruby-2.6.1" ]]     && rvm use 2.6.1
         # Rust
         [[ -d "$HOME/.cargo/bin" ]]                 && export PATH=$PATH:$HOME/.cargo/bin
         # VCPKG
@@ -70,8 +67,6 @@ case $platform in
         [[ -d $HOME/.bin ]]                         && export PATH=$PATH:$HOME/.bin
         [[ -d $HOME/.bin/mac ]]                     && export PATH=$PATH:$HOME/.bin/mac
         [[ -d $HOME/.local/bin ]]                   && export PATH=$PATH:$HOME/.local/bin
-        # Python (autovenv)
-        # [[ -f $HOME/.bash/venv.sh ]]                && source ~/.bash/venv.sh
         # Ruby
         [[ -s "$HOME/.rvm/scripts/rvm" ]]           && source "$HOME/.rvm/scripts/rvm"
         # VS Code
