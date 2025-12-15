@@ -38,5 +38,6 @@ jkpost() {
 }
 
 jkserv() {
+    [[ -d _site ]] && rm -rf _site
     bundle exec jekyll serve --incremental --host 0.0.0.0
 }
