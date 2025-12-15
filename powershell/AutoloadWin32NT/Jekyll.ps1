@@ -42,5 +42,9 @@ function jkpost
 
 function jkserv
 {
+    if (Test-Path -Path "_site")
+    {
+        Remove-Item -Recurse -Force -Path "_site"
+    }
     bundle exec jekyll server --incremental --host 0.0.0.0
 }
