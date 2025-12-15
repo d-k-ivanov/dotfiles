@@ -17,8 +17,8 @@ fi
 
 if [[ -n "$(ls -A ${HOME}/.bash/autoload 2>/dev/null)" ]]; then
     for file in ${HOME}/.bash/autoload/*; do
-    source ${file}
-done
+        source ${file}
+    done
 fi
 
 source ${HOME}/.bash/bash-preexec.sh
@@ -30,3 +30,8 @@ fi
 #THIS MUST BE AT THE END OF DOTFILES FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# RVM - Ruby Version Manager
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    source "$HOME/.rvm/scripts/rvm"
+fi
