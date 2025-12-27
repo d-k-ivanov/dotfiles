@@ -2,6 +2,7 @@
     ExcludeRules = @(
         'PSAvoidUsingCmdletAliases',
         'PSAvoidUsingInvokeExpression',
+        'PSAvoidUsingPositionalParameters',
         'PSAvoidUsingWriteHost'
         'PSUseApprovedVerbs',
         # PSUseDeclaredVarsMoreThanAssignments doesn't currently work due to:

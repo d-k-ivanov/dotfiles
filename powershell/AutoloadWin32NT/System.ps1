@@ -21,22 +21,7 @@ function EmptyRecycleBin
     $RecBin = (New-Object -ComObject Shell.Application).Namespace(0xA)
     $RecBin.Items() | ForEach-Object { Remove-Item $_.Path -Recurse -Confirm:$false }
 }
-Set-Alias emptytrash Empty-RecycleBin
-
-# Update installed Ruby Gems, NPM, and their installed packages.
-function Update-System()
-{
-    # Install-WindowsUpdate -IgnoreUserInput -IgnoreReboot -AcceptAll
-    Update-Module
-    Update-Help -Force
-    # scoop update
-    gem update --system
-    gem update
-    npm install npm -g
-    npm update -g
-    cup all -y
-}
-Set-Alias update System-Update
+Set-Alias emptytrash EmptyRecycleBin
 
 function Get-WindowsKey
 {
@@ -77,7 +62,7 @@ function Get-WindowsKey
         }
 
         # Write-host "Here:" + $productKey
-        $win32os = Get-WmiObject Win32_OperatingSystem -computer $target
+        $win32os = Get-CimInstance -ClassName Win32_OperatingSystem
         $obj = New-Object Object
         $obj | Add-Member Noteproperty Computer -Value $target
         $obj | Add-Member Noteproperty Caption -Value $win32os.Caption
