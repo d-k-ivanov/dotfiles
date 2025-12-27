@@ -190,9 +190,9 @@ function Install-ChocolateyPackages()
         # "zotero"                          # Zotero reference manager
 
         # Fonts:
-        "cascadiacode-font"                 # Cascadia Code font
-        "cascadiamono-font"                 # Cascadia Mono font
-        "cascadiamonoplus-font"             # Cascadia Mono PLus font
+        "cascadiacode"                      # Cascadia Code font
+        "cascadiamono"                      # Cascadia Mono font
+        "cascadiamonopl"                    # Cascadia Mono PLus font
         "dejavufonts"                       # DejaVu fonts
         "firacode"                          # FiraCode font
         "fontforge"                         # FontForge font editor
@@ -213,7 +213,7 @@ function Install-ChocolateyPackages()
         "dropbox"                           # Dropbox client
         # "libreoffice-fresh"               # LibreOffice suite
         "pdf24"                             # PDF24 Creator
-        "pdfsam.basic"                      # PDF Split and Merge Basic
+        "pdfsam"                            # PDF Split and Merge Basic
         # "qtranslate"                      # QTranslate language translator. Download from: https://quest-app.appspot.com/
         "sumatrapdf.install"                # SumatraPDF document viewer
         # "thunderbird"                     # Mozilla Thunderbird email client
@@ -419,7 +419,7 @@ function Install-ChocolateyPackages()
         "logisim-evolution"                 # Digital logic circuit simulator
 
         # Math
-        "coq"                               # Coq proof assistant
+        "coq --ignore-checksums"            # Coq proof assistant
         "free42"                            # Free42 HP-42S calculator simulator
         "gnuplot"                           # Gnuplot graphing utility
         "maxima"                            # Maxima computer algebra system
