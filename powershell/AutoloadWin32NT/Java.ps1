@@ -144,6 +144,7 @@ function java-list-paths
         "${Env:USERPROFILE}\scoop\apps\openjdk22\"
         "${Env:USERPROFILE}\scoop\apps\openjdk23\"
         "${Env:USERPROFILE}\scoop\apps\openjdk24\"
+        "${Env:USERPROFILE}\scoop\apps\openjdk25\"
 
         # Oracle JDK
         "${Env:USERPROFILE}\scoop\apps\oraclejdk\"
@@ -176,6 +177,7 @@ function java-list-paths
 
         # Temurin
         "${Env:USERPROFILE}\scoop\apps\temurin-jdk\"
+        "${Env:USERPROFILE}\scoop\apps\temurin-lts-jdk\"
         "${Env:USERPROFILE}\scoop\apps\temurin8-jdk\"
         "${Env:USERPROFILE}\scoop\apps\temurin11-jdk\"
         "${Env:USERPROFILE}\scoop\apps\temurin16-jdk\"
@@ -187,6 +189,7 @@ function java-list-paths
         "${Env:USERPROFILE}\scoop\apps\temurin22-jdk\"
         "${Env:USERPROFILE}\scoop\apps\temurin23-jdk\"
         "${Env:USERPROFILE}\scoop\apps\temurin24-jdk\"
+        "${Env:USERPROFILE}\scoop\apps\temurin25-jdk\"
 
         # Zulu
         "${Env:USERPROFILE}\scoop\apps\zulu-jdk\"

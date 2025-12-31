@@ -60,6 +60,7 @@ function Install-ScoopPackages()
     $buckets = @(
         "extras",
         "games",
+        "java",
         "nerd-fonts"
     )
 
@@ -70,6 +71,50 @@ function Install-ScoopPackages()
 
     Write-Host "Installing packages..."
     $packages = @(
+        # Java
+        "java/microsoft-jdk"
+        "java/microsoft-lts-jdk"
+        "java/microsoft11-jdk"
+        "java/microsoft16-jdk"
+        "java/microsoft17-jdk"
+        "java/microsoft21-jdk"
+        "${Env:USERPROFILE}\scoop\apps\openjdk\"
+        "java/openjdk7-unofficial"
+        "java/openjdk8-redhat"
+        "java/openjdk9"
+        "java/openjdk10"
+        "java/openjdk11"
+        "java/openjdk12"
+        "java/openjdk13"
+        "java/openjdk14"
+        "java/openjdk15"
+        "java/openjdk16"
+        "java/openjdk17"
+        "java/openjdk18"
+        "java/openjdk19"
+        "java/openjdk20"
+        "java/openjdk21"
+        "java/openjdk22"
+        "java/openjdk23"
+        "java/openjdk24"
+        "java/openjdk25"
+        "java/oraclejdk"
+        "java/oraclejdk-lts"
+        "java/temurin-jdk"
+        "java/temurin-lts-jdk"
+        "java/temurin8-jdk"
+        "java/temurin11-jdk"
+        "java/temurin16-jdk"
+        "java/temurin17-jdk"
+        "java/temurin18-jdk"
+        "java/temurin19-jdk"
+        "java/temurin20-jdk"
+        "java/temurin21-jdk"
+        "java/temurin22-jdk"
+        "java/temurin23-jdk"
+        "java/temurin24-jdk"
+        "java/temurin25-jdk"
+
         # Fonts
         "nerd-fonts/Hack-NF"
         "nerd-fonts/Hack-NF-Propo"
