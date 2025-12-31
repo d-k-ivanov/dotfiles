@@ -208,7 +208,7 @@ function Install-ChocolateyPackages()
         # Office:
         "adobereader"                       # Adobe Acrobat Reader DC
         # "anki"                            # Anki flashcard program
-        "calibre"                           # Calibre eBook management software
+        # "calibre"                         # Calibre eBook management software
         "Ghostscript.app"                   # Ghostscript PostScript and PDF interpreter
         "dropbox"                           # Dropbox client
         # "libreoffice-fresh"               # LibreOffice suite
