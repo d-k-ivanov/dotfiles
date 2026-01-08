@@ -193,7 +193,7 @@ function Install-ChocolateyPackages()
         # "crystaldiskmark"                 # CrystalDiskMark disk benchmark tool
         "choco-cleaner"                     # Chocolatey Cleaner
         # "doublecmd"                       # Double Commander file manager
-        "encfs4win"                         # EncFS4Win encrypted file system
+        # "encfs4win"                       # EncFS4Win encrypted file system
         # "ext2fsd"                         # Ext2Fsd - Ext2/3/4 file system driver for Windows
         # "far"                             # FAR Manager file manager
         "gpu-z"                             # GPU-Z graphics card information tool
@@ -203,8 +203,8 @@ function Install-ChocolateyPackages()
         "lockhunter"                        # LockHunter file unlocker
         "nssm"                              # Non-Sucking Service Manager
         "open-shell"                        # Open-Shell (Classic Shell) start menu replacement
-        "powertoys"                         # Microsoft PowerToys utilities
-        "rapidee"                           # RapidEE registry Editor
+        # "powertoys"                       # Microsoft PowerToys utilities
+        # "rapidee"                         # RapidEE registry Editor
         # "sophiapp"                        # Sophisticated Windows customization tool
         # "swissfileknife"                  # Swiss File Knife command-line tool
         "sysinternals"                      # Sysinternals Suite
