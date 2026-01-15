@@ -203,7 +203,7 @@ function Install-ChocolateyPackages()
         "lockhunter"                        # LockHunter file unlocker
         "nssm"                              # Non-Sucking Service Manager
         "open-shell"                        # Open-Shell (Classic Shell) start menu replacement
-        # "powertoys"                       # Microsoft PowerToys utilities
+        "powertoys"                         # Microsoft PowerToys utilities
         # "rapidee"                         # RapidEE registry Editor
         # "sophiapp"                        # Sophisticated Windows customization tool
         # "swissfileknife"                  # Swiss File Knife command-line tool
