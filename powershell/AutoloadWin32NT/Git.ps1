@@ -148,14 +148,20 @@ ${function:g-to-main} = { git branch -m master main; git fetch origin; git branc
 
 # Rebase
 ${function:gcp} = { git cherry-pick @args }
+${function:gfrbd} = { git fetch origin Development; git rebase origin/Development @args }
+${function:gfrbmn} = { git fetch origin main; git rebase origin/main @args }
+${function:gfrbms} = { git fetch origin master; git rebase origin/master @args }
 ${function:grb} = { git rebase -i origin/@args }
+${function:grba} = { git rebase --abort @args }
+${function:grbc} = { git add -A; git rebase --continue @args }
+${function:grbd} = { git rebase -i origin/Development @args }
 ${function:grbmn} = { git rebase -i origin/main @args }
 ${function:grbms} = { git rebase -i origin/master @args }
-${function:gba} = { git rebase --abort @args }
-${function:gbc} = { git add -A; git rebase --continue @args }
-${function:gbmn} = { git fetch origin main; git rebase origin/main @args }
-${function:gbms} = { git fetch origin master; git rebase origin/master @args }
 ${function:gCH} = { git rebase -i --root @args }
+
+${function:git-rebase-Development} = { git fetch origin Development; git rebase origin/Development @args }
+${function:git-rebase-main} = { git fetch origin main; git rebase origin/main @args }
+${function:git-rebase-master} = { git fetch origin master; git rebase origin/master @args }
 
 # Code-Review
 ${function:git-review} = { if ($args[0] -and -not $args[1]) { git push origin HEAD:refs/for/@args[0] } else { Write-Host "Wrong command!`nUsage: git-review <branch_name>" } }
