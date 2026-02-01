@@ -169,10 +169,6 @@ alias gcac="gca Cleanup."
 alias gcoc="gco Cleanup."
 alias gcaw="gca Whitespace."
 alias gcow="gco Whitespace."
-alias gfr="git fetch --all && git reset --hard"
-alias gfrmn="git fetch --all && git reset --hard origin/Development"
-alias gfrmn="git fetch --all && git reset --hard origin/main"
-alias gfrms="git fetch --all && git reset --hard origin/master"
 alias gclean="git reset --hard && git clean -d -x -f"
 alias gclean2="git reset --hard && git clean -d -X -f"
 alias gclean3="git reset --hard && git clean -d -f"
@@ -224,6 +220,13 @@ alias grbd="git rebase -i origin/Development"
 alias grbmn="git rebase -i origin/main"
 alias grbms="git rebase -i origin/master"
 alias gCH="git rebase -i --root"
+
+# Rebase: reset
+alias gfr="git fetch --all && git reset --hard"
+function gfrb() { git fetch --all && git reset --hard origin/$(git branch --show-current); }
+alias gfrmn="git fetch --all && git reset --hard origin/Development"
+alias gfrmn="git fetch --all && git reset --hard origin/main"
+alias gfrms="git fetch --all && git reset --hard origin/master"
 
 alias git-rebase-Development='git fetch origin Development && git rebase origin/Development'
 alias git-rebase-main='git fetch origin main && git rebase origin/main'

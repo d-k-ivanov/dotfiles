@@ -97,10 +97,6 @@ ${function:gcoc} = { gco Cleanup. @args }
 ${function:gcac} = { gca Cleanup. @args }
 ${function:gcow} = { gco Whitespace. @args }
 ${function:gcaw} = { gca Whitespace. @args }
-${function:gfr} = { git fetch --all; git reset --hard @args }
-${function:gfrd} = { git fetch --all; git reset --hard origin/Development @args }
-${function:gfrmn} = { git fetch --all; git reset --hard origin/main @args }
-${function:gfrms} = { git fetch --all; git reset --hard origin/master @args }
 ${function:gclean} = { while ((git diff-index HEAD --)) { git reset --hard HEAD }; git clean -d -x -f @args }
 ${function:gclean2} = { while ((git diff-index HEAD --)) { git reset --hard HEAD }; git clean -d -X -f @args }
 ${function:gclean3} = { while ((git diff-index HEAD --)) { git reset --hard HEAD }; git clean -d -f @args }
@@ -157,6 +153,13 @@ ${function:grbd} = { git rebase -i origin/Development @args }
 ${function:grbmn} = { git rebase -i origin/main @args }
 ${function:grbms} = { git rebase -i origin/master @args }
 ${function:gCH} = { git rebase -i --root @args }
+
+# Rebase: reset
+${function:gfr} = { git fetch --all; git reset --hard @args }
+${function:gfrb} = { git fetch --all; git reset --hard origin/$(git branch --show-current) @args }
+${function:gfrd} = { git fetch --all; git reset --hard origin/Development @args }
+${function:gfrmn} = { git fetch --all; git reset --hard origin/main @args }
+${function:gfrms} = { git fetch --all; git reset --hard origin/master @args }
 
 ${function:git-rebase-Development} = { git fetch origin Development; git rebase origin/Development @args }
 ${function:git-rebase-main} = { git fetch origin main; git rebase origin/main @args }
@@ -324,12 +327,16 @@ function git-fetch-all-branches
 
         # Check if local branch already exists
         $existingBranch = git branch --list $branchName
-        if (-not $existingBranch) {
+        if (-not $existingBranch)
+        {
             git branch --track $branchName $remote
-        } else {
+        }
+        else
+        {
             # Set upstream for existing branch if not already set
             $upstreamInfo = git rev-parse --abbrev-ref $branchName@{upstream} 2>$null
-            if (-not $upstreamInfo) {
+            if (-not $upstreamInfo)
+            {
                 git branch --set-upstream-to=$remote $branchName
             }
         }
