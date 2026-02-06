@@ -210,13 +210,11 @@ alias g-to-main="git branch -m master main && git fetch origin && git branch -u 
 
 # Rebase
 alias gcp="git cherry-pick"
-alias gfrbd="git fetch origin Development && git rebase origin/Development"
 alias gfrbmn="git fetch origin main && git rebase origin/main"
 alias gfrbms="git fetch origin master && git rebase origin/master"
 alias grb="git rebase -i origin/"
 alias grba="git rebase --abort"
 alias grbc="git add -A && git rebase --continue"
-alias grbd="git rebase -i origin/Development"
 alias grbmn="git rebase -i origin/main"
 alias grbms="git rebase -i origin/master"
 alias gCH="git rebase -i --root"
@@ -224,11 +222,9 @@ alias gCH="git rebase -i --root"
 # Rebase: reset
 alias gfr="git fetch --all && git reset --hard"
 function gfrb() { git fetch --all && git reset --hard origin/$(git branch --show-current); }
-alias gfrmn="git fetch --all && git reset --hard origin/Development"
 alias gfrmn="git fetch --all && git reset --hard origin/main"
 alias gfrms="git fetch --all && git reset --hard origin/master"
 
-alias git-rebase-Development='git fetch origin Development && git rebase origin/Development'
 alias git-rebase-main='git fetch origin main && git rebase origin/main'
 alias git-rebase-master='git fetch origin master && git rebase origin/master'
 

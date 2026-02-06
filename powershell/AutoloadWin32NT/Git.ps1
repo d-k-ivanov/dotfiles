@@ -143,13 +143,12 @@ ${function:g-to-main} = { git branch -m master main; git fetch origin; git branc
 
 # Rebase
 ${function:gcp} = { git cherry-pick @args }
-${function:gfrbd} = { git fetch origin Development; git rebase origin/Development @args }
+
 ${function:gfrbmn} = { git fetch origin main; git rebase origin/main @args }
 ${function:gfrbms} = { git fetch origin master; git rebase origin/master @args }
 ${function:grb} = { git rebase -i origin/@args }
 ${function:grba} = { git rebase --abort @args }
 ${function:grbc} = { git add -A; git rebase --continue @args }
-${function:grbd} = { git rebase -i origin/Development @args }
 ${function:grbmn} = { git rebase -i origin/main @args }
 ${function:grbms} = { git rebase -i origin/master @args }
 ${function:gCH} = { git rebase -i --root @args }
@@ -157,11 +156,9 @@ ${function:gCH} = { git rebase -i --root @args }
 # Rebase: reset
 ${function:gfr} = { git fetch --all; git reset --hard @args }
 ${function:gfrb} = { git fetch --all; git reset --hard origin/$(git branch --show-current) @args }
-${function:gfrd} = { git fetch --all; git reset --hard origin/Development @args }
 ${function:gfrmn} = { git fetch --all; git reset --hard origin/main @args }
 ${function:gfrms} = { git fetch --all; git reset --hard origin/master @args }
 
-${function:git-rebase-Development} = { git fetch origin Development; git rebase origin/Development @args }
 ${function:git-rebase-main} = { git fetch origin main; git rebase origin/main @args }
 ${function:git-rebase-master} = { git fetch origin master; git rebase origin/master @args }
 
