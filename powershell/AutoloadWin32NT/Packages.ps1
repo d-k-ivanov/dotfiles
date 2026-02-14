@@ -202,7 +202,7 @@ function Install-ChocolateyPackages()
         "libre-hardware-monitor"            # Libre Hardware Monitor hardware monitoring tool
         "lockhunter"                        # LockHunter file unlocker
         "nssm"                              # Non-Sucking Service Manager
-        "open-shell"                        # Open-Shell (Classic Shell) start menu replacement
+        # "open-shell"                      # Open-Shell (Classic Shell) start menu replacement
         "powertoys"                         # Microsoft PowerToys utilities
         # "rapidee"                         # RapidEE registry Editor
         # "sophiapp"                        # Sophisticated Windows customization tool
@@ -327,7 +327,7 @@ function Install-ChocolateyPackages()
         "openssh"                           # OpenSSH client and server
         "openssl.light"                     # OpenSSL toolkit
         # "openconnect-gui"                 # OpenConnect GUI client
-        # "openvpn"                         # OpenVPN client
+        "openvpn"                           # OpenVPN client
         # "tapwindows"                      # TAP-Windows driver for VPN clients
         # "tftpd32"                         # TFTP server and client
         # "wifiinfoview"                    # Wireless network information viewer
