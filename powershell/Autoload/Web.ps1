@@ -43,3 +43,10 @@ function curlex($url)
     (new-object net.webclient).DownloadFile($url, $path)
     return new-object io.fileinfo $path
 }
+
+# Randomness:
+# curl -s api.drand.sh/public/latest
+# curl -s api.drand.sh/v2/beacons/quicknet/rounds/latest
+${function:drand} = {
+    curl -s api.drand.sh/public/latest | ConvertFrom-Json | Format-List
+}
