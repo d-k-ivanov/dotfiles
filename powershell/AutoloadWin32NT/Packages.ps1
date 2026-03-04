@@ -162,7 +162,7 @@ function Install-ChocolateyPackages()
         "conemu"                            # ConEmu terminal emulator
         "curl"                              # Command-line tool for transferring data with URL syntax
         "du"                                # Disk usage analyzer
-        "everything"                        # Fast file and folder search tool
+        # "everything"                      # Fast file and folder search tool
         "gnuwin32-coreutils.install"        # GNU Core Utilities for Windows
         "grep"                              # Command-line text search tool
         "jq"                                # Command-line JSON processor
@@ -203,7 +203,7 @@ function Install-ChocolateyPackages()
         "lockhunter"                        # LockHunter file unlocker
         "nssm"                              # Non-Sucking Service Manager
         # "open-shell"                      # Open-Shell (Classic Shell) start menu replacement
-        "powertoys"                         # Microsoft PowerToys utilities
+        # "powertoys"                       # Microsoft PowerToys utilities
         # "rapidee"                         # RapidEE registry Editor
         # "sophiapp"                        # Sophisticated Windows customization tool
         # "swissfileknife"                  # Swiss File Knife command-line tool
