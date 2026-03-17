@@ -17,9 +17,8 @@ export EDITOR='vim'
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Colors in Vim and TMUX. Do not set this variables if you not shure why.
-# https://wiki.archlinux.org/index.php/Home_and_End_keys_inot_working
 #export TERM='screen-256color'
-#export TERM='xterm-256color'
+export TERM='xterm-256color'
 
 export GPG_TTY=$(tty)
 export PYENV="$HOME/.pyenv"

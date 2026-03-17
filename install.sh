@@ -46,52 +46,59 @@ mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.config/onedrive"
 
-rm -rf "$HOME/.bash_profile"                2> /dev/null
-rm -rf "$HOME/.bash"                        2> /dev/null
-rm -rf "$HOME/.bashrc"                      2> /dev/null
-rm -rf "$HOME/.condarc"                     2> /dev/null
-rm -rf "$HOME/.config/alacritty"            2> /dev/null
-rm -rf "$HOME/.config/chrome-flags.conf"    2> /dev/null
-rm -rf "$HOME/.config/cmake"                2> /dev/null
-rm -rf "$HOME/.config/k9s"                  2> /dev/null
-rm -rf "$HOME/.config/nvim"                 2> /dev/null
-rm -rf "$HOME/.config/onedrive/config"      2> /dev/null
-rm -rf "$HOME/.config/starship"             2> /dev/null
-rm -rf "$HOME/.gdbinit"                     2> /dev/null
-rm -rf "$HOME/.gemrc"                       2> /dev/null
-rm -rf "$HOME/.git.d"                       2> /dev/null
-rm -rf "$HOME/.gitconfig"                   2> /dev/null
-rm -rf "$HOME/.gitmessage"                  2> /dev/null
-rm -rf "$HOME/.inputrc"                     2> /dev/null
-rm -rf "$HOME/.profile"                     2> /dev/null
-rm -rf "$HOME/.tmux.conf"                   2> /dev/null
-rm -rf "$HOME/.tmux"                        2> /dev/null
-rm -rf "$HOME/.vim"                         2> /dev/null
-rm -rf "$HOME/.vimrc"                       2> /dev/null
-rm -rf "$HOME/.xbindkeysrc"                 2> /dev/null
+rm -rf "$HOME/.bash_profile"                        2> /dev/null
+rm -rf "$HOME/.bash"                                2> /dev/null
+rm -rf "$HOME/.bashrc"                              2> /dev/null
+rm -rf "$HOME/.condarc"                             2> /dev/null
+rm -rf "$HOME/.config/alacritty"                    2> /dev/null
+rm -rf "$HOME/.config/chrome-flags.conf"            2> /dev/null
+rm -rf "$HOME/.config/cmake"                        2> /dev/null
+rm -rf "$HOME/.config/k9s"                          2> /dev/null
+rm -rf "$HOME/.config/nvim"                         2> /dev/null
+rm -rf "$HOME/.config/onedrive/config"              2> /dev/null
+rm -rf "$HOME/.config/starship"                     2> /dev/null
+rm -rf "$HOME/.gdbinit"                             2> /dev/null
+rm -rf "$HOME/.gemrc"                               2> /dev/null
+rm -rf "$HOME/.git.d"                               2> /dev/null
+rm -rf "$HOME/.gitconfig"                           2> /dev/null
+rm -rf "$HOME/.gitmessage"                          2> /dev/null
+rm -rf "$HOME/.inputrc"                             2> /dev/null
+rm -rf "$HOME/.profile"                             2> /dev/null
+rm -rf "$HOME/.tmux.conf"                           2> /dev/null
+rm -rf "$HOME/.tmux"                                2> /dev/null
+rm -rf "$HOME/.vim"                                 2> /dev/null
+rm -rf "$HOME/.vimrc"                               2> /dev/null
+rm -rf "$HOME/.xbindkeysrc"                         2> /dev/null
 
-ln -sf "$DOTFILES_DIR/.gitignore-global"        "$HOME/.gitignore-global"
-ln -sf "$DOTFILES_DIR/.gitmessage"              "$HOME/.gitmessage"
-ln -sf "$DOTFILES_DIR/bash_profile"             "$HOME/.bash_profile"
-ln -sf "$DOTFILES_DIR/bash_profile"             "$HOME/.profile"
-ln -sf "$DOTFILES_DIR/bash"                     "$HOME/.bash"
-ln -sf "$DOTFILES_DIR/bashrc"                   "$HOME/.bashrc"
-ln -sf "$DOTFILES_DIR/condarc"                  "$HOME/.condarc"
-ln -sf "$DOTFILES_DIR/config/alacritty"         "$HOME/.config/alacritty"
-ln -sf "$DOTFILES_DIR/config/chrome-flags.conf" "$HOME/.config/chrome-flags.conf"
-ln -sf "$DOTFILES_DIR/config/cmake"             "$HOME/.config/cmake"
-ln -sf "$DOTFILES_DIR/config/k9s"               "$HOME/.config/k9s"
-ln -sf "$DOTFILES_DIR/config/nvim"              "$HOME/.config/nvim"
-ln -sf "$DOTFILES_DIR/config/onedrive/config"   "$HOME/.config/onedrive/config"
-ln -sf "$DOTFILES_DIR/config/starship"          "$HOME/.config/starship"
-ln -sf "$DOTFILES_DIR/gemrc"                    "$HOME/.gemrc"
-ln -sf "$DOTFILES_DIR/git.d"                    "$HOME/.git.d"
-ln -sf "$DOTFILES_DIR/inputrc"                  "$HOME/.inputrc"
-ln -sf "$DOTFILES_DIR/tmux.conf"                "$HOME/.tmux.conf"
-ln -sf "$DOTFILES_DIR/tmux"                     "$HOME/.tmux"
-ln -sf "$DOTFILES_DIR/vim"                      "$HOME/.vim"
-ln -sf "$DOTFILES_DIR/vimrc"                    "$HOME/.vimrc"
-# ln -sf "$DOTFILES_DIR/xbindkeysrc"            "$HOME/.xbindkeysrc"
+ln -sf "$DOTFILES_DIR/.gitignore-global"            "$HOME/.gitignore-global"
+ln -sf "$DOTFILES_DIR/.gitmessage"                  "$HOME/.gitmessage"
+ln -sf "$DOTFILES_DIR/bash_profile"                 "$HOME/.bash_profile"
+ln -sf "$DOTFILES_DIR/bash_profile"                 "$HOME/.profile"
+ln -sf "$DOTFILES_DIR/bash"                         "$HOME/.bash"
+ln -sf "$DOTFILES_DIR/bashrc"                       "$HOME/.bashrc"
+ln -sf "$DOTFILES_DIR/condarc"                      "$HOME/.condarc"
+ln -sf "$DOTFILES_DIR/config/alacritty"             "$HOME/.config/alacritty"
+ln -sf "$DOTFILES_DIR/config/chrome-flags.conf"     "$HOME/.config/chrome-flags.conf"
+ln -sf "$DOTFILES_DIR/config/cmake"                 "$HOME/.config/cmake"
+ln -sf "$DOTFILES_DIR/config/k9s"                   "$HOME/.config/k9s"
+ln -sf "$DOTFILES_DIR/config/nvim"                  "$HOME/.config/nvim"
+ln -sf "$DOTFILES_DIR/config/onedrive/config"       "$HOME/.config/onedrive/config"
+ln -sf "$DOTFILES_DIR/config/starship"              "$HOME/.config/starship"
+ln -sf "$DOTFILES_DIR/gemrc"                        "$HOME/.gemrc"
+ln -sf "$DOTFILES_DIR/git.d"                        "$HOME/.git.d"
+ln -sf "$DOTFILES_DIR/inputrc"                      "$HOME/.inputrc"
+ln -sf "$DOTFILES_DIR/tmux.conf"                    "$HOME/.tmux.conf"
+ln -sf "$DOTFILES_DIR/tmux"                         "$HOME/.tmux"
+ln -sf "$DOTFILES_DIR/vim"                          "$HOME/.vim"
+ln -sf "$DOTFILES_DIR/vimrc"                        "$HOME/.vimrc"
+# ln -sf "$DOTFILES_DIR/xbindkeysrc"                "$HOME/.xbindkeysrc"
+
+# Gestures
+if [[ `ps -A | grep -E "kded"` ]]
+then
+    rm -rf "$HOME/.config/libinput-gestures.conf" 2> /dev/null
+    ln -sf "$DOTFILES_DIR/config/libinput-gestures-kde.conf" "$HOME/.config/libinput-gestures.conf"
+fi
 
 # GDB
 # ln -sf "$DOTFILES_DIR/gdb/gdb-dashboard.gdbinit" "$HOME/.gdbinit"
