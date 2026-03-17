@@ -1,0 +1,11 @@
+delay_inotify_processing = "true"
+display_processing_time = "true"
+force_http_11 = "true"
+force_session_upload = "true"
+inotify_delay = "10"
+ip_protocol_version = "1"
+skip_file = "~*|.~*|*.tmp"
+skip_file = "desktop.ini"
+skip_file = "Personal Vault.lnk"
+skip_file = "Vault.lnk"
+

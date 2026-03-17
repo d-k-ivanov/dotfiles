@@ -44,15 +44,18 @@ esac
 
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/onedrive"
 
 rm -rf "$HOME/.bash_profile"                2> /dev/null
 rm -rf "$HOME/.bash"                        2> /dev/null
 rm -rf "$HOME/.bashrc"                      2> /dev/null
 rm -rf "$HOME/.condarc"                     2> /dev/null
+rm -rf "$HOME/.config/alacritty"            2> /dev/null
 rm -rf "$HOME/.config/chrome-flags.conf"    2> /dev/null
 rm -rf "$HOME/.config/cmake"                2> /dev/null
 rm -rf "$HOME/.config/k9s"                  2> /dev/null
 rm -rf "$HOME/.config/nvim"                 2> /dev/null
+rm -rf "$HOME/.config/onedrive/config"      2> /dev/null
 rm -rf "$HOME/.config/starship"             2> /dev/null
 rm -rf "$HOME/.gdbinit"                     2> /dev/null
 rm -rf "$HOME/.gemrc"                       2> /dev/null
@@ -74,10 +77,12 @@ ln -sf "$DOTFILES_DIR/bash_profile"             "$HOME/.profile"
 ln -sf "$DOTFILES_DIR/bash"                     "$HOME/.bash"
 ln -sf "$DOTFILES_DIR/bashrc"                   "$HOME/.bashrc"
 ln -sf "$DOTFILES_DIR/condarc"                  "$HOME/.condarc"
+ln -sf "$DOTFILES_DIR/config/alacritty"         "$HOME/.config/alacritty"
 ln -sf "$DOTFILES_DIR/config/chrome-flags.conf" "$HOME/.config/chrome-flags.conf"
 ln -sf "$DOTFILES_DIR/config/cmake"             "$HOME/.config/cmake"
 ln -sf "$DOTFILES_DIR/config/k9s"               "$HOME/.config/k9s"
 ln -sf "$DOTFILES_DIR/config/nvim"              "$HOME/.config/nvim"
+ln -sf "$DOTFILES_DIR/config/onedrive/config"   "$HOME/.config/onedrive/config"
 ln -sf "$DOTFILES_DIR/config/starship"          "$HOME/.config/starship"
 ln -sf "$DOTFILES_DIR/gemrc"                    "$HOME/.gemrc"
 ln -sf "$DOTFILES_DIR/git.d"                    "$HOME/.git.d"
@@ -108,20 +113,15 @@ case $platform in
     Linux )
         mkdir -p "$HOME/.config/powershell"
         rm -rf "$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1"
+        echo ". $DOTFILES_DIR/powershell/profile_loader.ps1" > "$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1"
+
         rm -rf "$HOME/.Xresources"               2> /dev/null
-        rm -rf "$HOME/.config/alacritty"         2> /dev/null
+        ln -sf "$DOTFILES_DIR/Xresources"        "$HOME/.Xresources"
 
         ln -sf "$DOTFILES_DIR/.gitconfig-nix"    "$HOME/.gitconfig"
-        # ln -sf "$DOTFILES_DIR/Xresources"        "$HOME/.Xresources"
-        ln -sf "$DOTFILES_DIR/config/alacritty"  "$HOME/.config/alacritty"
-        echo ". $DOTFILES_DIR/powershell/profile_loader.ps1" > "$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1"
         ;;
     Darwin )
-        mkdir -p "$HOME/.config"
-        rm -rf "$HOME/.config/alacritty"         2> /dev/null
-
         ln -sf "$DOTFILES_DIR/.gitconfig-nix"    "$HOME/.gitconfig"
-        ln -sf "$DOTFILES_DIR/config/alacritty"  "$HOME/.config/alacritty"
         ;;
     MSYS_NT-10.0 )
         ln -sf "$DOTFILES_DIR/.gitconfig-win"    "$HOME/.gitconfig"
