@@ -536,6 +536,128 @@ function Install-ChocolateyPackages()
     New-Item -Path "HKCU:\Software\Sysinternals" -Name "EulaAccepted" -Value 1 -PropertyType DWORD -Force | Out-Null
 }
 
+function Install-ChocolateyPackages-Min()
+{
+    $packages = @(
+        # ------------------------------------------------------------------
+        # Basic Packages
+        # ------------------------------------------------------------------
+
+        "7zip.install"                      # 7-Zip file archiver
+        "busybox"                           # BusyBox for Windows
+        "conemu"                            # ConEmu terminal emulator
+        "curl"                              # Command-line tool for transferring data with URL syntax
+        "du"                                # Disk usage analyzer
+        "gnuwin32-coreutils.install"        # GNU Core Utilities for Windows
+        "grep"                              # Command-line text search tool
+        "jq"                                # Command-line JSON processor
+        "tree"                              # Directory tree listing tool
+        "wget"                              # Command-line file downloader
+        "yq"                                # Command-line YAML processor
+
+        # Microsoft:
+        "vcredist140"                       # Visual C++ Redistributable for Visual Studio 2015-2022
+        "vcredist2005"                      # Visual C++ Redistributable for Visual Studio 2005
+        "vcredist2008"                      # Visual C++ Redistributable for Visual Studio 2008
+        "vcredist2010"                      # Visual C++ Redistributable for Visual Studio 2010
+        "vcredist2012"                      # Visual C++ Redistributable for Visual Studio 2012
+        "vcredist2013"                      # Visual C++ Redistributable for Visual Studio 2013
+        "vcredist2015"                      # Visual C++ Redistributable for Visual Studio
+        "vcredist2017"                      # Visual C++ Redistributable for Visual Studio 2017
+        "dotnet4.6.1"                       # Microsoft .NET Framework 4.6.1
+
+        # Utilities:
+        "choco-cleaner"                     # Chocolatey Cleaner
+        "lockhunter"                        # LockHunter file unlocker
+        "nssm"                              # Non-Sucking Service Manager
+        "sysinternals"                      # Sysinternals Suite
+        "traystatus.install"                # TrayStatus system status monitor
+        "windirstat"                        # WinDirStat disk usage statistics viewer
+        "winfsp"                            # Windows File System Proxy
+
+        # ------------------------------------------------------------------
+        # Office and Documentation Packages
+        # ------------------------------------------------------------------
+
+        # Fonts:
+        "cascadiacode"                      # Cascadia Code font
+        "cascadiamono"                      # Cascadia Mono font
+        "cascadiamonopl"                    # Cascadia Mono PLus font
+        "dejavufonts"                       # DejaVu fonts
+        "inconsolata"                       # Inconsolata
+        "nerd-fonts-hack"                   # Hack Nerd Font
+        "nerd-fonts-sourcecodepro"          # Source Code Pro Nerd Font
+        "sourcecodepro"                     # Source Code Pro font
+
+        # Office:
+        "sumatrapdf.install"                # SumatraPDF document viewer
+
+        # Utilities:
+        "greenshot"                         # Screenshot tool
+
+        # ------------------------------------------------------------------
+        # DevOps and Administration Packages
+        # ------------------------------------------------------------------
+
+        # DevOps:
+        "act-cli"                           # Run GitHub Actions locally
+        "aws-iam-authenticator"             # AWC IAM Authenticator
+        "awscli"                            # Amazon AWS CLI
+        "azure-cli"                         # Microsoft Azure CLI
+        "gh"                                # GitHub CLI tool
+        "k9s"                               # K9s - Kubernetes CLI to manage clusters
+        "kubernetes-cli"                    # kubectl - Kubernetes command-line tool
+        "kubernetes-helm"                   # Helm - Kubernetes package manager
+        "kubernetes-kops"                   # Kubernetes Operations (kops) tool for managing clusters
+        "mremoteng"                         # mRemoteNG remote connections manager
+        "packer"                            # HashiCorp Packer
+        "terraform"                         # Infrastructure as Code tool
+        "tightvnc"                          # TightVNC remote desktop software
+        "winscp.install"                    # WinSCP SFTP and FTP client
+
+        # Networking:
+        "bind-toolsonly"                    # BIND DNS tools
+        "nmap"                              # Network scanner
+        "openssh"                           # OpenSSH client and server
+        "openssl.light"                     # OpenSSL toolkit
+
+        # Secrets:
+        "gpg4win"                           # Gpg4win - GnuPG for Windows
+        "keystore-explorer.portable"        # GUI for managing Java keystores
+
+        # ------------------------------------------------------------------
+        # Software Development Packages
+        # ------------------------------------------------------------------
+
+        # Development Tools:
+        "cmake"                             # Cross-platform build system
+        "cppcheck"                          # Static Analysis Tool for C/C++
+        "git"                               # Git version control system
+        "gitextensions"                     # Git Extensions GUI
+        "llvm"                              # LLVM compiler infrastructure
+        "make"                              # GNU Make build tool
+        "maven"                             # Apache Maven build automation tool
+        "ninja"                             # Ninja build system
+        "nuget.commandline"                 # NuGet package manager
+        "nsis"                              # Nullsoft Scriptable Install System
+        "nvm.install"                       # Node Version Manager for Windows
+        "winappdriver"                      # Windows Application Driver
+        "winmerge"                          # WinMerge file and directory comparison tool
+
+        # Editors
+        "notepadplusplus.install"           # Notepad++ text editor
+        "notepadplusplus-npppluginmanager"  # Notepad++ Plugin Manager
+    )
+
+    foreach ($package in $packages)
+    {
+        choco install $package -y
+    }
+
+    # Accept SysInternals EULA
+    New-Item -Path "HKCU:\Software\Sysinternals" -Name "EulaAccepted" -Value 1 -PropertyType DWORD -Force | Out-Null
+}
+
 # ==============================================================================================================
 # Windows App Package (WAPP) management functions
 # ==============================================================================================================
