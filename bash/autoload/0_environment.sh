@@ -28,6 +28,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 # Do not prompt using Windows native with WSL
 export DONT_PROMPT_WSL_INSTALL='true'
 
+# Disable PowerShell telemetry
+export POWERSHELL_TELEMETRY_OPTOUT=1
+
 # Find Linux distro
 if [ -f /etc/os-release ]
 then

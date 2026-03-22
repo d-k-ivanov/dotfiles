@@ -15,6 +15,8 @@ if ($MyInvocation.InvocationName -ne '.')
     exit
 }
 
+$Env:POWERSHELL_TELEMETRY_OPTOUT = 1
+
 # Sudo
 function sudo()
 {
