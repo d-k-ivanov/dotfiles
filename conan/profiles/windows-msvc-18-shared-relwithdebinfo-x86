@@ -4,8 +4,8 @@ os_build=Windows
 arch=x86
 arch_build=x86
 compiler=Visual Studio
-compiler.version=17
-compiler.runtime=MT
+compiler.version=18
+compiler.runtime=MD
 build_type=RelWithDebInfo
 
 [options]

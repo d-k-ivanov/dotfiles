@@ -1,0 +1,16 @@
+[settings]
+arch=x86
+build_type=RelWithDebInfo
+compiler=msvc
+compiler.cppstd=14
+compiler.runtime=static
+compiler.version=195
+os=Windows
+
+[options]
+
+[buildenv]
+
+[tool_requires]
+
+[conf]
