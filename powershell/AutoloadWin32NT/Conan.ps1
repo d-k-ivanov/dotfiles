@@ -12,7 +12,7 @@ if ( $MyInvocation.InvocationName -ne '.' )
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
 function conan_set_vars
@@ -20,7 +20,7 @@ function conan_set_vars
     [CmdletBinding()]
     param
     (
-        [string]$ConanHome  = "None",
+        [string]$ConanHome = "None",
         [string]$ConanShort = "None"
     )
 
@@ -29,7 +29,7 @@ function conan_set_vars
     {
         Set-Item -Path Env:CONAN_USER_HOME -Value "${ConanHome}"
         [Environment]::SetEnvironmentVariable("CONAN_USER_HOME", "${Env:CONAN_USER_HOME}", "Machine")
-        if (-Not (Test-Path "${Env:CONAN_USER_HOME}"))
+        if (-not (Test-Path "${Env:CONAN_USER_HOME}"))
         {
             New-Item "${Env:CONAN_USER_HOME}" -ItemType Directory -ErrorAction SilentlyContinue
         }
@@ -40,7 +40,7 @@ function conan_set_vars
     {
         Set-Item -Path Env:CONAN_USER_HOME_SHORT -Value "${ConanShort}"
         [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT", "${Env:CONAN_USER_HOME_SHORT}", "Machine")
-        if (-Not (Test-Path "${Env:CONAN_USER_HOME_SHORT}"))
+        if (-not (Test-Path "${Env:CONAN_USER_HOME_SHORT}"))
         {
             New-Item "${Env:CONAN_USER_HOME_SHORT}" -ItemType Directory -ErrorAction SilentlyContinue
         }
@@ -65,9 +65,9 @@ function conan_set_vars
 
 function conan_clean_vars
 {
-    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME",        [NullString]::Value, "Machine")
-    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT",  [NullString]::Value, "Machine")
-    [Environment]::SetEnvironmentVariable("CONAN_TRACE_FILE",       [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CONAN_USER_HOME_SHORT", [NullString]::Value, "Machine")
+    [Environment]::SetEnvironmentVariable("CONAN_TRACE_FILE", [NullString]::Value, "Machine")
     if ($env:CONAN_USER_HOME)
     {
         Remove-Item Env:CONAN_USER_HOME
@@ -87,27 +87,57 @@ $conan_env_path = 'c:\tools\conan_env'
 
 function conan_symlinks
 {
-    if ($Env:CONAN_USER_HOME)
+    [CmdletBinding()]
+    param (
+        [string] $ForceVersion = "None"
+    )
+
+    if ($ForceVersion -eq "2" -or ($ForceVersion -eq "None" -and (conan --version | Select-String -Pattern "Conan version 2" -Quiet)))
     {
-        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan_my"
-        $conan_config   = Join-Path $Env:CONAN_USER_HOME ".conan\conan.conf"
-        $conan_hooks    = Join-Path $Env:CONAN_USER_HOME ".conan\hooks"
-        $conan_profiles = Join-Path $Env:CONAN_USER_HOME ".conan\profiles"
+        if ($Env:CONAN_USER_HOME)
+        {
+            $conan_my_path = Join-Path $Env:USERPROFILE ".conan2_my"
+            $conan_config = Join-Path $Env:CONAN_USER_HOME ".conan2\conan.conf"
+            $conan_hooks = Join-Path $Env:CONAN_USER_HOME ".conan2\hooks"
+            $conan_profiles = Join-Path $Env:CONAN_USER_HOME ".conan2\profiles"
+        }
+        else
+        {
+            $conan_my_path = Join-Path $Env:USERPROFILE ".conan2_my"
+            $conan_config = Join-Path $Env:USERPROFILE ".conan2\conan.conf"
+            $conan_hooks = Join-Path $Env:USERPROFILE ".conan2\hooks"
+            $conan_profiles = Join-Path $Env:USERPROFILE ".conan2\profiles"
+        }
+    }
+    elseif ($ForceVersion -eq "1" -or ($ForceVersion -eq "None" -and (conan --version | Select-String -Pattern "Conan version 1" -Quiet)))
+    {
+        if ($Env:CONAN_USER_HOME)
+        {
+            $conan_my_path = Join-Path $Env:USERPROFILE ".conan_my"
+            $conan_config = Join-Path $Env:CONAN_USER_HOME ".conan\conan.conf"
+            $conan_hooks = Join-Path $Env:CONAN_USER_HOME ".conan\hooks"
+            $conan_profiles = Join-Path $Env:CONAN_USER_HOME ".conan\profiles"
+        }
+        else
+        {
+            $conan_my_path = Join-Path $Env:USERPROFILE ".conan_my"
+            $conan_config = Join-Path $Env:USERPROFILE ".conan\conan.conf"
+            $conan_hooks = Join-Path $Env:USERPROFILE ".conan\hooks"
+            $conan_profiles = Join-Path $Env:USERPROFILE ".conan\profiles"
+        }
     }
     else
     {
-        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan_my"
-        $conan_config   = Join-Path $Env:USERPROFILE ".conan\conan.conf"
-        $conan_hooks    = Join-Path $Env:USERPROFILE ".conan\hooks"
-        $conan_profiles = Join-Path $Env:USERPROFILE ".conan\profiles"
+        Write-Host "Error: Unsupported Conan version. Please specify version 1 or 2." -ForegroundColor Red
+        return
     }
 
-    if (-Not (Test-Path $conan_hooks))
+    if (-not (Test-Path $conan_hooks))
     {
         New-Item "${conan_hooks}" -ItemType Directory -ErrorAction SilentlyContinue
     }
 
-    if (-Not (Test-Path $conan_profiles))
+    if (-not (Test-Path $conan_profiles))
     {
         New-Item "${conan_profiles}" -ItemType Directory -ErrorAction SilentlyContinue
     }
@@ -129,53 +159,9 @@ function conan_symlinks
     }
 }
 
-function conan2_symlinks
+function conan_env_init
 {
-    if ($Env:CONAN_USER_HOME)
-    {
-        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan2_my"
-        $conan_config   = Join-Path $Env:CONAN_USER_HOME ".conan2\conan.conf"
-        $conan_hooks    = Join-Path $Env:CONAN_USER_HOME ".conan2\hooks"
-        $conan_profiles = Join-Path $Env:CONAN_USER_HOME ".conan2\profiles"
-    }
-    else
-    {
-        $conan_my_path  = Join-Path $Env:USERPROFILE ".conan2_my"
-        $conan_config   = Join-Path $Env:USERPROFILE ".conan2\conan.conf"
-        $conan_hooks    = Join-Path $Env:USERPROFILE ".conan2\hooks"
-        $conan_profiles = Join-Path $Env:USERPROFILE ".conan2\profiles"
-    }
-
-    if (-Not (Test-Path $conan_hooks))
-    {
-        New-Item "${conan_hooks}" -ItemType Directory -ErrorAction SilentlyContinue
-    }
-
-    if (-Not (Test-Path $conan_profiles))
-    {
-        New-Item "${conan_profiles}" -ItemType Directory -ErrorAction SilentlyContinue
-    }
-
-    if (Test-Path $conan_my_path)
-    {
-        Remove-Item -Force -Confirm:$false "${conan_config}" -ErrorAction SilentlyContinue
-        cmd.exe /c mklink "${conan_config}" "${conan_my_path}\conan.conf"
-
-        Get-ChildItem "${conan_my_path}\hooks" | ForEach-Object {
-            Remove-Item -Force -Confirm:$false "${conan_hooks}\$($_.Name)" -ErrorAction SilentlyContinue
-            cmd.exe /c mklink "${conan_hooks}\$($_.Name)" "$($_.FullName)"
-        }
-
-        Get-ChildItem "${conan_my_path}\profiles" | ForEach-Object {
-            Remove-Item -Force -Confirm:$false "${conan_profiles}\$($_.Name)" -ErrorAction SilentlyContinue
-            cmd.exe /c mklink "${conan_profiles}\$($_.Name)" "$($_.FullName)"
-        }
-    }
-}
-
-function cei
-{
-    if ( -Not $(Test-Path "${conan_env_path}") )
+    if ( -not $(Test-Path "${conan_env_path}") )
     {
         $python = Get-Command python | Select-Object -ExpandProperty Definition
         python -m pip install --upgrade pip
@@ -190,18 +176,16 @@ function cei
         & $(Join-Path "${conan_env_path}" 'Scripts\activate.ps1')
     }
 }
-Set-Alias cenv_init cei
 
-function ceg
+function conan_env_cd
 {
     if ( Test-Path "${conan_env_path}" )
     {
         cd "${conan_env_path}"
     }
 }
-Set-Alias cenv_go ceg
 
-function ce
+function conan_env_activate
 {
     if ( Test-Path "${conan_env_path}" )
     {
@@ -212,24 +196,22 @@ function ce
         cenv_init
     }
 }
-Set-Alias cenv_activate ce
 
-function ced
+function conan_env_deactivate
 {
     if (${Env:VIRTUAL_ENV})
     {
         deactivate
     }
 }
-Set-Alias cenv_deactivate ced
 
-function ceu
+function conan_env_update
 {
     if ( Test-Path "${conan_env_path}" )
     {
         cenv_activate
         [string] $SessionID = [System.Guid]::NewGuid()
-        $TempFreezeFile  = Join-Path "${Env:Temp}" "${SessionID}"
+        $TempFreezeFile = Join-Path "${Env:Temp}" "${SessionID}"
         python -m pip freeze --all | ForEach-Object { $_.split('==')[0] } >> "${TempFreezeFile}"
         python -m pip install --upgrade -r "${TempFreezeFile}"
         Remove-Item -Force "${TempFreezeFile}"
@@ -240,9 +222,8 @@ function ceu
         cenv_init
     }
 }
-Set-Alias cenv_update ceu
 
-function cer
+function conan_env_remove
 {
     cenv_deactivate
     if ( Test-Path "${conan_env_path}" )
@@ -250,14 +231,13 @@ function cer
         Remove-Item -Recurse -Force "${conan_env_path}"
     }
 }
-Set-Alias cenv_rm cer
 
 function conan_add_remote
 {
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Organization,
         [string]$Remote = 'conan-local',
         [string]$Repo = 'conan-local'
@@ -270,7 +250,7 @@ function conan_set_env_password
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [SecureString]$Password
     )
     Set-Item -Path Env:CONAN_PASSWORD -Value "${Password}"
@@ -281,16 +261,17 @@ function conan_remote_auth
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Username,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [SecureString]$Password,
         [string]$Remote = 'conan-local'
     )
     conan user -p ${Password} -r ${Remote} ${Username}
 }
 
-function get_conan_home {
+function get_conan_home
+{
     if (${Env:CONAN_USER_HOME})
     {
         return ${Env:CONAN_USER_HOME}
