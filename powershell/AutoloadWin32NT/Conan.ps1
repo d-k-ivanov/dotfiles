@@ -161,19 +161,33 @@ function conan_symlinks
 
 function conan_env_init
 {
-    if ( -not $(Test-Path "${conan_env_path}") )
+    [CmdletBinding()]
+    param (
+        [ValidateSet("1", "2")]
+        [string] $Version = "None"
+    )
+
+    $python = Get-Command python | Select-Object -ExpandProperty Definition
+    python -m pip install --upgrade pip
+    python -m venv "${conan_env_path}"
+    & $(Join-Path "${conan_env_path}" 'Scripts\activate.ps1')
+    python -m pip install --upgrade pip
+
+    if ($Version -eq "None")
     {
-        $python = Get-Command python | Select-Object -ExpandProperty Definition
-        python -m pip install --upgrade pip
-        python -m venv "${conan_env_path}"
-        & $(Join-Path "${conan_env_path}" 'Scripts\activate.ps1')
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade conan
-        # python -m pip install --upgrade ipython
+        # Check if conan pacage is already (python -m pip list) do nothing, else install specific version
+        if (python -m pip list | Select-String -Pattern "conan" -Quiet)
+        {
+            Write-Host "Conan is already installed. Skipping installation." -ForegroundColor Yellow
+        }
+        else
+        {
+            python -m pip install --upgrade conan
+        }
     }
     else
     {
-        & $(Join-Path "${conan_env_path}" 'Scripts\activate.ps1')
+        python -m pip install --upgrade --force-reinstall "conan==${Version}.*"
     }
 }
 
@@ -225,7 +239,7 @@ function conan_env_update
 
 function conan_env_remove
 {
-    cenv_deactivate
+    conan_env_deactivate
     if ( Test-Path "${conan_env_path}" )
     {
         Remove-Item -Recurse -Force "${conan_env_path}"
@@ -282,7 +296,7 @@ function get_conan_home
     }
 }
 
-function conan_install
+function conan1_install
 {
     [CmdletBinding()]
     param
@@ -304,5 +318,30 @@ function conan_install
     else
     {
         conan install "$PathToConanFile" -pr "${conan_home}\.conan\profiles\windows-msvc-${MSVCVer}-static-${Configuration}-${Arch}" --build=missing
+    }
+}
+
+function conan2_install
+{
+    [CmdletBinding()]
+    param
+    (
+        [string] $PathToConanFile = '.',
+        [string] $Configuration = 'release',
+        [string] $Arch = 'x64',
+        [string] $MSVCVer = '14.5',
+        [switch] $Shared
+    )
+
+    cenv_activate
+    $conan_home = get_conan_home
+
+    if ($Shared)
+    {
+        conan install "$PathToConanFile" -pr "${conan_home}\.conan2\profiles\windows-msvc-${MSVCVer}-shared-${Configuration}-${Arch}.ini" --build=missing
+    }
+    else
+    {
+        conan install "$PathToConanFile" -pr "${conan_home}\.conan2\profiles\windows-msvc-${MSVCVer}-static-${Configuration}-${Arch}.ini" --build=missing
     }
 }
