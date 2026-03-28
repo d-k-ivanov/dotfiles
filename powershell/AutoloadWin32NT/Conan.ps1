@@ -15,6 +15,93 @@ if ( $MyInvocation.InvocationName -ne '.' )
     exit
 }
 
+function conan_set_default_profile
+{
+    # Possible values for msvc profile:
+    # $archs = @("x86", "x86_64")
+    # $build_types = @("Release", "RelWithDebInfo", "Debug")
+    # $cppstds = @(14, 17, 20, 23, 26)
+    # $runtimes = @("static", "dynamic")
+    # $versions = @(193, 194, 195)
+
+    $archs = @("x86_64")
+    $build_types = @("Release", "RelWithDebInfo", "Debug")
+    $cppstds = @(20, 23)
+    $runtimes = @("static", "dynamic")
+    $versions = @(194, 195)
+
+    $profiles = @()
+    foreach ($arch in $archs)
+    {
+        foreach ($build_type in $build_types)
+        {
+            foreach ($version in $versions)
+            {
+                foreach ($cppstd in $cppstds)
+                {
+                    foreach ($runtime in $runtimes)
+                    {
+                        $display_arch = if ($arch -eq "x86_64") { "x64" } else { "x86" }
+                        $label = "$display_arch-$($build_type.ToLower())-msvc-$version-std$cppstd-$runtime"
+                        $profiles += [PSCustomObject]@{
+                            Label     = $label
+                            Arch      = $arch
+                            BuildType = $build_type
+                            CppStd    = $cppstd
+                            Runtime   = $runtime
+                            Version   = $version
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    $profiles = $profiles | Sort-Object -Property Label -Descending
+
+    # Use GUI selection instead of console selection
+    # $selected = $profiles | Out-GridView -Title "Select Default Conan Profile" -OutputMode Single
+    $selected = $profiles | Out-ConsoleGridView -Title "Select Default Conan Profile" -OutputMode Single
+
+    if (-not $selected)
+    {
+        Write-Host "No profile selected." -ForegroundColor Yellow
+        return
+    }
+
+    $profile_content = @"
+[settings]
+arch=$($selected.Arch)
+build_type=$($selected.BuildType)
+compiler=msvc
+compiler.cppstd=$($selected.CppStd)
+compiler.runtime=$($selected.Runtime)
+compiler.version=$($selected.Version)
+os=Windows
+
+[options]
+
+[buildenv]
+
+[tool_requires]
+
+[conf]
+"@
+
+    $conan_home = get_conan_home
+    $default_profile_path = Join-Path $conan_home ".conan2\profiles\default"
+
+    $profile_dir = Split-Path $default_profile_path -Parent
+    if (-not (Test-Path $profile_dir))
+    {
+        New-Item -Path $profile_dir -ItemType Directory -Force | Out-Null
+    }
+
+    Set-Content -Path $default_profile_path -Value $profile_content -NoNewline
+    Write-Host "Default profile set: $($selected.Label)" -ForegroundColor Green
+}
+
+
 function conan_set_vars
 {
     [CmdletBinding()]

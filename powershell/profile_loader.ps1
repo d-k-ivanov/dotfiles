@@ -38,6 +38,7 @@ $modules = @(
     # "AWSPowerShell" # -- SLOW
     # "CredentialManager"
     # "dbatools" # -- SLOW
+    "Microsoft.PowerShell.ConsoleGuiTools"
     # "OData"
     # "OpenSSHUtils"
     "Posh-Docker"
