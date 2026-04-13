@@ -12,10 +12,10 @@ if ($MyInvocation.InvocationName -ne '.')
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
-${function:bash-wsl}    = { conemu-cyg-64.exe --wsl -cur_console:h0 }
+${function:bash-wsl} = { conemu-cyg-64.exe --wsl -cur_console:h0 }
 
 function Find-WSL()
 {
@@ -58,7 +58,7 @@ function List-WSLDistros()
 
 function wsl-fix-anyconnect()
 {
-    Get-NetAdapter | Where-Object {$_.InterfaceDescription -Match "Cisco AnyConnect"} | Set-NetIPInterface -InterfaceMetric 4000
+    Get-NetAdapter | Where-Object { $_.InterfaceDescription -match "Cisco AnyConnect" } | Set-NetIPInterface -InterfaceMetric 4000
     Get-NetIPInterface -InterfaceAlias "vEthernet (WSL)" | Set-NetIPInterface -InterfaceMetric 1
 }
 
@@ -75,4 +75,14 @@ function wsl-shrink-vhdx()
     wsl --shutdown
     wsl --manage Ubuntu-24.04 --set-sparse false
     Optimize-VHD -Path "${$Env:LOCALAPPDATA}\Packages\CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx" -Mode Full
+}
+
+function wsl-disable-rdp-logs()
+{
+    $rdpLogsPath = Join-Path -Path $Env:TEMP -ChildPath "DiagOutputDir\RdClientAutoTrace"
+    if (Test-Path -Path $rdpLogsPath -PathType Container)
+    {
+        Remove-Item -Path $rdpLogsPath -Recurse -Force
+    }
+    New-Item -Path $rdpLogsPath -ItemType File -Force | Out-Null
 }

@@ -317,7 +317,7 @@ function Install-ChocolateyPackages()
         # "travis"                          # Travis CI command-line client
         "vagrant"                           # Vagrant virtual machine manager
         # "vagrant-manager"                 # Vagrant Manager GUI
-        # "vcxsrv"                          # X server for Windows
+        "vcxsrv"                            # X server for Windows
         "winscp.install"                    # WinSCP SFTP and FTP client
 
         # Networking:
