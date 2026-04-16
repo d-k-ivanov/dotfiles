@@ -45,3 +45,9 @@ ${function:eed} = { e ${Env:MY_ONEDRIVE}\Desktop }
 ${function:ww} = { e ${Env:WORKSPACE}\my\workspace }
 
 ${function:vssp} = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-MSVC-22C.json ${PWD}\CMakePresets.json; e . }
+
+# WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS --disable-gpu
+function Disable-WebView2GPU
+{
+    [System.Environment]::SetEnvironmentVariable('WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS', '--disable-gpu', [System.EnvironmentVariableTarget]::Machine)
+}
