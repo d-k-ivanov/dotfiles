@@ -261,7 +261,7 @@ function Install-ChocolateyPackages()
         "pdfsam"                            # PDF Split and Merge Basic
         # "qtranslate"                      # QTranslate language translator. Download from: https://quest-app.appspot.com/
         "sumatrapdf.install"                # SumatraPDF document viewer
-        # "thunderbird"                     # Mozilla Thunderbird email client
+        "thunderbird"                       # Mozilla Thunderbird email client
         # "windjview"                       # DjVu document viewer
         "xpdf-utils"                        # Xpdf command-line PDF toolset
 
