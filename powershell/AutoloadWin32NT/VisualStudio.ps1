@@ -25,7 +25,7 @@ $InstallPaths = @(
     'C:\Program Files\Microsoft Visual Studio\18\Enterprise'
     'C:\Program Files\Microsoft Visual Studio\18\Professional'
     'C:\Program Files\Microsoft Visual Studio\18\Community'
-    'C:\Program Files\Microsoft Visual Studio\18\BuildTools'
+    'C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools'
     'C:\Program Files\Microsoft Visual Studio\18\Preview'
     'C:\Program Files\Microsoft Visual Studio\2022\Enterprise'
     'C:\Program Files\Microsoft Visual Studio\2022\Professional'
