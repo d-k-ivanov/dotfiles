@@ -195,7 +195,7 @@ function Install-ChocolateyPackages()
         # "doublecmd"                       # Double Commander file manager
         # "encfs4win"                       # EncFS4Win encrypted file system
         # "ext2fsd"                         # Ext2Fsd - Ext2/3/4 file system driver for Windows
-        # "far"                             # FAR Manager file manager
+        "far"                               # FAR Manager file manager
         "gpu-z"                             # GPU-Z graphics card information tool
         "hwinfo"                            # HWiNFO hardware information and diagnostic tool
         "imdisk-toolkit"                    # ImDisk Toolkit virtual disk driver and tools

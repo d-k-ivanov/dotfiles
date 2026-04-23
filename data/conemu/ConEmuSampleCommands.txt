@@ -1,0 +1,46 @@
+<value name="Cmd1" type="string" data='"%windir%\syswow64\cmd.exe" /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
+<value name="Cmd1" type="string" data='*cmd.exe /k Title Chocolatey &amp; "%ConEmuBaseDir%\Addons\ChocolateyAbout.cmd"'/>
+<value name="Cmd1" type="string" data='&gt; "%windir%\system32\cmd.exe" /k ""%ConEmuBaseDir%\CmdInit.cmd" &amp; echo This is Native cmd.exe"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"" x64 -new_console:t:"VS 14.0" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll,33"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"" x86 -new_console:t:"VS 14.0" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll,33"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files\Microsoft Visual Studio\18\Professional\Common7\Tools\VsDevCmd.bat"" -new_console:t:"VS 18" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files\Microsoft Visual Studio\18\Professional\VC\Auxiliary\Build\vcvarsall.bat"" x64 -new_console:t:"VS 18" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files\Microsoft Visual Studio\18\Professional\VC\Auxiliary\Build\vcvarsall.bat"" x86 -new_console:t:"VS 18" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"" -new_console:t:"VS 2022" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"" x64 -new_console:t:"VS 2022" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll"'/>
+<value name="Cmd1" type="string" data='cmd /k ""C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"" x86 -new_console:t:"VS 2022" -new_console:C:"%CommonProgramFiles(x86)%\microsoft shared\MSEnv\VSFileHandler.dll"'/>
+<value name="Cmd1" type="string" data='cmd /k "%ConEmuBaseDir%\CmdInit.cmd" -new_console:a'/>
+<value name="Cmd1" type="string" data='cmd /k "%ConEmuBaseDir%\CmdInit.cmd"'/>
+<value name="Cmd1" type="string" data='cmd /k type "%ConEmuBaseDir%\Addons\AnsiColors16t.ans" -cur_console:n'/>
+<value name="Cmd1" type="string" data='set "FARHOME=" &amp; "%ConEmuDrive%\Program Files\Far Manager\far.exe" /w /p"%ConEmuDir%\Plugins\ConEmu;%FARHOME%\Plugins;%FARPROFILE%\Plugins"'/>
+<value name="Cmd1" type="string" data='set "FARHOME=" &amp; "far.exe" /w /p"%ConEmuDir%\Plugins\ConEmu;%FARHOME%\Plugins;%FARPROFILE%\Plugins"'/>
+<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe %ConEmuBaseDirShort%\wsl\wslbridge2.exe -W ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu -eConEmuBuild -eConEmuPID -eConEmuServerPID -l'/>
+<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe %ConEmuBaseDirShort%\wsl\wslbridge2.exe -W ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu  -eConEmuBuild -eConEmuPID -eConEmuServerPID -l'/>
+<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe %ConEmuBaseDirShort%\wsl\wslbridge2.exe -W ~ -cur_console:h0:p:sV:n:m:"/mnt":t:Ubuntu -eConEmuBuild -eConEmuPID -eConEmuServerPID -l'/>
+<value name="Cmd1" type="string" data='set "PATH=%ConEmuDrive%\Program Files\Git\usr\bin;%PATH%" &amp; "%ConEmuDrive%\Program Files\Git\git-bash.exe" --no-cd --command=%ConEmuBaseDirShort%\conemu-msys2-64.exe /usr/bin/bash.exe -l -i -new_console:p'/>
+<value name="Cmd1" type="string" data='set "PATH=%ProgramFiles%\Git\usr\bin;%PATH%" &amp; %ProgramFiles%\Git\git-cmd.exe --no-cd --command=%ConEmuBaseDirShort%\conemu-msys2-64.exe /usr/bin/bash.exe -l -i -new_console:p'/>
+<value name="Cmd1" type="string" data='set CHERE_INVOKING=1 &amp; set MSYSTEM=CLANG64 &amp; set MSYSCON=conemu64.exe &amp; "c:\tools\msys64\usr\bin\bash.exe" --login -i -new_console:C:"c:\tools\msys64\clang64.exe":t:"clang64"'/>
+<value name="Cmd1" type="string" data='set CHERE_INVOKING=1 &amp; set MSYSTEM=MINGW32 &amp; set MSYSCON=conemu64.exe &amp; "c:\tools\msys64\usr\bin\bash.exe" --login -i -new_console:C:"c:\tools\msys64\mingw32.exe":t:"mingw32"'/>
+<value name="Cmd1" type="string" data='set CHERE_INVOKING=1 &amp; set MSYSTEM=MINGW64 &amp; set MSYSCON=conemu64.exe &amp; "c:\tools\msys64\usr\bin\bash.exe" --login -i -new_console:C:"c:\tools\msys64\mingw32.exe":t:"mingw64"'/>
+<value name="Cmd1" type="string" data='set MSYSTEM=MSYS &amp; set MSYSCON=conemu64.exe &amp; "c:\tools\msys64\usr\bin\bash.exe" --login -i -new_console:C:"c:\tools\msys64\msys2.exe"'/>
+<value name="Cmd1" type="string" data='ubuntu2204.exe -cur_console:h0:p:n:m:"/mnt":t:Ubuntu22'/>
+<value name="Cmd1" type="string" data='ubuntu2404.exe -cur_console:h0:p:n:m:"/mnt":t:Ubuntu24'/>
+<value name="Cmd1" type="string" data='wsl.exe --distribution-id 32d10515-d0db-4e09-aa55-9d6f56160198 --cd ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu'/>
+<value name="Cmd1" type="string" data='wsl.exe -d Ubuntu-24.04 --cd ~ -cur_console::p:n:m:"/mnt":t:Ubuntu'/>
+<value name="Cmd1" type="string" data='wsl.exe -d Ubuntu-24.04 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu'/>
+<value name="Cmd1" type="string" data='wsl.exe ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu'/>
+<value name="Cmd1" type="string" data='wsl.exe ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu'/>
+<value name="Cmd1" type="string" data='wsl.exe ~ -cur_console:h0:p:sV:n:m:"/mnt":t:Ubuntu'/>
+<value name="Cmd1" type="string" data="powershell.exe -ExecutionPolicy Bypass -NoLogo -NoExit -new_console::t:PS5.1"/>
+<value name="Cmd1" type="string" data="powershell.exe -ExecutionPolicy Bypass -NoLogo -NoExit -new_console:a:t:PS5.1"/>
+<value name="Cmd1" type="string" data="powershell.exe -new_console:a"/>
+<value name="Cmd1" type="string" data="powershell.exe"/>
+<value name="Cmd1" type="string" data='pwsh.exe -ExecutionPolicy Bypass -NoLogo -NoExit -new_console:s50H:'/>
+<value name="Cmd1" type="string" data='pwsh.exe -ExecutionPolicy Bypass -NoLogo -NoExit -new_console:sV:'/>
+<value name="Cmd1" type="string" data='pwsh.exe -new_console:a'/>
+<value name="Cmd1" type="string" data='pwsh.exe'/>
+<value name="Cmd1" type="string" data='wsl.exe -cur_console:pm:/mnt --distribution docker-desktop-data'/>
+<value name="Cmd1" type="string" data='wsl.exe -cur_console:pm:/mnt --distribution docker-desktop'/>
+<value name="Cmd1" type="string" data='wsl.exe -cur_console:pm:/mnt --distribution Ubuntu-24.04'/>
+<value name="Cmd1" type="string" data='wsl.exe -cur_console:pm:/mnt --distribution Ubuntu-26.04'/>
+<value name="Cmd1" type="string" data='wsl.exe -cur_console:pm:/mnt'/>
