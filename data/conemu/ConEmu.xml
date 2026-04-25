@@ -511,41 +511,41 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000004"/>
 				</key>
-				<key name="Task4" modified="2026-04-24 00:07:56" build="230724">
-					<value name="Name" type="string" data="{WSL::Ubuntu 26.04}"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu26'/>
-					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
-					<value name="Flags" type="dword" data="00000004"/>
-				</key>
-				<key name="Task5" modified="2026-04-24 00:07:56" build="230724">
+				<key name="Task4" modified="2026-04-25 14:41:19" build="230724">
 					<value name="Name" type="string" data="{WSL::Ubuntu 24.04}"/>
-					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
+					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-24.04 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu24'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-24.04 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu24'/>
+					<value name="Flags" type="dword" data="00000004"/>
 				</key>
-				<key name="Task6" modified="2026-04-24 00:07:56" build="230724">
+				<key name="Task5" modified="2026-04-25 14:41:19" build="230724">
 					<value name="Name" type="string" data="{WSL::Ubuntu 26.04 Split}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu26'/>
+				</key>
+				<key name="Task6" modified="2026-04-25 14:41:19" build="230724">
+					<value name="Name" type="string" data="{WSL::Ubuntu 26.04 VSplit}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
 					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu26'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task7" modified="2026-04-24 00:07:56" build="230724">
-					<value name="Name" type="string" data="{WSL::Ubuntu 26.04 VSplit}"/>
+				<key name="Task7" modified="2026-04-25 14:41:19" build="230724">
+					<value name="Name" type="string" data="{WSL::Ubuntu 26.04}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu26'/>
+					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Ubuntu26'/>
 				</key>
 				<key name="Task8" modified="2026-04-24 00:15:35" build="230724">
 					<value name="Name" type="string" data="{Far::Far}"/>
