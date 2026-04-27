@@ -42,9 +42,10 @@ case $1 in
         ;;
 esac
 
-mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/mc"
 mkdir -p "$HOME/.config/onedrive"
+mkdir -p "$HOME/.local/bin"
 
 rm -rf "$HOME/.bash_profile"                        2> /dev/null
 rm -rf "$HOME/.bash"                                2> /dev/null
@@ -54,6 +55,7 @@ rm -rf "$HOME/.config/alacritty"                    2> /dev/null
 rm -rf "$HOME/.config/chrome-flags.conf"            2> /dev/null
 rm -rf "$HOME/.config/cmake"                        2> /dev/null
 rm -rf "$HOME/.config/k9s"                          2> /dev/null
+rm -rf "$HOME/.config/mc/ini"                       2> /dev/null
 rm -rf "$HOME/.config/nvim"                         2> /dev/null
 rm -rf "$HOME/.config/onedrive/config"              2> /dev/null
 rm -rf "$HOME/.config/starship"                     2> /dev/null
@@ -81,6 +83,7 @@ ln -sf "$DOTFILES_DIR/config/alacritty"             "$HOME/.config/alacritty"
 ln -sf "$DOTFILES_DIR/config/chrome-flags.conf"     "$HOME/.config/chrome-flags.conf"
 ln -sf "$DOTFILES_DIR/config/cmake"                 "$HOME/.config/cmake"
 ln -sf "$DOTFILES_DIR/config/k9s"                   "$HOME/.config/k9s"
+ln -sf "$DOTFILES_DIR/config/mc/ini"                "$HOME/.config/mc/ini"
 ln -sf "$DOTFILES_DIR/config/nvim"                  "$HOME/.config/nvim"
 ln -sf "$DOTFILES_DIR/config/onedrive/config"       "$HOME/.config/onedrive/config"
 ln -sf "$DOTFILES_DIR/config/starship"              "$HOME/.config/starship"
