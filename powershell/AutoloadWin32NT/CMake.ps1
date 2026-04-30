@@ -70,7 +70,7 @@ ${function:cgen-26}         = { cmake -G "Visual Studio 18 2026" -A x64         
 ${function:cgen-26-cl}      = { cmake -G "Visual Studio 18 2026" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-22}         = { cmake -G "Visual Studio 17 2022" -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-22-cl}      = { cmake -G "Visual Studio 17 2022" -A x64 -T ClangCL -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
-${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config"    -A x64            -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-nj-multy}   = { cmake -G "Ninja Multi-Config"                      -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 
 # CMake Generator: MSVC Specific versions
 ${function:cgen-26-1444}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.44 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
@@ -79,7 +79,7 @@ ${function:cgen-22-1442}    = { cmake -G "Visual Studio 17 2022" -A x64 -T versi
 # CMake Generator: Find Vcpkg
 ${function:cgen-26-v}       = { cmake -G "Visual Studio 18 2026" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 ${function:cgen-22-v}       = { cmake -G "Visual Studio 17 2022" -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
-${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config"    -A x64 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
+${function:cgen-nj-multy-v} = { cmake -G "Ninja Multi-Config"           -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake) }
 
 # CMake Generators: Build Types
 ${function:cgen-debug-nj} = { cmake -G "Ninja"                        -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }
