@@ -116,7 +116,7 @@ function move_all_converted_svg_and_png
     }
 }
 
-function convert_gif_to_mp4
+function convert_to_mp4
 {
     [CmdletBinding()]
     param
@@ -132,7 +132,7 @@ function convert_gif_to_mp4
 
     if (-not $OutputPath)
     {
-        $OutputPath = Join-Path (Split-Path -Path $FullPath -Parent) "$([io.path]::GetFileNameWithoutExtension($FullPath)).mp4"
+        $OutputPath = Join-Path (Split-Path -Path $FullPath -Parent) "$([io.path]::GetFileNameWithoutExtension($FullPath))_new.mp4"
         Write-Host "`t Setting OutputPath to ${OutputPath}" -ForegroundColor Yellow
     }
 
@@ -172,7 +172,7 @@ function convert_gif_to_mp4
     }
 }
 
-function convert_gif_to_mp4_recursive
+function convert_all_gifs_in_path_to_mp4
 {
     [CmdletBinding()]
     param
@@ -185,6 +185,6 @@ function convert_gif_to_mp4_recursive
     $FullPath = Convert-Path $Path
     Get-ChildItem -Path $FullPath -File -Recurse -Filter *.gif | ForEach-Object {
         $out = Join-Path $_.DirectoryName "$($_.BaseName).mp4"
-        convert_gif_to_mp4 -Path $_.FullName -OutputPath $out -Fps $Fps
+        convert_to_mp4 -Path $_.FullName -OutputPath $out -Fps $Fps
     }
 }
