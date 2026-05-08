@@ -209,6 +209,7 @@ function Initialize-Paths-System
     $paths = @(
         "C:\PROGRA~1\PowerShell\7"
         "${Env:USERPROFILE}\AppData\Local\Microsoft\WindowsApps"
+        "C:\texlive\2026\bin\windows"
         "C:\texlive\2025\bin\windows"
         "C:\texlive\2024\bin\windows"
         "C:\texlive\2023\bin\windows"
