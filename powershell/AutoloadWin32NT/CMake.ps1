@@ -126,13 +126,13 @@ ${function:cmake2015x64} = { Set-VC-Vars-All x64; cgen-release-15; cmake --build
 # CMake Build Aliases
 ${function:cbuild}   = { cmake --build build @args }
 
-${function:cbuilddb} = { cmake --build build --config Debug          @args }
-${function:cbuildrl} = { cmake --build build --config Release        @args }
-${function:cbuildrd} = { cmake --build build --config RelWithDebInfo @args }
+${function:cbuild-db} = { cmake --build build --config Debug          @args }
+${function:cbuild-rl} = { cmake --build build --config Release        @args }
+${function:cbuild-rd} = { cmake --build build --config RelWithDebInfo @args }
 
-# ${function:cbuilddb} = { cmake --build build/x64-Debug          --config Debug          @args }
-# ${function:cbuildrl} = { cmake --build build/x64-Release        --config Release        @args }
-# ${function:cbuildrd} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
+${function:cbuild-db-x} = { cmake --build build/x64-Debug          --config Debug          @args }
+${function:cbuild-rl-x} = { cmake --build build/x64-Release        --config Release        @args }
+${function:cbuild-rd-x} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
 
 ${function:cgenbuld} = { cgen-26; cbuildrd }
 Set-Alias cgb cgenbuld
