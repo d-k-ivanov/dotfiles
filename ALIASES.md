@@ -285,8 +285,8 @@ Source: [git.sh](bash/autoload/git.sh)
 
 | Function                         | Description                                                                                              |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `gco [msg]`                      | **Git commit only** - commits staged changes. With arg: uses as message. Without: opens editor with diff |
-| `gca [msg]`                      | **Git commit all** - stages everything (`git add --all`) then commits                                    |
+| `gco [msg]`                      | **git commit only** - commits staged changes. With arg: uses as message. Without: opens editor with diff |
+| `gca [msg]`                      | **git commit all** - stages everything (`git add --all`) then commits                                    |
 | `gget <url>`                     | Clones repo and `cd`s into it                                                                            |
 | `gcrt`                           | Clones repo into `org-reponame` folder format                                                            |
 | `get_repo_with_target`           | Clones repo into `org-reponame` folder format                                                            |
@@ -438,12 +438,12 @@ Source: [git.sh](bash/autoload/git.sh)
 
 ### Branch Management
 
-| Alias       | Purpose                                                |
-| ----------- | ------------------------------------------------------ |
-| `gbr`       | Delete local branch safely (`-d`, must be merged)      |
-| `gbrf`      | Force delete local branch (`-D`, even if unmerged)     |
-| `gbrr`      | Delete remote branch (`git push origin --delete`)      |
-| `g-to-main` | Rename master→main + update remote tracking + set HEAD |
+| Alias       | Purpose                                                   |
+| ----------- | --------------------------------------------------------- |
+| `gbr`       | Delete local branch safely (`-d` option; must be merged)  |
+| `gbrf`      | Force delete local branch (`-D` option; even if unmerged) |
+| `gbrr`      | Delete remote branch (`git push origin --delete`)         |
+| `g-to-main` | Rename master→main + update remote tracking + set HEAD    |
 
 ### Rebase
 
@@ -635,17 +635,17 @@ Source: [python.sh](bash/autoload/python.sh)
 
 ### Package Management
 
-| Alias        | Purpose                                               |
-| ------------ | ----------------------------------------------------- |
-| `vd`         | Deactivate current virtual environment                |
-| `vpi`        | Install package with pip (`python -m pip install`)    |
-| `vpip`       | Upgrade pip to latest version                         |
-| `vgen`       | Generate requirements.txt from installed packages     |
-| `vinsr`      | Install packages from requirements.txt if exists      |
-| `vinsd`      | Install packages from requirements-dev.txt if exists  |
-| `vinsm`      | Install packages from requirements-misc.txt if exists |
-| `pip-update` | Upgrade pip to latest version                         |
-| `pip_update` | Update pip via py_venv function                       |
+| Alias        | Purpose                                            |
+| ------------ | -------------------------------------------------- |
+| `vd`         | Deactivate current virtual environment             |
+| `vpi`        | Install package with pip (`python -m pip install`) |
+| `vpip`       | Upgrade pip to latest version                      |
+| `vgen`       | Generate requirements.txt from installed packages  |
+| `vinsr`      | Install packages from requirements.txt             |
+| `vinsd`      | Install packages from requirements-dev.txt         |
+| `vinsm`      | Install packages from requirements-misc.txt        |
+| `pip-update` | Upgrade pip to latest version                      |
+| `pip_update` | Update pip via py_venv function                    |
 
 ### Utilities
 
