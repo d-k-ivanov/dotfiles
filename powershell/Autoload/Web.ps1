@@ -50,3 +50,5 @@ function curlex($url)
 ${function:drand} = {
     curl -s api.drand.sh/public/latest | ConvertFrom-Json | Format-List
 }
+
+${function:wget-dir} = { wget -r -np -nH --cut-dirs=1 --no-check-certificate @args }
