@@ -254,9 +254,10 @@ function Install-ChocolateyPackages()
         "adobereader"                       # Adobe Acrobat Reader DC
         # "anki"                            # Anki flashcard program
         # "calibre"                         # Calibre eBook management software
-        "Ghostscript.app"                   # Ghostscript PostScript and PDF interpreter
+        "dia"                               # Dia diagram editor
         "dropbox"                           # Dropbox client
-        # "libreoffice-fresh"               # LibreOffice suite
+        "Ghostscript.app"                   # Ghostscript PostScript and PDF interpreter
+        "libreoffice-fresh"                 # LibreOffice suite
         "pdf24"                             # PDF24 Creator
         "pdfsam"                            # PDF Split and Merge Basic
         # "qtranslate"                      # QTranslate language translator. Download from: https://quest-app.appspot.com/
