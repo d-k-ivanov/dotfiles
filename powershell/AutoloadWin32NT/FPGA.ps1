@@ -48,7 +48,7 @@ function vitis-select
     return Select-From-List $(vitis-install-paths) "Vitis Version" $Versions
 }
 
-function vitis-env
+function vitis-env-invoke
 {
     $ChoosenVersion = vitis-select
     $InstallRoot = $ChoosenVersion
@@ -89,4 +89,41 @@ function vitis-env
     $env:Path = "$ToolsRoot\DocNav;$env:Path"
 
     Write-Verbose "AMD 2025.2 environment initialized (Vitis, Vivado, PDM, Model Composer, DocNav)."
+}
+Set-Alias -Name vitis-env -Value vitis-env-invoke
+
+function vitis-env-cleanup
+{
+    # Remove Vitis-related paths from PATH
+    $pathsToRemove = @(
+        'PDM\bin',
+        'Vitis\bin',
+        'Vitis\gnu\microblaze\nt\bin',
+        'Vitis\gnu\microblaze\linux_toolchain\nt64_le\bin',
+        'Vitis\gnu\aarch32\nt\gcc-arm-linux-gnueabi\bin',
+        'Vitis\gnu\aarch32\nt\gcc-arm-none-eabi\bin',
+        'Vitis\gnu\aarch64\nt\aarch64-linux\bin',
+        'Vitis\gnu\aarch64\nt\aarch64-none\bin',
+        'Vitis\gnu\armr5\nt\gcc-arm-none-eabi\bin',
+        'Vitis\gnuwin\bin',
+        'Vitis\gnu\riscv\nt\bin',
+        'Vitis\gnu\riscv\linux_toolchain\nt32\bin',
+        'Vitis\gnu\riscv\linux_toolchain\nt64\bin',
+        'Vivado\bin',
+        'Vivado\lib\win64.o',
+        'Model_Composer\bin'
+    )
+
+    foreach ($path in $pathsToRemove)
+    {
+        $env:Path = (($env:Path -split ';') | Where-Object { $_ -notlike "*$path*" }) -join ';'
+    }
+
+    # Unset environment variables
+    Remove-Item Env:XILINX_VITIS -ErrorAction SilentlyContinue
+    Remove-Item Env:RDI_PLATFORM -ErrorAction SilentlyContinue
+    Remove-Item Env:XILINX_HLS -ErrorAction SilentlyContinue
+    Remove-Item Env:XILINX_VIVADO -ErrorAction SilentlyContinue
+
+    Write-Verbose "AMD 2025.2 environment cleaned up."
 }
