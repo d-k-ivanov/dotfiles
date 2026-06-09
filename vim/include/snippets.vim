@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:snips_author = "Dmitry Ivanov"
-let g:snips_company = "Hermes"
+let g:snips_company = "Company"
 
 " imap \... …
 
