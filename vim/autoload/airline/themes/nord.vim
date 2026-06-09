@@ -1,8 +1,8 @@
-" Copyright (C) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
-" Copyright (C) 2016-present Sven Greb <development@svengreb.de>
+" Copyright (c) 2016-present Sven Greb <development@svengreb.de>
+" This source code is licensed under the MIT license found in the license file.
 
 " Project: Nord Vim
-" Repository: https://github.com/arcticicestudio/nord-vim
+" Repository: https://github.com/nordtheme/vim
 " License: MIT
 
 let s:nord_vim_version="0.19.0"

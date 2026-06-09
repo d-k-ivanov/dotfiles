@@ -29,6 +29,7 @@ Icon
 .Trashes
 
 # Vim and NeoVim
+**/plugged/
 **/.netrwhist
 .swp
 *~

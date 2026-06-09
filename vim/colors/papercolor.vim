@@ -65,6 +65,8 @@ fun! s:register_default_theme()
         \       'popupmenu_bg' : ['#d0d0d0', '252'],
         \       'search_fg' : ['#444444', '238'],
         \       'search_bg' : ['#ffff5f', '227'],
+        \       'incsearch_fg' : ['#ffff5f', '227'],
+        \       'incsearch_bg' : ['#444444', '238'],
         \       'linenumber_fg' : ['#b2b2b2', '249'],
         \       'linenumber_bg' : ['#eeeeee', '255'],
         \       'vertsplit_fg' : ['#005f87', '24'],
@@ -155,6 +157,8 @@ fun! s:register_default_theme()
         \       'popupmenu_bg' : ['#303030', '236'],
         \       'search_fg' : ['#000000', '16'],
         \       'search_bg' : ['#00875f', '29'],
+        \       'incsearch_fg' : ['#00875f', '29'],
+        \       'incsearch_bg' : ['#000000', '16'],
         \       'linenumber_fg' : ['#585858', '240'],
         \       'linenumber_bg' : ['#1c1c1c', '234'],
         \       'vertsplit_fg' : ['#5f8787', '66'],
@@ -507,7 +511,8 @@ fun! s:generate_language_option_variables()
   let l:available_language_options = [
         \   'c__highlight_builtins',
         \   'cpp__highlight_standard_library',
-        \   'python__highlight_builtins'
+        \   'python__highlight_builtins',
+        \   'haskell__no_bold_types'
         \ ]
 
   " 1. Generate variables and set to default value
@@ -907,16 +912,19 @@ fun! s:set_color_variables()
     fun! s:create_color_variables(color_name, rich_color, term_color)
       let {'s:fg_' . a:color_name} = ' guifg=' . a:rich_color[0] . ' '
       let {'s:bg_' . a:color_name} = ' guibg=' . a:rich_color[0] . ' '
+      let {'s:sp_' . a:color_name} = ' guisp=' . a:rich_color[0] . ' '
     endfun
   elseif s:mode == s:MODE_256_COLOR
     fun! s:create_color_variables(color_name, rich_color, term_color)
       let {'s:fg_' . a:color_name} = ' ctermfg=' . a:rich_color[1] . ' '
       let {'s:bg_' . a:color_name} = ' ctermbg=' . a:rich_color[1] . ' '
+      let {'s:sp_' . a:color_name} = ''
     endfun
   else
     fun! s:create_color_variables(color_name, rich_color, term_color)
       let {'s:fg_' . a:color_name} = ' ctermfg=' . a:term_color . ' '
       let {'s:bg_' . a:color_name} = ' ctermbg=' . a:term_color . ' '
+      let {'s:sp_' . a:color_name} = ''
     endfun
   endif
   " }}}
@@ -1023,6 +1031,10 @@ fun! s:set_color_variables()
   " Search: ex: when * on a word
   call s:create_color_variables('search_fg', get(s:palette, 'search_fg', color00) , 'Black')
   call s:create_color_variables('search_bg', get(s:palette, 'search_bg', color15) , 'Yellow')
+
+  " IncSearch: ex: during a search
+  call s:create_color_variables('incsearch_fg', get(s:palette, 'incsearch_fg', color00) , 'Black')
+  call s:create_color_variables('incsearch_bg', get(s:palette, 'incsearch_bg', color15) , 'Yellow')
 
   " Todo: ex: TODO
   call s:create_color_variables('todo_fg', get(s:palette, 'todo_fg', color05) , 'LightYellow')
@@ -1152,6 +1164,7 @@ fun! s:apply_syntax_highlightings()
   exec 'hi Cursor' . s:fg_cursor_fg . s:bg_cursor_bg
   exec 'hi SpecialKey' . s:fg_nontext
   exec 'hi Search' . s:fg_search_fg . s:bg_search_bg
+  exec 'hi IncSearch' . s:fg_incsearch_fg . s:bg_incsearch_bg
   exec 'hi StatusLine' . s:fg_statusline_active_bg . s:bg_statusline_active_fg
   exec 'hi StatusLineNC' . s:fg_statusline_inactive_bg . s:bg_statusline_inactive_fg
   exec 'hi StatusLineTerm' . s:fg_statusline_active_bg . s:bg_statusline_active_fg
@@ -1240,6 +1253,29 @@ fun! s:apply_syntax_highlightings()
   exec 'hi Title' . s:fg_comment
   exec 'hi Global' . s:fg_blue
 
+  " Neovim (LSP) diagnostics
+  if has('nvim')
+    exec 'hi LspDiagnosticsDefaultError' . s:fg_error_fg . s:bg_error_bg
+    exec 'hi LspDiagnosticsDefaultWarning' . s:fg_todo_fg . s:bg_todo_bg . s:ft_bold
+    exec 'hi LspDiagnosticsDefaultInformation' . s:fg_todo_fg . s:bg_todo_bg . s:ft_bold
+    exec 'hi LspDiagnosticsDefaultHint' . s:fg_todo_fg . s:bg_todo_bg . s:ft_bold
+
+    exec 'hi LspDiagnosticsUnderlineError cterm=undercurl gui=undercurl' . s:sp_error_fg
+    exec 'hi LspDiagnosticsUnderlineWarning cterm=undercurl gui=undercurl' . s:sp_todo_fg
+    exec 'hi LspDiagnosticsUnderlineInformation cterm=undercurl gui=undercurl' . s:sp_todo_fg
+    exec 'hi LspDiagnosticsUnderlineHint cterm=undercurl gui=undercurl' . s:sp_todo_fg
+
+    hi! link DiagnosticError LspDiagnosticsDefaultError
+    hi! link DiagnosticWarn LspDiagnosticsDefaultWarning
+    hi! link DiagnosticInfo LspDiagnosticsDefaultInformation
+    hi! link DiagnosticHint LspDiagnosticsDefaultHint
+
+    hi! link DiagnosticUnderlineError LspDiagnosticsUnderlineError
+    hi! link DiagnosticUnderlineWarn LspDiagnosticsUnderlineWarning
+    hi! link DiagnosticUnderlineInfo LspDiagnosticsUnderlineInformation
+    hi! link DiagnosticUnderlineHint LspDiagnosticsUnderlineHint
+
+  endif
 
   " Extension {{{
   " VimL Highlighting
@@ -1609,6 +1645,10 @@ fun! s:apply_syntax_highlightings()
   exec 'hi javaScriptMessage' . s:fg_foreground
   exec 'hi javaScriptMember' . s:fg_foreground
 
+  " TypeScript Highlighting
+  exec 'hi typescriptDecorators' . s:fg_orange
+  exec 'hi typescriptLabel' . s:fg_purple . s:ft_bold
+
   " @target https://github.com/pangloss/vim-javascript
   exec 'hi jsImport' . s:fg_pink . s:ft_bold
   exec 'hi jsExport' . s:fg_pink . s:ft_bold
@@ -1709,7 +1749,11 @@ fun! s:apply_syntax_highlightings()
 
 
   " Haskell Highlighting
-  exec 'hi haskellType' . s:fg_aqua . s:ft_bold
+  if s:langOpt_haskell__no_bold_types == 1
+    exec 'hi haskellType' . s:fg_aqua
+  else
+    exec 'hi haskellType' . s:fg_aqua . s:ft_bold
+  endif
   exec 'hi haskellIdentifier' . s:fg_orange . s:ft_bold
   exec 'hi haskellOperators' . s:fg_pink
   exec 'hi haskellWhere' . s:fg_foreground . s:ft_bold
@@ -1940,7 +1984,7 @@ fun! s:apply_syntax_highlightings()
   exec 'hi xmlEndTag' . s:fg_blue
   exec 'hi xmlNamespace' . s:fg_orange
 
-  " Exlixir Highlighting
+  " Elixir Highlighting
   " @target https://github.com/elixir-lang/vim-elixir
   exec 'hi elixirAlias' . s:fg_blue . s:ft_bold
   exec 'hi elixirAtom' . s:fg_navy
@@ -2133,6 +2177,14 @@ fun! s:apply_syntax_highlightings()
   exec 'hi DiffDelete' . s:fg_diffdelete_fg . s:bg_diffdelete_bg . s:ft_none
   exec 'hi DiffText' . s:fg_difftext_fg . s:bg_difftext_bg . s:ft_none
 
+  " Plugin: vim-gitgutter
+  exec 'hi GitGutterAdd' . s:fg_diffadd_fg
+  exec 'hi GitGutterChange' . s:fg_diffchange_fg
+  exec 'hi GitGutterDelete' . s:fg_diffdelete_fg
+  exec 'hi GitGutterAddLine' . s:fg_diffadd_fg . s:bg_diffadd_bg . s:ft_none
+  exec 'hi GitGutterChangeLine' . s:fg_diffchange_fg . s:bg_diffchange_bg . s:ft_none
+  exec 'hi GitGutterDeleteLine' . s:fg_diffdelete_fg . s:bg_diffdelete_bg . s:ft_none
+
   " Plugin: AGit
   exec 'hi agitHead' . s:fg_green . s:ft_bold
   exec 'hi agitHeader' . s:fg_olive
@@ -2174,6 +2226,14 @@ fun! s:apply_syntax_highlightings()
   exec 'hi StartifyBracket' . s:fg_aqua
   exec 'hi StartifySpecial' . s:fg_aqua
 
+  " Plugin: Signify
+  exec 'hi SignifyLineChange' . s:fg_diffchange_fg
+  exec 'hi SignifySignChange' . s:fg_diffchange_fg
+  exec 'hi SignifyLineAdd' . s:fg_diffadd_fg
+  exec 'hi SignifySignAdd' . s:fg_diffadd_fg
+  exec 'hi SignifyLineDelete' . s:fg_diffdelete_fg
+  exec 'hi SignifySignDelete' . s:fg_diffdelete_fg
+
   " Git commit message
   exec 'hi gitcommitSummary' . s:fg_blue
   exec 'hi gitcommitHeader' . s:fg_green . s:ft_bold
@@ -2192,6 +2252,71 @@ fun! s:apply_syntax_highlightings()
   exec 'hi diffLine' . s:fg_orange
   exec 'hi diffBDiffer' . s:fg_orange
   exec 'hi diffNewFile' . s:fg_comment
+
+  " Pluging: CoC
+  exec 'hi CocFloating' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
+  exec 'hi CocErrorFloat' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
+  exec 'hi CocWarningFloat' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
+  exec 'hi CocInfoFloat' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
+  exec 'hi CocHintFloat' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
+
+  exec 'hi CocErrorHighlight' . s:fg_foreground . s:bg_spellbad
+  exec 'hi CocWarningHighlight' . s:fg_foreground . s:bg_spellcap
+  exec 'hi CocInfoHighlight' . s:fg_foreground . s:bg_spellcap
+  exec 'hi CocHintHighlight' . s:fg_foreground . s:bg_spellcap
+
+  exec 'hi CocErrorSign' . s:fg_error_fg . s:bg_error_bg
+  exec 'hi CocWarningSign' . s:fg_todo_fg . s:bg_todo_bg . s:ft_bold
+  exec 'hi CocInfoSign' . s:fg_todo_fg . s:bg_todo_bg . s:ft_bold
+  exec 'hi CocHintSign' . s:fg_todo_fg . s:bg_todo_bg . s:ft_bold
+
+  " Debug Adapter Protocol (DAP) - Plugin: rcarriga/nvim-dap-ui
+  if has('nvim')
+    exec 'hi DapUIDecoration' . s:fg_blue
+    " DAP Scopes window
+    hi! link DapUIType Type
+    hi! link DapUIVariable Identifier
+    exec 'hi DapUIScope' . s:fg_red . s:ft_bold
+    hi! link DapUIValue Number
+    exec 'hi DapUIModifiedValue' . s:fg_orange . s:ft_bold . s:bg_error_bg
+    " DAP Breakpoints window
+    hi! link DapUILineNumber LineNr
+    hi! link DapUIBreakpointsDisabledLine LineNr
+    exec 'hi DapUIBreakpointsCurrentLine' . s:fg_linenumber_fg . s:ft_bold . s:bg_error_bg
+    exec 'hi DapUIBreakpointsInfo' . s:fg_green
+    exec 'hi DapUIBreakpointsPath' . s:fg_olive . s:ft_bold
+    " DAP Stacks window
+    exec 'hi DapUIFrameName' . s:fg_blue
+    exec 'hi DapUIThread' . s:fg_pink . s:ft_bold
+    exec 'hi DapUIStoppedThread' . s:fg_pink
+    " DAP Watches window
+    exec 'hi DapUIWatchesEmpty' . s:fg_pink . s:ft_bold
+    hi! link DapUIWatchesError DapUIWatchesEmpty
+    hi! link DapUIWatchesValue Number
+    " DAP Breakpoints window
+    exec 'hi DapUISource' . s:fg_olive
+    " DAP Floating window
+    exec 'hi DapUIFloatBorder' . s:fg_blue
+  endif
+
+  " Plugin: hrsh7th/nvim-cmp
+  if has('nvim')
+    hi! link CmpItemKindValue Number
+    hi! link CmpItemKindVariable Identifier
+    hi! link CmpItemKindKeyword Keyword
+    hi! link CmpItemKindField CmpItemKindVariable
+    exec 'hi CmpItemKindFunction' . s:fg_blue
+    hi! link CmpItemKindMethod CmpItemKindFunction
+    hi! link CmpItemKindConstructor CmpItemKindFunction
+    hi! link CmpItemKindClass Structure
+    hi! link CmpItemKindInterface Structure
+    exec 'hi CmpItemKindSnippet' . s:fg_orange
+    exec 'hi CmpItemKindFile' . s:fg_orange
+    hi! link CmpItemKindFolder CmpItemKindFile
+    exec 'hi CmpItemAbbrMatch' . s:fg_blue . s:ft_bold
+    exec 'hi CmpItemAbbrMatchFuzzy' . s:fg_blue . s:ft_bold
+    exec 'hi CmpItemAbbrDeprecated' . s:fg_foreground . ' gui=strikethrough'
+  endif
 
 endfun
 " }}}

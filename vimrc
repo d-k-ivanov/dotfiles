@@ -19,7 +19,7 @@ source ~/.vim/include/build.vim
 source ~/.vim/include/saving.vim
 source ~/.vim/include/formatting.vim
 source ~/.vim/include/filetypes.vim
-" source ~/.vim/include/plugins.vim
+source ~/.vim/include/plugins.vim
 source ~/.vim/include/snippets.vim
 source ~/.vim/include/autocomplete.vim
 source ~/.vim/include/functions.vim

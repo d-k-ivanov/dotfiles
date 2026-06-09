@@ -2,12 +2,47 @@
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" => pathogen plugin manager: Must turn filetype off and then back on.
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-filetype plugin on
-filetype indent on
+call plug#begin()
+
+Plug 'airblade/vim-gitgutter'
+Plug 'bogado/file-line'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'danro/rename.vim'
+Plug 'farmergreg/vim-lastplace'
+Plug 'honza/vim-snippets'
+Plug 'lmeijvogel/vim-yaml-helper'
+Plug 'mileszs/ack.vim'
+Plug 'nvie/vim-flake8'
+Plug 'pangloss/vim-javascript'
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'preservim/vim-indent-guides'
+Plug 'preservim/vim-markdown'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'Raimondi/delimitMate'
+Plug 'roblillack/vim-bufferlist'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-language-dept/css-syntax.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/Gundo'
+Plug 'vim-scripts/rainbow_parentheses.vim'
+Plug 'vim-syntastic/syntastic'
+
+if !(has('win32') || has('win64'))
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'pearofducks/ansible-vim'
+    Plug 'preservim/vimux'
+    Plug 'SirVer/ultisnips'
+    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --python-completer' }
+endif
+
+call plug#end()
 
 " => a.vim (c-h. cpp-h)
 autocmd FileType c,cpp map <buffer> <F12> :A<CR>
@@ -19,8 +54,10 @@ nnoremap <Leader>a :Ack!<Space>
 let g:ackprg = 'ag --vimgrep'
 
 " => ansible-vim
-let g:ansible_unindent_after_newline = 1
-let g:ansible_attribute_highlight = "ob"
+if !(has('win32') || has('win64'))
+    let g:ansible_unindent_after_newline = 1
+    let g:ansible_attribute_highlight = "ob"
+endif
 
 " => ctrlp
 let g:ctrlp_match_window_bottom = 0
@@ -150,37 +187,38 @@ nmap <F7> :SyntasticCheck<CR>
 nmap <F10> :TagbarToggle<CR>
 
 " => ultisnips
-" silent! call UltiSnips#FileTypeChanged()
-" au BufEnter * call UltiSnips#FileTypeChanged()
-let g:UltiSnipsExpandTrigger="<TAB>"
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
-let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
-let g:UltiSnipsSnippetDirectories=['~/.vim/UltiSnips', 'UltiSnips']
-let g:UltiSnipsTriggerInVisualMode=0
+if !(has('win32') || has('win64'))
+    silent! call UltiSnips#FileTypeChanged()
+    au BufEnter * call UltiSnips#FileTypeChanged()
+    let g:UltiSnipsExpandTrigger="<TAB>"
+    let g:UltiSnipsJumpForwardTrigger="<TAB>"
+    let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
+    let g:UltiSnipsTriggerInVisualMode=0
 
-function Ultisnips_get_current_python_class()
-	let l:retval = ""
-	let l:line_declaring_class = search('^class\s\+', 'bnW')
-	if l:line_declaring_class != 0
-		let l:nameline = getline(l:line_declaring_class)
-		let l:classend = matchend(l:nameline, '\s*class\s\+')
-		let l:classnameend = matchend(l:nameline, '\s*class\s\+[A-Za-z0-9_]\+')
-		let l:retval = strpart(l:nameline, l:classend, l:classnameend-l:classend)
-	endif
-	return l:retval
-endfunction
+    function Ultisnips_get_current_python_class()
+        let l:retval = ""
+        let l:line_declaring_class = search('^class\s\+', 'bnW')
+        if l:line_declaring_class != 0
+            let l:nameline = getline(l:line_declaring_class)
+            let l:classend = matchend(l:nameline, '\s*class\s\+')
+            let l:classnameend = matchend(l:nameline, '\s*class\s\+[A-Za-z0-9_]\+')
+            let l:retval = strpart(l:nameline, l:classend, l:classnameend-l:classend)
+        endif
+        return l:retval
+    endfunction
 
-function Ultisnips_get_current_python_method()
-	let l:retval = ""
-	let l:line_declaring_method = search('\s*def\s\+', 'bnW')
-	if l:line_declaring_method != 0
-		let l:nameline = getline(l:line_declaring_method)
-		let l:methodend = matchend(l:nameline, '\s*def\s\+')
-		let l:methodnameend = matchend(l:nameline, '\s*def\s\+[A-Za-z0-9_]\+')
-		let l:retval = strpart(l:nameline, l:methodend, l:methodnameend-l:methodend)
-	endif
-	return l:retval
-endfunction
+    function Ultisnips_get_current_python_method()
+        let l:retval = ""
+        let l:line_declaring_method = search('\s*def\s\+', 'bnW')
+        if l:line_declaring_method != 0
+            let l:nameline = getline(l:line_declaring_method)
+            let l:methodend = matchend(l:nameline, '\s*def\s\+')
+            let l:methodnameend = matchend(l:nameline, '\s*def\s\+[A-Za-z0-9_]\+')
+            let l:retval = strpart(l:nameline, l:methodend, l:methodnameend-l:methodend)
+        endif
+        return l:retval
+    endfunction
+endif
 
 " => vim-bufferlist
 map <silent> <F3> :call BufferList()<CR>
@@ -197,8 +235,8 @@ nmap <leader>cu <Plug>CommentaryUndo
 
 " => vim-css-syntax
 augroup VimCSS3Syntax
-	autocmd!
-	autocmd FileType css setlocal iskeyword+=-
+    autocmd!
+    autocmd FileType css setlocal iskeyword+=-
 augroup END
 
 " => vim-endwise
@@ -299,49 +337,54 @@ let g:vim_yaml_helper#always_get_root = 1
 let g:vim_yaml_helper#auto_display_path = 1
 
 " => vimux
-let g:VimuxOrientation = "h"
-let g:VimuxUseNearestPane = 1
-" Inspect runner pane map
-map <Leader>vi :VimuxInspectRunner<CR>
-" Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
-" Interrupt any command running in the runner pane map
-map <Leader>vs :VimuxInterruptRunner<CR>
-" Clear the tmux history of the runner pane
-map <Leader>vc :VimuxClearRunnerHistory<CR>
-" Zoom the tmux runner page
-map <Leader>vz :VimuxZoomRunner<CR>
-" Prompt for a command to run
-map <Leader>vv :VimuxPromptCommand<CR>
-" Runners:
-map <Leader>x :call VimuxRunCommand("./" . bufname("%"), 1)<CR>
-map <Leader>vx :call VimuxRunCommandInDir("./" . bufname("%"), 1)<CR>
-" Run the curent python file
-autocmd FileType python map <Leader>x :call VimuxRunCommand("./" . bufname("%"), 1)<CR>
-autocmd FileType python map <Leader>vx :call VimuxRunCommandInDir("./" . bufname("%"), 1)<CR>
-" Run the curent python file and don't hit enter
-autocmd FileType python map <Leader><Leader>x :call VimuxRunCommand("va && ./" . bufname("%"), 0)<CR>
-autocmd FileType python map <Leader><Leader>vx :call VimuxRunCommandInDir("va && ./" . bufname("%"), 0)<CR>
-" Run the current ruby file with rspec
-autocmd FileType ruby map <Leader>x :call VimuxRunCommand("clear; rspec " . bufname("%"), 1)<CR>
-autocmd FileType ruby map <Leader>vx :call VimuxRunCommandInDir("clear; rspec " . bufname("%"), 1)<CR>
-" Run the current ruby file with rspec and don't hit enter
-autocmd FileType ruby map <Leader><Leader>x :call VimuxRunCommand("clear; rspec " . bufname("%"), 0)<CR>
-autocmd FileType ruby map <Leader><Leader>vx :call VimuxRunCommandInDir("clear; rspec " . bufname("%"), 0)<CR>
+if !(has('win32') || has('win64'))
+    let g:VimuxOrientation = "h"
+    let g:VimuxUseNearestPane = 1
+    " Inspect runner pane map
+    map <Leader>vi :VimuxInspectRunner<CR>
+    " Close vim tmux runner opened by VimuxRunCommand
+    map <Leader>vq :VimuxCloseRunner<CR>
+    " Interrupt any command running in the runner pane map
+    map <Leader>vs :VimuxInterruptRunner<CR>
+    " Clear the tmux history of the runner pane
+    map <Leader>vc :VimuxClearRunnerHistory<CR>
+    " Zoom the tmux runner page
+    map <Leader>vz :VimuxZoomRunner<CR>
+    " Prompt for a command to run
+    map <Leader>vv :VimuxPromptCommand<CR>
+    " Runners:
+    map <Leader>x :call VimuxRunCommand("./" . bufname("%"), 1)<CR>
+    map <Leader>vx :call VimuxRunCommandInDir("./" . bufname("%"), 1)<CR>
+    " Run the curent python file
+    autocmd FileType python map <Leader>x :call VimuxRunCommand("./" . bufname("%"), 1)<CR>
+    autocmd FileType python map <Leader>vx :call VimuxRunCommandInDir("./" . bufname("%"), 1)<CR>
+    " Run the curent python file and don't hit enter
+    autocmd FileType python map <Leader><Leader>x :call VimuxRunCommand("va && ./" . bufname("%"), 0)<CR>
+    autocmd FileType python map <Leader><Leader>vx :call VimuxRunCommandInDir("va && ./" . bufname("%"), 0)<CR>
+    " Run the current ruby file with rspec
+    autocmd FileType ruby map <Leader>x :call VimuxRunCommand("clear; rspec " . bufname("%"), 1)<CR>
+    autocmd FileType ruby map <Leader>vx :call VimuxRunCommandInDir("clear; rspec " . bufname("%"), 1)<CR>
+    " Run the current ruby file with rspec and don't hit enter
+    autocmd FileType ruby map <Leader><Leader>x :call VimuxRunCommand("clear; rspec " . bufname("%"), 0)<CR>
+    autocmd FileType ruby map <Leader><Leader>vx :call VimuxRunCommandInDir("clear; rspec " . bufname("%"), 0)<CR>
+endif
 
 " => YouCompleteMe
-let g:ycm_confirm_extra_conf=0
-let g:ycm_python_binary_path = 'python'
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_key_list_select_completion=['Down']
-let g:ycm_key_list_previous_completion=['Up']
+if !(has('win32') || has('win64'))
+    let g:ycm_confirm_extra_conf=0
+    let g:ycm_python_binary_path = 'python3'
+    let g:ycm_server_python_interpreter = 'python3'
+    let g:ycm_min_num_of_chars_for_completion = 2
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_use_ultisnips_completer = 1
+    let g:ycm_key_invoke_completion = '<C-Space>'
+    let g:ycm_key_list_select_completion=['Down']
+    let g:ycm_key_list_previous_completion=['Up']
 
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+endif
 
 " Python with virtualenv support
 " if has("python3")

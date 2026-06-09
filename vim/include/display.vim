@@ -2,31 +2,34 @@
 " => Display
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set window size for GVIM
-" if has("gui_running")
-"     " GUI is running or is about to start.
-"     " Maximize gvim window (for an alternative on Windows, see simalt below).
-"     " set lines =999 columns=999
-"     set lines=48 columns=200
-"     if (has('win32') || has('win64'))
-"         set guifont=Consolas:h14:cANSI
-"     else
-"         set guifont=Luxi\ Mono\ 12
-"     endif
-" else
-"     " This is console Vim.
-"     if exists("+lines")
-"         set lines=50
-"     endif
-"     if exists("+columns")
-"         set columns=100
-"     endif
-" endif
+if has("gui_running")
+    " GUI is running or is about to start.
+    " Maximize gvim window (for an alternative on Windows, see simalt below).
+    " set lines =999 columns=999
+    set lines=48 columns=200
+    if (has('win32') || has('win64'))
+        set guifont=Consolas:h14:cANSI
+    else
+        set guifont=Luxi\ Mono\ 12
+    endif
+else
+    " This is console Vim.
+    if exists("+lines")
+        set lines=50
+    endif
+    if exists("+columns")
+        set columns=100
+    endif
+endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     syntax on
 endif
+
+" Enable 24-bit RGB color in the TUI
+set termguicolors
 
 " Background: Personalized for light console themes.
 if has("gui_running")
@@ -40,8 +43,8 @@ endif
 " Set Colors
 " colorscheme gruvbox
 " colorscheme material
-" colorscheme nord
-colorscheme papercolor
+colorscheme nord
+" colorscheme papercolor
 " colorscheme pyte
 " colorscheme summerfruit256
 
