@@ -9,7 +9,6 @@ Plug 'bogado/file-line'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'danro/rename.vim'
 Plug 'farmergreg/vim-lastplace'
-Plug 'honza/vim-snippets'
 Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'mileszs/ack.vim'
 Plug 'nvie/vim-flake8'
@@ -39,7 +38,8 @@ if !(has('win32') || has('win64'))
     Plug 'pearofducks/ansible-vim'
     Plug 'preservim/vimux'
     Plug 'SirVer/ultisnips'
-    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --python-completer' }
+    Plug 'honza/vim-snippets'
+"    Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --all' }
 endif
 
 call plug#end()
@@ -188,8 +188,6 @@ nmap <F10> :TagbarToggle<CR>
 
 " => ultisnips
 if !(has('win32') || has('win64'))
-    silent! call UltiSnips#FileTypeChanged()
-    au BufEnter * call UltiSnips#FileTypeChanged()
     let g:UltiSnipsExpandTrigger="<TAB>"
     let g:UltiSnipsJumpForwardTrigger="<TAB>"
     let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
