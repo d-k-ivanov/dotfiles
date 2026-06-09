@@ -2,7 +2,10 @@
 # Security (SSH, SSL, GPG etc.) scripts.
 
 # sudo (do not forget _ at the end (for alias))
-alias sudo="sudo -E "
+# if not ubuntu 26.04, then we need to preserve env variables for sudo.
+if [ "$(uname -s)" != "Linux" ] || [ "$(lsb_release -rs)" != "26.04" ]; then
+    alias sudo="sudo -E "
+fi
 
 # ROT13. Encode and decode. JUST FOR Lulz ;)
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
