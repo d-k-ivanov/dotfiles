@@ -15,24 +15,62 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+# Package lists:
+# https://download.pytorch.org/libtorch/cpu/
+# https://download.pytorch.org/libtorch/cu118/
+# https://download.pytorch.org/libtorch/cu121/
+# https://download.pytorch.org/libtorch/cu124/
+# https://download.pytorch.org/libtorch/cu126/
+# https://download.pytorch.org/libtorch/cu128/
+# https://download.pytorch.org/libtorch/cu130/
+# https://download.pytorch.org/libtorch/cu132/
+# https://download.pytorch.org/libtorch/rocm6.1/
+# https://download.pytorch.org/libtorch/rocm6.2/
+# https://download.pytorch.org/libtorch/rocm6.3/
 function Install-LibTorch
 {
     $torch_versions = @(
+        "2.4.0",
+        "2.4.1",
         "2.5.0",
         "2.5.1",
         "2.6.0",
-        "2.7.1"
+        "2.7.1",
+        "2.8.0",
+        "2.9.0",
+        "2.9.1",
+        "2.10.0",
+        "2.11.0",
+        "2.12.0"
     )
 
     $selectedTorch = Select-From-List $torch_versions 'PyTorch version'
 
-    $compute_platforms = @(
-      "cpu"
-      "cu118"
-      "cu121"
-      "cu124"
-      "cu128"
-    )
+    # Supported platforms by version:
+    # cpu: 2.4.0, 2.4.1, 2.5.0, 2.5.1, 2.6.0, 2.7.1, 2.8.0, 2.9.0, 2.9.1, 2.10.0, 2.11.0, 2.12.0
+    # cu118: 2.4.0, 2.4.1, 2.5.0, 2.5.1, 2.6.0, 2.7.1
+    # cu121: 2.4.0, 2.4.1, 2.5.0, 2.5.1
+    # cu124: 2.4.0, 2.4.1, 2.5.0, 2.5.1, 2.6.0
+    # cu126: 2.6.0, 2.7.1, 2.8.0, 2.9.0, 2.9.1, 2.10.0, 2.11.0, 2.12.0
+    # cu128: 2.7.1, 2.8.0, 2.9.0, 2.9.1, 2.10.0, 2.11.0, 2.12.0
+    # cu130: 2.9.0, 2.9.1, 2.10.0, 2.11.0, 2.12.0
+    # cu132: 2.12.0
+        $compute_platforms = @("cpu")
+        switch ($selectedTorch)
+        {
+                "2.4.0"  { $compute_platforms += @("cu118", "cu121", "cu124") }
+                "2.4.1"  { $compute_platforms += @("cu118", "cu121", "cu124") }
+                "2.5.0"  { $compute_platforms += @("cu118", "cu121", "cu124") }
+                "2.5.1"  { $compute_platforms += @("cu118", "cu121", "cu124") }
+                "2.6.0"  { $compute_platforms += @("cu118", "cu124", "cu126") }
+                "2.7.1"  { $compute_platforms += @("cu118", "cu126", "cu128") }
+                "2.8.0"  { $compute_platforms += @("cu126", "cu128")          }
+                "2.9.0"  { $compute_platforms += @("cu126", "cu128", "cu130") }
+                "2.9.1"  { $compute_platforms += @("cu126", "cu128", "cu130") }
+                "2.10.0" { $compute_platforms += @("cu126", "cu128", "cu130") }
+                "2.11.0" { $compute_platforms += @("cu126", "cu128", "cu130") }
+                "2.12.0" { $compute_platforms += @("cu126", "cu128", "cu130", "cu132") }
+        }
 
     $selectedPlatform = Select-From-List $compute_platforms 'Computing platform'
 
