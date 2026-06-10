@@ -18,30 +18,6 @@ mkd()
     mkdir -p "$@" && cd "$@"
 }
 
-platform=`uname`
-case ${platform} in
-    Linux )
-        if [ -x /usr/bin/dircolors ]; then
-            alias ls='ls --color=auto '
-            # alias dir='dir --color=auto '
-            # alias vdir='vdir --color=auto '
-        fi
-        ;;
-    Darwin )
-        alias ls='gls --color=auto '
-        ;;
-    FreeBSD )
-        alias ls='ls -G '
-        ;;
-    MSYS_NT-10.0 )
-        if [ -x /usr/bin/dircolors ]; then
-            alias ls='ls --color=auto '
-            # alias dir='dir --color=auto '
-            # alias vdir='vdir --color=auto '
-        fi
-        ;;
-esac
-
 alias l='ls -CFhH --group-directories-first '
 alias la='ls -alhH --group-directories-first '
 alias ll='ls -alFhH --group-directories-first '

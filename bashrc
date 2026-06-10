@@ -3,6 +3,9 @@
 # Test for interactiveness
 [[ $- == *i* ]] || return
 
+# Coreutils fixup must be sourced before any autoloads to ensure we use GNU coreutils.
+source ${HOME}/.bash/coreutils-fixup.sh
+
 if [[ -n "$(ls -A ${HOME}/.bash/autoload 2>/dev/null)" ]]; then
     for file in ${HOME}/.bash/autoload/*; do
         source ${file}
