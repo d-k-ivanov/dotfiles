@@ -77,7 +77,12 @@ install-libtorch() {
         return
     fi
 
-    if [ "${selected_torch}" == "2.7.1" ]; then
+    # printf '%s\n%s\n' ${selected_torch} "2.7.1" | sort -CV
+    # `sort -CV` checks if the input is sorted. If the input is sorted, it returns 0, otherwise it returns 1.
+    # This way we simulate the version comparison:
+    #   "2.5.1" "2.7.1" are sorted at the input state, so it's true.
+    #   "2.9.1" "2.7.1" are not sorted at the input state, so it's false.
+    if printf '%s\n%s\n' "${selected_torch}" "2.7.1" | sort -CV; then
         sudo wget https://download.pytorch.org/libtorch/${selected_platform}/libtorch-cxx11-abi-shared-with-deps-${selected_torch}%2B${selected_platform}.zip
         sudo unzip libtorch-cxx11-abi-shared-with-deps-${selected_torch}+${selected_platform}.zip
         sudo mv libtorch /opt/libtorch-${selected_torch}+${selected_platform}
