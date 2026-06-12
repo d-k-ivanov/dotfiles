@@ -12,7 +12,7 @@ if ($MyInvocation.InvocationName -ne '.')
     Write-Host `
         "Error: Bad invocation. $($MyInvocation.MyCommand) supposed to be sourced. Exiting..." `
         -ForegroundColor Red
-    Exit
+    exit
 }
 
 Remove-Item alias:cd -ErrorAction SilentlyContinue
@@ -38,35 +38,35 @@ ${function:cd} = {
 ${function:~} = { cd ~ }
 # PoSh won't allow ${function:..} because of an invalid path error, so...
 ${function:Set-ParentLocation} = { cd .. }; Set-Alias ".." Set-ParentLocation
-${function:...}     = { cd ..\..             }
-${function:....}    = { cd ..\..\..          }
-${function:.....}   = { cd ..\..\..\..       }
-${function:......}  = { cd ..\..\..\..\..    }
+${function:...} = { cd ..\.. }
+${function:....} = { cd ..\..\.. }
+${function:.....} = { cd ..\..\..\.. }
+${function:......} = { cd ..\..\..\..\.. }
 ${function:.......} = { cd ..\..\..\..\..\.. }
 
 # Navigation Shortcuts
-${function:drop}    = { cd ${Env:MY_DROPBOX}                                  }
-${function:desk}    = { cd ~\Desktop                                          }
-${function:docs}    = { cd ~\Documents                                        }
-${function:down}    = { cd ~\Downloads                                        }
-${function:ws}      = { cd ${Env:WORKSPACE}                                   }
-${function:wsm}     = { cd ${Env:WORKSPACE}\my                                }
-${function:wsdf}    = { cd ${Env:WORKSPACE}\my\dotfiles                       }
-${function:wsdfb}   = { cd ${Env:WORKSPACE}\my\dotfiles-bin                   }
-${function:wsdfp}   = { cd ${Env:WORKSPACE}\my\dotfiles-private               }
-${function:wsdsc}   = { cd ${Env:WORKSPACE}\my\workstations\windows           }
-${function:wsconf}  = { cd ${Env:WORKSPACE}\my\workstations\windows           }
-${function:wsmisc}  = { cd ${Env:WORKSPACE}\misc                              }
-${function:wst}     = { cd ${Env:WORKSPACE}\tmp                               }
-${function:wsue}    = { cd ${Env:WORKSPACE}\ue                                }
-${function:wsv}     = { cd ${Env:WORKSPACE}\vcpkg                             }
-${function:wsws}    = { cd ${Env:WORKSPACE}\my\workspace                      }
+${function:drop} = { cd ${Env:MY_DROPBOX} }
+${function:desk} = { cd ~\Desktop }
+${function:docs} = { cd ~\Documents }
+${function:down} = { cd ~\Downloads }
+${function:ws} = { cd ${Env:WORKSPACE} }
+${function:wsm} = { cd ${Env:WORKSPACE}\my }
+${function:wsdf} = { cd ${Env:WORKSPACE}\my\dotfiles }
+${function:wsdfb} = { cd ${Env:WORKSPACE}\my\dotfiles-bin }
+${function:wsdfp} = { cd ${Env:WORKSPACE}\my\dotfiles-private }
+${function:wsdsc} = { cd ${Env:WORKSPACE}\my\workstations\windows }
+${function:wsconf} = { cd ${Env:WORKSPACE}\my\workstations\windows }
+${function:wsmisc} = { cd ${Env:WORKSPACE}\misc }
+${function:wst} = { cd ${Env:WORKSPACE}\tmp }
+${function:wsue} = { cd ${Env:WORKSPACE}\ue }
+${function:wsv} = { cd ${Env:WORKSPACE}\vcpkg }
+${function:wsws} = { cd ${Env:WORKSPACE}\my\workspace }
 
-${function:case-sensitive-enable}  = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
+${function:case-sensitive-enable} = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
 ${function:case-sensitive-disable} = { fsutil.exe file setCaseSensitiveInfo (Get-Location).Path }
 
 # Create a new directory and enter it
-function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; cd $path}
+function New-DirectoryAndSet ([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; cd $path }
 Set-Alias mkd New-DirectoryAndSet
 
 function Get-DuList
@@ -89,13 +89,13 @@ function Get-DuList
 Set-Alias dul Get-DuList
 
 # Determine size of a file or total size of a directory
-function Get-DiskUsage([string] $Path=(Get-Location).Path)
+function Get-DiskUsage([string] $Path = (Get-Location).Path)
 {
     Convert-ToDiskSize `
-        ( `
+    ( `
             Get-ChildItem $Path -Force -Recurse -ErrorAction SilentlyContinue `
-            | Measure-Object -Property length -sum -ErrorAction SilentlyContinue
-        ).Sum `
+        | Measure-Object -Property length -Sum -ErrorAction SilentlyContinue
+    ).Sum `
         1
 }
 
@@ -104,10 +104,10 @@ function Convert-ToDiskSize
     param
     (
         $bytes,
-        $precision='0'
+        $precision = '0'
     )
 
-    foreach ($size in ("B","K","M","G","T"))
+    foreach ($size in ("B", "K", "M", "G", "T"))
     {
         if (($bytes -lt 1000) -or ($size -eq "T"))
         {
@@ -128,32 +128,32 @@ if (Get-Command busybox -ErrorAction SilentlyContinue | Test-Path)
     Remove-Item alias:ls -ErrorAction SilentlyContinue
     # Set `ls` to call `ls` and always use --color
     # ${function:ls} = { busybox ls --color --group-directories-first @args }
-    ${function:ls}      = { busybox ls --group-directories-first @args }
+    ${function:ls} = { busybox ls --group-directories-first @args }
     # List all files in long format
-    ${function:l}       = { ls -CFhH  @args }
+    ${function:l} = { ls -CFhH  @args }
     # List all files in long format, including hidden files
-    ${function:la}      = { ls -alhH  @args }
-    ${function:ll}      = { ls -alFhH @args }
-    ${function:fls}     = { ls -lH    @args | busybox grep -v ^d }
-    ${function:flsa}    = { ls -laH   @args | busybox grep -v ^d }
-    ${function:dirs}    = { ls -lH    @args | busybox grep ^d }
-    ${function:dirsa}   = { ls -laH   @args | busybox grep ^d }
+    ${function:la} = { ls -alhH  @args }
+    ${function:ll} = { ls -alFhH @args }
+    ${function:fls} = { ls -lH    @args | busybox grep -v ^d }
+    ${function:flsa} = { ls -laH   @args | busybox grep -v ^d }
+    ${function:dirs} = { ls -lH    @args | busybox grep ^d }
+    ${function:dirsa} = { ls -laH   @args | busybox grep ^d }
     # List only directories
-    ${function:lsd}     = { Get-ChildItem -Directory -Force @args }
+    ${function:lsd} = { Get-ChildItem -Directory -Force @args }
     # List directories recursively
-    ${function:llr}     = { lsd | ForEach-Object{ll $_ @args} }
+    ${function:llr} = { lsd | ForEach-Object { ll $_ @args } }
 }
 else
 {
     # List all files, including hidden files
-    ${function:la}      = { Get-ChildItem -Force @args }
+    ${function:la} = { Get-ChildItem -Force @args }
     # List only directories
-    ${function:lsd}     = { Get-ChildItem -Directory -Force @args }
+    ${function:lsd} = { Get-ChildItem -Directory -Force @args }
     # List directories recursively
-    ${function:llr}     = { lsd | ForEach-Object{la $_ @args} }
+    ${function:llr} = { lsd | ForEach-Object { la $_ @args } }
 }
 
-${function:lsf}         = { Get-ChildItem . | ForEach-Object{ $_.Name } }
+${function:lsf} = { Get-ChildItem . | ForEach-Object { $_.Name } }
 
 function  llf()
 {
@@ -211,8 +211,8 @@ function Remove-File-Recursively
 # }
 # else
 # {
-    ${function:rmf}  = { Remove-Item -Force @args }
-    ${function:rmrf} = { Remove-Item -Recurse -Force @args }
+${function:rmf} = { Remove-Item -Force @args }
+${function:rmrf} = { Remove-Item -Recurse -Force @args }
 # }
 
 function touch($file) { $null | Out-File -Append $file -Encoding ASCII }
@@ -230,7 +230,7 @@ function find
         [Parameter(Mandatory = $True)]
         [string]$Expression
     )
-    Get-ChildItem -Path $Path -Filter $Expression -Recurse -ErrorAction SilentlyContinue -Force | ForEach-Object { Write-Host $_.FullName -ForegroundColor Yellow}
+    Get-ChildItem -Path $Path -Filter $Expression -Recurse -ErrorAction SilentlyContinue -Force | ForEach-Object { Write-Host $_.FullName -ForegroundColor Yellow }
 }
 
 # Copy files with directory structure.
@@ -243,11 +243,11 @@ function Copy-FilesWithFolderStructure
     (
         [Parameter(Mandatory = $True)]
         [String]$Destination,
-        [Parameter(Mandatory = $True,ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True)]
+        [Parameter(Mandatory = $True, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True)]
         [String[]]$Items
     )
 
-    if (-Not (Test-Path $Destination))
+    if (-not (Test-Path $Destination))
     {
         New-Item -ItemType Directory -Path "$Destination" -Force
     }
@@ -268,16 +268,16 @@ function join_files
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $Out,
 
-        [Parameter(ValueFromPipeline=$true)]
+        [Parameter(ValueFromPipeline = $true)]
         [ValidateScript({
-            foreach ($file in $_)
-            {
-                Test-Path $file.FullName
-            }
-        })]
+                foreach ($file in $_)
+                {
+                    Test-Path $file.FullName
+                }
+            })]
         [System.Object[]] $FilesToJoin = (Get-ChildItem -Path . -File)
     )
     $cmd = "cmd /c '$($FilesToJoin.FullName -join ' + ') ${Out}'"
@@ -299,7 +299,7 @@ function mkl
     param
     (
         [Parameter(Mandatory = $True)]
-        [ValidateScript({Test-Path -Path $_})]
+        [ValidateScript({ Test-Path -Path $_ })]
         [String] $Source,
         [Parameter(Mandatory = $True)]
         [String] $Destination
@@ -315,4 +315,42 @@ function mkl
 
     Write-Host "`t Creating link: ${cmd}" -ForegroundColor Yellow
     Invoke-Expression "${cmd}"
+}
+
+function replace-all-spaces-with-dashes
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path
+    )
+
+    Get-ChildItem -Path $Path -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+        if ($_.Name -match ' ')
+        {
+            $newName = $_.Name -replace ' ', '-'
+            $newPath = Join-Path -Path $_.DirectoryName -ChildPath $newName
+            Write-Host "Renaming '$($_.FullName)' to '$newPath'" -ForegroundColor Yellow
+            Rename-Item -Path $_.FullName -NewName $newName -ErrorAction SilentlyContinue
+        }
+    }
+}
+
+function replace-all-spaces-with-underscores
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path
+    )
+
+    Get-ChildItem -Path $Path -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+        if ($_.Name -match ' ')
+        {
+            $newName = $_.Name -replace ' ', '_'
+            $newPath = Join-Path -Path $_.DirectoryName -ChildPath $newName
+            Write-Host "Renaming '$($_.FullName)' to '$newPath'" -ForegroundColor Yellow
+            Rename-Item -Path $_.FullName -NewName $newName -ErrorAction SilentlyContinue
+        }
+    }
 }

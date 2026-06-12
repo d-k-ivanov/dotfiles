@@ -15,6 +15,8 @@ if ($MyInvocation.InvocationName -ne '.')
     exit
 }
 
+${function:vv} = { vitis-env; vitis -w . }
+
 function vitis-install-paths
 {
     $potentialRoots = @(
