@@ -317,7 +317,7 @@ function mkl
     Invoke-Expression "${cmd}"
 }
 
-function replace-all-spaces-with-dashes
+function fs-replace-all-spaces-with-dashes
 {
     [CmdletBinding()]
     param
@@ -336,7 +336,7 @@ function replace-all-spaces-with-dashes
     }
 }
 
-function replace-all-spaces-with-underscores
+function fs-replace-all-spaces-with-underscores
 {
     [CmdletBinding()]
     param
