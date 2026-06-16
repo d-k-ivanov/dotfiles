@@ -17,7 +17,6 @@ Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
 Plug 'preservim/vim-indent-guides'
 Plug 'preservim/vim-markdown'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'Raimondi/delimitMate'
 Plug 'roblillack/vim-bufferlist'
 Plug 'tpope/vim-commentary'
@@ -107,22 +106,6 @@ map <leader>n :NERDTreeToggle<CR>
 map <leader>N :NERDTreeFindIfFindable<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-
-" => python-mode
-let g:pymode_options = 0
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_completion_bind = '<C-Shift-Space>'
-let g:pymode_indent = 1
-let g:pymode_syntax = 1
-if (has('unix') || has('macunix'))
-  let g:pymode_lint = 1
-else
-  let g:pymode_lint = 0
-endif
-let g:pymode_lint_ignore="E501"
-let g:pymode_folding = 0
 
 " => rainbow-parentheses
 au VimEnter * RainbowParenthesesToggle
