@@ -320,6 +320,7 @@ function Install-ChocolateyPackages()
         # "vagrant-manager"                 # Vagrant Manager GUI
         "vcxsrv"                            # X server for Windows
         "winscp.install"                    # WinSCP SFTP and FTP client
+        "x2go"                              # X2Go remote desktop software
 
         # Networking:
         "bind-toolsonly"                    # BIND DNS tools

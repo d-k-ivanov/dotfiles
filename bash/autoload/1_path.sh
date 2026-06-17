@@ -16,6 +16,16 @@ case $platform in
         # CUDA
         [[ -d /usr/local/cuda/bin ]]                && export PATH=$PATH:/usr/local/cuda/bin
         [[ -d /usr/local/cuda/nvvm/bin ]]           && export PATH=$PATH:/usr/local/cuda/nvvm/bin
+        # Iintegrated circuit design
+        [[ -d /opt/gem5 ]]                              && export PATH=$PATH:/opt/riscv/bin
+        [[ -d /opt/riscv/bin ]]                         && export PATH=$PATH:/opt/riscv/bin
+        [[ -d /usr/local/bin/custom_ic/bin ]]           && export PATH=$PATH:/usr/local/bin/custom_ic/bin
+        [[ -d /usr/local/bin/Mgc_home/bin ]]            && export PATH=$PATH:/usr/local/bin/Mgc_home/bin
+        [[ -d /usr/opt/HDS_2025.1/bin ]]                && export PATH=$PATH:/usr/opt/HDS_2025.1/bin
+        [[ -d /usr/opt/Oasys-RTL-2022.2.R1/bin ]]       && export PATH=$PATH:/usr/opt/Oasys-RTL-2022.2.R1/bin
+        [[ -d /usr/opt/questasim/bin ]]                 && export PATH=$PATH:/usr/opt/questasim/bin
+        [[ -d /usr/opt/tessent_2025.1/bin ]]            && export PATH=$PATH:/usr/opt/tessent_2025.1/bin
+        [[ -d /usr/opt/tessent_2025.1/lnx-x86/bin64 ]]  && export PATH=$PATH:/usr/opt/tessent_2025.1/lnx-x86/bin64
         # LLVM
         [[ -d /usr/lib/llvm/6/bin ]]                && export PATH=$PATH:/usr/lib/llvm/6/bin
         # Qt
