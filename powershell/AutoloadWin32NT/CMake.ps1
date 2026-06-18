@@ -15,6 +15,8 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
+$Env:NINJA_STATUS = "[%w %f/%t %P] "
+
 # CMake Presets
 ${function:cmake-presets-26}   = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26.json          ${PWD}\CMakePresets.json }
 ${function:cmake-presets-26d}  = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26-Debug.json    ${PWD}\CMakePresets.json }

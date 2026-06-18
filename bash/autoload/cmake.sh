@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export NINJA_STATUS="[%w %f/%t %P] "
+
 cmake-presets-nj() {
     cp -rf "${HOME}/config/cmake/presets/CMakePresets-Linux-Ninja.json" $(pwd)/CMakePresets.json
 }
