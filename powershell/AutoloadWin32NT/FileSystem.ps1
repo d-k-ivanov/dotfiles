@@ -354,3 +354,24 @@ function fs-replace-all-spaces-with-underscores
         }
     }
 }
+
+function get-direcory-not-containing-file
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$FileName
+    )
+
+    Get-ChildItem -Path $Path -Directory | Where-Object { -not (Get-ChildItem $_ -File -Recurse -Filter $FileName) } | Select-Object FullName
+    # Get-ChildItem -Path $Path -Directory | Where-Object { -not (Get-ChildItem $_ -File -Recurse -Filter $FileName) } | Select-Object Name, LastWriteTime
+
+    # Get-ChildItem -Path $Path -Directory -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+    #     $filePath = Join-Path -Path $_.FullName -ChildPath $FileName
+    #     if (-not (Test-Path -Path $filePath))
+    #     {
+    #         Write-Host $_.FullName -ForegroundColor Yellow
+    #     }
+    # }
+}
