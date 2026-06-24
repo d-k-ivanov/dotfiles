@@ -108,8 +108,6 @@ let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
 " => rainbow-parentheses
-" Guard against environments where the plugin isn't installed/loaded,
-" otherwise Vim throws E492 on the Syntax/VimEnter autocommands below.
 if exists(':RainbowParenthesesToggle')
     au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
@@ -140,9 +138,11 @@ endif
 nmap <F2> :Rename!
 
 " => syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+if exists('*SyntasticStatuslineFlag')
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+endif
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
