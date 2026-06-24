@@ -108,10 +108,14 @@ let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
 " => rainbow-parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" Guard against environments where the plugin isn't installed/loaded,
+" otherwise Vim throws E492 on the Syntax/VimEnter autocommands below.
+if exists(':RainbowParenthesesToggle')
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+endif
 " let g:rbpt_colorpairs = [
 "     \ ['brwn',       'RoyalBlue3'],
 "     \ ['Darkblue',    'SeaGreen3'],
