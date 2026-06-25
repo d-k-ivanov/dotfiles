@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-export NINJA_STATUS="[%w %f/%t %P] "
+ninja_version=$(ninja --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+')
+if [[ "$ninja_version" < "1.12" ]]; then
+    export NINJA_STATUS="[%f/%t %P] "
+else
+    export NINJA_STATUS="[%w %f/%t %P] "
+fi
 
 cmake-presets-nj() {
     cp -rf "${HOME}/config/cmake/presets/CMakePresets-Linux-Ninja.json" $(pwd)/CMakePresets.json

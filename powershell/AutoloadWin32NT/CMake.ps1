@@ -15,7 +15,23 @@ if ($MyInvocation.InvocationName -ne '.')
     Exit
 }
 
-$Env:NINJA_STATUS = "[%w %f/%t %P] "
+$ninjaVersion = $null
+if (Get-Command ninja -ErrorAction SilentlyContinue)
+{
+    if ((ninja --version 2>$null) -match '\d+\.\d+')
+    {
+        $ninjaVersion = $Matches[0]
+    }
+}
+
+if ($ninjaVersion -and ([version] $ninjaVersion -ge [version] '1.12'))
+{
+    $Env:NINJA_STATUS = "[%w %f/%t %P] "
+}
+else
+{
+    $Env:NINJA_STATUS = "[%f/%t %P] "
+}
 
 # CMake Presets
 ${function:cmake-presets-26}   = { Copy-Item ${Env:USERPROFILE}\.config\cmake\presets\CMakePresets-Windows-MSVC-26.json          ${PWD}\CMakePresets.json }
