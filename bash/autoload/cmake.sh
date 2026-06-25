@@ -2,7 +2,7 @@
 
 ninja_version=$(ninja --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+')
 if [[ "$ninja_version" < "1.12" ]]; then
-    export NINJA_STATUS="[%f/%t %P] "
+    export NINJA_STATUS="[%f/%t] "
 else
     export NINJA_STATUS="[%w %f/%t %P] "
 fi

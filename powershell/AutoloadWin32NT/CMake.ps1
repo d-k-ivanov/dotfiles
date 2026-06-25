@@ -30,7 +30,7 @@ if ($ninjaVersion -and ([version] $ninjaVersion -ge [version] '1.12'))
 }
 else
 {
-    $Env:NINJA_STATUS = "[%f/%t %P] "
+    $Env:NINJA_STATUS = "[%f/%t] "
 }
 
 # CMake Presets
