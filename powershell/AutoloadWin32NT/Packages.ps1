@@ -167,6 +167,7 @@ function Install-ChocolateyPackages()
         "grep"                              # Command-line text search tool
         "jq"                                # Command-line JSON processor
         # "ripgrep"                         # Fast command-line search tool
+        "rsync"                             # File synchronization and transfer tool
         "tree"                              # Directory tree listing tool
         "wget"                              # Command-line file downloader
         "yq"                                # Command-line YAML processor
