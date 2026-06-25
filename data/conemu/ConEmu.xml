@@ -529,12 +529,12 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu26'/>
 				</key>
-				<key name="Task6" modified="2026-06-10 01:50:36" build="230724">
+				<key name="Task6" modified="2026-06-25 23:04:03" build="230724">
 					<value name="Name" type="string" data="{WSL::Ubuntu 26.04 VSplit}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:s50H:n:m:"/mnt":t:Ubuntu26'/>
+					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution Ubuntu-26.04 --cd ~ -cur_console:h0:p:sV:n:m:"/mnt":t:Ubuntu26'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
