@@ -90,9 +90,11 @@ function use-clang-18()
     export CXX=clang++-18
 }
 
-function clang_format_all()
+function clang_format()
 {
-    find . -regex '.*\.\(cpp\|hpp\|cu\|c\|h\)' -exec clang-format -style=file -i {} \;
+    local path="${1:-.}"
+    local regex='.*\.\(c\|cc\|cpp\|cxx\|c\+\+\|cp\|h\|hh\|hpp\|hxx\|h\+\+\|hp\|inl\|inc\|ipp\|tpp\|tcc\|txx\|cu\|cuh\)'
+    find "$path" -regex "$regex" -exec clang-format -style=file -i {} \;
 }
 
 alias cppck="cppcheck -j8 --enable=all --force "
