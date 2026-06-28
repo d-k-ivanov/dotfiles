@@ -259,6 +259,7 @@ function Install-ChocolateyPackages()
         "dropbox"                           # Dropbox client
         "Ghostscript.app"                   # Ghostscript PostScript and PDF interpreter
         "libreoffice-fresh"                 # LibreOffice suite
+        "naps2"                             # NAPS2 (Not Another PDF Scanner 2)
         "pdf24"                             # PDF24 Creator
         "pdfsam"                            # PDF Split and Merge Basic
         # "qtranslate"                      # QTranslate language translator. Download from: https://quest-app.appspot.com/
