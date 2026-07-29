@@ -14,6 +14,7 @@ if ($MyInvocation.InvocationName -ne '.')
         -ForegroundColor Red
     exit
 }
+
 function draco_decode
 {
     [CmdletBinding()]
@@ -25,8 +26,6 @@ function draco_decode
     )
 
     $FullPath = Convert-Path $Path
-    Set-Location $FullPath
-
     Get-ChildItem -Path $FullPath -File -Recurse -Filter *.drc | ForEach-Object {
         $out = Join-Path $_.DirectoryName "$($_.BaseName).$Format"
         Write-Host "Converting: $($_.FullName) -> $out" -ForegroundColor Yellow
@@ -45,8 +44,6 @@ function draco_encode
     )
 
     $FullPath = Convert-Path $Path
-    Set-Location $FullPath
-
     Get-ChildItem -Path $FullPath -File -Recurse -Filter *.$Format | ForEach-Object {
         $out = Join-Path $_.DirectoryName "$($_.BaseName).drc"
         Write-Host "Converting: $($_.FullName) -> $out" -ForegroundColor Yellow
