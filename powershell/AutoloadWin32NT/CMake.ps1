@@ -146,11 +146,11 @@ ${function:cbuild-debug-x}    = { cmake --build build/x64-Debug          --confi
 ${function:cbuild-release-x}  = { cmake --build build/x64-Release        --config Release        @args }
 ${function:cbuild-reldebug-x} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
 
-${function:cgenbuld} = { cgen-nj-reldebug; cbuild-reldebug }
+${function:cgenbuild} = { cgen-nj-reldebug; cbuild-reldebug }
 
 # CMake Aliases
 Set-Alias cbuild cbuild-reldebug
-Set-Alias cgb    cgenbuld
+Set-Alias cgb    cgenbuild
 Set-Alias cgen   cgen-nj-reldebug
 Set-Alias cgencl cgen-nj-reldebug-cl
 Set-Alias cgend  cgen-nj-debug
