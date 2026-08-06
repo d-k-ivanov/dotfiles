@@ -112,8 +112,8 @@ ${function:cgen-nj-release-v}   = { cmake -G "Ninja" -B build -S $(If ($args[0])
 ${function:cgen-nj-reldebug-v}  = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo $(vcpkg-cmake) }
 
 # CMake Generator: Ninja Multi-Config
-${function:cgen-nj-multy}       = { cmake -G "Ninja Multi-Config" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
-${function:cgen-nj-multy-v}     = { cmake -G "Ninja Multi-Config" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake)   }
+${function:cgen-nj-multi}       = { cmake -G "Ninja Multi-Config" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-nj-multi-v}     = { cmake -G "Ninja Multi-Config" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) $(vcpkg-cmake)   }
 
 # CMake Generators: Build Folders: Debug, Release, RelWithDebInfo
 ${function:cgen-nj-debug-x}    = { cmake -G "Ninja"                        -B build/x64-Debug -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug }

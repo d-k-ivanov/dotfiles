@@ -19,56 +19,88 @@ cmake-presets-nj-clang() {
     cp -rf "${HOME}/config/cmake/presets/CMakePresets-Linux-Ninja-Clang.json" $(pwd)/CMakePresets.json
 }
 
-cgen-nj() {
-    cmake -G Ninja -B build -S $@
+cgen-nj-debug() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -S $@
+}
+
+cgen-nj-release() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -S $@
+}
+
+cgen-nj-reldebug() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
+}
+
+cgen-nj-debug-cl() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -S $@
+}
+
+cgen-nj-release-cl() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -S $@
+}
+
+cgen-nj-reldebug-cl() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -S $@
+}
+
+cgen-nj-debug-x() {
+    cmake -G Ninja -B build/x64-Debug -DCMAKE_BUILD_TYPE=Debug -S $@
+}
+
+cgen-nj-release-x() {
+    cmake -G Ninja -B build/x64-Release -DCMAKE_BUILD_TYPE=Release -S $@
+}
+
+cgen-nj-reldebug-x() {
+    cmake -G Ninja -B build/x64-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
 }
 
 cgen-nj-multi() {
     cmake -G "Ninja Multi-Config" -B build -S $@
 }
 
-cgen-nj-db() {
-    cmake -G Ninja -B build/x64-Debug -DCMAKE_BUILD_TYPE=Debug -S $@
-}
-
-cgen-nj-rl() {
-    cmake -G Ninja -B build/x64-Release -DCMAKE_BUILD_TYPE=Release -S $@
-}
-
-cgen-nj-rd() {
-    cmake -G Ninja -B build/x64-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
-}
-
-cgen-nj-multi-db() {
+cgen-nj-multi-debug() {
     cmake -G "Ninja Multi-Config" -B build/x64-Debug -DCMAKE_BUILD_TYPE=Debug -S $@
 }
 
-cgen-nj-multi-rl() {
+cgen-nj-multi-release() {
     cmake -G "Ninja Multi-Config" -B build/x64-Release -DCMAKE_BUILD_TYPE=Release -S $@
 }
 
-cgen-nj-multi-rd() {
+cgen-nj-multi-reldebug() {
     cmake -G "Ninja Multi-Config" -B build/x64-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
 }
 
-cbuild-db() {
+cbuild-debug() {
+    cmake --build build --config Debug $@
+}
+
+cbuild-release() {
+    cmake --build build --config Release $@
+}
+
+cbuild-reldebug() {
+    cmake --build build --config RelWithDebInfo $@
+}
+
+cbuild-debug-x() {
     cmake --build build/x64-Debug --config Debug $@
 }
 
-cbuild-rl() {
+cbuild-release-x() {
     cmake --build build/x64-Release --config Release $@
 }
 
-cbuild-rd() {
+cbuild-reldebug-x() {
     cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo $@
 }
 
-alias cgen=cgen-nj-rd
-alias cbuild=cbuild-rd
+alias cgen=cgen-nj-reldebug
+alias cbuild=cbuild-reldebug
 
-alias cgenbuld-db="cgen-nj-db . && cbuild-db"
-alias cgenbuld-rl="cgen-nj-rl . && cbuild-rl"
-alias cgenbuld-rd="cgen-nj-rd . && cbuild-rd"
+alias cgenbuild-debug="cgen-nj-debug . && cbuild-debug"
+alias cgenbuild-release="cgen-nj-release . && cbuild-release"
+alias cgenbuild-reldebug="cgen-nj-reldebug . && cbuild-reldebug"
 
-alias cgenbuld=cgenbuld-rd
-alias cgb=cgenbuld-rd
+alias cgenbuild=cgenbuild-reldebug
+alias cgb=cgenbuild-reldebug
