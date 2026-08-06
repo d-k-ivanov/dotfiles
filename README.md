@@ -4,10 +4,6 @@
 * Linux
 * MacOS
 
-## Documentation
-
-* [Bash Aliases Reference](ALIASES.md)
-
 ## Git Posh Options
 
 To disable something in git-posh-bash:
