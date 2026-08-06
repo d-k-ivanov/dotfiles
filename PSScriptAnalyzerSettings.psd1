@@ -3,7 +3,8 @@
         'PSAvoidUsingCmdletAliases',
         'PSAvoidUsingInvokeExpression',
         'PSAvoidUsingPositionalParameters',
-        'PSAvoidUsingWriteHost'
+        'PSAvoidUsingWriteHost',
+        'PSPossibleIncorrectUsageOfRedirectionOperator',
         'PSUseApprovedVerbs',
         # PSUseDeclaredVarsMoreThanAssignments doesn't currently work due to:
         # https://github.com/PowerShell/PSScriptAnalyzer/issues/636
