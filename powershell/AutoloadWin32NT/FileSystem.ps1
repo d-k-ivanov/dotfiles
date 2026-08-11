@@ -91,12 +91,7 @@ Set-Alias dul Get-DuList
 # Determine size of a file or total size of a directory
 function Get-DiskUsage([string] $Path = (Get-Location).Path)
 {
-    Convert-ToDiskSize `
-    ( `
-            Get-ChildItem $Path -Force -Recurse -ErrorAction SilentlyContinue `
-        | Measure-Object -Property length -Sum -ErrorAction SilentlyContinue
-    ).Sum `
-        1
+    Convert-ToDiskSize (Get-ChildItem $Path -Force -Recurse -ErrorAction SilentlyContinue | Measure-Object -Property length -Sum -ErrorAction SilentlyContinue).Sum 1
 }
 
 function Convert-ToDiskSize
@@ -374,4 +369,34 @@ function get-direcory-not-containing-file
     #         Write-Host $_.FullName -ForegroundColor Yellow
     #     }
     # }
+}
+
+function copy-random-items
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $True)]
+        [String]$Source,
+        [Parameter(Mandatory = $True)]
+        [String]$Destination,
+        [Parameter(Mandatory = $True)]
+        [Int]$Count
+    )
+
+    if (-not (Test-Path -Path $Source))
+    {
+        Write-Host "Source path '$Source' does not exist." -ForegroundColor Red
+        return
+    }
+
+    if (-not (Test-Path -Path $Destination))
+    {
+        New-Item -ItemType Directory -Path "$Destination" -Force
+    }
+
+    Get-ChildItem -Path $Source | Get-Random -Count $Count | ForEach-Object {
+        Copy-Item -Path $_.FullName -Destination $Destination -Force -Recurse
+        Write-Host "Copied '$($_.FullName)' to '$Destination'" -ForegroundColor Green
+    }
 }
