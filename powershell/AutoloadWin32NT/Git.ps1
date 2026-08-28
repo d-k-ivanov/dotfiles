@@ -331,7 +331,7 @@ function git-fetch-all-branches
         else
         {
             # Set upstream for existing branch if not already set
-            $upstreamInfo = git rev-parse --abbrev-ref $branchName@{upstream} 2>$null
+            $upstreamInfo = git rev-parse --abbrev-ref $branchName@ { upstream } 2>$null
             if (-not $upstreamInfo)
             {
                 git branch --set-upstream-to=$remote $branchName
@@ -689,3 +689,56 @@ function git_filter_folder
     # git remote add origin <new_repo>
     git filter-branch --subdirectory-filter $Folder -- -- all
 }
+
+function git-resolve-app-version
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $App,
+        [Parameter(Mandatory = $true)]
+        [string] $Version,
+        [string] $Line = 'origin/main'
+    )
+
+    if ($Version -notmatch '^([0-9]+\.[0-9]+\.[0-9]+)\.([0-9]+)$')
+    {
+        Write-Error "Invalid version: $Version"
+        return
+    }
+
+    $semver = $Matches[1]
+    $count = [int]$Matches[2]
+    $tag = "$App-$semver"
+
+    if ($count -eq 0)
+    {
+        $commit = git rev-parse --verify "refs/tags/${tag}^{commit}"
+        if ($LASTEXITCODE -ne 0) { return }
+    }
+    else
+    {
+        $commits = @(git rev-list --first-parent --reverse "refs/tags/${tag}..$Line")
+        if ($LASTEXITCODE -ne 0) { return }
+        $commit = if ($commits.Count -ge $count) { $commits[$count - 1] } else { $null }
+    }
+
+    if ([string]::IsNullOrWhiteSpace($commit))
+    {
+        Write-Error "No commit for $App $Version on $Line"
+        return
+    }
+
+    # Ensure that the candidate really produces the requested version.
+    $description = git describe --tags --first-parent --long --match "$App-[0-9]*.[0-9]*" $commit
+    if ($LASTEXITCODE -ne 0) { return }
+
+    if ($description -notlike "$tag-$count-g*")
+    {
+        Write-Error "Version mismatch: candidate describes as $description"
+        return
+    }
+
+    Write-Output $commit
+}
+

@@ -432,3 +432,41 @@ git-insertions-recurse() {
         cd ..
     done
 }
+
+git-resolve-app-version() {
+    local app="$1"
+    local version="$2"
+    local line="${3:-origin/main}"
+
+    if [[ ! $version =~ ^([0-9]+\.[0-9]+\.[0-9]+)\.([0-9]+)$ ]]; then
+        echo "Invalid version: $version" >&2
+        return 1
+    fi
+
+    local semver="${BASH_REMATCH[1]}"
+    local count=$((10#${BASH_REMATCH[2]}))
+    local tag="${app}-${semver}"
+    local commit
+
+    if (( count == 0 )); then
+        commit=$(git rev-parse --verify "refs/tags/${tag}^{commit}") || return 1
+    else
+        commit=$(git rev-list --first-parent --reverse "refs/tags/${tag}..${line}" | sed -n "${count}p")
+    fi
+
+    if [[ -z $commit ]]; then
+        echo "No commit for $app $version on $line" >&2
+        return 1
+    fi
+
+    # Ensure that the candidate really produces the requested version.
+    local description
+    description=$(git describe --tags --first-parent --long --match "${app}-[0-9]*.[0-9]*" "$commit") || return 1
+
+    if [[ $description != "${tag}-${count}-g"* ]]; then
+        echo "Version mismatch: candidate describes as $description" >&2
+        return 1
+    fi
+
+    printf '%s\n' "$commit"
+}
