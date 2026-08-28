@@ -741,4 +741,3 @@ function git-resolve-app-version
 
     Write-Output $commit
 }
-
