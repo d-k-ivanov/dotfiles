@@ -102,6 +102,11 @@ ${function:cgen-nj-debug}       = { cmake -G "Ninja" -B build -S $(If ($args[0])
 ${function:cgen-nj-release}     = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release        }
 ${function:cgen-nj-reldebug}    = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 
+# CMake Generator: Ninja -PCH +INSTALL
+${function:cgen-nj-debug-w}     = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug          -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
+${function:cgen-nj-release-w}   = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release        -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
+${function:cgen-nj-reldebug-w}  = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
+
 # Clang CL
 ${function:cgen-nj-debug-cl}    = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug          -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl }
 ${function:cgen-nj-release-cl}  = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release        -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl }
@@ -146,17 +151,25 @@ ${function:cbuild-debug-x}    = { cmake --build build/x64-Debug          --confi
 ${function:cbuild-release-x}  = { cmake --build build/x64-Release        --config Release        @args }
 ${function:cbuild-reldebug-x} = { cmake --build build/x64-RelWithDebInfo --config RelWithDebInfo @args }
 
-${function:cgenbuild} = { cgen-nj-reldebug; cbuild-reldebug }
+${function:cgenbuild}   = { cgen-nj-reldebug; cbuild-reldebug }
+${function:cgenbuild-w} = { cgen-nj-reldebug-w; cbuild-reldebug }
+${function:cgenbuild-x} = { cgen-nj-reldebug-x; cbuild-reldebug-x }
+
 
 # CMake Aliases
 Set-Alias cbuild cbuild-reldebug
-Set-Alias cgb    cgenbuild
-Set-Alias cgen   cgen-nj-reldebug
-Set-Alias cgencl cgen-nj-reldebug-cl
-Set-Alias cgend  cgen-nj-debug
-Set-Alias cgenr  cgen-nj-release
-Set-Alias cgenrd cgen-nj-reldebug
-Set-Alias cgenv  cgen-nj-reldebug-v
+Set-Alias cgb       cgenbuild
+Set-Alias cgbw      cgenbuild-w
+Set-Alias cgen      cgen-nj-reldebug
+Set-Alias cgenw     cgen-nj-reldebug-w
+Set-Alias cgencl    cgen-nj-reldebug-cl
+Set-Alias cgend     cgen-nj-debug
+Set-Alias cgendw    cgen-nj-debug-w
+Set-Alias cgenr     cgen-nj-release
+Set-Alias cgenrw    cgen-nj-release-w
+Set-Alias cgenrd    cgen-nj-reldebug
+Set-Alias cgenrdw   cgen-nj-reldebug-w
+Set-Alias cgenv     cgen-nj-reldebug-v
 
 # CMake Gen&Build Aliases (Release)
 ${function:cmake2026x86} = { dev32; cgen-release-26; cmake --build build/x64-Release --config "Release" }
