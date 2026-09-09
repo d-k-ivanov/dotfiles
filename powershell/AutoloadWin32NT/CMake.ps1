@@ -85,6 +85,7 @@ ${function:cmake-settings-envs-nj} = { Copy-Item ${Env:USERPROFILE}\.config\cmak
 
 # CMake Generator: Visual Studio 2026
 ${function:cgen-26}         = { cmake -G "Visual Studio 18 2026" -A x64                  -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
+${function:cgen-26-w}       = { cmake -G "Visual Studio 18 2026" -A x64                  -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
 ${function:cgen-26-1444}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.44 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-26-1450}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.50 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-26-1451}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.51 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
