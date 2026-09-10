@@ -23,12 +23,24 @@ cgen-nj-debug() {
     cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -S $@
 }
 
+cgen-nj-debug-w() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -S $@
+}
+
 cgen-nj-release() {
     cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -S $@
 }
 
+cgen-nj-release-w() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -S $@
+}
+
 cgen-nj-reldebug() {
     cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -S $@
+}
+
+cgen-nj-reldebug-w() {
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -S $@
 }
 
 cgen-nj-debug-cl() {
@@ -96,11 +108,18 @@ cbuild-reldebug-x() {
 }
 
 alias cgen=cgen-nj-reldebug
+alias cgenw=cgen-nj-reldebug-w
 alias cbuild=cbuild-reldebug
 
 alias cgenbuild-debug="cgen-nj-debug . && cbuild-debug"
 alias cgenbuild-release="cgen-nj-release . && cbuild-release"
 alias cgenbuild-reldebug="cgen-nj-reldebug . && cbuild-reldebug"
 
+alias cgenbuild-debug-w="cgen-nj-debug-w . && cbuild-debug"
+alias cgenbuild-release-w="cgen-nj-release-w . && cbuild-release"
+alias cgenbuild-reldebug-w="cgen-nj-reldebug-w . && cbuild-reldebug"
+
 alias cgenbuild=cgenbuild-reldebug
+alias cgenbuild-w=cgenbuild-reldebug-w
 alias cgb=cgenbuild-reldebug
+alias cgbw=cgenbuild-reldebug-w
