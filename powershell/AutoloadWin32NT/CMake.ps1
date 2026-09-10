@@ -85,7 +85,7 @@ ${function:cmake-settings-envs-nj} = { Copy-Item ${Env:USERPROFILE}\.config\cmak
 
 # CMake Generator: Visual Studio 2026
 ${function:cgen-26}         = { cmake -G "Visual Studio 18 2026" -A x64                  -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
-${function:cgen-26-w}       = { cmake -G "Visual Studio 18 2026" -A x64                  -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
+${function:cgen-26-w}       = { cmake -G "Visual Studio 18 2026" -A x64                  -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON }
 ${function:cgen-26-1444}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.44 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-26-1450}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.50 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
 ${function:cgen-26-1451}    = { cmake -G "Visual Studio 18 2026" -A x64 -T version=14.51 -B build -S $(If ($args[0]) { $args } Else { Get-Location }) }
@@ -104,9 +104,9 @@ ${function:cgen-nj-release}     = { cmake -G "Ninja" -B build -S $(If ($args[0])
 ${function:cgen-nj-reldebug}    = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo }
 
 # CMake Generator: Ninja -PCH +INSTALL
-${function:cgen-nj-debug-w}     = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug          -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
-${function:cgen-nj-release-w}   = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release        -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
-${function:cgen-nj-reldebug-w}  = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_PCH=OFF -DENABLE_INSTALL=ON }
+${function:cgen-nj-debug-w}     = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug          -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON }
+${function:cgen-nj-release-w}   = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Release        -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON }
+${function:cgen-nj-reldebug-w}  = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON }
 
 # Clang CL
 ${function:cgen-nj-debug-cl}    = { cmake -G "Ninja" -B build -S $(If ($args[0]) { $args } Else { Get-Location }) -DCMAKE_BUILD_TYPE=Debug          -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl }

@@ -24,7 +24,7 @@ cgen-nj-debug() {
 }
 
 cgen-nj-debug-w() {
-    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -S $@
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON -S $@
 }
 
 cgen-nj-release() {
@@ -32,7 +32,7 @@ cgen-nj-release() {
 }
 
 cgen-nj-release-w() {
-    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -S $@
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON -S $@
 }
 
 cgen-nj-reldebug() {
@@ -40,7 +40,7 @@ cgen-nj-reldebug() {
 }
 
 cgen-nj-reldebug-w() {
-    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -S $@
+    cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_PCH=OFF -DENABLE_INSTALL=ON -DVERBOSE_OUTPUT=ON -S $@
 }
 
 cgen-nj-debug-cl() {
