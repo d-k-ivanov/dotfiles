@@ -400,3 +400,28 @@ function copy-random-items
         Write-Host "Copied '$($_.FullName)' to '$Destination'" -ForegroundColor Green
     }
 }
+
+function get-folder-with-one-file
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$FileName
+    )
+
+    Get-ChildItem -Path $Path -Directory | Where-Object { (Get-ChildItem $_ -File -Recurse -Filter $FileName).Count -eq 1 } | Select-Object FullName
+}
+
+function get-folder-with-zero-files
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$FileName
+    )
+
+    Get-ChildItem -Path $Path -Directory | Where-Object { (Get-ChildItem $_ -File -Recurse -Filter $FileName).Count -eq 0 } | Select-Object FullName
+}
+
