@@ -22,7 +22,8 @@ function draco_decode
     (
         [ValidateScript({ Test-Path -Path $_ -PathType Container })]
         [string] $Path = '.',
-        [string] $Format = 'stl'
+        [string] $Format = 'stl',
+        [switch] $RemoveOriginal = $false
     )
 
     $FullPath = Convert-Path $Path
@@ -30,6 +31,9 @@ function draco_decode
         $out = Join-Path $_.DirectoryName "$($_.BaseName).$Format"
         Write-Host "Converting: $($_.FullName) -> $out" -ForegroundColor Yellow
         & draco_decoder.exe -i $_.FullName -o $out
+        if ($RemoveOriginal) {
+            Remove-Item -Path $_.FullName -Force
+        }
     }
 }
 
@@ -40,7 +44,8 @@ function draco_encode
     (
         [ValidateScript({ Test-Path -Path $_ -PathType Container })]
         [string] $Path = '.',
-        [string] $Format = 'stl'
+        [string] $Format = 'stl',
+        [switch] $RemoveOriginal = $false
     )
 
     $FullPath = Convert-Path $Path
@@ -48,6 +53,9 @@ function draco_encode
         $out = Join-Path $_.DirectoryName "$($_.BaseName).drc"
         Write-Host "Converting: $($_.FullName) -> $out" -ForegroundColor Yellow
         & draco_encoder.exe -i $_.FullName -o $out
+        if ($RemoveOriginal) {
+            Remove-Item -Path $_.FullName -Force
+        }
     }
 }
 
@@ -59,6 +67,14 @@ ${function:draco_to_stl} = { draco_decode }
 ${function:draco_to_ply} = { draco_decode -Format 'ply' }
 ${function:draco_to_obj} = { draco_decode -Format 'obj' }
 
+${function:drc_to_stl_remove} = { draco_decode -RemoveOriginal }
+${function:drc_to_ply_remove} = { draco_decode -Format 'ply' -RemoveOriginal }
+${function:drc_to_obj_remove} = { draco_decode -Format 'obj' -RemoveOriginal }
+
+${function:draco_to_stl_remove} = { draco_decode -RemoveOriginal }
+${function:draco_to_ply_remove} = { draco_decode -Format 'ply' -RemoveOriginal }
+${function:draco_to_obj_remove} = { draco_decode -Format 'obj' -RemoveOriginal  }
+
 ${function:stl_to_drc} = { draco_encode }
 ${function:ply_to_drc} = { draco_encode -Format 'ply' }
 ${function:obj_to_drc} = { draco_encode -Format 'obj' }
@@ -66,3 +82,12 @@ ${function:obj_to_drc} = { draco_encode -Format 'obj' }
 ${function:stl_to_draco} = { draco_encode }
 ${function:ply_to_draco} = { draco_encode -Format 'ply' }
 ${function:obj_to_draco} = { draco_encode -Format 'obj' }
+
+${function:stl_to_drc_remove} = { draco_encode -RemoveOriginal }
+${function:ply_to_drc_remove} = { draco_encode -Format 'ply' -RemoveOriginal }
+${function:obj_to_drc_remove} = { draco_encode -Format 'obj' -RemoveOriginal }
+
+${function:stl_to_draco_remove} = { draco_encode -RemoveOriginal }
+${function:ply_to_draco_remove} = { draco_encode -Format 'ply' -RemoveOriginal }
+${function:obj_to_draco_remove} = { draco_encode -Format 'obj' -RemoveOriginal }
+
