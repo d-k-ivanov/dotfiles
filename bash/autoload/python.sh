@@ -37,6 +37,11 @@ vins() {
 alias pip-update='python -m pip install --upgrade pip'
 alias ipython-install='python -m pip install ipython'
 
+# Testing:
+py_run_tests() {
+    python -m unittest discover -v -s "${1:-tests}"
+}
+
 alias srv='python -m http.server 8000'
 
 py_venv() {

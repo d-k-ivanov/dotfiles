@@ -38,6 +38,9 @@ ${function:vins} = { if (Test-Path $args[0] -ErrorAction SilentlyContinue) { vpi
 ${function:pip-update} = { python -m pip install --upgrade pip }
 ${function:ipython-install} = { python -m pip install ipython }
 
+# Testing:
+${function:py_run_tests} = { python -m unittest discover -v -s $(if ($args[0]) { $args[0] } else { 'tests' }) }
+
 function py_init_environmnet
 {
     python -m pip install --upgrade pip
