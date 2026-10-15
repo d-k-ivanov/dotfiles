@@ -401,7 +401,31 @@ function copy-random-items
     }
 }
 
-function get-folder-with-one-file
+function get-folder-with-n-files
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$FileName,
+        [Int]$Count
+    )
+
+    Get-ChildItem -Path $Path -Directory | Where-Object { (Get-ChildItem $_ -File -Recurse -Filter $FileName).Count -eq $Count } | Select-Object FullName
+}
+
+function get-folder-with-0
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$FileName
+    )
+    get-folder-with-n-files -Path $Path -FileName $FileName -Count 0
+}
+
+function get-folder-with-1
 {
     [CmdletBinding()]
     param
@@ -410,10 +434,10 @@ function get-folder-with-one-file
         [String]$FileName
     )
 
-    Get-ChildItem -Path $Path -Directory | Where-Object { (Get-ChildItem $_ -File -Recurse -Filter $FileName).Count -eq 1 } | Select-Object FullName
+    get-folder-with-n-files -Path $Path -FileName $FileName -Count 1
 }
 
-function get-folder-with-zero-files
+function get-folder-with-2
 {
     [CmdletBinding()]
     param
@@ -422,6 +446,80 @@ function get-folder-with-zero-files
         [String]$FileName
     )
 
-    Get-ChildItem -Path $Path -Directory | Where-Object { (Get-ChildItem $_ -File -Recurse -Filter $FileName).Count -eq 0 } | Select-Object FullName
+    get-folder-with-n-files -Path $Path -FileName $FileName -Count 2
 }
 
+function get-folder-with-3
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$FileName
+    )
+
+    get-folder-with-n-files -Path $Path -FileName $FileName -Count 3
+}
+
+function move-single-folder-with-n-files
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$Destination,
+        [Int]$Count
+    )
+
+    Get-ChildItem -Path $Path -Directory | Where-Object { (Get-ChildItem $_ | Measure-Object).Count -eq $Count } | ForEach-Object {
+        Move-Item -Path $_.FullName -Destination $Destination -Force
+        Write-Host "Moved '$($_.FullName)' to '$Destination'" -ForegroundColor Green
+    }
+}
+
+function move-folder-with-0
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$Destination
+    )
+    move-single-folder-with-n-files -Path $Path -Destination $Destination -Count 0
+}
+
+function move-folder-with-1
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$Destination
+    )
+
+    move-single-folder-with-n-files -Path $Path -Destination $Destination -Count 1
+}
+
+function move-folder-with-2
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$Destination
+    )
+
+    move-single-folder-with-n-files -Path $Path -Destination $Destination -Count 2
+}
+
+function move-folder-with-3
+{
+    [CmdletBinding()]
+    param
+    (
+        [String]$Path = (Get-Location).Path,
+        [String]$Destination
+    )
+
+    move-single-folder-with-n-files -Path $Path -Destination $Destination -Count 3
+}
