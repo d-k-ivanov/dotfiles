@@ -66,6 +66,10 @@ case ${OS_DISTRIBUTION} in
             alias  wsdsc='cd ~/ws/my/workstations/ubuntu'
             alias wsconf='cd ~/ws/my/workstations/ubuntu'
         ;;
+    "Fedora" | "CentOS Linux" | "Red Hat Enterprise Linux" )
+        alias  wsdsc='cd ~/ws/my/workstations/fedora'
+        alias wsconf='cd ~/ws/my/workstations/fedora'
+        ;;
     * )
         alias  wsdsc='cd ~/ws/my/workstations'
         alias wsconf='cd ~/ws/my/workstations'
