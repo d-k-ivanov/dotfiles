@@ -11,15 +11,15 @@ memory=32GB
 # Sets amount of swap storage space to 8GB, default is 25% of available RAM
 swap=16GB
 
-# Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
-swapfile=%USERPROFILE%\AppData\Local\Temp\swap.vhdx
+# Sets swapfile path location, default is %USERPROFILE%\\AppData\\Local\\Temp\\swap.vhdx
+swapfile=C:\\Temp\\wsl-swap.vhdx
 
 # Boolean to turn on or off support for GUI applications (WSLg) in WSL.
 # guiApplications=false
 guiApplications=true
 
 # Specify a custom Linux kernel to use with your installed distros. The default kernel used can be found at https://github.com/microsoft/WSL2-Linux-Kernel
-# kernel=C:\\temp\\myCustomKernel
+# kernel=C:\\Temp\\myCustomKernel
 
 # Sets additional kernel parameters, in this case enabling older Linux base images such as Centos 6
 # kernelCommandLine=vsyscall=emulate
