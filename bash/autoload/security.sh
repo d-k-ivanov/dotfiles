@@ -3,7 +3,7 @@
 
 # sudo (do not forget _ at the end (for alias))
 # if not ubuntu 26.04, then we need to preserve env variables for sudo.
-if [ "$(uname -s)" != "Linux" ] || [ "$(lsb_release -rs)" != "26.04" ]; then
+if [ "$(uname -s)" != "Linux" ] || [ "$OS_DISTRIBUTION" != "Ubuntu" ] || [ "$OS_VERSION" != "26.04" ]; then
     alias sudo="sudo -E "
 fi
 

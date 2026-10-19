@@ -4,7 +4,7 @@
 platform=`uname`
 case ${platform} in
     Linux )
-        if [[ "$(lsb_release -rs 2>/dev/null)" == "26.04" ]]; then
+        if [[ "$OS_DISTRIBUTION" == "Ubuntu" && "$OS_VERSION" == "26.04" ]]; then
             if command -v gnuls >/dev/null 2>&1; then
                 unalias ls 2>/dev/null
                 alias ls='LC_ALL=C LC_COLLATE=C gnuls '

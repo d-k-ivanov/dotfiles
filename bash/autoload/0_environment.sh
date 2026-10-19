@@ -31,7 +31,7 @@ export DONT_PROMPT_WSL_INSTALL='true'
 # Disable PowerShell telemetry
 export POWERSHELL_TELEMETRY_OPTOUT=1
 
-# Find Linux distro
+# Set the operating system distribution name
 if [ -f /etc/os-release ]
 then
     . /etc/os-release
@@ -45,6 +45,22 @@ then
     export OS_DISTRIBUTION=$DISTRIB_ID
 else
     export OS_DISTRIBUTION=$(uname -s)
+fi
+
+# Set the operating system distribution version
+if [ -f /etc/os-release ]
+then
+    . /etc/os-release
+    export OS_VERSION=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1
+then
+    export OS_VERSION=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]
+then
+    . /etc/lsb-release
+    export OS_VERSION=$DISTRIB_RELEASE
+else
+    export OS_VERSION=$(uname -r)
 fi
 
 [[ -f $HOME/.localenv ]] && source ~/.localenv
