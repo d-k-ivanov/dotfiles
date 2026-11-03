@@ -13,8 +13,8 @@ ignore_string='&:?:??:+(;):+(.)'
 # ignore_string+=':g+(w):gw+(^):gg+(w):ggw+(^):g?:g??:g???'
 # ignore_string+=':ws:wsm::wsdf:wsdfb:wsdfp:wsws'
 # ignore_string+=':cd -:cd ..:cd ~:cd /'
-ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*:*access_key*'
-ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*:*ACCESS_KEY*'
+# ignore_string+=':*password*:*asplaintext*:*token*:*apikey*:*secret*:*access_key*'
+# ignore_string+=':*PASSWORD*:*ASPLAINTEXT*:*TOKEN*:*APIKEY*:*SECRET*:*ACCESS_KEY*'
 ignore_string+=$':[ \t#]*' # Character sequences of the form $’string’ are treated as a special kind of single quotes.
 export HISTIGNORE="${ignore_string}"
 
