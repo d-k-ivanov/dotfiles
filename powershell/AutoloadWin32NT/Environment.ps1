@@ -92,6 +92,7 @@ function Initialize-Paths-User
         "${Env:USERPROFILE}\.dotnet\tools"
         "${Env:USERPROFILE}\.elan\bin"
         "${Env:USERPROFILE}\.krew\bin"
+        "${Env:USERPROFILE}\.local\bin"
         "${Env:USERPROFILE}\AppData\Local\Android\Sdk\platform-tools"
         "${Env:USERPROFILE}\AppData\Local\Coursier\data\bin"
         "${Env:USERPROFILE}\AppData\Local\JetBrains\Toolbox\scripts"
