@@ -511,11 +511,11 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000004"/>
 				</key>
-				<key name="Task4" modified="2026-10-19 09:55:47" build="230724">
-					<value name="Name" type="string" data="{WSL::Fedora 44}"/>
+				<key name="Task4" modified="2026-11-04 22:20:19" build="230724">
+					<value name="Name" type="string" data="{WSL::Fedora 45}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution FedoraLinux-44 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Fedora44'/>
+					<value name="Cmd1" type="string" data='%windir%\system32\wsl.exe --distribution FedoraLinux-45 --cd ~ -cur_console:h0:p:n:m:"/mnt":t:Fedora45'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Flags" type="dword" data="00000004"/>

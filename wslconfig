@@ -24,7 +24,17 @@ guiApplications=true
 # Sets additional kernel parameters, in this case enabling older Linux base images such as Centos 6
 # kernelCommandLine=vsyscall=emulate
 
+# Networking mode for the WSL 2 VM. Only available for Windows 11.
+# Available values are:
+# none - disables networking.
+# nat - uses Network Address Translation.
+# bridged - uses a bridged network (deprecated).
+# mirrored - mirrors the host network.
+# consomme - uses Consomme networking (user-mode NAT).
+# networkingMode = nat
+
 # Boolean specifying if ports bound to wildcard or localhost in the WSL 2 VM should be connectable from the host via localhost:port.
+# Setting is ignored when networkingMode=mirrored
 localhostforwarding = true
 
 # Boolean to turn on or off nested virtualization, enabling other nested VMs to run inside WSL 2. Only available for Windows 11.
