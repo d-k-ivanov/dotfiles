@@ -31,11 +31,11 @@ guiApplications=true
 # bridged - uses a bridged network (deprecated).
 # mirrored - mirrors the host network.
 # consomme - uses Consomme networking (user-mode NAT).
-# networkingMode = nat
+# networkingMode=nat
 
 # Boolean specifying if ports bound to wildcard or localhost in the WSL 2 VM should be connectable from the host via localhost:port.
 # Setting is ignored when networkingMode=mirrored
-localhostforwarding = true
+localhostforwarding=true
 
 # Boolean to turn on or off nested virtualization, enabling other nested VMs to run inside WSL 2. Only available for Windows 11.
 # nestedVirtualization=false
@@ -47,11 +47,24 @@ localhostforwarding = true
 maxCrashDumpCount=0
 
 # Run WSL in "Safe Mode" which disables many features and is intended to be used to recover distributions that are in bad states. Only available for Windows 11 and WSL version 0.66.2+.
-# safeMode = false
+# safeMode=false
 
 # The number of milliseconds that a VM is idle, before it is shut down. Only available for Windows 11.
-# vmIdleTimeout = 60000
+# vmIdleTimeout=60000
 
 # Enable experimental features
 # [experimental]
+# Available values are:
+# disabled - automatic memory reclamation is be disabled.
+# gradual - cached memory is be reclaimed slowly and automatically.
+# dropCache - cached memory is be reclaimed immediately (default).
+# autoMemoryReclaim=gradual
+
+# When set to true, any newly created VHD is set to sparse automatically.
 # sparseVhd=false
+
+# Only applicable when wsl2.networkingMode is set to mirrored.
+# When set to true, will allow the Container to connect to the Host, or the Host to connect to the Container, by an IP address that's assigned to the Host.
+# The 127.0.0.1 loopback address can always be used,this option allows for all additionally assigned local IP addresses to be used as well.
+# Only IPv4 addresses assigned to the host are supported.
+# hostAddressLoopback=false
