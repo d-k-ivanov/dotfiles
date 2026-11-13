@@ -39,4 +39,6 @@ remove-kmail-settings()
 
     rm -rf $HOME/.cache/akonadi*
     rm -rf $HOME/.cache/kmail2
+
+    akonadictl start
 }
