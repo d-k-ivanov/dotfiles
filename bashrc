@@ -31,7 +31,9 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
 fi
 
 # Rust
-source "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+fi
 
 # RVM - Ruby Version Manager
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
